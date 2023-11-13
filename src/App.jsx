@@ -11,6 +11,7 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import DummyPaafff from './components/DummyPaafff';
 import DevPaafff from './pages/DevPaafff';
+import DummyPaafff from './components/DummyPaafff';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/dummy/paafff" element={<DummyPaafff />} />
             <Route path="/dummy/paafff" element={<DevPaafff />} />
+            <Route path="/dummy/paafff" element={<DummyPaafff />} />
           </Routes>
         </BrowserRouter>
       </div>
