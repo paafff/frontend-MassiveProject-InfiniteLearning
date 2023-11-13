@@ -9,6 +9,7 @@ import DashboardEmployee from './pages/User/DashboardEmployee';
 import DashboardBooking from './pages/User/DashboardBooking';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
+import DummyPaafff from './components/DummyPaafff';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/dashboard-booking" element={<DashboardBooking />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/dummy/paafff" element={<DummyPaafff />} />
           </Routes>
         </BrowserRouter>
       </div>
