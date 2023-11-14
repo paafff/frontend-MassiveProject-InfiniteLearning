@@ -60,6 +60,8 @@ const DummyPaafffv3 = () => {
       </button>
       <div>image : {business ? business.imageURL[0] : 'null'}</div>
       <div>image : {business ? business.imageURL[2] : 'null'}</div>
+      <div>price : {business ? business.schedule[0] : 'null'}</div>
+      <div>price : {business ? business.schedule[1] : 'null'}</div>
     </div>
   );
 };
