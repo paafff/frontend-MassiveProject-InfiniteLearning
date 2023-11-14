@@ -10,6 +10,7 @@ import DashboardBooking from './pages/User/DashboardBooking';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import DummyPaafff from './components/DummyPaafff';
+import DevPaafff from './pages/DevPaafff';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dummy/paafff" element={<DummyPaafff />} />
+            <Route path="/dummy/paafff" element={<DevPaafff />} />
           </Routes>
         </BrowserRouter>
       </div>
