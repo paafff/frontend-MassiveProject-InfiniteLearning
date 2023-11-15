@@ -4,7 +4,11 @@ import Layout from './Layout';
 const Home = () => {
   return (
     <Layout>
-      <div>Home</div>
+
+      <div className='min-h-screen min-w-full bg-white flex items-center justify-center'>
+        <p>Ini Landing Page / Home</p>
+      </div>
+
     </Layout>
   );
 };

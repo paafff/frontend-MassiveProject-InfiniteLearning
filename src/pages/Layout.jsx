@@ -1,12 +1,14 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Layout = ({ children }) => {
   return (
     <React.Fragment>
-      <div className="bg-yellow-100 min-h-screen ">
-        {/* diisi navbar */}
+      <div className="min-h-screen font-fontPoppins">
+        <Navbar />
         <div>{children}</div>
-        {/* diisi footer */}
+        <Footer />
       </div>
     </React.Fragment>
   );
