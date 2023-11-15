@@ -8,7 +8,7 @@ import { FaLinkedin, FaInstagram, FaFacebook, FaPhoneAlt, FaEnvelope } from "rea
 
 const Footer = () => {
     return (
-        <div className='min-h-full h-fit bg-[#1A1A1A] flex flex-col py-10 px-4 md:px-10 gap-8'>
+        <div className='min-h-full h-fit bg-[#1A1A1A] flex flex-col py-10 px-4 md:px-10 lg:px-40 gap-8'>
 
             <Brand />
 
@@ -33,8 +33,8 @@ const Footer = () => {
 const Brand = () => {
     return (
         <div className='flex gap-3 items-center'>
-            <img src={Logo} className='w-20' alt="" />
-            <Link to="#" className='text-white'>HairHub</Link>
+            <img src={Logo} className='w-24' alt="" />
+            <Link to="#" className='text-white text-lg font-semibold'>HairHub</Link>
         </div>
     )
 }

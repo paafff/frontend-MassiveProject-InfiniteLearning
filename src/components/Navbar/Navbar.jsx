@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import Logo from '../assets/images/logo/logo.png'
+import Logo from '../../assets/images/logo/logo.png'
 import { Link } from 'react-router-dom';
 import { FaAngleDown } from 'react-icons/fa'
 import DropdownKategori from './DropdownKategori';
@@ -36,19 +36,19 @@ const Brand = () => {
             <Link to="#">
                 <img
                     src={Logo}
-                    className='w-16'
+                    className='w-24'
                     alt="" />
             </Link>
             <div>
                 <Link
                     to="#"
-                    className='hidden md:flex lg:flex xl:flex text-white text-sm font-medium'>
+                    className='hidden md:flex lg:flex xl:flex text-white text-lg font-semibold'>
                     HairHub
                 </Link>
 
                 <Link
                     to="#"
-                    className='md:hidden lg:hidden xl:hidden text-white text-sm font-medium'>
+                    className='md:hidden lg:hidden xl:hidden text-white text-lg font-semibold'>
                     Hair <br /> Hub
                 </Link>
             </div>
@@ -91,7 +91,7 @@ const NavbarWebsite = ({ setDropdownKategori, dropdownKategori }) => {
     }
 
     return (
-        <div className='text-white hidden lg:flex xl:flex items-center justify-end gap-6 w-3/4 '>
+        <div className='text-white hidden lg:flex xl:flex items-center justify-end gap-6 w-3/4 xl:w-full '>
 
             <input
                 placeholder='Cari apa?'
