@@ -24,6 +24,7 @@ const DummyPaafff = () => {
       await axios.post('http://localhost:5000/service', {
         name: [service.name1, service.name2, service.name3],
         price: [service.price1, service.price2, service.price3],
+    
       });
 
       console.log("sukses menambah layanan")

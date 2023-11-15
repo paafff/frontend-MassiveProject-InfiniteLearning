@@ -39,6 +39,7 @@ const DummyPaafffv2 = () => {
       {/* <div>name : {service?.name[0]}</div>
       <div>name : {service?.name[2]}</div> */}
       <div>price : {service ? service.price[2] : 'null'}</div>
+      <div>price : {service ? service.price[0] : 'null'}</div>
     </div>
   );
 
