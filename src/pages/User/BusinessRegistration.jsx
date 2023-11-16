@@ -2,10 +2,21 @@ import React from 'react';
 import Layout from '../Layout';
 
 const BusinessRegistration = () => {
+    const [fullname, setFullname] = useState("");
+    const [gender, setGender] = useState("");
+    const [brandName, setBrandName] = useState("");
+
+    const handleClick = () => {
+        console.log('fullname');
+        console.log('gender');
+        console.log('brandName')
+    }
+
     return (
         <Layout>
+            <p>halo</p>
             <Typography variant='h1' color='black'>Form Pengajuan Usaha</Typography>
-            <form>
+            <form onSubmit={() => handleClick()}>
                 <div>
                     <Typography variant='h4' color='black'>Data Pemilik Usaha</Typography>
                     <div>
@@ -45,21 +56,23 @@ const BusinessRegistration = () => {
                     <Typography variant='h4' color='black'>Detail Usaha</Typography>
                     <div>
                         <label>Judul Brand</label>
-                        <input type='text'/>
+                        <input type='text' name='brandName' id='brandName' placeholder='Nama Brand Anda'/>
                     </div>
                     <div>
                         <label>Lokasi</label>
+                        Province(),
+                        City()
                     </div>
                     <div>
                         <label>Banner</label>
-                        <input type='image'/>
+                        <input type='image' name='banner' id='banner'/>
                     </div>
                     <div>
                         <label>Foto</label>
-                        <input type='image'/>
+                        <input type='image' name='brandPhoto' id='brandPhoto'/>
                     </div>
                     <div>
-                        <label>Deskripsi Usaha</label>
+                        <textarea>Deskripsi Usaha</textarea>
                     </div>
                 </div>
             </form>
@@ -69,10 +82,10 @@ const BusinessRegistration = () => {
                     <input type='checkbox' required/>
                     Saya bersedia bekerjasama dengan website ini
                 </label>
+                <button onSubmit={() => handleClick()}>Simpan</button>
             </div>
-
         </Layout>
-    )
+    );
 };
 
 export default BusinessRegistration;

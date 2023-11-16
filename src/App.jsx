@@ -13,6 +13,7 @@ import DummyPaafff from './components/DummyPaafff';
 import DevPaafff from './pages/DevPaafff';
 import DummyPaafff from './components/DummyPaafff';
 import DevPaafff from './pages/DevPaafff';
+import BusinessRegistration from './pages/User/BusinessRegistration';
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
             <Route path="/dummy/paafff" element={<DevPaafff />} />
             <Route path="/dummy/paafff" element={<DummyPaafff />} />
             <Route path="/dummy/paafff" element={<DevPaafff />} />
+            <Route path="/BusinessRegistration" element={<BusinessRegistration />} />
           </Routes>
         </BrowserRouter>
       </div>
