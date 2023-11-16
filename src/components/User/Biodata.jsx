@@ -28,13 +28,13 @@ const Biodata = ({ showSidebar, setShowSidebar }) => {
     console.log(editBio);
 
     return (
-        <div className='w-full flex flex-col py-10 lg:py-16 px-6 md:px-12 lg:px-10 xl:px-16 xl:w-full '>
+        <div className='w-3/4 flex flex-col py-10 lg:py-16 px-6 md:px-12 lg:px-10 '>
 
             <HumbergerMenu showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
             <p className='text-xl lg:text-2xl font-bold '>Hello, {dataUser.fullname}</p>
 
-            <div className='flex flex-col xl:flex-row-reverse xl:gap-32 xl:justify-end'>
+            <div className='flex flex-col xl:flex-row-reverse xl:gap-32 xl:justify-between'>
 
                 <div className='flex justify-center md:justify-end'>
                     <ProfileCard />
@@ -132,18 +132,19 @@ const Form = ({ editBio, setEditBio }) => {
     }
 
     const [formData, setFormData] = useState({
-        fullname: dataUser.fullname,
-        gender: dataUser.gender,
-        address: dataUser.address,
-        email: dataUser.email,
-        password: dataUser.password
+        fullname: "",
+        gender: "",
+        address: "",
+        email: "",
+        password: ""
     })
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: value
+            [name]: value,
+
         })
     }
 
@@ -172,14 +173,14 @@ const Form = ({ editBio, setEditBio }) => {
 
             <div className='flex flex-col items-start md:flex-row md:justify-between md:items-center gap-3'>
                 <label className='text-sm lg:text-base'>Nama Lengkap</label>
-                <input type="text" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='nama lengkap' value={formData.fullname} disabled={!editBio} />
+                <input type="text" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='nama lengkap' onChange={(e) => handleInputChange(e)} defaultValue={dataUser.fullname} disabled={!editBio} />
             </div>
 
             <div className={`flex flex-col gap-3 ${!editBio ? "items-start md:flex-row md:justify-between md:items-center" : "gap-24 md:gap-60 lg:gap-24 xl:gap-24 md:flex-row md: md:items-center"}`}>
                 <p className='text-sm lg:text-base'>Jenis Kelamin</p>
 
                 {!editBio ? (
-                    <input type="text" className='w-1/4 md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='jenis kelamin' value={formData.gender} disabled={!editBio} />
+                    <input type="text" className='w-1/4 md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='jenis kelamin' defaultValue={dataUser.gender} disabled={!editBio} />
                 ) : (
                     <div className='flex gap-2 ml-5'>
                         <input type="radio" name='gender' id='gender-man' value="man" />
@@ -194,17 +195,17 @@ const Form = ({ editBio, setEditBio }) => {
 
             <div className='flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-start'>
                 <label className='text-sm lg:text-base'>Alamat</label>
-                <textarea type="text" rows={10} className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='alamat' value={formData.address} disabled={!editBio} />
+                <textarea type="text" rows={10} className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='alamat' defaultValue={dataUser.address} disabled={!editBio} />
             </div>
 
             <div className='flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center'>
                 <label className='text-sm lg:text-base'>Email</label>
-                <input type="email" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='email' disabled={!editBio} value={formData.email} />
+                <input type="email" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='email' disabled={!editBio} defaultValue={dataUser.email} />
             </div>
 
             <div className='flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center'>
                 <label className='text-sm lg:text-base'>Password</label>
-                <input type="password" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' disabled={!editBio} value={formData.password} />
+                <input type="password" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' disabled={!editBio} defaultValue={dataUser.password} />
             </div>
 
             <div className='mt-8 flex gap-5 justify-end'>
