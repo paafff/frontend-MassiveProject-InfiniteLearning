@@ -2,9 +2,11 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import ProfilePhoto from '../../assets/images/profiles/profile_dummy.jpg'
 import { IoMdShare } from "react-icons/io";
-import { FaRegCopy, FaSave } from "react-icons/fa";
+import { FaRegCopy, FaSave, FaUserCircle } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { FiEdit } from "react-icons/fi";
+import { IoReturnDownBackOutline } from "react-icons/io5";
+import { useRef } from 'react';
 
 const dataUser = {
     profilePhoto: "profile_dummy.jpg",
@@ -116,6 +118,18 @@ const ProfileCard = () => {
 }
 
 const Form = ({ editBio, setEditBio }) => {
+    const changePictureRef = useRef(null)
+    const [picture, setPicture] = useState("")
+
+    const handleChangePictureClick = () => {
+        changePictureRef.current.click();
+    }
+
+    const handlePictureChange = (event) => {
+        const file = event;
+        console.log(file);
+        setPicture('')
+    }
 
     const [formData, setFormData] = useState({
         fullname: dataUser.fullname,
@@ -142,45 +156,85 @@ const Form = ({ editBio, setEditBio }) => {
     return (
         <form className='mt-14 w-full flex flex-col gap-6 xl:w-1/2 xl:justify-start' onSubmit={handleSubmit}>
 
-            <div className='flex justify-between items-center'>
+            {editBio && (
+                <div className='flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center mb-5'>
+                    <p className='text-sm lg:text-base'>Foto Profil</p>
+                    <div className='flex gap-10 items-center justify-start'>
+                        <FaUserCircle className='inline-block w-20 h-20 text-white' />
+                        <p className='text-sm py-1 px-3 bg-white text-gray-400 rounded shadow hover:bg-gray-100 hover:cursor-pointer transition-all' onClick={() => handleChangePictureClick()} >Change</p>
+                    </div>
+
+                    <input type="file" name="profile-picture" id="profile-picture" className='hidden' ref={changePictureRef} onChange={() => handlePictureChange()} />
+                </div>
+            )}
+
+
+
+            <div className='flex flex-col items-start md:flex-row md:justify-between md:items-center gap-3'>
                 <label className='text-sm lg:text-base'>Nama Lengkap</label>
-                <input type="text" className='w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='nama lengkap' value={formData.fullname} disabled={editBio} />
+                <input type="text" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='nama lengkap' value={formData.fullname} disabled={!editBio} />
             </div>
 
-            <div className='flex items-center justify-between'>
+            <div className={`flex flex-col gap-3 ${!editBio ? "items-start md:flex-row md:justify-between md:items-center" : "gap-24 md:gap-60 lg:gap-24 xl:gap-24 md:flex-row md: md:items-center"}`}>
                 <p className='text-sm lg:text-base'>Jenis Kelamin</p>
-                <input type="text" className='w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='jenis kelamin' value={formData.gender} disabled={editBio} />
+
+                {!editBio ? (
+                    <input type="text" className='w-1/4 md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='jenis kelamin' value={formData.gender} disabled={!editBio} />
+                ) : (
+                    <div className='flex gap-2 ml-5'>
+                        <input type="radio" name='gender' id='gender-man' value="man" />
+                        <label htmlFor="gender-man" className='text-sm'>Pria</label>
+
+                        <input type="radio" name='gender' id='gender-woman' value="woman" />
+                        <label htmlFor="gender-woman" className='text-sm'>Wanita</label>
+                    </div>
+                )}
 
             </div>
 
-            <div className='flex justify-between items-start'>
+            <div className='flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-start'>
                 <label className='text-sm lg:text-base'>Alamat</label>
-                <textarea type="text" rows={10} className='w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='alamat' value={formData.address} disabled={editBio} />
+                <textarea type="text" rows={10} className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='alamat' value={formData.address} disabled={!editBio} />
             </div>
 
-            <div className='flex justify-between items-center'>
+            <div className='flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center'>
                 <label className='text-sm lg:text-base'>Email</label>
-                <input type="email" className='w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='email' disabled={editBio} value={formData.email} />
+                <input type="email" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='email' disabled={!editBio} value={formData.email} />
             </div>
 
-            <div className='flex justify-between items-center'>
+            <div className='flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center'>
                 <label className='text-sm lg:text-base'>Password</label>
-                <input type="password" className='w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' disabled={editBio} value={formData.password} />
+                <input type="password" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' disabled={!editBio} value={formData.password} />
             </div>
 
             <div className='mt-8 flex gap-5 justify-end'>
-                <div className='hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded ' onClick={() => setEditBio(!editBio)}>
-                    <p className='text-sm text-white flex gap-2 items-center'>
-                        <FiEdit className='inline-block' />
-                        Ubah Akun
-                    </p>
-                </div>
-                <button type='submit' className='py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded'>
-                    <p className='text-sm text-white flex gap-2 items-center'>
-                        <FaSave className='inline-block' />
-                        Simpan Perubahan
-                    </p>
-                </button>
+
+                {editBio ? (
+                    <>
+                        <div className='hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded ' onClick={() => setEditBio(!editBio)}>
+                            <p className='text-sm text-white flex gap-2 items-center'>
+                                <IoReturnDownBackOutline className='inline-block' />
+                                Back
+                            </p>
+                        </div>
+                        <button type='submit' className='py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded'>
+                            <p className='text-sm text-white flex gap-2 items-center'>
+                                <FaSave className='inline-block' />
+                                Simpan Perubahan
+                            </p>
+                        </button>
+                    </>
+                ) : (
+                    <div className='hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded ' onClick={() => setEditBio(!editBio)}>
+                        <p className='text-sm text-white flex gap-2 items-center'>
+                            <FiEdit className='inline-block' />
+                            Ubah Akun
+                        </p>
+                    </div>
+                )}
+
+
+
             </div>
 
         </form>
