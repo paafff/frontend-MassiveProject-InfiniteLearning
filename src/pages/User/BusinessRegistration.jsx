@@ -32,23 +32,28 @@ const BusinessRegistration = () => {
                     </div>
                     <div>
                         <label>Email</label>
-                        <input type='email' name='email' id='email' placeholder='Email Anda'/>
+                        <input type='email' name='email' id='email' placeholder='Email Anda' />
                     </div>
                     <div>
                         <label>No Telepon</label>
-                        <input type='text' name='phoneNumber' id='phoneNumber' placeholder='No. Telepon Anda'/>
+                        <input type='text' name='phoneNumber' id='phoneNumber' placeholder='No. Telepon Anda' />
                     </div>
                     <div>
                         <label>Tipe Identitas</label>
-                        <input type='' />
+                        <select name="identityType" id="identityType">
+                            <option value=""></option>
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
                     </div>
                     <div>
                         <label>No Identitas</label>
-                        <input type='text' name='identityNumber' id='identityNumber' placeholder='Nomor Identitas Anda'/>
+                        <input type='text' name='identityNumber' id='identityNumber' placeholder='Nomor Identitas Anda' />
                     </div>
                     <div>
                         <div>
                             <label>Alamat</label>
+                            <input type='text' placeholder='RT/RW' />
                         </div>
                     </div>
                 </div>
@@ -56,20 +61,19 @@ const BusinessRegistration = () => {
                     <Typography variant='h4' color='black'>Detail Usaha</Typography>
                     <div>
                         <label>Judul Brand</label>
-                        <input type='text' name='brandName' id='brandName' placeholder='Nama Brand Anda'/>
+                        <input type='text' name='brandName' id='brandName' placeholder='Nama Brand Anda' />
                     </div>
                     <div>
                         <label>Lokasi</label>
-                        Province(),
-                        City()
+                        <input type='text' placeholder='RT/RW' />
                     </div>
                     <div>
                         <label>Banner</label>
-                        <input type='image' name='banner' id='banner'/>
+                        <input type='image' name='banner' id='banner' />
                     </div>
                     <div>
                         <label>Foto</label>
-                        <input type='image' name='brandPhoto' id='brandPhoto'/>
+                        <input type='image' name='brandPhoto' id='brandPhoto' />
                     </div>
                     <div>
                         <textarea>Deskripsi Usaha</textarea>
@@ -77,9 +81,9 @@ const BusinessRegistration = () => {
                 </div>
             </form>
             <div>
-                <img src='src/assets/images/images.png'/>
+                <img src='src/assets/images/images.png' />
                 <label>
-                    <input type='checkbox' required/>
+                    <input type='checkbox' required />
                     Saya bersedia bekerjasama dengan website ini
                 </label>
                 <button onSubmit={() => handleClick()}>Simpan</button>
