@@ -28,7 +28,7 @@ const Biodata = ({ showSidebar, setShowSidebar }) => {
     console.log(editBio);
 
     return (
-        <div className='w-3/4 flex flex-col py-10 lg:py-16 px-6 md:px-12 lg:px-10 '>
+        <div className='w-full flex flex-col py-10 lg:py-16 px-6 md:px-12 lg:px-10 '>
 
             <HumbergerMenu showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 

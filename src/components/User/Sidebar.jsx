@@ -24,7 +24,7 @@ const listUsaha = [
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
     return (
-        <div className={`h-screen z-10 w-72 transition-all bg-white drop-shadow-md absolute ${showSidebar ? "left-0" : "left-[-300px]"} lg:left-0 lg:static`}>
+        <div className={`min-h-full z-10 w-72 transition-all bg-white drop-shadow-md absolute ${showSidebar ? "left-0" : "left-[-300px]"} lg:left-0 lg:static`}>
 
             <Biodata />
 
@@ -38,8 +38,8 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
 const Biodata = () => {
     return (
-        <Link to="/dashboard" className='w-full h-fit bg-zinc-900 flex items-center justify-start px-20 py-12'>
-            <p className='text-sm lg:text-base text-white flex items-center gap-4'>
+        <Link to="/dashboard" className='w-full h-fit flex items-center justify-start px-20 py-12'>
+            <p className='text-sm lg:text-base text-black flex items-center gap-4'>
                 <IoIosInformationCircleOutline className='inline-block scale-150' />
                 Biodata
             </p>
@@ -70,7 +70,7 @@ const Usaha = () => {
 
                 {listUsaha.map((usaha) => (
                     <Link to="/dashboard-usaha" className='py-2 px-4 hover:bg-gray-200 transition-all rounded'>
-                        <p>{usaha.name}</p>
+                        <p key={usaha.id}>{usaha.name}</p>
                     </Link>
                 ))}
             </div>

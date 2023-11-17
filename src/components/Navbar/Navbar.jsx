@@ -35,7 +35,7 @@ const Navbar = () => {
 const Brand = () => {
     return (
         <div className='flex items-center gap-1 '>
-            <Link to="#">
+            <Link to="/">
                 <img
                     src={Logo}
                     className='w-24'
@@ -43,13 +43,13 @@ const Brand = () => {
             </Link>
             <div>
                 <Link
-                    to="#"
+                    to="/"
                     className='hidden md:flex lg:flex xl:flex text-white text-lg font-semibold'>
                     HairHub
                 </Link>
 
                 <Link
-                    to="#"
+                    to="/"
                     className='md:hidden lg:hidden xl:hidden text-white text-lg font-semibold'>
                     Hair <br /> Hub
                 </Link>
