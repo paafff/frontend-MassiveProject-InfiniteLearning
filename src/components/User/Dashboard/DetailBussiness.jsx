@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { IoIosSave } from "react-icons/io";
 import { FaFacebookSquare, FaYoutube, FaSave } from "react-icons/fa";
-import InstagramLogo from '../../assets/images/logo/instagram.png'
+import InstagramLogo from '../../../assets/images/logo/instagram.png'
 import { FaXTwitter } from "react-icons/fa6";
 import { FiEdit } from "react-icons/fi";
 

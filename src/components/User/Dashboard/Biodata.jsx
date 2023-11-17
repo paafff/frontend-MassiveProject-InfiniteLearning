@@ -24,7 +24,7 @@ const dataGender = {
 
 const Biodata = ({ showSidebar, setShowSidebar }) => {
 
-    const [editBio, setEditBio] = useState(true)
+    const [editBio, setEditBio] = useState(false)
     console.log(editBio);
 
     return (
@@ -118,77 +118,33 @@ const ProfileCard = () => {
 }
 
 const Form = ({ editBio, setEditBio }) => {
-    const changePictureRef = useRef(null)
+    const inputRef = useRef(null)
     const [picture, setPicture] = useState("")
 
-    const handleChangePictureClick = () => {
-        changePictureRef.current.click();
+    // Set picture change
+    const handlePictureClick = () => {
+        inputRef.current.click();
     }
+
+    useEffect(() => {
+        if (editBio == false) {
+            setPicture('')
+        }
+    }, [editBio])
 
     const handlePictureChange = (event) => {
-        const file = event;
+        const file = event.target.files[0]
         console.log(file);
-        setPicture('')
+        setPicture(event.target.files[0])
     }
 
-
-    // const handleInputChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setFormData({
-    //         ...formData,
-    //         [name]: value,
-
-    //     })
-    // }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-
-        setFormData({
-            ...formData,
-            [fullname]: fullname,
-            [gender]: gender,
-            [address]: address,
-            [email]: email,
-            [password]: password,
+    // Input data to state
+    const handleChange = (e) => {
+        const name = e.name
+        const value = e.value
+        setFormData((prev) => {
+            return { ...prev, [name]: value }
         })
-        // main process
-        console.log("data tersimpan", formData);
-    }
-
-    // Fullname
-    const [fullname, setFullname] = useState('');
-    console.log(fullname);
-    const fullnameOnChange = (e) => {
-        setFullname(e)
-    }
-
-    // Gender
-    const [gender, setGender] = useState('');
-    console.log(gender);
-    const genderOnChange = (e) => {
-        setGender(e)
-    }
-
-    // Address
-    const [address, setAddress] = useState('');
-    console.log(address);
-    const addressOnChange = (e) => {
-        setAddress(e)
-    }
-
-    // Email
-    const [email, setEmail] = useState('');
-    console.log(email);
-    const emailOnChange = (e) => {
-        setEmail(e)
-    }
-
-    // Password
-    const [password, setPassword] = useState('');
-    console.log(password);
-    const passwordOnChange = (e) => {
-        setPassword(e)
     }
 
     const [formData, setFormData] = useState({
@@ -199,6 +155,11 @@ const Form = ({ editBio, setEditBio }) => {
         password: ""
     })
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(formData);
+    }
+
     return (
         <form className='mt-14 w-full flex flex-col gap-6 xl:w-1/2 xl:justify-start' onSubmit={handleSubmit}>
 
@@ -206,11 +167,20 @@ const Form = ({ editBio, setEditBio }) => {
                 <div className='flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center mb-5'>
                     <p className='text-sm lg:text-base'>Foto Profil</p>
                     <div className='flex gap-10 items-center justify-start'>
-                        <FaUserCircle className='inline-block w-20 h-20 text-white' />
-                        <p className='text-sm py-1 px-3 bg-white text-gray-400 rounded shadow hover:bg-gray-100 hover:cursor-pointer transition-all' onClick={() => handleChangePictureClick()} >Change</p>
+
+                        {picture ? (
+                            <img src={URL.createObjectURL(picture)} className='inline-block w-20 h-20 rounded-full' alt="" />
+                        ) : (
+                            <FaUserCircle className='inline-block w-20 h-20 text-white' />
+                        )}
+
+                        <p className='text-sm py-1 px-3 bg-white text-gray-400 rounded shadow hover:bg-gray-100 hover:cursor-pointer transition-all' onClick={handlePictureClick} >Change</p>
+                        {picture ? (
+                            <p className='text-sm text-white bg-green-600 py-1 px-3 rounded drop-shadow hover:cursor-pointer hover:bg-green-700 transition-all'>Save Picture</p>
+                        ) : ""}
                     </div>
 
-                    <input type="file" name="profile-picture" id="profile-picture" className='hidden' ref={changePictureRef} onChange={() => handleChangePictureClick()} />
+                    <input type="file" name="profile-picture" id="profile-picture" className='hidden' ref={inputRef} onChange={handlePictureChange} />
                 </div>
             )}
 
@@ -218,7 +188,7 @@ const Form = ({ editBio, setEditBio }) => {
 
             <div className='flex flex-col items-start md:flex-row md:justify-between md:items-center gap-3'>
                 <label className='text-sm lg:text-base'>Nama Lengkap</label>
-                <input type="text" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='nama lengkap' onChange={(e) => fullnameOnChange(e.target.value)} defaultValue={dataUser.fullname} disabled={!editBio} />
+                <input name='fullname' type="text" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='nama lengkap' onChange={(e) => handleChange(e.target)} defaultValue={dataUser.fullname} disabled={!editBio} />
             </div>
 
             <div className={`flex flex-col gap-3 ${!editBio ? "items-start md:flex-row md:justify-between md:items-center" : "gap-24 md:gap-60 lg:gap-24 xl:gap-24 md:flex-row md: md:items-center"}`}>
@@ -228,10 +198,10 @@ const Form = ({ editBio, setEditBio }) => {
                     <input type="text" className='w-1/4 md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='jenis kelamin' defaultValue={dataUser.gender} disabled={!editBio} />
                 ) : (
                     <div className='flex gap-2 ml-5'>
-                        <input type="radio" name='gender' id='gender-man' value="man" onChange={(e) => genderOnChange(e.target.value)} />
+                        <input type="radio" name='gender' id='gender-man' value="man" onChange={(e) => handleChange(e.target)} />
                         <label htmlFor="gender-man" className='text-sm' >Pria</label>
 
-                        <input type="radio" name='gender' id='gender-woman' value="woman" onChange={(e) => genderOnChange(e.target.value)} />
+                        <input type="radio" name='gender' id='gender-woman' value="woman" onChange={(e) => handleChange(e.target)} />
                         <label htmlFor="gender-woman" className='text-sm'>Wanita</label>
                     </div>
                 )}
@@ -240,17 +210,17 @@ const Form = ({ editBio, setEditBio }) => {
 
             <div className='flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-start'>
                 <label className='text-sm lg:text-base'>Alamat</label>
-                <textarea type="text" rows={10} className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='alamat' defaultValue={dataUser.address} disabled={!editBio} onChange={(e) => addressOnChange(e.target.value)} />
+                <textarea type="text" rows={10} className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='alamat' defaultValue={dataUser.address} disabled={!editBio} onChange={(e) => handleChange(e.target)} name='address' />
             </div>
 
             <div className='flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center'>
                 <label className='text-sm lg:text-base'>Email</label>
-                <input type="email" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='email' disabled={!editBio} defaultValue={dataUser.email} onChange={(e) => emailOnChange(e.target.value)} />
+                <input type="email" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='email' disabled={!editBio} defaultValue={dataUser.email} onChange={(e) => handleChange(e.target)} name='email' />
             </div>
 
             <div className='flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center'>
                 <label className='text-sm lg:text-base'>Password</label>
-                <input type="password" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' disabled={!editBio} defaultValue={dataUser.password} onChange={(e) => passwordOnChange(e.target.value)} />
+                <input type="password" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' disabled={!editBio} defaultValue={dataUser.password} onChange={(e) => handleChange(e.target)} name='password' />
             </div>
 
             <div className='mt-8 flex gap-5 justify-end'>
