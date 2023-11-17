@@ -14,6 +14,9 @@ import DevPaafff from './pages/DevPaafff';
 import DummyPaafff from './components/DummyPaafff';
 import DevPaafff from './pages/DevPaafff';
 import BusinessRegistration from './pages/User/BusinessRegistration';
+import Reservasi from './pages/User/Reservasi';
+import AccountAdmin from './pages/Admin/AccountAdmin';
+import InputReview from './pages/Admin/InputReview';
 
 const App = () => {
   return (
@@ -34,6 +37,9 @@ const App = () => {
             <Route path="/dummy/paafff" element={<DummyPaafff />} />
             <Route path="/dummy/paafff" element={<DevPaafff />} />
             <Route path="/BusinessRegistration" element={<BusinessRegistration />} />
+            <Route path="/Reservasi" element={<Reservasi/>} />
+            <Route path="/AccountAdmin" element={<AccountAdmin/>} />
+            <Route path="/InputReview" element={<InputReview/>} />
           </Routes>
         </BrowserRouter>
       </div>
