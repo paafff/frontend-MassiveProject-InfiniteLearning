@@ -6,18 +6,6 @@ import axios from 'axios';
 
 const DashboardUsaha = () => {
   const [showSidebar, setShowSidebar] = useState(false);
-  return (
-    <Layout>
-      <div className="min-w-full flex bg-gray-200">
-        <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-
-        <InformasiDasar />
-      </div>
-    </Layout>
-  );
-};
-
-const InformasiDasar = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -39,6 +27,21 @@ const InformasiDasar = () => {
 
     fetchData();
   }, []); // The empty dependency array means this effect runs once after the initial render
+
+  console.log("ini data provinsi, ", data);
+
+  return (
+    <Layout>
+      <div className="min-w-full flex bg-gray-200">
+        <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+
+        <InformasiDasar />
+      </div>
+    </Layout>
+  );
+};
+
+const InformasiDasar = () => {
 
   return (
     <div>

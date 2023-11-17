@@ -48,6 +48,44 @@ const Form = () => {
     const [editForm, setEditForm] = useState(true);
     console.log(editForm);
 
+    const [allProvinsi, setAllProvinsi] = useState([]);
+    const [allKota, setAllKota] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(
+                    'https://api.binderbyte.com/wilayah/provinsi?api_key=7b397cea3811e3799ae20fd43ac78bcbc0dba2f5954d6fef4361e5fff3af76f1',
+                    { withCredentials: false }
+                );
+                setAllProvinsi(response.data.value);
+                console.log("Fetch prov: ", allProvinsi);
+            } catch (error) {
+                console.error('Error fetching prov:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []); // The empty dependency array means this effect runs once after the initial render
+
+    const fetchKota = async () => {
+        try {
+            const response = await axios.get(
+                'https://api.binderbyte.com/wilayah/kabupaten?api_key=7b397cea3811e3799ae20fd43ac78bcbc0dba2f5954d6fef4361e5fff3af76f1',
+                { withCredentials: false }
+            );
+            setAllKota(response.data);
+            console.log(allKota);
+        } catch (error) {
+            console.error('Error fetching kota:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <div className='bg-white w-full rounded-lg p-4 lg:p-8 drop-shadow-md'>
             <p className='text-base md:text-lg font-semibold'>Informasi dasar</p>
@@ -76,6 +114,9 @@ const Form = () => {
                         <div className='flex flex-col gap-4 md:p-0 md:w-3/4'>
                             <select disabled={editForm} name="provinsi" id="provinsi" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
                                 <option value="" className=''>Pilih Provinsi</option>
+                                {allProvinsi.map(provinsi => (
+                                    <option value={provinsi.id} key={provinsi.id} className=''>{provinsi.name}</option>
+                                ))}
                             </select>
 
                             <select disabled={editForm} name="kota" id="kota" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>

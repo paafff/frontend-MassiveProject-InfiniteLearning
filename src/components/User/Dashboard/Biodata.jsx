@@ -129,7 +129,7 @@ const Form = ({ editBio, setEditBio }) => {
     const handlePictureChange = (event) => {
         const file = event.target.files[0]
         console.log(file);
-        setPicture(event.target.files[0])
+        setPicture(file)
     }
 
     useEffect(() => {

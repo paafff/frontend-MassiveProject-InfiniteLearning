@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { IoIosSave } from "react-icons/io";
 import { FaFacebookSquare, FaYoutube, FaSave } from "react-icons/fa";
 import InstagramLogo from '../../../assets/images/logo/instagram.png'
@@ -10,18 +10,25 @@ const DetailBussiness = () => {
     const [editForm, setEditForm] = useState(true)
 
     const bannerRef = useRef(null)
-    const [banner, setBanner] = useState("")
+    const [banner, setBanner] = useState(null)
 
     const handleBannerClick = () => {
         bannerRef.current.click();
     }
 
     const handleBannerChange = (event) => {
-        console.log("ambil gambar");
-        // const file = event.target.files[0]
-        // console.log(file);
-        // setBanner(file)
+        // console.log("ambil gambar");
+        const file = event.target.files[0]
+        console.log(file);
+        setBanner(file)
     }
+
+    useEffect(() => {
+        if (editForm == true) {
+            setBanner('')
+        }
+    }, [editForm])
+
 
     return (
         <div className='w-screen lg:w-full py-10 px-5 md:px-12 xl:px-24 xl:w-3/4'>
@@ -32,7 +39,7 @@ const DetailBussiness = () => {
 
                 <div className='xl:flex xl:flex-row flex flex-col gap-4 mb-6'>
 
-                    <Banner />
+                    <Banner banner={banner} />
 
                     <Socmed editForm={editForm} setEditForm={setEditForm} />
 
@@ -45,12 +52,20 @@ const DetailBussiness = () => {
     )
 }
 
-const Banner = () => {
+const Banner = ({ banner }) => {
     return (
         <div className='w-full xl:my-auto xl:w-1/2 border border-gray-300 rounded p-2 flex flex-col gap-3 mb-5'>
-            <div className='w-full md:w-3/4 mx-auto md:max-h-72 aspect-video bg-gray-500 rounded flex items-center justify-center'>
-                <p className='text-white'>Banner</p>
-            </div>
+
+            {banner ? (
+                <img src={URL.createObjectURL(banner)} className='w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center' />
+            ) : (
+                <div className='w-full md:w-3/4 mx-auto md:max-h-72 aspect-video bg-gray-500 rounded flex items-center justify-center'>
+                    <p className='text-white'>Banner</p>
+                </div>
+            )}
+
+
+            {/* </div> */}
             <div className='flex justify-center gap-3'>
                 <div className='w-20 bg-gray-500 aspect-square rounded flex items-center justify-center '>
                     <p className='text-xs text-white'>Foto</p>
@@ -79,7 +94,7 @@ const Socmed = ({ editForm }) => {
                 <div className='w-7'>
                     <img src={InstagramLogo} className='w-full' alt="" />
                 </div>
-                <input type="text" className='w-3/4 h-9 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link instagram' />
+                <input type="text" className='w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link instagram' />
 
                 {!editForm && (
                     <div className='px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded'>
@@ -91,7 +106,7 @@ const Socmed = ({ editForm }) => {
                 <div className='w-7'>
                     <FaFacebookSquare className='inline-block w-full h-full text-blue-600' />
                 </div>
-                <input type="text" className='w-3/4 h-9 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link Facebook' />
+                <input type="text" className='w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link Facebook' />
                 {!editForm && (
                     <div className='px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded'>
                         <IoIosSave className='inline-block text-white' />
@@ -102,7 +117,7 @@ const Socmed = ({ editForm }) => {
                 <div className='w-7'>
                     <FaXTwitter className='inline-block w-full h-full text-gray-900' />
                 </div>
-                <input type="text" className='w-3/4 h-9 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link twitter' />
+                <input type="text" className='w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link twitter' />
                 {!editForm && (
                     <div className='px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded'>
                         <IoIosSave className='inline-block text-white' />
@@ -113,7 +128,7 @@ const Socmed = ({ editForm }) => {
                 <div className='w-7'>
                     <FaYoutube className='inline-block w-full h-full text-red-600' />
                 </div>
-                <input type="text" className='w-3/4 h-9 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link youtube' />
+                <input type="text" className='w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link youtube' />
                 {!editForm && (
                     <div className='px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded'>
                         <IoIosSave className='inline-block text-white' />
@@ -133,16 +148,16 @@ const Form = ({ handleBannerChange, handleBannerClick, bannerRef, editForm, setE
                 <label htmlFor="" className='text-sm'>Banner</label>
                 <form className='flex gap-3'>
                     {!editForm ? (
-                        <div className={`w-full md:w-3/4 xl:w-1/2 h-8 border border-gray-300 rounded flex items-center px-2`} onClick={handleBannerClick}>
-                            <p className='text-xs text-gray-700'>Upload Foto Banner </p>
+                        <div className={`w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2`} onClick={handleBannerClick}>
+                            <p className='text-xs text-gray-700'>Upload Foto Banner</p>
                         </div>
 
                     ) : (
-                        <div className='w-full md:w-3/4 xl:w-1/2 h-8 border border-gray-300 rounded flex items-center px-2 bg-gray-200 ' >
+                        <div className='w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2 bg-gray-200 ' >
                             <p className='text-xs text-gray-500'>Upload Foto Banner </p>
                         </div>
                     )}
-                    <input type="file" name='banner' id='banner' className='' ref={bannerRef} onChange={handleBannerChange} />
+                    <input type="file" name='banner' id='banner' className='hidden' ref={bannerRef} onChange={handleBannerChange} />
 
                     <button type='submit' disabled={editForm} className={`py-2 px-3  text-xs rounded ${editForm ? "bg-gray-200 text-gray-500" : "bg-zinc-800 text-white "} `}>Upload</button>
                 </form>
@@ -150,14 +165,14 @@ const Form = ({ handleBannerChange, handleBannerClick, bannerRef, editForm, setE
             <div className='w-full flex flex-col gap-2'>
                 <label htmlFor="" className='text-sm'>Foto</label>
                 <form className='flex gap-3'>
-                    <input type="file" name='banner' id='banner' className='hidden' ref={bannerRef} />
+                    {/* <input type="file" name='banner' id='banner' className='hidden' ref={bannerRef} /> */}
                     {!editForm ? (
 
-                        <div className='w-full md:w-3/4 xl:w-1/2 h-8 border border-gray-300 rounded flex items-center px-2'>
+                        <div className='w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2'>
                             <p className='text-xs text-gray-700'>Upload Foto</p>
                         </div>
                     ) : (
-                        <div className='w-full md:w-3/4 xl:w-1/2 h-8 border border-gray-300 rounded flex items-center px-2 bg-gray-200'>
+                        <div className='w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2 bg-gray-200'>
                             <p className='text-xs text-gray-500'>Upload Foto</p>
                         </div>
 
@@ -176,7 +191,7 @@ const Form = ({ handleBannerChange, handleBannerClick, bannerRef, editForm, setE
 
                 <div className='w-full md:w-3/4 xl:w-1/2 flex flex-col gap-2'>
                     <label htmlFor="" className='text-sm'>Link Google Maps</label>
-                    <input className='text-xs w-full text-gray-700 border border-gray-300 rounded p-2 placeholder:text-xs placeholder:text-gray-500 disabled:bg-gray-200' disabled={editForm} placeholder='Masukkan link' name="maps" id="maps" />
+                    <input className='text-xs w-full h-10 text-gray-700 border border-gray-300 rounded p-2 placeholder:text-xs placeholder:text-gray-500 disabled:bg-gray-200' disabled={editForm} placeholder='Masukkan link' name="maps" id="maps" />
                 </div>
 
                 <hr className='my-5' />

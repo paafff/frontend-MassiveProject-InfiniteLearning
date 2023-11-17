@@ -104,15 +104,17 @@ const Button = ({ editForm, setEditForm }) => {
     return (
         <>
             {editForm ? (
-                <div onClick={() => setEditForm(!editForm)} className='mt-5 w-fit hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded '>
-                    <p className='text-xs md:text-sm text-white flex gap-2 items-center'>
-                        <FiEdit className='inline-block' />
-                        Ubah Akun
-                    </p>
+                <div className='w-full flex justify-end'>
+                    <div onClick={() => setEditForm(!editForm)} className='mt-5 w-fit hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded '>
+                        <p className='text-xs md:text-sm text-white flex gap-2 items-center'>
+                            <FiEdit className='inline-block' />
+                            Ubah Akun
+                        </p>
+                    </div>
                 </div>
             ) : (
 
-                <div className='flex gap-3 mt-5 justify-start'>
+                <div className='flex gap-3 mt-5 justify-end'>
                     <div onClick={() => setEditForm(!editForm)} className='hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded '>
                         <p className='text-xs md:text-sm text-white flex gap-2 items-center'>
                             <IoReturnDownBackOutline className='inline-block' />
