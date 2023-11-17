@@ -17,6 +17,8 @@ import BusinessRegistration from './pages/User/BusinessRegistration';
 import Reservasi from './pages/User/Reservasi';
 import AccountAdmin from './pages/Admin/AccountAdmin';
 import InputReview from './pages/Admin/InputReview';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 
 const App = () => {
   return (
@@ -40,6 +42,8 @@ const App = () => {
             <Route path="/Reservasi" element={<Reservasi/>} />
             <Route path="/AccountAdmin" element={<AccountAdmin/>} />
             <Route path="/InputReview" element={<InputReview/>} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>
       </div>
