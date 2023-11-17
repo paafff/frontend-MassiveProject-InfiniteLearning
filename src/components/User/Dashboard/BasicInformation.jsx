@@ -1,33 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import Layout from '../../pages/Layout'
+import Layout from '../../../pages/Layout'
 import { FaRegCopy, FaSave, FaUserCircle } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import axios from 'axios';
 
 const BasicInformation = ({ showSidebar, setShowSidebar }) => {
 
-    // const [data, setData] = useState(null);
-    // const [isLoading, setIsLoading] = useState(true);
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await axios.get('https://api.binderbyte.com/wilayah/provinsi?api_key=7b397cea3811e3799ae20fd43ac78bcbc0dba2f5954d6fef4361e5fff3af76f1', {
-    //                 withCredentials: 'omit'
-    //             });
-    //             setData(response.data);
-    //         } catch (error) {
-    //             console.error('Error fetching data:', error);
-    //         } finally {
-    //             setIsLoading(false);
-    //         }
-    //     };
-
-    //     fetchData();
-    // }, []);
-
     return (
-        <div className='w-full lg:w-full xl:w-full py-10 px-5 md:px-12 lg:pt-16'>
+        <div className='w-full lg:w-full xl:w-3/4 xl:px-24 py-10 px-5 md:px-12 lg:pt-16'>
 
             <HumbergerMenu showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 

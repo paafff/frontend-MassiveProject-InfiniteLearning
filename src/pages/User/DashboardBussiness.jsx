@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Layout from '../Layout'
 import Sidebar from '../../components/User/Sidebar';
-import BasicInformation from '../../components/User/BasicInformation';
-import DetailBussiness from '../../components/User/DetailBussiness';
+import BasicInformation from '../../components/User/Dashboard/BasicInformation';
+import DetailBussiness from '../../components/User/Dashboard/DetailBussiness';
+import Services from '../../components/User/Dashboard/Services';
 
 const DashboardBussiness = () => {
 
@@ -19,6 +20,7 @@ const DashboardBussiness = () => {
                 <div className='w-screen flex flex-col'>
                     <BasicInformation showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
                     <DetailBussiness />
+                    <Services />
                 </div>
 
             </div>

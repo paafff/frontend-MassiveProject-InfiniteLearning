@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Logo from '../../assets/images/logo/logo.png'
 import { Link } from 'react-router-dom';
 import { FaAngleDown } from 'react-icons/fa'
-import DropdownKategori from './DropdownKategori';
+import DropdownCategory from './DropdownCategory';
 import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
@@ -25,7 +25,7 @@ const Navbar = () => {
 
                 <NavbarMobile setDropdownKategori={setDropdownKategori} dropdownKategori={dropdownKategori} mobileNavbar={mobileNavbar} isLogin={isLogin} />
 
-                <DropdownKategori display={dropdownKategori ? "flex" : "hidden"} />
+                <DropdownCategory display={dropdownKategori ? "flex" : "hidden"} />
             </div>
 
         </>
@@ -160,13 +160,19 @@ const NavbarMobile = ({ mobileNavbar, setDropdownKategori, dropdownKategori, isL
             </Link>
 
             {isLogin ? (
+                // <Link
+                //     to="#"
+                //     className='text-sm inline-block font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all w-fit'>Dashboard</Link>
                 <Link
-                    to="#"
-                    className='text-sm inline-block font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all w-fit'>Login</Link>
+                    to="/dashboard"
+                    className='text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3'>
+                    <FaUserCircle className='inline-block scale-[2]' />
+                    <FaAngleDown className='inline-block' />
+                </Link>
             ) : (
                 <Link
                     to="#"
-                    className='text-sm inline-block font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all w-fit'>Dashboard</Link>
+                    className='text-sm inline-block font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all w-fit'>Login</Link>
             )}
 
         </div>

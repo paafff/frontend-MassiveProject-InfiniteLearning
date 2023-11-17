@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import ProfilePhoto from '../../assets/images/profiles/profile_dummy.jpg'
+import ProfilePhoto from '../../../assets/images/profiles/profile_dummy.jpg'
 import { IoMdShare } from "react-icons/io";
 import { FaRegCopy, FaSave, FaUserCircle } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
@@ -28,7 +28,7 @@ const Biodata = ({ showSidebar, setShowSidebar }) => {
     console.log(editBio);
 
     return (
-        <div className='w-full flex flex-col py-10 lg:py-16 px-6 md:px-12 lg:px-10 '>
+        <div className='w-full flex flex-col py-10 lg:py-16 px-6 md:px-12 xl:px-24 lg:px-10 '>
 
             <HumbergerMenu showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
@@ -131,6 +131,66 @@ const Form = ({ editBio, setEditBio }) => {
         setPicture('')
     }
 
+
+    // const handleInputChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setFormData({
+    //         ...formData,
+    //         [name]: value,
+
+    //     })
+    // }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        setFormData({
+            ...formData,
+            [fullname]: fullname,
+            [gender]: gender,
+            [address]: address,
+            [email]: email,
+            [password]: password,
+        })
+        // main process
+        console.log("data tersimpan", formData);
+    }
+
+    // Fullname
+    const [fullname, setFullname] = useState('');
+    console.log(fullname);
+    const fullnameOnChange = (e) => {
+        setFullname(e)
+    }
+
+    // Gender
+    const [gender, setGender] = useState('');
+    console.log(gender);
+    const genderOnChange = (e) => {
+        setGender(e)
+    }
+
+    // Address
+    const [address, setAddress] = useState('');
+    console.log(address);
+    const addressOnChange = (e) => {
+        setAddress(e)
+    }
+
+    // Email
+    const [email, setEmail] = useState('');
+    console.log(email);
+    const emailOnChange = (e) => {
+        setEmail(e)
+    }
+
+    // Password
+    const [password, setPassword] = useState('');
+    console.log(password);
+    const passwordOnChange = (e) => {
+        setPassword(e)
+    }
+
     const [formData, setFormData] = useState({
         fullname: "",
         gender: "",
@@ -138,21 +198,6 @@ const Form = ({ editBio, setEditBio }) => {
         email: "",
         password: ""
     })
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-
-        })
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        // main process
-        console.log("data tersimpan", formData);
-    }
 
     return (
         <form className='mt-14 w-full flex flex-col gap-6 xl:w-1/2 xl:justify-start' onSubmit={handleSubmit}>
@@ -165,7 +210,7 @@ const Form = ({ editBio, setEditBio }) => {
                         <p className='text-sm py-1 px-3 bg-white text-gray-400 rounded shadow hover:bg-gray-100 hover:cursor-pointer transition-all' onClick={() => handleChangePictureClick()} >Change</p>
                     </div>
 
-                    <input type="file" name="profile-picture" id="profile-picture" className='hidden' ref={changePictureRef} onChange={() => handlePictureChange()} />
+                    <input type="file" name="profile-picture" id="profile-picture" className='hidden' ref={changePictureRef} onChange={() => handleChangePictureClick()} />
                 </div>
             )}
 
@@ -173,7 +218,7 @@ const Form = ({ editBio, setEditBio }) => {
 
             <div className='flex flex-col items-start md:flex-row md:justify-between md:items-center gap-3'>
                 <label className='text-sm lg:text-base'>Nama Lengkap</label>
-                <input type="text" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='nama lengkap' onChange={(e) => handleInputChange(e)} defaultValue={dataUser.fullname} disabled={!editBio} />
+                <input type="text" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='nama lengkap' onChange={(e) => fullnameOnChange(e.target.value)} defaultValue={dataUser.fullname} disabled={!editBio} />
             </div>
 
             <div className={`flex flex-col gap-3 ${!editBio ? "items-start md:flex-row md:justify-between md:items-center" : "gap-24 md:gap-60 lg:gap-24 xl:gap-24 md:flex-row md: md:items-center"}`}>
@@ -183,10 +228,10 @@ const Form = ({ editBio, setEditBio }) => {
                     <input type="text" className='w-1/4 md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='jenis kelamin' defaultValue={dataUser.gender} disabled={!editBio} />
                 ) : (
                     <div className='flex gap-2 ml-5'>
-                        <input type="radio" name='gender' id='gender-man' value="man" />
-                        <label htmlFor="gender-man" className='text-sm'>Pria</label>
+                        <input type="radio" name='gender' id='gender-man' value="man" onChange={(e) => genderOnChange(e.target.value)} />
+                        <label htmlFor="gender-man" className='text-sm' >Pria</label>
 
-                        <input type="radio" name='gender' id='gender-woman' value="woman" />
+                        <input type="radio" name='gender' id='gender-woman' value="woman" onChange={(e) => genderOnChange(e.target.value)} />
                         <label htmlFor="gender-woman" className='text-sm'>Wanita</label>
                     </div>
                 )}
@@ -195,17 +240,17 @@ const Form = ({ editBio, setEditBio }) => {
 
             <div className='flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-start'>
                 <label className='text-sm lg:text-base'>Alamat</label>
-                <textarea type="text" rows={10} className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='alamat' defaultValue={dataUser.address} disabled={!editBio} />
+                <textarea type="text" rows={10} className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='alamat' defaultValue={dataUser.address} disabled={!editBio} onChange={(e) => addressOnChange(e.target.value)} />
             </div>
 
             <div className='flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center'>
                 <label className='text-sm lg:text-base'>Email</label>
-                <input type="email" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='email' disabled={!editBio} defaultValue={dataUser.email} />
+                <input type="email" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' placeholder='email' disabled={!editBio} defaultValue={dataUser.email} onChange={(e) => emailOnChange(e.target.value)} />
             </div>
 
             <div className='flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center'>
                 <label className='text-sm lg:text-base'>Password</label>
-                <input type="password" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' disabled={!editBio} defaultValue={dataUser.password} />
+                <input type="password" className='w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300' disabled={!editBio} defaultValue={dataUser.password} onChange={(e) => passwordOnChange(e.target.value)} />
             </div>
 
             <div className='mt-8 flex gap-5 justify-end'>

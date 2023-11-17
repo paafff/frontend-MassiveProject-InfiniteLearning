@@ -1,6 +1,6 @@
 import React from 'react'
-import { IoIosInformationCircleOutline } from "react-icons/io";
-import { FaRegBuilding, FaAngleDown } from "react-icons/fa";
+import { IoMdInformationCircleOutline } from "react-icons/io";
+import { FaRegBuilding, FaAngleDown, FaInfoCircle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 const listUsaha = [
@@ -40,7 +40,7 @@ const Biodata = () => {
     return (
         <Link to="/dashboard" className='w-full h-fit flex items-center justify-start px-20 py-12'>
             <p className='text-sm lg:text-base text-black flex items-center gap-4'>
-                <IoIosInformationCircleOutline className='inline-block scale-150' />
+                <IoMdInformationCircleOutline className='inline-block scale-150' />
                 Biodata
             </p>
         </Link>
