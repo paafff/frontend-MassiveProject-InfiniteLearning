@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useRef } from 'react';
-import { FaRegCopy, FaSave, FaUserCircle } from "react-icons/fa";
+import { FaRegCopy, FaSave, FaUserCircle, FaEye } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { IoReturnDownBackOutline } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 const Employee = () => {
     const pictureRef = useRef("")
@@ -58,7 +59,7 @@ const Form = ({ editForm, setEditForm, pictureRef, handlePictureClick, handlePic
 
                     {editForm ? (
 
-                        <p className='text-xs text-white py-1 px-2 border bg-gray-200 border-gray-400 hover:text-white hover:cursor-pointer transition-all rounded'>Upload foto</p>
+                        <p className='text-xs text-gray-500 py-1 px-2 border bg-gray-200 border-gray-400 hover:text-white hover:cursor-pointer transition-all rounded'>Upload foto</p>
                     ) : (
                         <p className='text-xs text-gray-500 py-1 px-2 border border-gray-400 hover:bg-gray-400 hover:text-white hover:cursor-pointer transition-all rounded' onClick={handlePictureClick}>Upload foto</p>
 
@@ -95,34 +96,20 @@ const Form = ({ editForm, setEditForm, pictureRef, handlePictureClick, handlePic
 
 const Button = ({ editForm, setEditForm }) => {
     return (
-        <>
-            {editForm ? (
-                <div className='w-full flex justify-end'>
-                    <div onClick={() => setEditForm(!editForm)} className='w-fit hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded '>
-                        <p className='text-xs md:text-sm text-white flex gap-2 items-center'>
-                            <FiEdit className='inline-block' />
-                            Ubah Data
-                        </p>
-                    </div>
-                </div>
-            ) : (
-                <div onClick={() => setEditForm(!editForm)} className='w-full flex justify-between md:justify-end gap-5'>
-                    <div className='hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded '>
-                        <p className='text-xs md:text-sm text-white flex gap-2 items-center'>
-                            <IoReturnDownBackOutline className='inline-block' />
-                            Back
-                        </p>
-                    </div>
-                    <div className='w-fit flex justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded'>
-                        <p className='text-xs md:text-sm text-white flex gap-2 items-center'>
-                            <FaSave className='inline-block' />
-                            Simpan Perubahan
-                        </p>
-                    </div>
-                </div>
-            )}
-
-        </>
+        <div className='w-full flex justify-between md:justify-end gap-5'>
+            <Link to="/dashboard-employee" className='hover:bg-blue-700 hover:cursor-pointer transition-all py-2 px-5 bg-blue-600 rounded '>
+                <p className='text-xs md:text-sm text-white flex gap-4 md:gap-2 items-center'>
+                    <FaEye className='inline-block scale-150 md:scale-100' />
+                    Lihat Data Karyawan
+                </p>
+            </Link>
+            <div className='w-fit flex justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded'>
+                <p className='text-xs md:text-sm text-white flex gap-4 md:gap-2 items-center'>
+                    <FaSave className='inline-block scale-150 md:scale-100' />
+                    Tambah Karyawan Baru
+                </p>
+            </div>
+        </div>
     )
 }
 

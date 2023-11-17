@@ -69,7 +69,7 @@ const Usaha = () => {
             <div className='flex flex-col gap-3'>
 
                 {listUsaha.map((usaha) => (
-                    <Link to="/dashboard-usaha" className='py-2 px-4 hover:bg-gray-200 transition-all rounded'>
+                    <Link to="/dashboard-bussiness" className='py-2 px-4 hover:bg-gray-200 transition-all rounded'>
                         <p key={usaha.id}>{usaha.name}</p>
                     </Link>
                 ))}
