@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Layout from '../../../pages/Layout'
 import { FaRegCopy, FaSave, FaUserCircle } from "react-icons/fa";
+import { IoReturnDownBackOutline } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import axios from 'axios';
 
@@ -44,65 +45,82 @@ const HumbergerMenu = ({ showSidebar, setShowSidebar }) => {
 
 const Form = () => {
 
+    const [editForm, setEditForm] = useState(true);
+    console.log(editForm);
+
     return (
         <div className='bg-white w-full rounded-lg p-4 lg:p-8 drop-shadow-md'>
             <p className='text-base md:text-lg font-semibold'>Informasi dasar</p>
 
             <hr className='my-5' />
 
-            <form action="" className='flex flex-col md:px-5 gap-4'>
+            <form action="" className='flex flex-col gap-4'>
                 <div className='flex flex-col gap-4 xl:flex-row xl:justify-start'>
                     <div className='flex flex-col gap-4 xl:w-1/2'>
                         <div className='flex flex-col gap-2 md:items-start md:justify-between'>
-                            <label htmlFor="">Nama Usaha</label>
-                            <input type="text" name="nama" id="nama" className='w-full md:w-3/4 xl:w-3/4 border border-gray-400 rounded-md h-10 text-sm px-2' />
+                            <label htmlFor="" className='text-sm'>Nama Usaha</label>
+                            <input disabled={editForm} type="text" name="nama" id="nama" placeholder='Tuliskan brand usahamu' className='w-full md:w-3/4 xl:w-3/4 border border-gray-400 rounded-md h-10 text-sm px-2 placeholder:text-xs disabled:bg-gray-200' />
                         </div>
                         <div className='flex flex-col gap-2 md:items-start md:justify-between'>
-                            <label htmlFor="">Email</label>
-                            <input type="email" name="email" id="email" className='w-full md:w-3/4 xl:w-3/4 border border-gray-400 rounded-md h-10 text-sm px-2' />
+                            <label htmlFor="" className='text-sm'>Email</label>
+                            <input disabled={editForm} type="email" name="email" id="email" placeholder='Email' className='w-full md:w-3/4 xl:w-3/4 border border-gray-400 rounded-md h-10 text-sm px-2 placeholder:text-xs disabled:bg-gray-200' />
                         </div>
                         <div className='flex flex-col gap-2 md:items-start md:justify-between'>
-                            <label htmlFor="">Telepon</label>
-                            <input type="number" name="telepon" id="telepon" className='w-full md:w-3/4 xl:w-3/4 border border-gray-400 rounded-md h-10 text-sm px-2' />
+                            <label htmlFor="" className='text-sm'>Telepon</label>
+                            <input disabled={editForm} type="number" name="telepon" id="telepon" placeholder='Telepon' className='w-full md:w-3/4 xl:w-3/4 border border-gray-400 rounded-md h-10 text-sm px-2 placeholder:text-xs disabled:bg-gray-200' />
                         </div>
                     </div>
                     <div className='flex flex-col gap-4 md:items-start md:justify-between xl:w-1/2'>
-                        <label htmlFor="">Lokasi</label>
+                        <label htmlFor="" className='text-sm'>Lokasi</label>
 
                         <div className='flex flex-col gap-4 md:p-0 md:w-3/4'>
-                            <select name="provinsi" id="provinsi" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2'>
-                                <option value="">Pilih Provinsi</option>
+                            <select disabled={editForm} name="provinsi" id="provinsi" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
+                                <option value="" className=''>Pilih Provinsi</option>
                             </select>
 
-                            <select name="kota" id="kota" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2'>
-                                <option value="">Pilih Kota / Kabupaten</option>
+                            <select disabled={editForm} name="kota" id="kota" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
+                                <option value="" className=''>Pilih Kota / Kabupaten</option>
                             </select>
 
-                            <select name="kecamatan" id="kecamatan" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2'>
-                                <option value="">Pilih Kecamatan</option>
+                            <select disabled={editForm} name="kecamatan" id="kecamatan" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
+                                <option value="" className=''>Pilih Kecamatan</option>
                             </select>
 
-                            <select name="kelurahan" id="kelurahan" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2'>
-                                <option value="">Pilih Kelurahan</option>
+                            <select disabled={editForm} name="kelurahan" id="kelurahan" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
+                                <option value="" className=''>Pilih Kelurahan</option>
                             </select>
                         </div>
 
                     </div>
                 </div>
-                <hr className='my-5' />
+                <hr className='mt-5' />
                 <div className='w-full flex justify-between md:justify-end gap-5'>
-                    <div className='hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded '>
-                        <p className='text-xs md:text-sm text-white flex gap-2 items-center'>
-                            <FiEdit className='inline-block' />
-                            Ubah Akun
-                        </p>
-                    </div>
-                    <div className='w-fit flex justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded'>
-                        <p className='text-xs md:text-sm text-white flex gap-2 items-center'>
-                            <FaSave className='inline-block' />
-                            Simpan Perubahan
-                        </p>
-                    </div>
+                    {editForm ? (
+
+                        <div onClick={() => setEditForm(!editForm)} className='hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded '>
+                            <p className='text-xs md:text-sm text-white flex gap-2 items-center'>
+                                <FiEdit className='inline-block' />
+                                Ubah Data
+                            </p>
+                        </div>
+                    ) : (
+                        <div className='flex gap-3'>
+                            <div onClick={() => setEditForm(!editForm)} className='hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded '>
+                                <p className='text-xs md:text-sm text-white flex gap-2 items-center'>
+                                    <IoReturnDownBackOutline className='inline-block' />
+                                    Back
+                                </p>
+                            </div>
+                            <div className='w-fit flex justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded'>
+                                <p className='text-xs md:text-sm text-white flex gap-2 items-center'>
+                                    <FaSave className='inline-block' />
+                                    Simpan Perubahan
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
+
                 </div>
             </form>
         </div>

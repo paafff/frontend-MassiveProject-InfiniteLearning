@@ -4,6 +4,7 @@ import Sidebar from '../../components/User/Sidebar';
 import BasicInformation from '../../components/User/Dashboard/BasicInformation';
 import DetailBussiness from '../../components/User/Dashboard/DetailBussiness';
 import Services from '../../components/User/Dashboard/Services';
+import Employee from '../../components/User/Dashboard/Employee';
 
 const DashboardBussiness = () => {
 
@@ -21,6 +22,7 @@ const DashboardBussiness = () => {
                     <BasicInformation showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
                     <DetailBussiness />
                     <Services />
+                    <Employee />
                 </div>
 
             </div>

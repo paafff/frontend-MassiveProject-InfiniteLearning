@@ -126,17 +126,18 @@ const Form = ({ editBio, setEditBio }) => {
         inputRef.current.click();
     }
 
+    const handlePictureChange = (event) => {
+        const file = event.target.files[0]
+        console.log(file);
+        setPicture(event.target.files[0])
+    }
+
     useEffect(() => {
         if (editBio == false) {
             setPicture('')
         }
     }, [editBio])
 
-    const handlePictureChange = (event) => {
-        const file = event.target.files[0]
-        console.log(file);
-        setPicture(event.target.files[0])
-    }
 
     // Input data to state
     const handleChange = (e) => {
