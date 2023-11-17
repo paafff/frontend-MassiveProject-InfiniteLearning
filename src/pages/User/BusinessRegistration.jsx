@@ -32,11 +32,11 @@ const BusinessRegistration = () => {
                     </div>
                     <div>
                         <label>Email</label>
-                        <input type='email' name='email' id='email' placeholder='Email Anda' />
+                        <input type='email' name='email' id='email' className='border' placeholder='Email Anda' />
                     </div>
                     <div>
                         <label>No Telepon</label>
-                        <input type='text' name='phoneNumber' id='phoneNumber' placeholder='No. Telepon Anda' />
+                        <input type='text' name='phoneNumber' id='phoneNumber' className='border' placeholder='No. Telepon Anda' />
                     </div>
                     <div>
                         <label>Tipe Identitas</label>
@@ -48,7 +48,7 @@ const BusinessRegistration = () => {
                     </div>
                     <div>
                         <label>No Identitas</label>
-                        <input type='text' name='identityNumber' id='identityNumber' placeholder='Nomor Identitas Anda' />
+                        <input type='text' name='identityNumber' id='identityNumber' className='border' placeholder='Nomor Identitas Anda' />
                     </div>
                     <div>
                         <div>
@@ -61,7 +61,7 @@ const BusinessRegistration = () => {
                     <Typography variant='h4' color='black'>Detail Usaha</Typography>
                     <div>
                         <label>Judul Brand</label>
-                        <input type='text' name='brandName' id='brandName' placeholder='Nama Brand Anda' />
+                        <input type='text' name='brandName' id='brandName' className='border' placeholder='Nama Brand Anda' />
                     </div>
                     <div>
                         <label>Lokasi</label>
@@ -69,11 +69,11 @@ const BusinessRegistration = () => {
                     </div>
                     <div>
                         <label>Banner</label>
-                        <input type='image' name='banner' id='banner' />
+                        <input type='image' name='banner' id='banner' className='border' />
                     </div>
                     <div>
                         <label>Foto</label>
-                        <input type='image' name='brandPhoto' id='brandPhoto' />
+                        <input type='image' name='brandPhoto' id='brandPhoto' className='border' />
                     </div>
                     <div>
                         <textarea>Deskripsi Usaha</textarea>
