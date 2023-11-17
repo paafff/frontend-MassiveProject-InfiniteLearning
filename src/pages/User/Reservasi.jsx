@@ -30,3 +30,5 @@ const Reservasi = () => {
         </Layout>
     );
 };
+
+export default Reservasi;
