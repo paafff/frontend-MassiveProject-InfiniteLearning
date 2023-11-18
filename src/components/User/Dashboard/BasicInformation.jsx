@@ -49,7 +49,9 @@ const Form = () => {
     console.log(editForm);
 
     const [allProvinsi, setAllProvinsi] = useState([]);
-    const [allKota, setAllKota] = useState(null);
+    const [allKota, setAllKota] = useState([]);
+    const [allKecamatan, setAllKecamatan] = useState([]);
+    const [allKelurahan, setAllKelurahan] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -71,16 +73,46 @@ const Form = () => {
         fetchData();
     }, []); // The empty dependency array means this effect runs once after the initial render
 
-    const fetchKota = async () => {
+    const fetchKota = async (id) => {
         try {
             const response = await axios.get(
-                'https://api.binderbyte.com/wilayah/kabupaten?api_key=7b397cea3811e3799ae20fd43ac78bcbc0dba2f5954d6fef4361e5fff3af76f1',
+                `https://api.binderbyte.com/wilayah/kabupaten?api_key=7b397cea3811e3799ae20fd43ac78bcbc0dba2f5954d6fef4361e5fff3af76f1&id_provinsi=${id}`,
                 { withCredentials: false }
             );
-            setAllKota(response.data);
-            console.log(allKota);
+            setAllKota(response.data.value);
+            console.log("fetch kota: ", allKota);
         } catch (error) {
             console.error('Error fetching kota:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const fetchKecamatan = async (id) => {
+        try {
+            const response = await axios.get(
+                `https://api.binderbyte.com/wilayah/kecamatan?api_key=7b397cea3811e3799ae20fd43ac78bcbc0dba2f5954d6fef4361e5fff3af76f1&id_kabupaten=${id}`,
+                { withCredentials: false }
+            );
+            setAllKecamatan(response.data.value);
+            console.log("fetch camat: ", allKecamatan);
+        } catch (error) {
+            console.error('Error fetching kec:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const fetchKelurahan = async (id) => {
+        try {
+            const response = await axios.get(
+                `https://api.binderbyte.com/wilayah/kelurahan?api_key=7b397cea3811e3799ae20fd43ac78bcbc0dba2f5954d6fef4361e5fff3af76f1&id_kecamatan=${id}`,
+                { withCredentials: false }
+            );
+            setAllKelurahan(response.data.value);
+            console.log("fetch lurah: ", allKelurahan);
+        } catch (error) {
+            console.error('Error fetching kel:', error);
         } finally {
             setIsLoading(false);
         }
@@ -112,23 +144,32 @@ const Form = () => {
                         <label htmlFor="" className='text-sm'>Lokasi</label>
 
                         <div className='flex flex-col gap-4 md:p-0 md:w-3/4'>
-                            <select disabled={editForm} name="provinsi" id="provinsi" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
-                                <option value="" className=''>Pilih Provinsi</option>
+                            <select disabled={editForm} onChange={(e) => fetchKota(e.target.value)} name="provinsi" id="provinsi" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
+                                <option value="" className='' >Pilih Provinsi</option>
                                 {allProvinsi.map(provinsi => (
                                     <option value={provinsi.id} key={provinsi.id} className=''>{provinsi.name}</option>
                                 ))}
                             </select>
 
-                            <select disabled={editForm} name="kota" id="kota" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
+                            <select disabled={editForm} onChange={(e) => fetchKecamatan(e.target.value)} name="kota" id="kota" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
                                 <option value="" className=''>Pilih Kota / Kabupaten</option>
+                                {allKota.map(kota => (
+                                    <option value={kota.id} className='' key={kota.id}>{kota.name} </option>
+                                ))}
                             </select>
 
-                            <select disabled={editForm} name="kecamatan" id="kecamatan" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
+                            <select disabled={editForm} onChange={(e) => fetchKelurahan(e.target.value)} name="kecamatan" id="kecamatan" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
                                 <option value="" className=''>Pilih Kecamatan</option>
+                                {allKecamatan.map(kecamatan => (
+                                    <option value={kecamatan.id} className='' key={kecamatan.id}>{kecamatan.name}</option>
+                                ))}
                             </select>
 
                             <select disabled={editForm} name="kelurahan" id="kelurahan" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
                                 <option value="" className=''>Pilih Kelurahan</option>
+                                {allKelurahan.map(kelurahan => (
+                                    <option value={kelurahan.id} className='' key={kelurahan.id}>{kelurahan.name}</option>
+                                ))}
                             </select>
                         </div>
 
