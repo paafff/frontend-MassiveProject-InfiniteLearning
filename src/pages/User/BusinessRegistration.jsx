@@ -118,7 +118,7 @@ const BusinessRegistration = () => {
                     <input class='ml-4' type='checkbox' required/>
                     <label class='ml-2'>Saya bersedia bekerjasama dengan website ini</label>
                     <br/>
-                    <button class='mt-5 ml-80 bg-rose-400 hover:bg-rose-600 text-white font-bold py-2 px-5 rounded shadow' onSubmit={() => handleClick()}>Simpan</button>
+                    <button class='mt-5 ml-80 bg-rose-400 hover:bg-rose-600 text-white font-bold py-2 px-5 rounded shadow-lg' onSubmit={() => handleClick()}>Simpan</button>
                 </div>
             </div>
         </Layout>
