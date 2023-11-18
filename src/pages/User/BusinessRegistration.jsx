@@ -16,7 +16,7 @@ const BusinessRegistration = () => {
     return (
         <Layout>
             <h1 align='center' class='text-3xl font-semibold pt-10'>Form Pengajuan Usaha</h1>
-            <hr class='mx-auto mt-2 mb-10 max-w-sm border-2 border-dashed border-rose-400' />
+            <hr class='mx-auto mt-2 mb-20 max-w-sm border-2 border-dashed border-rose-400' />
             <form onSubmit={() => handleClick()}>
                 <div class='mx-20'>
                     <h4 class='text-lg font-semibold'>Data Pemilik Usaha</h4>
@@ -51,22 +51,22 @@ const BusinessRegistration = () => {
                     <div class='flex flex-row my-6'>
                         <label class='block text-sm font-medium leading-6 text-gray-900 basis-1/3'>Alamat</label>
                         <div class='basis-2/3 flex flex-wrap'>
-                            <select class='mr-5 w-60 px-2 mb-6 block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' placeholder='Provinsi'> Provinsi
-                                <option disabled>Provinsi</option>
+                            <select class='mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'>
+                                <option selected disabled class='text-grey-400'>Provinsi</option>
                                 <option>Jawa Barat</option>
                             </select>
                             <select class='mr-5 w-62 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'> Kabupaten/Kota
-                                <option disabled>Kabupaten/Kota</option>
+                                <option selected disabled>Kabupaten/Kota</option>
                             </select>
                             <select class='mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' data-te-select-placeholder="Example placeholder"> Kecamatan
-                                <option disabled>Kecamatan</option>
+                                <option selected disabled>Kecamatan</option>
                             </select>
                             <select class='mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'> Kelurahan
-                                <option disabled>Kelurahan</option>
+                                <option selected disabled>Kelurahan</option>
                             </select>
                             <input type='text' class='mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' placeholder='RT/RW' />
                             <select class='mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'> Kode Pos
-                                <option disabled>Kode Pos</option>
+                                <option selected disabled>Kode Pos</option>
                             </select>
                         </div>
                     </div>
@@ -79,22 +79,22 @@ const BusinessRegistration = () => {
                     <div class='flex flex-row my-6'>
                         <label class='block text-sm font-medium leading-6 text-gray-900 basis-1/3'>Lokasi</label>
                         <div class='basis-2/3 flex flex-wrap'>
-                            <select class='mr-5 w-60 px-2 mb-6 block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' placeholder='Provinsi'> Provinsi
-                                <option disabled>Provinsi</option>
+                            <select class='mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' placeholder='Provinsi'> Provinsi
+                                <option selected disabled>Provinsi</option>
                                 <option>Jawa Barat</option>
                             </select>
                             <select class='mr-5 w-62 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'> Kabupaten/Kota
-                                <option disabled>Kabupaten/Kota</option>
+                                <option selected disabled>Kabupaten/Kota</option>
                             </select>
                             <select class='mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' data-te-select-placeholder="Example placeholder"> Kecamatan
-                                <option disabled>Kecamatan</option>
+                                <option selected disabled>Kecamatan</option>
                             </select>
                             <select class='mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'> Kelurahan
-                                <option disabled>Kelurahan</option>
+                                <option selected disabled>Kelurahan</option>
                             </select>
                             <input type='text' class='mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' placeholder='RT/RW' />
                             <select class='mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'> Kode Pos
-                                <option disabled>Kode Pos</option>
+                                <option selected disabled>Kode Pos</option>
                             </select>
                         </div>
                     </div>
@@ -112,13 +112,14 @@ const BusinessRegistration = () => {
                     </div>
                 </div>
             </form>
-            <div>
-                <img src='src/assets/images/images.png' />
-                <label>
-                    <input type='checkbox' required />
-                    Saya bersedia bekerjasama dengan website ini
-                </label>
-                <button onSubmit={() => handleClick()}>Simpan</button>
+            <div class='columns-2 mt-20'>
+                <img src='src/assets/images/image.png' class='mb-5' />
+                <div class='ml-20 justify-end'>
+                    <input class='ml-4' type='checkbox' required/>
+                    <label class='ml-2'>Saya bersedia bekerjasama dengan website ini</label>
+                    <br/>
+                    <button class='mt-5 ml-80 bg-rose-400 hover:bg-rose-600 text-white font-bold py-2 px-5 rounded shadow' onSubmit={() => handleClick()}>Simpan</button>
+                </div>
             </div>
         </Layout>
     );
