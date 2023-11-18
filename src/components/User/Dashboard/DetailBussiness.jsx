@@ -87,54 +87,95 @@ const Banner = ({ banner }) => {
     )
 }
 
-const Socmed = ({ editForm }) => {
+const Socmed = ({ editForm, setEditForm }) => {
+    const [instagramLink, setInstagramLink] = useState(null)
+    const [facebookLink, setFacebookLink] = useState(null)
+    const [twitterLink, setTwitterLink] = useState(null)
+    const [youtubeLink, setYoutubeLink] = useState(null)
+
+    // Instagram
+    const handlerInstagram = (e) => {
+        e.preventDefault();
+        setEditForm(!editForm)
+
+        // logic input instagram
+        console.log(instagramLink);
+    }
+
+    // Facebook
+    const handlerFacebook = (e) => {
+        e.preventDefault();
+        setEditForm(!editForm)
+
+        // logic input facebook
+        console.log(facebookLink);
+    }
+
+    // Twitter
+    const handlerTwitter = (e) => {
+        e.preventDefault();
+        setEditForm(!editForm)
+
+        // logic input Twitter
+        console.log(twitterLink);
+    }
+
+    // Youtube
+    const handlerYoutube = (e) => {
+        e.preventDefault();
+        setEditForm(!editForm)
+
+        // logic input Youtube
+        console.log(youtubeLink);
+    }
+
     return (
         <div className='flex flex-col md:items-start md:px-3 xl:w-1/2 xl:justify-center xl:items-center xl:ml-3 gap-3'>
-            <div className='flex items-center gap-3 md:w-3/4 xl:w-full'>
+            <form onSubmit={handlerInstagram} className='flex items-center gap-3 md:w-3/4 xl:w-full'>
                 <div className='w-7'>
                     <img src={InstagramLogo} className='w-full' alt="" />
                 </div>
-                <input type="text" className='w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link instagram' />
+                <input onChange={(e) => setInstagramLink(e.target.value)} type="text" name='instagram' className='w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link instagram' />
 
                 {!editForm && (
-                    <div className='px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded'>
+                    <button type='submit' className='px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded'>
                         <IoIosSave className='inline-block text-white' />
-                    </div>
+                    </button>
                 )}
-            </div>
-            <div className='flex items-center gap-3 md:w-3/4 xl:w-full'>
+            </form>
+            <form onSubmit={handlerFacebook} className='flex items-center gap-3 md:w-3/4 xl:w-full'>
                 <div className='w-7'>
                     <FaFacebookSquare className='inline-block w-full h-full text-blue-600' />
                 </div>
-                <input type="text" className='w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link Facebook' />
+                <input onChange={(e) => setFacebookLink(e.target.value)} type="text" className='w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link Facebook' />
                 {!editForm && (
-                    <div className='px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded'>
+                    <button type='submit' className='px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded'>
                         <IoIosSave className='inline-block text-white' />
-                    </div>
+                    </button>
                 )}
-            </div>
-            <div className='flex items-center gap-3 md:w-3/4 xl:w-full'>
+            </form>
+            <form onSubmit={handlerTwitter} className='flex items-center gap-3 md:w-3/4 xl:w-full'>
                 <div className='w-7'>
                     <FaXTwitter className='inline-block w-full h-full text-gray-900' />
                 </div>
-                <input type="text" className='w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link twitter' />
+                <input onChange={(e) => setTwitterLink(e.target.value)} type="text" className='w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link twitter' />
                 {!editForm && (
-                    <div className='px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded'>
+                    <button type='submit' className='px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded'>
                         <IoIosSave className='inline-block text-white' />
-                    </div>
+                    </button>
                 )}
-            </div>
-            <div className='flex items-center gap-3 md:w-3/4 xl:w-full'>
+            </form>
+            <form onSubmit={handlerYoutube} className='flex items-center gap-3 md:w-3/4 xl:w-full'>
                 <div className='w-7'>
                     <FaYoutube className='inline-block w-full h-full text-red-600' />
                 </div>
-                <input type="text" className='w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link youtube' />
+                <input onChange={(e) => setYoutubeLink(e.target.value)} type="text" className='w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200' disabled={editForm} placeholder='Link youtube' />
                 {!editForm && (
-                    <div className='px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded'>
+                    <button type='submit' className='px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded'>
                         <IoIosSave className='inline-block text-white' />
-                    </div>
+                    </button>
                 )}
-            </div>
+            </form>
         </div>
     )
 }

@@ -46,12 +46,12 @@ const HumbergerMenu = ({ showSidebar, setShowSidebar }) => {
 const Form = () => {
 
     const [editForm, setEditForm] = useState(true);
-    console.log(editForm);
 
     const [allProvinsi, setAllProvinsi] = useState([]);
     const [allKota, setAllKota] = useState([]);
     const [allKecamatan, setAllKecamatan] = useState([]);
     const [allKelurahan, setAllKelurahan] = useState([]);
+
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -118,54 +118,79 @@ const Form = () => {
         }
     };
 
+    // Input data to state
+    const handleChange = (e) => {
+        const name = e.name
+        const value = e.value
+        setFormData((prev) => {
+            return { ...prev, [name]: value }
+        })
+    }
+
+    // district = kecamatan. neighborhoods = kelurahan
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        province: "",
+        city: "",
+        district: "",
+        neighborhoods: ""
+    })
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(formData);
+    }
+
     return (
         <div className='bg-white w-full rounded-lg p-4 lg:p-8 drop-shadow-md'>
-            <p className='text-base md:text-lg font-semibold'>Informasi dasar</p>
+            <p className='text-base md:text-lg font-semibold'>Informasi Dasar</p>
 
             <hr className='my-5' />
 
-            <form action="" className='flex flex-col gap-4'>
+            <form action="" className='flex flex-col gap-4' onSubmit={handleSubmit}>
                 <div className='flex flex-col gap-4 xl:flex-row xl:justify-start'>
                     <div className='flex flex-col gap-4 xl:w-1/2'>
                         <div className='flex flex-col gap-2 md:items-start md:justify-between'>
                             <label htmlFor="" className='text-sm'>Nama Usaha</label>
-                            <input disabled={editForm} type="text" name="nama" id="nama" placeholder='Tuliskan brand usahamu' className='w-full md:w-3/4 xl:w-3/4 border border-gray-400 rounded-md h-10 text-sm px-2 placeholder:text-xs disabled:bg-gray-200' />
+                            <input onChange={(e) => handleChange(e.target)} disabled={editForm} type="text" name="name" id="name" placeholder='Tuliskan brand usahamu' className='w-full md:w-3/4 xl:w-3/4 border border-gray-400 rounded-md h-10 text-sm px-2 placeholder:text-xs disabled:bg-gray-200' />
                         </div>
                         <div className='flex flex-col gap-2 md:items-start md:justify-between'>
                             <label htmlFor="" className='text-sm'>Email</label>
-                            <input disabled={editForm} type="email" name="email" id="email" placeholder='Email' className='w-full md:w-3/4 xl:w-3/4 border border-gray-400 rounded-md h-10 text-sm px-2 placeholder:text-xs disabled:bg-gray-200' />
+                            <input onChange={(e) => handleChange(e.target)} disabled={editForm} type="email" name="email" id="email" placeholder='Email' className='w-full md:w-3/4 xl:w-3/4 border border-gray-400 rounded-md h-10 text-sm px-2 placeholder:text-xs disabled:bg-gray-200' />
                         </div>
                         <div className='flex flex-col gap-2 md:items-start md:justify-between'>
                             <label htmlFor="" className='text-sm'>Telepon</label>
-                            <input disabled={editForm} type="number" name="telepon" id="telepon" placeholder='Telepon' className='w-full md:w-3/4 xl:w-3/4 border border-gray-400 rounded-md h-10 text-sm px-2 placeholder:text-xs disabled:bg-gray-200' />
+                            <input onChange={(e) => handleChange(e.target)} disabled={editForm} type="number" name="phone" id="phone" placeholder='Telepon' className='w-full md:w-3/4 xl:w-3/4 border border-gray-400 rounded-md h-10 text-sm px-2 placeholder:text-xs disabled:bg-gray-200' />
                         </div>
                     </div>
                     <div className='flex flex-col gap-4 md:items-start md:justify-between xl:w-1/2'>
                         <label htmlFor="" className='text-sm'>Lokasi</label>
 
                         <div className='flex flex-col gap-4 md:p-0 md:w-3/4'>
-                            <select disabled={editForm} onChange={(e) => fetchKota(e.target.value)} name="provinsi" id="provinsi" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
+                            <select disabled={editForm} onSubmit={(e) => handleChange(e.target)} onChange={(e) => fetchKota(e.target.value)} name="province" id="province" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
                                 <option value="" className='' >Pilih Provinsi</option>
                                 {allProvinsi.map(provinsi => (
                                     <option value={provinsi.id} key={provinsi.id} className=''>{provinsi.name}</option>
                                 ))}
                             </select>
 
-                            <select disabled={editForm} onChange={(e) => fetchKecamatan(e.target.value)} name="kota" id="kota" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
+                            <select disabled={editForm} onChange={(e) => fetchKecamatan(e.target.value)} name="city" id="city" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
                                 <option value="" className=''>Pilih Kota / Kabupaten</option>
                                 {allKota.map(kota => (
                                     <option value={kota.id} className='' key={kota.id}>{kota.name} </option>
                                 ))}
                             </select>
 
-                            <select disabled={editForm} onChange={(e) => fetchKelurahan(e.target.value)} name="kecamatan" id="kecamatan" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
+                            <select disabled={editForm} onChange={(e) => fetchKelurahan(e.target.value)} name="district" id="district" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
                                 <option value="" className=''>Pilih Kecamatan</option>
                                 {allKecamatan.map(kecamatan => (
                                     <option value={kecamatan.id} className='' key={kecamatan.id}>{kecamatan.name}</option>
                                 ))}
                             </select>
 
-                            <select disabled={editForm} name="kelurahan" id="kelurahan" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
+                            <select disabled={editForm} name="neighborhoods" id="neighborhoods" className='w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200'>
                                 <option value="" className=''>Pilih Kelurahan</option>
                                 {allKelurahan.map(kelurahan => (
                                     <option value={kelurahan.id} className='' key={kelurahan.id}>{kelurahan.name}</option>
@@ -176,7 +201,7 @@ const Form = () => {
                     </div>
                 </div>
                 <hr className='mt-5' />
-                <div className='w-full flex justify-between md:justify-end gap-5'>
+                <div className='w-full flex justify-end gap-5'>
                     {editForm ? (
 
                         <div onClick={() => setEditForm(!editForm)} className='hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded '>
@@ -186,19 +211,19 @@ const Form = () => {
                             </p>
                         </div>
                     ) : (
-                        <div className='flex gap-3'>
+                        <div className='w-full flex justify-end gap-3'>
                             <div onClick={() => setEditForm(!editForm)} className='hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded '>
                                 <p className='text-xs md:text-sm text-white flex gap-2 items-center'>
                                     <IoReturnDownBackOutline className='inline-block' />
                                     Back
                                 </p>
                             </div>
-                            <div className='w-fit flex justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded'>
+                            <button type='submit' className='w-fit flex justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded'>
                                 <p className='text-xs md:text-sm text-white flex gap-2 items-center'>
                                     <FaSave className='inline-block' />
                                     Simpan Perubahan
                                 </p>
-                            </div>
+                            </button >
                         </div>
                     )}
 
