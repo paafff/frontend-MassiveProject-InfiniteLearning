@@ -1,29 +1,30 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import Logo from '../assets/images/logo/logo.png'
+import Logo from '../../assets/images/logo/logo.png'
 import { Link } from 'react-router-dom';
 import { FaAngleDown } from 'react-icons/fa'
-import DropdownKategori from './DropdownKategori';
+import DropdownCategory from './DropdownCategory';
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
 
     const [mobileNavbar, setMobileNavbar] = useState(false);
     const [dropdownKategori, setDropdownKategori] = useState(false);
+    const isLogin = true;
 
     return (
         <>
 
-            <div className='w-full h-24 bg-[#1A1A1A] flex items-center justify-between px-6 lg:px-16 xl:px-16 z-10'>
-
+            <div className='z-20 w-full h-24 bg-zinc-900 flex items-center justify-between px-6 lg:px-16 xl:px-16'>
                 <Brand />
 
                 <HumbergerMenu setMobileNavbar={setMobileNavbar} mobileNavbar={mobileNavbar} />
 
-                <NavbarWebsite setDropdownKategori={setDropdownKategori} dropdownKategori={dropdownKategori} />
+                <NavbarWebsite setDropdownKategori={setDropdownKategori} dropdownKategori={dropdownKategori} isLogin={isLogin} />
 
-                <NavbarMobile setDropdownKategori={setDropdownKategori} dropdownKategori={dropdownKategori} mobileNavbar={mobileNavbar} />
+                <NavbarMobile setDropdownKategori={setDropdownKategori} dropdownKategori={dropdownKategori} mobileNavbar={mobileNavbar} isLogin={isLogin} />
 
-                <DropdownKategori display={dropdownKategori ? "flex" : "hidden"} />
+                <DropdownCategory display={dropdownKategori ? "flex" : "hidden"} />
             </div>
 
         </>
@@ -33,22 +34,22 @@ const Navbar = () => {
 const Brand = () => {
     return (
         <div className='flex items-center gap-1 '>
-            <Link to="#">
+            <Link to="/">
                 <img
                     src={Logo}
-                    className='w-16'
+                    className='w-24'
                     alt="" />
             </Link>
             <div>
                 <Link
-                    to="#"
-                    className='hidden md:flex lg:flex xl:flex text-white text-sm font-medium'>
+                    to="/"
+                    className='hidden md:flex lg:flex xl:flex text-white text-lg font-semibold'>
                     HairHub
                 </Link>
 
                 <Link
-                    to="#"
-                    className='md:hidden lg:hidden xl:hidden text-white text-sm font-medium'>
+                    to="/"
+                    className='md:hidden lg:hidden xl:hidden text-white text-lg font-semibold'>
                     Hair <br /> Hub
                 </Link>
             </div>
@@ -84,14 +85,14 @@ const HumbergerMenu = ({ setMobileNavbar, mobileNavbar }) => {
     )
 }
 
-const NavbarWebsite = ({ setDropdownKategori, dropdownKategori }) => {
+const NavbarWebsite = ({ setDropdownKategori, dropdownKategori, isLogin }) => {
 
     const handleDropdownKategori = () => {
         setDropdownKategori(!dropdownKategori)
     }
 
     return (
-        <div className='text-white hidden lg:flex xl:flex items-center justify-end gap-6 w-3/4 '>
+        <div className='text-white hidden lg:flex xl:flex items-center justify-end gap-6 w-3/4 xl:w-full '>
 
             <input
                 placeholder='Cari apa?'
@@ -110,23 +111,32 @@ const NavbarWebsite = ({ setDropdownKategori, dropdownKategori }) => {
                 <FaAngleDown className='inline-block' />
             </Link>
 
+            {isLogin ? (
+                <Link
+                    to="/dashboard"
+                    className='text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3'>
+                    <FaUserCircle className='inline-block scale-[2]' />
+                    <FaAngleDown className='inline-block' />
+                </Link>
+            ) : (
+                <Link
+                    to="#"
+                    className='text-sm font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all'>Login</Link>
+            )}
 
-            <Link
-                to="#"
-                className='text-sm font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all'>Login</Link>
 
         </div>
     )
 }
 
-const NavbarMobile = ({ mobileNavbar, setDropdownKategori, dropdownKategori }) => {
+const NavbarMobile = ({ mobileNavbar, setDropdownKategori, dropdownKategori, isLogin }) => {
 
     const handleDropdownKategori = () => {
         setDropdownKategori(!dropdownKategori)
     }
 
     return (
-        <div className={`w-full h-fit px-3 py-7 md:px-8 flex flex-col gap-6 lg:hidden xl:hidden bg-[#1a1a1a] absolute transition-all text-white top-24 ${mobileNavbar ? "left-0" : "left-[-450px] md:left-[-780px]"}`}>
+        <div className={`w-full h-fit z-20 px-3 py-7 md:px-8 flex flex-col gap-6 lg:hidden xl:hidden bg-[#1a1a1a] absolute transition-all text-white top-24 ${mobileNavbar ? "left-0" : "left-[-450px] md:left-[-780px]"}`}>
             <div className='flex gap-2'>
                 <input
                     placeholder='Cari apa?'
@@ -148,9 +158,22 @@ const NavbarMobile = ({ mobileNavbar, setDropdownKategori, dropdownKategori }) =
                 <FaAngleDown className='inline-block ml-2' />
             </Link>
 
-            <Link
-                to="#"
-                className='text-sm inline-block font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all w-fit'>Login</Link>
+            {isLogin ? (
+                // <Link
+                //     to="#"
+                //     className='text-sm inline-block font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all w-fit'>Dashboard</Link>
+                <Link
+                    to="/dashboard"
+                    className='text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3'>
+                    <FaUserCircle className='inline-block scale-[2]' />
+                    <FaAngleDown className='inline-block' />
+                </Link>
+            ) : (
+                <Link
+                    to="#"
+                    className='text-sm inline-block font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all w-fit'>Login</Link>
+            )}
+
         </div>
     )
 }
