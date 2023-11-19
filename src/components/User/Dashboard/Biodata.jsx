@@ -7,6 +7,7 @@ import { FaRegTrashCan } from "react-icons/fa6";
 import { FiEdit } from "react-icons/fi";
 import { IoReturnDownBackOutline } from "react-icons/io5";
 import { useRef } from 'react';
+import HumbergerMenu from './HumbergerMenu';
 
 const dataUser = {
     profilePhoto: "profile_dummy.jpg",
@@ -43,29 +44,7 @@ const Biodata = ({ showSidebar, setShowSidebar }) => {
                 <Form editBio={editBio} setEditBio={setEditBio} />
             </div>
 
-            {/* <Button editBio={editBio} setEditBio={setEditBio} /> */}
-
         </div>
-    )
-}
-
-const HumbergerMenu = ({ setShowSidebar, showSidebar }) => {
-    return (
-        <svg
-            onClick={() => setShowSidebar(!showSidebar)}
-            className={`w-5 h-5 transition-all text-zinc-900 lg:hidden mb-10 rotate-90 ${showSidebar ? 'ml-80' : 'ml-0'} `}
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 17 14">
-
-            <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-
-        </svg>
     )
 }
 

@@ -24,7 +24,7 @@ const listUsaha = [
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
     return (
-        <div className={`min-h-full z-10 w-72 transition-all bg-white drop-shadow-md absolute ${showSidebar ? "left-0" : "left-[-300px]"} lg:left-0 lg:static`}>
+        <div className={`min-h-full pb-32 z-10 w-72 transition-all rounded-br-3xl bg-white drop-shadow-md absolute ${showSidebar ? "left-0" : "left-[-300px]"} lg:left-0 lg:static`}>
 
             <Biodata />
 
@@ -92,7 +92,7 @@ const Booking = () => {
             <div className='flex flex-col gap-3'>
 
                 {listUsaha.map((usaha) => (
-                    <Link className='py-2 px-4 hover:bg-gray-200 transition-all rounded'>
+                    <Link to="/dashboard-booking" className='py-2 px-4 hover:bg-gray-200 transition-all rounded'>
                         <p className='text-xs' key={usaha.id}>{usaha.name}</p>
                     </Link>
                 ))}

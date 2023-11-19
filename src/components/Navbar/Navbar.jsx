@@ -16,7 +16,6 @@ const Navbar = () => {
         <>
 
             <div className='z-20 w-full h-24 bg-zinc-900 flex items-center justify-between px-6 lg:px-16 xl:px-16'>
-
                 <Brand />
 
                 <HumbergerMenu setMobileNavbar={setMobileNavbar} mobileNavbar={mobileNavbar} />
