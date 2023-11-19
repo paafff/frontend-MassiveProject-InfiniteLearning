@@ -85,11 +85,12 @@ const Services = () => {
 }
 
 const Service = ({ id, name, editForm }) => {
+
     return (
 
         <div className='w-full py-3 px-5 border-t border-gray-200 flex justify-start gap-10' key={id}>
             <input type="checkbox" className='scale-125' id={id} />
-            <div className='w-1/2'>
+            <div className='w-1/2 flex items-center'>
                 <p className='text-sm font-thin'>{name}</p>
             </div>
             <div className='flex gap-2 items-center'>

@@ -11,7 +11,7 @@ const DashboardEmployee = () => {
 
     return (
         <Layout>
-            <div className='flex bg-gray-200'>
+            <div className='flex relative bg-gray-200'>
 
                 <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 

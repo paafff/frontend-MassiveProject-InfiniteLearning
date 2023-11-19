@@ -45,7 +45,7 @@ const DetailBussiness = () => {
 
                 </div>
 
-                <Form editForm={editForm} setEditForm={setEditForm} handleBannerClick={handleBannerClick} handleBannerChange={handleBannerChange} bannerRef={bannerRef} />
+                <Form banner={banner} editForm={editForm} setEditForm={setEditForm} handleBannerClick={handleBannerClick} handleBannerChange={handleBannerChange} bannerRef={bannerRef} />
 
             </div>
         </div>
@@ -57,7 +57,7 @@ const Banner = ({ banner }) => {
         <div className='w-full xl:my-auto xl:w-1/2 border border-gray-300 rounded p-2 flex flex-col gap-3 mb-5'>
 
             {banner ? (
-                <img src={URL.createObjectURL(banner)} className='w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center' />
+                <img src={URL.createObjectURL(banner)} className='w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain' />
             ) : (
                 <div className='w-full md:w-3/4 mx-auto md:max-h-72 aspect-video bg-gray-500 rounded flex items-center justify-center'>
                     <p className='text-white'>Banner</p>
@@ -180,7 +180,14 @@ const Socmed = ({ editForm, setEditForm }) => {
     )
 }
 
-const Form = ({ handleBannerChange, handleBannerClick, bannerRef, editForm, setEditForm }) => {
+const Form = ({ handleBannerChange, handleBannerClick, bannerRef, editForm, setEditForm, banner }) => {
+    const [desc, setDesc] = useState("")
+    const [maps, setMaps] = useState("")
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log("tersubmit", [desc, maps]);
+    }
 
     return (
 
@@ -190,12 +197,12 @@ const Form = ({ handleBannerChange, handleBannerClick, bannerRef, editForm, setE
                 <form className='flex gap-3'>
                     {!editForm ? (
                         <div className={`w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2`} onClick={handleBannerClick}>
-                            <p className='text-xs text-gray-700'>Upload Foto Banner</p>
+                            <p className='text-xs text-gray-700'>{banner ? banner.name : "Upload Banner"}</p>
                         </div>
 
                     ) : (
                         <div className='w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2 bg-gray-200 ' >
-                            <p className='text-xs text-gray-500'>Upload Foto Banner </p>
+                            <p className='text-xs text-gray-500'>Upload Banner </p>
                         </div>
                     )}
                     <input type="file" name='banner' id='banner' className='hidden' ref={bannerRef} onChange={handleBannerChange} />
@@ -213,26 +220,26 @@ const Form = ({ handleBannerChange, handleBannerClick, bannerRef, editForm, setE
                             <p className='text-xs text-gray-700'>Upload Foto</p>
                         </div>
                     ) : (
-                        <div className='w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2 bg-gray-200'>
-                            <p className='text-xs text-gray-500'>Upload Foto</p>
+                        <div className='w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2 bg-gray-200 ' >
+                            <p className='text-xs text-gray-500'>Upload Foto Banner </p>
                         </div>
 
                     )}
-                    <button type='submit' disabled={editForm} className={`py-2 px-3 text-white text-xs rounded ${editForm ? "bg-gray-200 text-gray-500" : "bg-zinc-800 text-white"}`}>Upload</button>
+                    <button type='submit' disabled={editForm} className={`py-2 px-3 text-xs rounded ${editForm ? "bg-gray-200 text-gray-500" : "bg-zinc-800 text-white"}`}>Upload</button>
                 </form>
             </div>
-            <form action="" className='flex flex-col gap-2'>
+            <form onSubmit={handleSubmit} action="" className='flex flex-col gap-2'>
                 <div className='w-full md:w-3/4 xl:w-1/2 flex flex-col gap-2'>
                     <label htmlFor="" className='text-sm'>Deskripsi</label>
                     <div className='flex flex-col gap-2'>
                         <p className='text-xs text-gray-400'>Tuliskanlah deskripsi dari usaha yang kamu miliki</p>
-                        <textarea className='text-xs w-full text-gray-700 border border-gray-300 rounded p-2 placeholder:text-xs placeholder:text-gray-500 disabled:bg-gray-200' disabled={editForm} placeholder='Deskripsi' name="desc" id="desc" rows="10"></textarea>
+                        <textarea onChange={(e) => setDesc(e.target.value)} className='text-xs w-full text-gray-700 border border-gray-300 rounded p-2 placeholder:text-xs placeholder:text-gray-500 disabled:bg-gray-200' disabled={editForm} placeholder='Deskripsi' name="desc" id="desc" rows="10"></textarea>
                     </div>
                 </div>
 
                 <div className='w-full md:w-3/4 xl:w-1/2 flex flex-col gap-2'>
                     <label htmlFor="" className='text-sm'>Link Google Maps</label>
-                    <input className='text-xs w-full h-10 text-gray-700 border border-gray-300 rounded p-2 placeholder:text-xs placeholder:text-gray-500 disabled:bg-gray-200' disabled={editForm} placeholder='Masukkan link' name="maps" id="maps" />
+                    <input onChange={(e) => setMaps(e.target.value)} className='text-xs w-full h-10 text-gray-700 border border-gray-300 rounded p-2 placeholder:text-xs placeholder:text-gray-500 disabled:bg-gray-200' disabled={editForm} placeholder='Masukkan link' name="maps" id="maps" />
                 </div>
 
                 <hr className='my-5' />
@@ -253,12 +260,12 @@ const Form = ({ handleBannerChange, handleBannerClick, bannerRef, editForm, setE
                                     Back
                                 </p>
                             </div>
-                            <div className='w-fit flex justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded'>
+                            <button type='submit' className='w-fit flex justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded'>
                                 <p className='text-xs md:text-sm text-white flex gap-2 items-center'>
                                     <FaSave className='inline-block' />
                                     Simpan Perubahan
                                 </p>
-                            </div>
+                            </button>
                         </div>
                     )}
 

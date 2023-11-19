@@ -8,7 +8,7 @@ import axios from 'axios';
 const BasicInformation = ({ showSidebar, setShowSidebar }) => {
 
     return (
-        <div className='w-full lg:w-full xl:w-3/4 xl:px-24 py-10 px-5 md:px-12 lg:pt-16'>
+        <div className='w-full py-10 lg:w-full xl:w-3/4 xl:px-24  px-5 md:px-12 lg:pt-16'>
 
             <HumbergerMenu showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 

@@ -44,13 +44,22 @@ const Employee = () => {
 }
 
 const Form = ({ editForm, setEditForm, pictureRef, handlePictureClick, handlePictureChange, picture }) => {
+    const [fullname, setFullname] = useState("")
+    const [skill, setSkill] = useState("")
+    const [desc, setDesc] = useState("")
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log("tersubmit", [fullname, skill, desc]);
+    }
+
     return (
         <div className='w-full flex flex-col gap-5'>
             <div className='flex flex-col gap-3'>
                 <p className='text-sm'>Foto Profil</p>
                 <div className='flex gap-6 items-center'>
                     {picture ? (
-                        <img src={URL.createObjectURL(picture)} className='w-16 h-16 object-cover' alt="" />
+                        <img src={URL.createObjectURL(picture)} className='w-16 h-16 object-contain' alt="" />
                         // <FaUserCircle className='inline-block w-16 h-16 text-gray-400' />
                     ) : (
                         <FaUserCircle className='inline-block w-16 h-16 text-gray-400' />
@@ -70,20 +79,20 @@ const Form = ({ editForm, setEditForm, pictureRef, handlePictureClick, handlePic
                     )}
                 </div>
             </div>
-            <form action="" className='flex flex-col gap-5 '>
+            <form onSubmit={handleSubmit} action="" className='flex flex-col gap-5 '>
                 <div className='flex flex-col gap-5'>
                     <div className='flex flex-col gap-3'>
                         <p className='text-sm'>Nama Lengkap</p>
-                        <input type="text" disabled={editForm} className='h-10 w-full xl:w-1/2 border border-gray-400 text-xs px-2 rounded placeholder:text-gray-400 disabled:bg-gray-200' placeholder='Masukkan nama lengkap' />
+                        <input type="text" onChange={(e) => setFullname(e.target.value)} disabled={editForm} className='h-10 w-full xl:w-1/2 border border-gray-400 text-xs px-2 rounded placeholder:text-gray-400 disabled:bg-gray-200' placeholder='Masukkan nama lengkap' />
                     </div>
                     <div className='flex flex-col gap-3'>
                         <p className='text-sm'>Skill</p>
-                        <input type="text" disabled={editForm} className='h-10 w-full xl:w-1/2 border border-gray-400 text-xs px-2 rounded placeholder:text-gray-400 disabled:bg-gray-200' placeholder='Isi skill' />
+                        <input type="text" onChange={(e) => setSkill(e.target.value)} disabled={editForm} className='h-10 w-full xl:w-1/2 border border-gray-400 text-xs px-2 rounded placeholder:text-gray-400 disabled:bg-gray-200' placeholder='Isi skill' />
                     </div>
                 </div>
                 <div className='flex flex-col gap-3'>
                     <p className='text-sm'>Deskripsi</p>
-                    <textarea name="desc" id="desc" rows="10" disabled={editForm} className='w-full xl:w-1/2 border border-gray-400 text-xs p-2 rounded placeholder:text-gray-400 disabled:bg-gray-200' placeholder='Deskripsi'></textarea>
+                    <textarea name="desc" onChange={(e) => setDesc(e.target.value)} id="desc" rows="10" disabled={editForm} className='w-full xl:w-1/2 border border-gray-400 text-xs p-2 rounded placeholder:text-gray-400 disabled:bg-gray-200' placeholder='Deskripsi'></textarea>
                 </div>
 
                 <hr className='mt-5' />
@@ -103,12 +112,12 @@ const Button = ({ editForm, setEditForm }) => {
                     Lihat Data Karyawan
                 </p>
             </Link>
-            <div className='w-fit flex justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded'>
+            <button type='submit' className='w-fit flex justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded'>
                 <p className='text-xs md:text-sm text-white flex gap-4 md:gap-2 items-center'>
                     <FaSave className='inline-block scale-150 md:scale-100' />
                     Tambah Karyawan Baru
                 </p>
-            </div>
+            </button>
         </div>
     )
 }

@@ -13,7 +13,6 @@ const DashboardBussiness = () => {
     return (
         <Layout>
 
-
             <div className='flex bg-gray-200'>
 
                 <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
