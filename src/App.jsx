@@ -13,7 +13,7 @@ import Login from './pages/Login';
 import BusinessRegistration from './pages/User/BusinessRegistration';
 import Reservasi from './pages/User/Reservasi';
 import AccountAdmin from './pages/Admin/AccountAdmin';
-import InputReview from './pages/Admin/InputReview';
+import InputReview from './pages/User/InputReview';
 
 const App = () => {
   return (
