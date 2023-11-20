@@ -5,30 +5,10 @@ import InstagramLogo from '../../../assets/images/logo/instagram.png'
 import { FaXTwitter } from "react-icons/fa6";
 import { FiEdit } from "react-icons/fi";
 import { IoReturnDownBackOutline } from "react-icons/io5";
+import { TfiReload } from "react-icons/tfi";
 
-const DetailBussiness = () => {
+const DetailBusiness = () => {
     const [editForm, setEditForm] = useState(true)
-
-    const bannerRef = useRef(null)
-    const [banner, setBanner] = useState(null)
-
-    const handleBannerClick = () => {
-        bannerRef.current.click();
-    }
-
-    const handleBannerChange = (event) => {
-        // console.log("ambil gambar");
-        const file = event.target.files[0]
-        console.log(file);
-        setBanner(file)
-    }
-
-    useEffect(() => {
-        if (editForm == true) {
-            setBanner('')
-        }
-    }, [editForm])
-
 
     return (
         <div className='w-screen lg:w-full py-10 px-5 md:px-12 xl:px-24 xl:w-3/4'>
@@ -39,50 +19,178 @@ const DetailBussiness = () => {
 
                 <div className='xl:flex xl:flex-row flex flex-col gap-4 mb-6'>
 
-                    <Banner banner={banner} />
+                    <Banner
+                        editForm={editForm}
+                        setEditForm={setEditForm}
+                    // banner={banner}
+                    // setBanner={setBanner}
+                    // bannerRef={bannerRef}
+                    // handleBannerClick={handleBannerClick}
+                    // handleBannerChange={handleBannerChange}
+                    // handlePicture1Click={handlePicture1Click}
+                    // handlePicture1Change={handlePicture1Change}
+                    // picture1={picture1}
+                    // picture1Ref={picture1Ref}
+                    // picture2Ref={picture2Ref}
+                    // picture3Ref={picture3Ref}
+                    // picture4Ref={picture4Ref}
+                    />
 
-                    <Socmed editForm={editForm} setEditForm={setEditForm} />
+                    <Socmed
+                        editForm={editForm}
+                        setEditForm={setEditForm}
+                    />
 
                 </div>
 
-                <Form banner={banner} editForm={editForm} setEditForm={setEditForm} handleBannerClick={handleBannerClick} handleBannerChange={handleBannerChange} bannerRef={bannerRef} />
+                <Form
+                    editForm={editForm}
+                    setEditForm={setEditForm}
+                />
 
             </div>
         </div>
     )
 }
 
-const Banner = ({ banner }) => {
+const Banner = ({ editForm, setEditForm }) => {
+
+    const bannerRef = useRef(null)
+    const picture1Ref = useRef(null)
+    const picture2Ref = useRef(null)
+    const picture3Ref = useRef(null)
+    const picture4Ref = useRef(null)
+
+    const [banner, setBanner] = useState(null)
+    const [picture1, setPicture1] = useState(null)
+    const [picture2, setPicture2] = useState(null)
+    const [picture3, setPicture3] = useState(null)
+    const [picture4, setPicture4] = useState(null)
+
+    // Banner
+    const handleBannerClick = () => {
+        bannerRef.current.click();
+    }
+    const handleBannerChange = (event) => {
+        // console.log("ambil gambar");
+        const file = event.target.files[0]
+        console.log(file);
+        setBanner(file)
+    }
+
+    // Picture 1
+    const handlePicture1Click = () => {
+        picture1Ref.current.click();
+    }
+    const handlePicture1Change = (event) => {
+        // console.log("ambil gambar");
+        const file = event.target.files[0]
+        console.log(file);
+        setPicture1(file)
+    }
+
+    // Picture 2
+    const handlePicture2Click = () => {
+        picture2Ref.current.click();
+    }
+    const handlePicture2Change = (event) => {
+        // console.log("ambil gambar");
+        const file = event.target.files[0]
+        console.log(file);
+        setPicture2(file)
+    }
+
+    // Picture 3
+    const handlePicture3Click = () => {
+        picture3Ref.current.click();
+    }
+    const handlePicture3Change = (event) => {
+        // console.log("ambil gambar");
+        const file = event.target.files[0]
+        console.log(file);
+        setPicture3(file)
+    }
+
+    // Picture 4
+    const handlePicture4Click = () => {
+        picture4Ref.current.click();
+    }
+    const handlePicture4Change = (event) => {
+        // console.log("ambil gambar");
+        const file = event.target.files[0]
+        console.log(file);
+        setPicture4(file)
+    }
+
+    useEffect(() => {
+        if (editForm == true) {
+            setBanner('')
+            setPicture1('')
+        }
+    }, [editForm])
+
     return (
-        <div className='w-full xl:my-auto xl:w-1/2 border border-gray-300 rounded p-2 flex flex-col gap-3 mb-5'>
+        <div className='w-full xl:my-auto xl:w-1/2 border border-gray-300 rounded p-2 mb-5 flex flex-col gap-2'>
+            <div className='flex flex-col gap-3'>
+                {banner ? (
+                    <img src={URL.createObjectURL(banner)} className='w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain' />
+                ) : (
+                    <div className='w-full hover:cursor-pointer md:w-3/4 mx-auto md:max-h-72 aspect-video bg-gray-500 hover:bg-gray-600 transition-all rounded flex items-center justify-center' onClick={handleBannerClick}>
+                        <p className='text-white'>Banner</p>
+                    </div>
+                )}
 
-            {banner ? (
-                <img src={URL.createObjectURL(banner)} className='w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain' />
-            ) : (
-                <div className='w-full md:w-3/4 mx-auto md:max-h-72 aspect-video bg-gray-500 rounded flex items-center justify-center'>
-                    <p className='text-white'>Banner</p>
-                </div>
-            )}
+                <input type="file" name='banner' id='banner' className='hidden' ref={bannerRef} onChange={handleBannerChange} />
 
+                <div className='flex justify-center gap-3'>
+                    <div className='w-20 bg-gray-500 aspect-square rounded flex items-center justify-center ' onClick={handlePicture1Click} >
+                        {picture1 ? (
+                            <img src={URL.createObjectURL(picture1)} className='w-full ' alt="" srcset="" />
+                        ) : (
+                            <p className='text-xs text-white'>Foto 1</p>
+                        )}
+                        <input type="file" id='picture1' name='picture1' className='hidden' ref={picture1Ref} onChange={handlePicture1Change} />
+                    </div>
+                    <div className='w-20 bg-gray-500 aspect-square rounded flex items-center justify-center ' onClick={handlePicture2Click}>
+                        {picture2 ? (
+                            <img src={URL.createObjectURL(picture2)} className='w-full ' alt="" srcset="" />
+                        ) : (
+                            <p className='text-xs text-white'>Foto 2</p>
+                        )}
+                        <input type="file" id='picture2' name='picture2' className='hidden' ref={picture2Ref} onChange={handlePicture2Change} />
 
-            {/* </div> */}
-            <div className='flex justify-center gap-3'>
-                <div className='w-20 bg-gray-500 aspect-square rounded flex items-center justify-center '>
-                    <p className='text-xs text-white'>Foto</p>
-                </div>
-                <div className='w-20 bg-gray-500 aspect-square rounded flex items-center justify-center '>
-                    <p className='text-xs text-white'>Foto</p>
+                    </div>
+                    <div className='w-20 bg-gray-500 aspect-square rounded flex items-center justify-center ' onClick={handlePicture3Click}>
+                        {picture3 ? (
+                            <img src={URL.createObjectURL(picture3)} className='w-full ' alt="" srcset="" />
+                        ) : (
+                            <p className='text-xs text-white'>Foto 3</p>
+                        )}
+                        <input type="file" id='picture1' name='picture1' className='hidden' ref={picture3Ref} onChange={handlePicture3Change} />
 
-                </div>
-                <div className='w-20 bg-gray-500 aspect-square rounded flex items-center justify-center '>
-                    <p className='text-xs text-white'>Foto</p>
+                    </div>
+                    <div className='w-20 bg-gray-500 aspect-square rounded flex items-center justify-center ' onClick={handlePicture4Click}>
+                        {picture4 ? (
+                            <img src={URL.createObjectURL(picture4)} className='w-full ' alt="" srcset="" />
+                        ) : (
+                            <p className='text-xs text-white'>Foto 4</p>
+                        )
+                        }
+                        <input type="file" id='picture1' name='picture1' className='hidden' ref={picture4Ref} onChange={handlePicture4Change} />
 
-                </div>
-                <div className='w-20 bg-gray-500 aspect-square rounded flex items-center justify-center '>
-                    <p className='text-xs text-white'>Foto</p>
-
+                    </div>
                 </div>
             </div>
+            {banner ? (
+                <div className='flex gap-2'>
+                    <div className='w-full flex items-center justify-center bg-green-600 py-2 rounded hover:bg-green-700 hover:cursor-pointer transition-all'>
+                        <p className='text-xs text-white text-center'>Upload Banner</p>
+                    </div>
+                    <div className='flex items-center p-3' onClick={() => setBanner(!banner)}>
+                        <TfiReload />
+                    </div>
+                </div>
+            ) : ("")}
         </div>
     )
 }
@@ -180,7 +288,7 @@ const Socmed = ({ editForm, setEditForm }) => {
     )
 }
 
-const Form = ({ handleBannerChange, handleBannerClick, bannerRef, editForm, setEditForm, banner }) => {
+const Form = ({ editForm, setEditForm }) => {
     const [desc, setDesc] = useState("")
     const [maps, setMaps] = useState("")
 
@@ -192,42 +300,8 @@ const Form = ({ handleBannerChange, handleBannerClick, bannerRef, editForm, setE
     return (
 
         <div className='flex flex-col gap-3'>
-            <div className='w-full flex flex-col gap-2'>
-                <label htmlFor="" className='text-sm'>Banner</label>
-                <form className='flex gap-3'>
-                    {!editForm ? (
-                        <div className={`w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2`} onClick={handleBannerClick}>
-                            <p className='text-xs text-gray-700'>{banner ? banner.name : "Upload Banner"}</p>
-                        </div>
 
-                    ) : (
-                        <div className='w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2 bg-gray-200 ' >
-                            <p className='text-xs text-gray-500'>Upload Banner </p>
-                        </div>
-                    )}
-                    <input type="file" name='banner' id='banner' className='hidden' ref={bannerRef} onChange={handleBannerChange} />
 
-                    <button type='submit' disabled={editForm} className={`py-2 px-3  text-xs rounded ${editForm ? "bg-gray-200 text-gray-500" : "bg-zinc-800 text-white "} `}>Upload</button>
-                </form>
-            </div>
-            <div className='w-full flex flex-col gap-2'>
-                <label htmlFor="" className='text-sm'>Foto</label>
-                <form className='flex gap-3'>
-                    {/* <input type="file" name='banner' id='banner' className='hidden' ref={bannerRef} /> */}
-                    {!editForm ? (
-
-                        <div className='w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2'>
-                            <p className='text-xs text-gray-700'>Upload Foto</p>
-                        </div>
-                    ) : (
-                        <div className='w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2 bg-gray-200 ' >
-                            <p className='text-xs text-gray-500'>Upload Foto Banner </p>
-                        </div>
-
-                    )}
-                    <button type='submit' disabled={editForm} className={`py-2 px-3 text-xs rounded ${editForm ? "bg-gray-200 text-gray-500" : "bg-zinc-800 text-white"}`}>Upload</button>
-                </form>
-            </div>
             <form onSubmit={handleSubmit} action="" className='flex flex-col gap-2'>
                 <div className='w-full md:w-3/4 xl:w-1/2 flex flex-col gap-2'>
                     <label htmlFor="" className='text-sm'>Deskripsi</label>
@@ -243,7 +317,7 @@ const Form = ({ handleBannerChange, handleBannerClick, bannerRef, editForm, setE
                 </div>
 
                 <hr className='my-5' />
-                <div className='w-full flex justify-between md:justify-end gap-5'>
+                <div className='w-full flex justify-end  gap-5'>
                     {editForm ? (
 
                         <div onClick={() => setEditForm(!editForm)} className='hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded '>
@@ -276,4 +350,4 @@ const Form = ({ handleBannerChange, handleBannerClick, bannerRef, editForm, setE
 }
 
 
-export default DetailBussiness
+export default DetailBusiness
