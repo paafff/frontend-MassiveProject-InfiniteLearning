@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const SignUpForm = () => {
   const [fullName, setFullName] = useState('');
@@ -6,13 +7,25 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const authRegister = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert('Passwords do not match');
-    } else {
-      // Submit the form
-      console.log('Submitted', { fullName, email, password });
+
+    try {
+      const response = await axios.post('http://localhost:5000/register', {
+        username: fullName,
+        email: email,
+        password: password,
+        confPassword: confirmPassword,
+      });
+      alert(response.data.msg);
+      // navigate('/');
+      window.location.reload();
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.msg); // Menampilkan pesan error sebagai popup
+      } else {
+        console.log(error); // Menampilkan error pada konsol
+      }
     }
   };
 
@@ -20,7 +33,7 @@ const SignUpForm = () => {
     <div>
       <form
         className="bg-white shadow-xl w-full max-w-xs border-4 px-8 pt-6 pb-8 font-poppins"
-        onSubmit={handleSubmit}
+        onSubmit={authRegister}
       >
         <div className="mb-6">
           <label
