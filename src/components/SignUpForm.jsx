@@ -23,11 +23,12 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className='bg-white w-full lg:p-8 xl:flex gap-10'>
+    <div className='bg-white w-full lg:p-8 xl:flex gap-10 min-h-screen'>
     <div className='md:w-1/2 md:mx-auto flex items-center xl:w-1/2 '>
     <img src={Logosignup}></img>
     </div>
-    <div className="bg-white w-full border-2 border-solid shadow-slate-300 py-5 px-10 xl:w-1/2">
+    <div className="bg-white w-full xl:w-1/2 md:py-5 md:px-10 ">
+    <div className="bg-white w-full border-2 border-solid shadow-slate-300 py-5 px-10">
       <form
         className="flex flex-col gap-5"
         onSubmit={handleSubmit}
@@ -115,6 +116,7 @@ const SignUpForm = () => {
         </p>
         </div>
       </form>
+      </div>
       </div>
     </div>
   );
