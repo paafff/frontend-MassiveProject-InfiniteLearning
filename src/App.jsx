@@ -20,6 +20,8 @@ import ManageUser from './pages/Admin/User';
 import ManageBusiness from './pages/Admin/Business';
 import ManageReview from './pages/Admin/Review';
 import Help from './pages/Help';
+import AccountAdmin from './pages/Admin/AccountAdmin';
+import InputReview from './pages/User/InputReview';
 
 const App = () => {
   return (
