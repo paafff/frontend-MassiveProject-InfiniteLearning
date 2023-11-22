@@ -13,14 +13,14 @@ import Login from './pages/Login';
 import BusinessRegistration from './pages/User/BusinessRegistration';
 import Reservasi from './pages/User/Reservasi';
 import Account from './pages/Admin/Account';
-import InputReview from './pages/Admin/InputReview';
+// import InputReview from './pages/Admin/InputReview';
 import DashboardReview from './pages/User/DashboardReview';
 import DashboardAdmin from './pages/Admin/Dashboard';
 import ManageUser from './pages/Admin/User';
 import ManageBusiness from './pages/Admin/Business';
 import ManageReview from './pages/Admin/Review';
 import Help from './pages/Help';
-import AccountAdmin from './pages/Admin/AccountAdmin';
+// import AccountAdmin from './pages/Admin/AccountAdmin';
 import InputReview from './pages/User/InputReview';
 
 const App = () => {
@@ -46,10 +46,20 @@ const App = () => {
             {/* Super User */}
             <Route
               path="/superuser/dashboard-business"
-              element={<DashboardBusiness />} />
-            <Route path="/superuser/dashboard-employee" element={<DashboardEmployee />} />
-            <Route path="/superuser/dashboard-booking" element={<DashboardBooking />} />
-            <Route path="/superuser/dashboard-review" element={<DashboardReview />} />
+              element={<DashboardBusiness />}
+            />
+            <Route
+              path="/superuser/dashboard-employee"
+              element={<DashboardEmployee />}
+            />
+            <Route
+              path="/superuser/dashboard-booking"
+              element={<DashboardBooking />}
+            />
+            <Route
+              path="/superuser/dashboard-review"
+              element={<DashboardReview />}
+            />
 
             {/* Admin */}
             <Route path="/admin/account" element={<Account />} />
