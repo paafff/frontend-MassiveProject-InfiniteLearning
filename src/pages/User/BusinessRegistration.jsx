@@ -8,72 +8,133 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const BusinessRegistration = () => {
   // AllAboutRegion
+  const [provUser, setProvUser] = useState([]);
+  const [kabUser, setKabUser] = useState([]);
+  const [kecUser, setKecUser] = useState([]);
+  const [kelUser, setKelUser] = useState([]);
 
-  const [prov, setProv] = useState([]);
-  const [kab, setKab] = useState([]);
-  const [kec, setKec] = useState([]);
-  const [kel, setKel] = useState([]);
+  const [provBusiness, setProvBusiness] = useState([]);
+  const [kabBusiness, setKabBusiness] = useState([]);
+  const [kecBusiness, setKecBusiness] = useState([]);
+  const [kelBusiness, setKelBusiness] = useState([]);
 
-  const [addressSelected, setAddressSelected] = useState({
+  const [addressSelectedUser, setAddressSelectedUser] = useState({
     prov: '',
     kab: '',
     kec: '',
     kel: '',
     rtrw: '',
   });
-
-  const [provSelect, setProvSelect] = useState('');
-  const [kabSelect, setKabSelect] = useState('');
-  const [KecSelect, setKecSelect] = useState('');
-  const [KelSelect, setKelSelect] = useState('');
+  const [addressSelectedBusiness, setAddressSelectedBusiness] = useState({
+    prov: '',
+    kab: '',
+    kec: '',
+    kel: '',
+    provId: '',
+    kabId: '',
+    kecId: '',
+    kelId: '',
+    rtrw: '',
+  });
 
   const apiKey =
     'a77cbb6fefcb7a7d2269e15778d5e3d223ef29ec82037df43ff634eca744daff';
 
-  const getProv = async () => {
+  const getProvUser = async () => {
     try {
       const response = await axios.get(
         `https://api.binderbyte.com/wilayah/provinsi?api_key=${apiKey}`,
         { withCredentials: false }
       );
-      setProv(response.data.value);
+      setProvUser(response.data.value);
       // console.log('prov', prov);
     } catch (error) {
       console.log(error);
     }
   };
-  const getKab = async (id) => {
+  const getKabUser = async (id) => {
     try {
       const response = await axios.get(
         `https://api.binderbyte.com/wilayah/kabupaten?api_key=${apiKey}&id_provinsi=${id}`,
         { withCredentials: false }
       );
-      setKab(response.data.value);
+      setKabUser(response.data.value);
       // console.log('kab', kab);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getKec = async (id) => {
+  const getKecUser = async (id) => {
     try {
       const response = await axios.get(
         `https://api.binderbyte.com/wilayah/kecamatan?api_key=${apiKey}&id_kabupaten=${id}`,
         { withCredentials: false }
       );
-      setKec(response.data.value);
+      setKecUser(response.data.value);
       // console.log('kec', kec);
     } catch (error) {
       console.log(error);
     }
   };
-  const getKel = async (id) => {
+  const getKelUser = async (id) => {
     try {
       const response = await axios.get(
         `https://api.binderbyte.com/wilayah/kelurahan?api_key=${apiKey}&id_kecamatan=${id}`,
         { withCredentials: false }
       );
-      setKel(response.data.value);
+      setKelUser(response.data.value);
+      // console.log('kel', kel);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //business
+  const getProvBusiness = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.binderbyte.com/wilayah/provinsi?api_key=${apiKey}`,
+        { withCredentials: false }
+      );
+      setProvBusiness(response.data.value);
+      // console.log('prov', prov);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getKabBusiness = async (id) => {
+    try {
+      const response = await axios.get(
+        `https://api.binderbyte.com/wilayah/kabupaten?api_key=${apiKey}&id_provinsi=${id}`,
+        { withCredentials: false }
+      );
+      setKabBusiness(response.data.value);
+      // console.log('kab', kab);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getKecBusiness = async (id) => {
+    try {
+      const response = await axios.get(
+        `https://api.binderbyte.com/wilayah/kecamatan?api_key=${apiKey}&id_kabupaten=${id}`,
+        { withCredentials: false }
+      );
+      setKecBusiness(response.data.value);
+      // console.log('kec', kec);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getKelBusiness = async (id) => {
+    try {
+      const response = await axios.get(
+        `https://api.binderbyte.com/wilayah/kelurahan?api_key=${apiKey}&id_kecamatan=${id}`,
+        { withCredentials: false }
+      );
+      setKelBusiness(response.data.value);
       // console.log('kel', kel);
     } catch (error) {
       console.log(error);
@@ -84,54 +145,56 @@ const BusinessRegistration = () => {
 
   //userInformation
 
-  const arrayAddress = [
-    addressSelected.prov,
-    addressSelected.kab,
-    addressSelected.kec,
-    addressSelected.kel,
-    addressSelected.rtrw,
-  ];
   const [userData, setUserData] = useState({
     username: '',
     email: '',
     gender: '',
     phone: '',
     cardId: '',
-    // address: ['1'],
-    // catatan untuk address urutannya [Provinsi,Kabupaten,Kecamatan,Kelurahan,RT/RW]
-    address: [
-      addressSelected.prov,
-      addressSelected.kab,
-      addressSelected.kec,
-      addressSelected.kel,
-      addressSelected.rtrw,
-    ],
-    // address: [
-    //   `${addressSelected.prov}`,
-    //   `${addressSelected.kab}`,
-    //   `${addressSelected.kec}`,
-    //   `${addressSelected.kel}`,
-    //   `${addressSelected.rtrw}`,
-    // ],
-    // address: ['prov', 'kab', 'kec', 'kel', 'ini rt/rw'],
-    // address: [
-    //   provSelect,
-    //   addressSelected.kab,
-    //   addressSelected.kec,
-    //   addressSelected.kel,
-    //   addressSelected.rtrw,
-    // ],
-    // address: arrayAddress,
+    // photoProfile: null,
   });
-  const [businessData, setBusinessData] = useState({});
+
+  const arrayAddressUser = [
+    addressSelectedUser.prov,
+    addressSelectedUser.kab,
+    addressSelectedUser.kec,
+    addressSelectedUser.kel,
+    addressSelectedUser.rtrw,
+  ];
+
+  //businessInformation
+  const [businessData, setBusinessData] = useState({
+    name: '',
+    description: '',
+
+    //perlu diubahhhhhhhhh
+    typeBusiness: '',
+  });
+
+  const arrayAddressBusiness = [
+    addressSelectedBusiness.prov,
+    addressSelectedBusiness.kab,
+    addressSelectedBusiness.kec,
+    addressSelectedBusiness.kel,
+    addressSelectedBusiness.rtrw,
+  ];
+  const arrayAddressIdBusiness = [
+    addressSelectedBusiness.provId,
+    addressSelectedBusiness.kabId,
+    addressSelectedBusiness.kecId,
+    addressSelectedBusiness.kelId,
+    addressSelectedBusiness.rtrw,
+  ];
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // mengambil nilai userAuthReducer pada store
   const userAuthSelector = (state) => state.userAuthReducer.userAuth;
   const userAuth = useSelector(userAuthSelector) || 'Loading Data User';
 
+  //controler rest api
   const updateUser = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
       const formUpdate = new FormData();
 
@@ -140,7 +203,9 @@ const BusinessRegistration = () => {
       formUpdate.append('gender', userData.gender);
       formUpdate.append('phone', userData.phone);
       formUpdate.append('cardId', userData.cardId);
-      formUpdate.append('address', JSON.stringify(userData.address));
+      formUpdate.append('address', JSON.stringify(arrayAddressUser));
+      // formUpdate.append('photoProfile', userData.photoProfile);
+      // formUpdate.append('address', JSON.stringify(arrayAddressUser));
 
       await axios.patch(
         `http://localhost:5000/user/${userAuth.uuid}`,
@@ -148,7 +213,8 @@ const BusinessRegistration = () => {
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
 
-      console.log(userData.address);
+      console.log('data user', formUpdate);
+      console.log(arrayAddressUser);
       console.log('sukses update data user');
     } catch (error) {
       if (error.response) {
@@ -159,6 +225,42 @@ const BusinessRegistration = () => {
     }
   };
 
+  const createBusiness = async (e) => {
+    // e.preventDefault();
+    try {
+      // multipart
+      // const formCreate = new FormData();
+
+      // formCreate.append('name', businessData.name);
+      // formCreate.append('description', businessData.description);
+      // formCreate.append('typeBusiness', businessData.typeBusiness);
+      // formCreate.append('address', JSON.stringify(arrayAddressBusiness));
+
+      await axios.post(`http://localhost:5000/business`, {
+        name: businessData.name,
+        description: businessData.description,
+        typeBusiness: businessData.typeBusiness,
+        address: arrayAddressBusiness,
+        addressId: arrayAddressIdBusiness,
+      });
+
+      // console.log('data usaha', formCreate);
+      console.log('data usaha businessdata', businessData);
+      console.log('data usaha address', arrayAddressBusiness);
+      console.log('data usaha address', arrayAddressIdBusiness);
+      console.log('data usaha berhasil dibuat');
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.msg);
+      } else {
+        console.log(error);
+      }
+
+      throw error; // Meneruskan kembali error untuk menandakan bahwa ada kesalahan
+    }
+  };
+  //controler rest api
+
   //useefeect
   useEffect(() => {
     const getMeUser = async () => {
@@ -166,19 +268,25 @@ const BusinessRegistration = () => {
     };
 
     getMeUser();
-    getProv();
-    console.log(addressSelected);
+    getProvUser();
+    getProvBusiness();
     console.log(userAuth);
   }, [dispatch, navigate]);
 
   useEffect(() => {
-    console.log(addressSelected);
-    // console.log(userAuth);
-  }, [addressSelected]);
+    console.log('user', addressSelectedUser);
+    console.log('business', addressSelectedBusiness);
+  }, [addressSelectedUser, addressSelectedBusiness]);
   //useefeect
 
-  const handleClick = () => {
-    updateUser();
+  const handleSubmit = async () => {
+    // e.preventDefault();
+    try {
+      await createBusiness();
+      await updateUser();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -187,7 +295,7 @@ const BusinessRegistration = () => {
         Form Pengajuan Usaha
       </h1>
       <hr class="mx-auto mt-2 mb-20 max-w-sm border-2 border-dashed border-rose-400" />
-      <form onSubmit={updateUser}>
+      <form onSubmit={handleSubmit}>
         <div class="mx-20">
           <h4 class="text-lg font-semibold">Data Pemilik Usaha</h4>
           <hr class="mx-auto border-2 border-rose-400 shadow" />
@@ -205,6 +313,9 @@ const BusinessRegistration = () => {
                 id="fullname"
                 className="border"
                 class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                // placeholder={
+                //   userAuth.username ? userAuth.username : 'Nama Pemilik Usaha'
+                // }
                 placeholder={
                   userAuth.username ? userAuth.username : 'Nama Pemilik Usaha'
                 }
@@ -313,19 +424,22 @@ const BusinessRegistration = () => {
             </label>
             <div class="basis-2/3 flex flex-wrap">
               {/* prov */}
+
+              {/* nang */}
               <select
                 class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 onChange={(e) => {
-                  getKab(e.target.value);
+                  getKabUser(e.target.value);
 
                   const selectedOption =
                     e.target.options[e.target.selectedIndex];
                   const selectedId = selectedOption.getAttribute('id');
                   const selectedName = selectedOption.getAttribute('name');
 
-                  setProvSelect(selectedId);
-                  setAddressSelected({
-                    ...addressSelected,
+                  // setUserData({ ...userData, address: selectedName });
+
+                  setAddressSelectedUser({
+                    ...addressSelectedUser,
                     // prov: selectedId,
                     prov: selectedName,
                   });
@@ -334,7 +448,7 @@ const BusinessRegistration = () => {
                 <option selected disabled class="text-grey-400">
                   Provinsi
                 </option>
-                {prov.map((prov) => (
+                {provUser.map((prov) => (
                   <option
                     name={prov.name}
                     id={prov.id}
@@ -350,15 +464,15 @@ const BusinessRegistration = () => {
               <select
                 class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 onChange={(e) => {
-                  getKec(e.target.value);
+                  getKecUser(e.target.value);
 
                   const selectedOption =
                     e.target.options[e.target.selectedIndex];
                   // const selectedId = selectedOption.getAttribute('id');
                   const selectedName = selectedOption.getAttribute('name');
 
-                  setAddressSelected({
-                    ...addressSelected,
+                  setAddressSelectedUser({
+                    ...addressSelectedUser,
                     // kab: selectedId,
                     kab: selectedName,
                   });
@@ -367,7 +481,7 @@ const BusinessRegistration = () => {
                 <option selected disabled class="text-grey-400">
                   Kabupaten/Kota
                 </option>
-                {kab.map((kab) => (
+                {kabUser.map((kab) => (
                   <option
                     name={kab.name}
                     id={kab.id}
@@ -382,15 +496,15 @@ const BusinessRegistration = () => {
               <select
                 class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 onChange={(e) => {
-                  getKel(e.target.value);
+                  getKelUser(e.target.value);
 
                   const selectedOption =
                     e.target.options[e.target.selectedIndex];
                   // const selectedId = selectedOption.getAttribute('id');
                   const selectedName = selectedOption.getAttribute('name');
 
-                  setAddressSelected({
-                    ...addressSelected,
+                  setAddressSelectedUser({
+                    ...addressSelectedUser,
                     // kec: selectedId,
                     kec: selectedName,
                   });
@@ -399,7 +513,7 @@ const BusinessRegistration = () => {
                 <option selected disabled class="text-grey-400">
                   Kecamatan
                 </option>
-                {kec.map((kec) => (
+                {kecUser.map((kec) => (
                   <option
                     name={kec.name}
                     id={kec.id}
@@ -414,15 +528,15 @@ const BusinessRegistration = () => {
               <select
                 class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 onChange={(e) => {
-                  // getKel(e.target.value);
+                  // getKelUser(e.target.value);
 
                   const selectedOption =
                     e.target.options[e.target.selectedIndex];
                   // const selectedId = selectedOption.getAttribute('id');
                   const selectedName = selectedOption.getAttribute('name');
 
-                  setAddressSelected({
-                    ...addressSelected,
+                  setAddressSelectedUser({
+                    ...addressSelectedUser,
                     // kel: selectedId,
                     kel: selectedName,
                   });
@@ -431,7 +545,7 @@ const BusinessRegistration = () => {
                 <option selected disabled class="text-grey-400">
                   Kelurahan
                 </option>
-                {kel.map((kel) => (
+                {kelUser.map((kel) => (
                   <option
                     name={kel.name}
                     id={kel.id}
@@ -446,21 +560,14 @@ const BusinessRegistration = () => {
                 type="text"
                 class="mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 onChange={(e) =>
-                  setAddressSelected({
-                    ...addressSelected,
+                  setAddressSelectedUser({
+                    ...addressSelectedUser,
                     rtrw: e.target.value,
                   })
                 }
-                // placeholder={userAuth.address ? userAuth.address[0] : 'RT/RW'}
+                // placeholder={userAuth.address ? userAuth.address[1] : 'RT/RW'}
                 placeholder="RT/RW"
               />
-              {/* <select class="mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                {' '}
-                Kode Pos
-                <option selected disabled>
-                  Kode Pos
-                </option>
-              </select> */}
             </div>
           </div>
           <h4 class="text-lg font-semibold mt-10">Detail Usaha</h4>
@@ -476,112 +583,219 @@ const BusinessRegistration = () => {
               className="border"
               class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
               placeholder="Nama Brand Anda"
+              onChange={(e) =>
+                setBusinessData({
+                  ...businessData,
+                  name: e.target.value,
+                })
+              }
             />
+          </div>
+          <div class="flex flex-row my-6">
+            <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
+              Jenis Usaha
+            </label>
+            <input
+              type="radio"
+              value="barbershop"
+              className="border"
+              onChange={(e) =>
+                setBusinessData({
+                  ...businessData,
+                  typeBusiness: e.target.value,
+                })
+              }
+              required
+            />
+            <label class="ml-2">Barbershop</label>
+            <input
+              type="radio"
+              value="salon"
+              className="border ml-12"
+              onChange={(e) =>
+                setBusinessData({
+                  ...businessData,
+                  typeBusiness: e.target.value,
+                })
+              }
+              required
+            />
+            <label class="ml-2">Salon</label>
           </div>
           <div class="flex flex-row my-6">
             <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
               Lokasi
             </label>
             <div class="basis-2/3 flex flex-wrap">
+              {/* prov */}
+
+              {/* nang */}
               <select
                 class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                placeholder="Provinsi"
+                onChange={(e) => {
+                  getKabBusiness(e.target.value);
+
+                  const selectedOption =
+                    e.target.options[e.target.selectedIndex];
+                  const selectedId = selectedOption.getAttribute('id');
+                  const selectedName = selectedOption.getAttribute('name');
+
+                  setAddressSelectedBusiness({
+                    ...addressSelectedBusiness,
+                    provId: selectedId,
+                    prov: selectedName,
+                  });
+                }}
               >
-                {' '}
-                Provinsi
-                <option selected disabled>
+                <option selected disabled class="text-grey-400">
                   Provinsi
                 </option>
-                <option>Jawa Barat</option>
+                {provBusiness.map((prov) => (
+                  <option
+                    name={prov.name}
+                    id={prov.id}
+                    key={prov.id}
+                    value={prov.id}
+                  >
+                    {prov.name}
+                  </option>
+                ))}
               </select>
-              <select class="mr-5 w-62 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                {' '}
-                Kabupaten/Kota
-                <option selected disabled>
+
+              {/* kab */}
+              <select
+                class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                onChange={(e) => {
+                  getKecBusiness(e.target.value);
+
+                  const selectedOption =
+                    e.target.options[e.target.selectedIndex];
+                  const selectedId = selectedOption.getAttribute('id');
+                  const selectedName = selectedOption.getAttribute('name');
+
+                  setAddressSelectedBusiness({
+                    ...addressSelectedBusiness,
+                    kabId: selectedId,
+                    kab: selectedName,
+                  });
+                }}
+              >
+                <option selected disabled class="text-grey-400">
                   Kabupaten/Kota
                 </option>
+                {kabBusiness.map((kab) => (
+                  <option
+                    name={kab.name}
+                    id={kab.id}
+                    key={kab.id}
+                    value={kab.id}
+                  >
+                    {kab.name}
+                  </option>
+                ))}
               </select>
+              {/* kec */}
               <select
-                class="mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                data-te-select-placeholder="Example placeholder"
+                class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                onChange={(e) => {
+                  getKelBusiness(e.target.value);
+
+                  const selectedOption =
+                    e.target.options[e.target.selectedIndex];
+                  const selectedId = selectedOption.getAttribute('id');
+                  const selectedName = selectedOption.getAttribute('name');
+
+                  setAddressSelectedBusiness({
+                    ...addressSelectedBusiness,
+                    kecId: selectedId,
+                    kec: selectedName,
+                  });
+                }}
               >
-                {' '}
-                Kecamatan
-                <option selected disabled>
+                <option selected disabled class="text-grey-400">
                   Kecamatan
                 </option>
+                {kecBusiness.map((kec) => (
+                  <option
+                    name={kec.name}
+                    id={kec.id}
+                    key={kec.id}
+                    value={kec.id}
+                  >
+                    {kec.name}
+                  </option>
+                ))}
               </select>
-              <select class="mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                {' '}
-                Kelurahan
-                <option selected disabled>
+              {/* kel */}
+              <select
+                class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                onChange={(e) => {
+                  // getKelBusiness(e.target.value);
+
+                  const selectedOption =
+                    e.target.options[e.target.selectedIndex];
+                  const selectedId = selectedOption.getAttribute('id');
+                  const selectedName = selectedOption.getAttribute('name');
+
+                  setAddressSelectedBusiness({
+                    ...addressSelectedBusiness,
+                    kelId: selectedId,
+                    kel: selectedName,
+                  });
+                }}
+              >
+                <option selected disabled class="text-grey-400">
                   Kelurahan
                 </option>
+                {kelBusiness.map((kel) => (
+                  <option
+                    name={kel.name}
+                    id={kel.id}
+                    key={kel.id}
+                    value={kel.id}
+                  >
+                    {kel.name}
+                  </option>
+                ))}
               </select>
               <input
                 type="text"
                 class="mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                onChange={(e) =>
+                  setAddressSelectedBusiness({
+                    ...addressSelectedBusiness,
+                    rtrw: e.target.value,
+                  })
+                }
+                // placeholder={userAuth.address ? userAuth.address[1] : 'RT/RW'}
                 placeholder="RT/RW"
               />
-              <select class="mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                {' '}
-                Kode Pos
-                <option selected disabled>
-                  Kode Pos
-                </option>
-              </select>
             </div>
           </div>
-          <div class="flex flex-row my-6">
-            <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
-              Banner
-            </label>
-            <input
-              type="file"
-              name="banner"
-              id="banner"
-              className="border basis-2/3"
-            />
-          </div>
-          <div class="flex flex-row my-6">
-            <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
-              Foto
-            </label>
-            <input
-              type="file"
-              name="brandPhoto1"
-              id="brandPhoto1"
-              className="border basis-2/3"
-            />
-          </div>
-          <div class="flex flex-row my-6">
-            <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
-              Foto
-            </label>
-            <input
-              type="file"
-              name="brandPhoto2"
-              id="brandPhoto2"
-              className="border basis-2/3"
-            />
-          </div>
+
           <div class="flex flex-row my-6">
             <label class="basis-1/3">Deskripsi Usaha</label>
             <textarea
               rows="6"
               class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
+              onChange={(e) =>
+                setBusinessData({
+                  ...businessData,
+                  description: e.target.value,
+                })
+              }
             ></textarea>
           </div>
         </div>
 
         {/* sementara */}
-        <button
+        {/* <button
           class="mt-5 ml-80 bg-rose-400 hover:bg-rose-600 text-white font-bold py-2 px-5 rounded shadow-lg"
           // onSubmit={() => handleClick()}
           type="submit"
         >
           Simpan
-        </button>
+        </button> */}
         {/* sementara */}
       </form>
       <div class="columns-2 mt-20">
@@ -594,7 +808,7 @@ const BusinessRegistration = () => {
           <br />
           <button
             class="mt-5 ml-80 bg-rose-400 hover:bg-rose-600 text-white font-bold py-2 px-5 rounded shadow-lg"
-            onClick={() => handleClick()}
+            onClick={handleSubmit}
             // type="submit"
           >
             Simpan

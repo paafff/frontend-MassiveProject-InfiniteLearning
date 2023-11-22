@@ -26,7 +26,6 @@ const Navbar = () => {
     };
 
     getMeUser();
-
     // console.log(userAuth);
   }, [dispatch, navigate]);
 

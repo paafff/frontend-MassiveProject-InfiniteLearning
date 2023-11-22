@@ -14,6 +14,7 @@ import BusinessRegistration from './pages/User/BusinessRegistration';
 import Reservasi from './pages/User/Reservasi';
 import AccountAdmin from './pages/Admin/AccountAdmin';
 import InputReview from './pages/Admin/InputReview';
+import DummyPage from './components/Dummy/DummyPage';
 
 const App = () => {
   return (
@@ -25,9 +26,12 @@ const App = () => {
             <Route path="/sample" element={<Sample />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route
-              path="/dashboard-bussiness"
+              path="/dashboard-bussiness/:uuid"
               element={<DashboardBussiness />}
             />
+
+            <Route path="/dashboard-business/:uuid" element={<DummyPage />} />
+
             <Route path="/dashboard-employee" element={<DashboardEmployee />} />
             <Route path="/dashboard-booking" element={<DashboardBooking />} />
             <Route path="/signup" element={<SignUp />} />
