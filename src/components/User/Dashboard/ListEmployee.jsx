@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaChevronLeft, FaEye } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import HumbergerMenu from './HumbergerMenu';
 
 const listEmployee = [
     {
@@ -41,7 +42,7 @@ const ListEmployee = ({ showSidebar, setShowSidebar }) => {
 
             <HumbergerMenu showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
-            <Link to="/dashboard-bussiness" className='text-lg flex gap-3 items-center mb-5'>
+            <Link to="/superuser/dashboard-business" className='text-lg flex gap-3 items-center mb-5'>
                 <FaChevronLeft className='inline-block scale-125' />
                 Back
             </Link>
@@ -57,26 +58,6 @@ const ListEmployee = ({ showSidebar, setShowSidebar }) => {
                 ))}
             </div>
         </div>
-    )
-}
-
-const HumbergerMenu = ({ showSidebar, setShowSidebar }) => {
-    return (
-        <svg
-            onClick={() => setShowSidebar(!showSidebar)}
-            className={`w-5 h-5  transition-all text-zinc-900 lg:hidden mb-10 rotate-90 ${showSidebar ? 'ml-80 rotate-180' : 'ml-0'} `}
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 17 14">
-
-            <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-
-        </svg>
     )
 }
 

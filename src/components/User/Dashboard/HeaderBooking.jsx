@@ -5,19 +5,19 @@ import HumbergerMenu from './HumbergerMenu';
 
 const HeaderBooking = ({ showSidebar, setShowSidebar }) => {
     return (
-        <div className='w-screen lg:w-full py-10 px-5 md:px-12 xl:px-24 xl:w-3/4'>
+        <div className='w-screen lg:w-full pt-10 px-5 md:px-12 xl:px-24 '>
 
             <HumbergerMenu showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
-            <Top />
+            <Header />
 
         </div>
     )
 }
 
-const Top = () => {
+const Header = () => {
     return (
-        <div className=''>
+        <div className='xl:w-3/4 mx-auto'>
             <p className='text-center text-xl lg:text-2xl font-semibold'>Javanese Barbershop</p>
             <hr className='my-5 border-t border-black' />
 

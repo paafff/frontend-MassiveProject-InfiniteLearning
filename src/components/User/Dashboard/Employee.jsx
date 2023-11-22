@@ -106,7 +106,7 @@ const Form = ({ editForm, setEditForm, pictureRef, handlePictureClick, handlePic
 const Button = ({ editForm, setEditForm }) => {
     return (
         <div className='w-full flex justify-between md:justify-end gap-5'>
-            <Link to="/dashboard-employee" className='hover:bg-blue-700 hover:cursor-pointer transition-all py-2 px-5 bg-blue-600 rounded '>
+            <Link to="/superuser/dashboard-employee" className='hover:bg-blue-700 hover:cursor-pointer transition-all py-2 px-5 bg-blue-600 rounded '>
                 <p className='text-xs md:text-sm text-white flex gap-4 md:gap-2 items-center'>
                     <FaEye className='inline-block scale-150 md:scale-100' />
                     Lihat Data Karyawan

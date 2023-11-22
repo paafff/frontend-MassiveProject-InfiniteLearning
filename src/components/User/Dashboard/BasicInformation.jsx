@@ -8,7 +8,7 @@ import axios from 'axios';
 const BasicInformation = ({ showSidebar, setShowSidebar }) => {
 
     return (
-        <div className='w-full py-10 lg:w-full xl:w-3/4 xl:px-24  px-5 md:px-12 lg:pt-16'>
+        <div className='w-screen py-10 lg:w-full xl:w-3/4 xl:px-24  px-5 md:px-12 lg:pt-16'>
 
             <HumbergerMenu showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
@@ -200,7 +200,9 @@ const Form = () => {
 
                     </div>
                 </div>
+
                 <hr className='mt-5' />
+
                 <div className='w-full flex justify-end gap-5'>
                     {editForm ? (
 

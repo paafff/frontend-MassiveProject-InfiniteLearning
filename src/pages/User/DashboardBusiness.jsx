@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Layout from '../Layout'
-import Sidebar from '../../components/User/Sidebar';
+import Sidebar from '../../components/Sidebar';
 import BasicInformation from '../../components/User/Dashboard/BasicInformation';
-import DetailBussiness from '../../components/User/Dashboard/DetailBussiness';
+import DetailBusiness from '../../components/User/Dashboard/DetailBusiness';
 import Services from '../../components/User/Dashboard/Services';
 import Employee from '../../components/User/Dashboard/Employee';
 
-const DashboardBussiness = () => {
+const DashboardBusiness = () => {
 
     const [showSidebar, setShowSidebar] = useState(false)
 
@@ -17,9 +17,9 @@ const DashboardBussiness = () => {
 
                 <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
-                <div className='w-screen flex flex-col'>
+                <div className='w-screen min-h-screen'>
                     <BasicInformation showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-                    <DetailBussiness />
+                    <DetailBusiness />
                     <Services />
                     <Employee />
                 </div>
@@ -30,4 +30,4 @@ const DashboardBussiness = () => {
     )
 }
 
-export default DashboardBussiness
+export default DashboardBusiness
