@@ -3,6 +3,7 @@ import { FaChevronLeft, FaEye } from "react-icons/fa";
 import { MdOutlineOpenInNew } from "react-icons/md";
 import { Link } from 'react-router-dom';
 
+
 const ListReview = ({ listReview, hamburgerMenu }) => {
     return (
         <div className='w-full lg:w-full xl:w-3/4 xl:px-24 py-10 px-5 md:px-12 lg:pt-16'>
@@ -15,10 +16,9 @@ const ListReview = ({ listReview, hamburgerMenu }) => {
                 <hr className='my-5' />
 
                 {listReview.map((review, index) => (
-
                     <Review index={index} id={review.id} desc={review.desc} date={review.created_at} />
-
                 ))}
+
             </div>
         </div>
     )

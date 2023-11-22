@@ -4,12 +4,14 @@ import Logo from '../../assets/images/logo/logo.png'
 import { Link } from 'react-router-dom';
 import { FaAngleDown } from 'react-icons/fa'
 import DropdownCategory from './DropdownCategory';
+import DropdownProfile from './DropdownProfile';
 import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
 
     const [mobileNavbar, setMobileNavbar] = useState(false);
     const [dropdownKategori, setDropdownKategori] = useState(false);
+    const [dropdownProfile, setDropdownProfile] = useState(false)
     const isLogin = true;
 
     return (
@@ -20,11 +22,13 @@ const Navbar = () => {
 
                 <HumbergerMenu setMobileNavbar={setMobileNavbar} mobileNavbar={mobileNavbar} />
 
-                <NavbarWebsite setDropdownKategori={setDropdownKategori} dropdownKategori={dropdownKategori} isLogin={isLogin} />
+                <NavbarWebsite setDropdownKategori={setDropdownKategori} dropdownKategori={dropdownKategori} dropdownProfile={dropdownProfile} setDropdownProfile={setDropdownProfile} isLogin={isLogin} />
 
-                <NavbarMobile setDropdownKategori={setDropdownKategori} dropdownKategori={dropdownKategori} mobileNavbar={mobileNavbar} isLogin={isLogin} />
+                <NavbarMobile setDropdownKategori={setDropdownKategori} dropdownKategori={dropdownKategori} dropdownProfile={dropdownProfile} setDropdownProfile={setDropdownProfile} mobileNavbar={mobileNavbar} isLogin={isLogin} />
 
                 <DropdownCategory display={dropdownKategori ? "flex" : "hidden"} />
+
+                <DropdownProfile display={dropdownProfile ? "flex" : "hidden"} />
             </div>
 
         </>
@@ -59,15 +63,11 @@ const Brand = () => {
 
 const HumbergerMenu = ({ setMobileNavbar, mobileNavbar }) => {
 
-    const handleHumbergerMenu = () => {
-        setMobileNavbar(!mobileNavbar)
-    }
-
     return (
         <div className='text-white lg:hidden xl:hidden items-center justify-end gap-2'>
-            {mobileNavbar}
             <svg
-                onClick={() => handleHumbergerMenu()}
+                onClick={() => setMobileNavbar(!mobileNavbar)}
+                onBlur={() => setMobileNavbar(!mobileNavbar)}
                 className={`w-5 h-5 transition-all ${mobileNavbar ? "rotate-90" : "rotate-0"}`}
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
@@ -85,11 +85,7 @@ const HumbergerMenu = ({ setMobileNavbar, mobileNavbar }) => {
     )
 }
 
-const NavbarWebsite = ({ setDropdownKategori, dropdownKategori, isLogin }) => {
-
-    const handleDropdownKategori = () => {
-        setDropdownKategori(!dropdownKategori)
-    }
+const NavbarWebsite = ({ setDropdownKategori, dropdownKategori, dropdownProfile, setDropdownProfile, isLogin }) => {
 
     return (
         <div className='text-white hidden lg:flex xl:flex items-center justify-end gap-6 w-3/4 xl:w-full '>
@@ -105,7 +101,8 @@ const NavbarWebsite = ({ setDropdownKategori, dropdownKategori, isLogin }) => {
 
             <Link
                 to="#"
-                onClick={() => handleDropdownKategori()}
+                onClick={() => setDropdownKategori(!dropdownKategori)}
+                onBlur={() => setDropdownKategori(!dropdownKategori)}
                 className='text-sm font-medium gap-1 flex items-center py-1 px-4'>
                 Kategori
                 <FaAngleDown className='inline-block' />
@@ -113,14 +110,16 @@ const NavbarWebsite = ({ setDropdownKategori, dropdownKategori, isLogin }) => {
 
             {isLogin ? (
                 <Link
-                    to="/user/dashboard"
+                    to="#"
+                    onClick={() => setDropdownProfile(!dropdownProfile)}
+                    // onBlur={() => setDropdownProfile(!dropdownProfile)}
                     className='text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3'>
                     <FaUserCircle className='inline-block scale-[2]' />
                     <FaAngleDown className='inline-block' />
                 </Link>
             ) : (
                 <Link
-                    to="#"
+                    to="/login"
                     className='text-sm font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all'>Login</Link>
             )}
 
@@ -129,11 +128,7 @@ const NavbarWebsite = ({ setDropdownKategori, dropdownKategori, isLogin }) => {
     )
 }
 
-const NavbarMobile = ({ mobileNavbar, setDropdownKategori, dropdownKategori, isLogin }) => {
-
-    const handleDropdownKategori = () => {
-        setDropdownKategori(!dropdownKategori)
-    }
+const NavbarMobile = ({ mobileNavbar, setDropdownKategori, dropdownKategori, dropdownProfile, setDropdownProfile, isLogin }) => {
 
     return (
         <div className={`w-full h-fit z-20 px-3 py-7 md:px-8 flex flex-col gap-6 lg:hidden xl:hidden bg-[#1a1a1a] absolute transition-all text-white top-24 ${mobileNavbar ? "left-0" : "left-[-450px] md:left-[-780px]"}`}>
@@ -152,25 +147,24 @@ const NavbarMobile = ({ mobileNavbar, setDropdownKategori, dropdownKategori, isL
                 className='text-sm inline-block font-medium py-1  w-fit'>Syarat dan Ketentuan</Link>
 
             <Link to="#"
-                onClick={() => handleDropdownKategori()}
+                onClick={() => setDropdownKategori(!dropdownKategori)}
+                onBlur={() => setDropdownKategori(!dropdownKategori)}
                 className='text-sm inline-block font-medium gap-1 items-center py-1  w-fit'>
                 Kategori
                 <FaAngleDown className='inline-block ml-2' />
             </Link>
 
             {isLogin ? (
-                // <Link
-                //     to="#"
-                //     className='text-sm inline-block font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all w-fit'>Dashboard</Link>
                 <Link
-                    to="/dashboard"
+                    onClick={() => setDropdownProfile(!dropdownProfile)}
+                    onBlur={() => setDropdownProfile(!dropdownProfile)}
                     className='text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3'>
                     <FaUserCircle className='inline-block scale-[2]' />
                     <FaAngleDown className='inline-block' />
                 </Link>
             ) : (
                 <Link
-                    to="#"
+                    to="/login"
                     className='text-sm inline-block font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all w-fit'>Login</Link>
             )}
 

@@ -19,6 +19,7 @@ import DashboardAdmin from './pages/Admin/Dashboard';
 import ManageUser from './pages/Admin/User';
 import ManageBusiness from './pages/Admin/Business';
 import ManageReview from './pages/Admin/Review';
+import Help from './pages/Help';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
       <div>
         <BrowserRouter>
           <Routes>
+            <Route path="/help" element={<Help />} />
             {/* User / Guest */}
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />
