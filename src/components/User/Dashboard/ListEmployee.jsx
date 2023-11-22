@@ -42,7 +42,7 @@ const ListEmployee = ({ showSidebar, setShowSidebar }) => {
 
             <HumbergerMenu showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
-            <Link to="/dashboard-bussiness" className='text-lg flex gap-3 items-center mb-5'>
+            <Link to="/superuser/dashboard-business" className='text-lg flex gap-3 items-center mb-5'>
                 <FaChevronLeft className='inline-block scale-125' />
                 Back
             </Link>

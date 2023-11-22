@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import Layout from '../Layout'
-import Sidebar from '../../components/User/Sidebar'
+import Sidebar from '../../components/Sidebar'
 import ListEmployee from '../../components/User/Dashboard/ListEmployee'
 import DetailEmployee from '../../components/User/Dashboard/DetailEmployee'
 

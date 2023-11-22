@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Layout from '../Layout'
-import Sidebar from '../../components/User/Sidebar'
+import Sidebar from '../../components/Sidebar'
 import HeaderBooking from '../../components/User/Dashboard/HeaderBooking'
 import CardBooking from '../../components/User/Dashboard/CardBooking'
 

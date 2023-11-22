@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Layout from '../Layout'
-import Sidebar from '../../components/User/Sidebar';
+import Sidebar from '../../components/Sidebar';
 import BasicInformation from '../../components/User/Dashboard/BasicInformation';
 import DetailBusiness from '../../components/User/Dashboard/DetailBusiness';
 import Services from '../../components/User/Dashboard/Services';

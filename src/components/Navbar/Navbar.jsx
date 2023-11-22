@@ -113,7 +113,7 @@ const NavbarWebsite = ({ setDropdownKategori, dropdownKategori, isLogin }) => {
 
             {isLogin ? (
                 <Link
-                    to="/dashboard"
+                    to="/user/dashboard"
                     className='text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3'>
                     <FaUserCircle className='inline-block scale-[2]' />
                     <FaAngleDown className='inline-block' />

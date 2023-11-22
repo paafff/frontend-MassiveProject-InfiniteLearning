@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import Sidebar from '../../components/User/Sidebar'
+import Sidebar from '../../components/Sidebar'
 import Layout from '../Layout'
 import Biodata from '../../components/User/Dashboard/Biodata'
 

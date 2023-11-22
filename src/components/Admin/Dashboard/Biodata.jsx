@@ -22,15 +22,17 @@ const dataGender = {
     woman: "Wanita"
 }
 
-const Account = ({ showSidebar, setShowSidebar }) => {
+const Biodata = ({ showSidebar, setShowSidebar }) => {
     const [editBio, setEditBio] = useState(false)
 
     return (
         <div className='w-full flex flex-col py-10 lg:py-16 px-6 md:px-12 xl:px-24 lg:px-10 '>
 
             <HamburgerMenu showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-
-            <p className='text-xl lg:text-2xl font-bold '>Hello, Ilham Soejud A</p>
+            <div className='w-full flex justify-between items-center'>
+                <p className='text-xl lg:text-2xl font-bold '>Hello, Ilham Soejud A</p>
+                <p className='text-xs py-1 px-2 bg-red-600 text-white rounded drop-shadow-lg'>Administrator</p>
+            </div>
 
             <div className='flex flex-col xl:flex-row-reverse xl:gap-32 xl:justify-between'>
 
@@ -254,4 +256,4 @@ const Button = ({ editBio, setEditBio }) => {
     )
 }
 
-export default Account
+export default Biodata

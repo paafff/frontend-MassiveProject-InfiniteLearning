@@ -1,11 +1,9 @@
 import React from 'react'
-import ProfileBarber from "../../../assets/images/OIP.png"
-import ProfilReviewer from "../../../assets/images/profiles/profile_dummy.jpg"
 import { FaStar } from "react-icons/fa";
 import { MdOutlineOpenInNew } from "react-icons/md";
 import { IoIosFlag } from "react-icons/io";
 
-const DetailReview = () => {
+const DetailReview = ({ profileBarber, profilReviewer }) => {
     return (
         <div className='w-full lg:w-full xl:w-3/4 xl:px-24 py-10 px-5 md:px-12 lg:pt-16'>
             <div className='bg-white w-full rounded-lg p-4 lg:p-8 drop-shadow-md'>
@@ -14,7 +12,7 @@ const DetailReview = () => {
                 </div>
                 <hr className='my-5' />
 
-                <Detail />
+                <Detail profileBarber={profileBarber} profilReviewer={profilReviewer} />
 
             </div>
         </div>
@@ -22,11 +20,11 @@ const DetailReview = () => {
     )
 }
 
-const Detail = () => {
+const Detail = ({ profileBarber, profilReviewer }) => {
     return (
         <div className='w-full '>
             <div className='flex gap-3 justify-start'>
-                <img src={ProfileBarber} className='w-24 aspect-video object-contain' alt="" srcset="" />
+                <img src={profileBarber} className='w-24 aspect-video object-contain' alt="" srcset="" />
                 <div className='flex flex-col gap-2 justify-center'>
                     <p className='text-xs bg-zinc-900 text-white py-1 px-2 rounded w-fit'>Barbershop</p>
                     <p className='text-xs text-gray-600'>- Javanese Barbershop</p>
@@ -45,7 +43,7 @@ const Detail = () => {
             </div>
             <div className='flex justify-between items-end mt-5'>
                 <div className='flex gap-4 items-end justify-start'>
-                    <img src={ProfilReviewer} className='w-14 aspect-square rounded-full object-cover' alt="" />
+                    <img src={profilReviewer} className='w-14 aspect-square rounded-full object-cover' alt="" />
                     <div className='flex flex-col gap-1'>
                         <p className='text-gray-500 text-sm'>- Ilham Soejud Alkahfiardy</p>
                         <p className='text-xs text-gray-500'>15/07/2023</p>

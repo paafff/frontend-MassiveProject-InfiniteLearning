@@ -22,18 +22,6 @@ const DetailBusiness = () => {
                     <Banner
                         editForm={editForm}
                         setEditForm={setEditForm}
-                    // banner={banner}
-                    // setBanner={setBanner}
-                    // bannerRef={bannerRef}
-                    // handleBannerClick={handleBannerClick}
-                    // handleBannerChange={handleBannerChange}
-                    // handlePicture1Click={handlePicture1Click}
-                    // handlePicture1Change={handlePicture1Change}
-                    // picture1={picture1}
-                    // picture1Ref={picture1Ref}
-                    // picture2Ref={picture2Ref}
-                    // picture3Ref={picture3Ref}
-                    // picture4Ref={picture4Ref}
                     />
 
                     <Socmed
@@ -143,7 +131,7 @@ const Banner = ({ editForm, setEditForm }) => {
                 <input type="file" name='banner' id='banner' className='hidden' ref={bannerRef} onChange={handleBannerChange} />
 
                 <div className='flex justify-center gap-3'>
-                    <div className='w-20 bg-gray-500 aspect-square rounded flex items-center justify-center ' onClick={handlePicture1Click} >
+                    <div className='w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ' onClick={handlePicture1Click} >
                         {picture1 ? (
                             <img src={URL.createObjectURL(picture1)} className='w-full ' alt="" srcset="" />
                         ) : (
@@ -151,7 +139,7 @@ const Banner = ({ editForm, setEditForm }) => {
                         )}
                         <input type="file" id='picture1' name='picture1' className='hidden' ref={picture1Ref} onChange={handlePicture1Change} />
                     </div>
-                    <div className='w-20 bg-gray-500 aspect-square rounded flex items-center justify-center ' onClick={handlePicture2Click}>
+                    <div className='w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ' onClick={handlePicture2Click}>
                         {picture2 ? (
                             <img src={URL.createObjectURL(picture2)} className='w-full ' alt="" srcset="" />
                         ) : (
@@ -160,7 +148,7 @@ const Banner = ({ editForm, setEditForm }) => {
                         <input type="file" id='picture2' name='picture2' className='hidden' ref={picture2Ref} onChange={handlePicture2Change} />
 
                     </div>
-                    <div className='w-20 bg-gray-500 aspect-square rounded flex items-center justify-center ' onClick={handlePicture3Click}>
+                    <div className='w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ' onClick={handlePicture3Click}>
                         {picture3 ? (
                             <img src={URL.createObjectURL(picture3)} className='w-full ' alt="" srcset="" />
                         ) : (
@@ -169,7 +157,7 @@ const Banner = ({ editForm, setEditForm }) => {
                         <input type="file" id='picture1' name='picture1' className='hidden' ref={picture3Ref} onChange={handlePicture3Change} />
 
                     </div>
-                    <div className='w-20 bg-gray-500 aspect-square rounded flex items-center justify-center ' onClick={handlePicture4Click}>
+                    <div className='w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ' onClick={handlePicture4Click}>
                         {picture4 ? (
                             <img src={URL.createObjectURL(picture4)} className='w-full ' alt="" srcset="" />
                         ) : (
