@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Logosignin from '../assets/images/logo/loginn.png'
+import { MdMail } from "react-icons/md";
+import { FaUnlock } from "react-icons/fa";
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -32,18 +35,24 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <form className="" onSubmit={authLogin}>
-        <div className="mb-6">
+    <div className='bg-white w-full lg:p-8 xl:flex gap-10 min-h-screen'>
+    <div className='md:w-1/2 md:mx-auto flex items-center xl:w-1/2 '>
+    <img src={Logosignin}></img>
+    </div>
+    <div className="bg-white w-full xl:w-1/2 md:py-20 md:px-10">
+    <div className="bg-white w-full border-2 border-solid shadow-slate-300 py-5 px-10">
+      <form className="flex flex-col gap-5" onSubmit={authLogin}>
+      <p className="text-base md:text-lg font-bold text-center">Login</p>
+        <div className="flex flex-col gap-3 md:items-start md:justify-between">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="text-sm font-semibold"
             for="email"
-          >
+          > <MdMail className='inline-block mr-2 scale-125'/>
             Email
           </label>
           <input
             type="text"
-            className="rounded w-full py-2 px-3 text-gray-700 "
+            className="w-full  border border-gray-400 rounded-md h-10 text-sm font-semibold px-2 placeholder:text-xs disabled:bg-gray-200"
             id="username"
             placeholder="name@gmail.com"
             value={email}
@@ -51,36 +60,38 @@ const LoginForm = () => {
           />
         </div>
 
-        <div className="mb-6">
+        <div className="flex flex-col gap-3 md:items-start md:justify-between">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="text-sm font-semibold"
             for="password"
-          >
+          > <FaUnlock className='inline-block mr-2 scale-125'/>
             Password
           </label>
           <input
             type="password"
-            className="rounded w-full py-2 px-3 text-gray-700 mb-3 "
+            className="w-full  border border-gray-400 rounded-md h-10 text-sm font-semibold px-2 placeholder:text-xs disabled:bg-gray-200"
             id="password"
-            placeholder="Minimal 8 Karakter"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
-        <div>
-          <button classNameName="" type="submit">
-            Sign In
+        <button className='w-full flex py-2 px-5 bg-red-400 hover:bg-red-400 hover:cursor-pointer transition-all rounded' type="submit">
+            <p className='text-base md:text-sm font-semibold text-center text-white w-full'>
+            Login
+            </p>
           </button>
-        </div>
 
-        <p className="mt-4 text-sm text-gray-600">
+          <p className="mt-2 text-sm font-semibold text-black text-center">
           Baru Mengenal HairHub?{' '}
-          <a href="#" className="text-blue-500">
-            Daftar Segera
+          <a className="text-red-400">
+          Daftar Segera
           </a>
         </p>
       </form>
+    </div>
+    </div>
     </div>
   );
 };
