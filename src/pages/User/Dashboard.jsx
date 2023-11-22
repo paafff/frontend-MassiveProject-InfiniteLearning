@@ -14,6 +14,7 @@ const Dashboard = () => {
 
             <div className='flex relative bg-gray-200 h-full'>
                 <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+                {/* updatebusiness */}
                 <Biodata showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
             </div>
 

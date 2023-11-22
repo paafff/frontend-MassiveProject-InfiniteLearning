@@ -1,33 +1,61 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import Layout from '../Layout'
-import Sidebar from '../../components/Sidebar';
+import React, { useCallback, useEffect, useState } from 'react';
+import Layout from '../Layout';
+import Sidebar from '../../components/User/Sidebar';
 import BasicInformation from '../../components/User/Dashboard/BasicInformation';
 import DetailBusiness from '../../components/User/Dashboard/DetailBusiness';
 import Services from '../../components/User/Dashboard/Services';
 import Employee from '../../components/User/Dashboard/Employee';
 
-const DashboardBusiness = () => {
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
-    const [showSidebar, setShowSidebar] = useState(false)
+const DashboardBussiness = () => {
+  const [showSidebar, setShowSidebar] = useState(false);
+  const { uuid } = useParams();
 
-    return (
-        <Layout>
+  const [businessByUUID, setBusinessByUUID] = useState('');
 
-            <div className='flex bg-gray-200'>
+  useEffect(() => {
+    const getBusinessByUUID = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/business/${uuid}`
+        );
 
-                <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+        setBusinessByUUID(response.data);
+        // console.log('detailbusines', businessByUUID);
+        console.log('uuid nya params', uuid);
+        console.log('detailbusines', businessByUUID);
+      } catch (error) {
+        if (error.response) {
+          alert(error.response.data.msg);
+        } else {
+          console.log(error);
+        }
+      }
+    };
 
-                <div className='w-screen min-h-screen'>
-                    <BasicInformation showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-                    <DetailBusiness />
-                    <Services />
-                    <Employee />
-                </div>
+    getBusinessByUUID();
+  }, [uuid]);
 
-            </div>
+  return (
+    <Layout>
+      <div className="flex bg-gray-200">
+        <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
-        </Layout>
-    )
-}
+        <div className="w-screen flex flex-col">
+          <BasicInformation
+            businessByUUID={businessByUUID}
+            showSidebar={showSidebar}
+            setShowSidebar={setShowSidebar}
+          />
+          <DetailBussiness businessByUUID={businessByUUID} />
+          <Services />
+          <Employee />
+        </div>
+      </div>
+    </Layout>
+  );
+};
 
-export default DashboardBusiness
+export default DashboardBussiness;
