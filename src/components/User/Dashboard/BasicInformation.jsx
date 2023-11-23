@@ -129,13 +129,13 @@ const Form = ({ businessByUUID }) => {
   const handleChange = (e) => {
     const name = e.name;
     const value = e.value;
-    setFormData((prev) => {
+    setBusinessData((prev) => {
       return { ...prev, [name]: value };
     });
   };
 
   // district = kecamatan. neighborhoods = kelurahan
-  const [formData, setFormData] = useState({
+  const [businessData, setBusinessData] = useState({
     name: '',
     email: '',
     phone: '',
@@ -146,10 +146,11 @@ const Form = ({ businessByUUID }) => {
   });
 
   const arrayAddressBusiness = ['lala', 'lala', 'lala', 'lala', 'lala'];
+  const arrayAddressIdBusiness = ['lala', 'lala', 'lala', 'lala', 'lala'];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    console.log(businessData);
   };
 
   const updateBusiness = async (e) => {
@@ -157,15 +158,19 @@ const Form = ({ businessByUUID }) => {
     try {
       const formUpdateBusiness = new FormData();
 
-      formUpdateBusiness.append('name', formData.name);
-      formUpdateBusiness.append('email', formData.email);
-      formUpdateBusiness.append('phone', formData.phone);
+      formUpdateBusiness.append('name', businessData.name);
+      formUpdateBusiness.append('email', businessData.email);
+      formUpdateBusiness.append('phone', businessData.phone);
       //   formUpdateBusiness.append('img1', unsetImageBusiness);
       //   formUpdateBusiness.append('img2', unsetImageBusiness);
       //   formUpdateBusiness.append('img3', unsetImageBusiness);
       formUpdateBusiness.append(
         'address',
         JSON.stringify(arrayAddressBusiness)
+      );
+      formUpdateBusiness.append(
+        'address',
+        JSON.stringify(arrayAddressIdBusiness)
       );
 
       await axios.patch(
@@ -175,7 +180,7 @@ const Form = ({ businessByUUID }) => {
       );
 
       console.log('sukses update data bisnis');
-      console.log('ini isinya ya', formUpdateBusiness);
+      console.log('ini isinya ya', businessData);
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
