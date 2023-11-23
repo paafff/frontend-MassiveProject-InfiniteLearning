@@ -7,7 +7,7 @@ import { FaRegCalendarCheck } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';
 
-const isAdmin = true;
+const role = 'User';
 
 const listUsaha = [
     {
@@ -33,7 +33,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
     return (
         <div className={`min-h-full pb-32 z-10 w-72 transition-all rounded-br-full lg:rounded-none bg-white drop-shadow-md absolute ${showSidebar ? "left-0" : "left-[-300px]"} lg:left-0 lg:static`}>
 
-            {isAdmin ? (
+            {role == "Admin" ? (
                 <>
                     <AdminAccount />
 
@@ -49,11 +49,9 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
                     <AdminReport />
                 </>
-            ) : (
+            ) : role == "Superuser" ? (
                 <>
                     <UserBiodata />
-
-                    <UserAjukanUsaha />
 
                     <UserUsaha />
 
@@ -61,8 +59,14 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
                     <UserReview />
                 </>
-            )}
 
+            ) : (
+                <>
+                    <UserBiodata />
+
+                    <UserAjukanUsaha />
+                </>
+            )}
 
         </div>
     )

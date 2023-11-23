@@ -3,6 +3,8 @@ import { FaStar } from "react-icons/fa";
 import { MdOutlineOpenInNew } from "react-icons/md";
 import { IoIosFlag } from "react-icons/io";
 
+const isAdmin = true
+
 const DetailReview = ({ profileBarber, profilReviewer }) => {
     return (
         <div className='w-full lg:w-full xl:w-3/4 xl:px-24 py-10 px-5 md:px-12 lg:pt-16'>
@@ -12,7 +14,7 @@ const DetailReview = ({ profileBarber, profilReviewer }) => {
                 </div>
                 <hr className='my-5' />
 
-                <Detail profileBarber={profileBarber} profilReviewer={profilReviewer} />
+                <Detail profileBarber={profileBarber} profilReviewer={profilReviewer} isAdmin={isAdmin} />
 
             </div>
         </div>
@@ -20,7 +22,7 @@ const DetailReview = ({ profileBarber, profilReviewer }) => {
     )
 }
 
-const Detail = ({ profileBarber, profilReviewer }) => {
+const Detail = ({ profileBarber, profilReviewer, isAdmin }) => {
     return (
         <div className='w-full '>
             <div className='flex gap-3 justify-start'>
@@ -55,9 +57,17 @@ const Detail = ({ profileBarber, profilReviewer }) => {
             </div>
             <hr className='my-4' />
             <div className='w-full flex justify-end items-end'>
-                <div className='bg-red-600 rounded shadow-md px-3 py-1 lg:py-2 lg:px-4 hover:cursor-pointer hover:bg-red-700 transition-all'>
-                    <p className='text-xs text-white lg:text-sm'> <IoIosFlag className='inline-block mr-1 scale-125' /> Report Review</p>
-                </div>
+                {isAdmin ? (
+
+                    <div className='bg-red-600 rounded shadow-md px-3 py-1 lg:py-2 lg:px-4 hover:cursor-pointer hover:bg-red-700 transition-all'>
+                        <p className='text-xs text-white lg:text-sm'> <IoIosFlag className='inline-block mr-1 scale-125' /> Delete Review</p>
+                    </div>
+                ) : (
+
+                    <div className='bg-red-600 rounded shadow-md px-3 py-1 lg:py-2 lg:px-4 hover:cursor-pointer hover:bg-red-700 transition-all'>
+                        <p className='text-xs text-white lg:text-sm'> <IoIosFlag className='inline-block mr-1 scale-125' /> Report Review</p>
+                    </div>
+                )}
             </div>
         </div>
     )

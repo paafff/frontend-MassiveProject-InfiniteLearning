@@ -25,8 +25,18 @@ const dataGender = {
 
 const Biodata = ({ showSidebar, setShowSidebar }) => {
 
+    const profileRef = useRef(null)
+
     const [editBio, setEditBio] = useState(false)
     console.log(editBio);
+
+    // Set picture change in profile card
+    const handleChangeProfile = () => {
+
+        // logic update profile
+
+        console.log("ganti profile pp");
+    }
 
     return (
         <div className='w-full flex flex-col py-10 lg:py-16 px-6 md:px-12 xl:px-24 lg:px-10 '>
@@ -38,17 +48,17 @@ const Biodata = ({ showSidebar, setShowSidebar }) => {
             <div className='flex flex-col xl:flex-row-reverse xl:gap-32 xl:justify-between'>
 
                 <div className='flex justify-center md:justify-end'>
-                    <ProfileCard />
+                    <ProfileCard profileRef={profileRef} />
                 </div>
 
-                <Form editBio={editBio} setEditBio={setEditBio} />
+                <Form editBio={editBio} setEditBio={setEditBio} handleChangeProfile={handleChangeProfile} />
             </div>
 
         </div>
     )
 }
 
-const ProfileCard = () => {
+const ProfileCard = ({ profileRef }) => {
 
     const copyURL = () => {
         // Get the current URL
@@ -76,7 +86,7 @@ const ProfileCard = () => {
     return (
         <div className='w-72 bg-white drop-shadow justify-center items-center py-10 mt-10 rounded-md flex flex-col gap-8 float-right xl:h-fit'>
 
-            <img src={ProfilePhoto} alt="" className='rounded-full w-20 h-20 object-cover' />
+            <img src={ProfilePhoto} alt="" useRef={profileRef} className='rounded-full w-20 h-20 object-cover' />
             <p className='text-sm'>
                 {dataUser.fullname}
             </p>
@@ -96,11 +106,11 @@ const ProfileCard = () => {
     )
 }
 
-const Form = ({ editBio, setEditBio }) => {
+const Form = ({ editBio, setEditBio, handleChangeProfile }) => {
     const inputRef = useRef(null)
     const [picture, setPicture] = useState("")
 
-    // Set picture change
+    // Set picture change in form
     const handlePictureClick = () => {
         inputRef.current.click();
     }
@@ -116,7 +126,6 @@ const Form = ({ editBio, setEditBio }) => {
             setPicture('')
         }
     }, [editBio])
-
 
     // Input data to state
     const handleChange = (e) => {
@@ -149,14 +158,14 @@ const Form = ({ editBio, setEditBio }) => {
                     <div className='flex gap-10 items-center justify-start'>
 
                         {picture ? (
-                            <img src={URL.createObjectURL(picture)} className='inline-block w-20 h-20 rounded-full' alt="" />
+                            <img src={URL.createObjectURL(picture)} className='inline-block w-20 h-20 object-cover rounded-full' alt="" />
                         ) : (
                             <FaUserCircle className='inline-block w-20 h-20 text-white' />
                         )}
 
                         <p className='text-sm py-1 px-3 bg-white text-gray-400 rounded shadow hover:bg-gray-100 hover:cursor-pointer transition-all' onClick={handlePictureClick} >Change</p>
                         {picture ? (
-                            <p className='text-sm text-white bg-green-600 py-1 px-3 rounded drop-shadow hover:cursor-pointer hover:bg-green-700 transition-all'>Save Picture</p>
+                            <p onClick={handleChangeProfile} className='text-sm text-white bg-green-600 py-1 px-3 rounded drop-shadow hover:cursor-pointer hover:bg-green-700 transition-all'>Save Picture</p>
                         ) : ""}
                     </div>
 
