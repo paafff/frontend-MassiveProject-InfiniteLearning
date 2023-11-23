@@ -42,18 +42,9 @@ const SignUpForm = () => {
       </div>
       <div className="bg-white w-full xl:w-1/2 md:w-1/2 md:py-5 md:px-10 ">
         <div className="bg-white w-full border-2 border-solid shadow-slate-300 py-5 px-10">
-          {/* <form
-            className="flex flex-col gap-5"
-            onSubmit={handleSubmit} */}
-    <div>
-      <form
-        className="bg-white shadow-xl w-full max-w-xs border-4 px-8 pt-6 pb-8 font-poppins"
-        onSubmit={authRegister}
-      >
-        <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-3"
-            htmlFor="username"
+          <form
+            className="bg-white shadow-xl w-full max-w-xs border-4 px-8 pt-6 pb-8 font-poppins"
+            onSubmit={authRegister}
           >
             <p className="text-base md:text-lg font-bold text-center">Sign Up</p>
             <div className='flex flex-col gap-5 xl:flex-col xl:justify-start'>

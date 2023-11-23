@@ -33,13 +33,13 @@ const App = () => {
             {/* User / Guest */}
             <Route path="/" element={<Home />} />
             <Route path="/sample" element={<Sample />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<DashboardUser />} />
             <Route
-              path="/dashboard-bussiness/:uuid"
-              element={<DashboardBussiness />}
+              path="/superuser/dashboard-business/:uuid"
+              element={<DashboardBusiness />}
             />
 
-            <Route path="/dashboard-business/:uuid" element={<DummyPage />} />
+            {/* <Route path="/dashboard-business/:uuid" element={<DummyPage />} /> */}
 
             <Route path="/dashboard-employee" element={<DashboardEmployee />} />
             <Route path="/dashboard-booking" element={<DashboardBooking />} />
@@ -55,10 +55,10 @@ const App = () => {
             <Route path="/user/review" element={<InputReview />} />
 
             {/* Super User */}
-            <Route
+            {/* <Route
               path="/superuser/dashboard-business"
               element={<DashboardBusiness />}
-            />
+            /> */}
             <Route
               path="/superuser/dashboard-employee"
               element={<DashboardEmployee />}

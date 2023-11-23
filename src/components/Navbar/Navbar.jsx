@@ -6,20 +6,17 @@ import { FaAngleDown } from 'react-icons/fa';
 import DropdownCategory from './DropdownCategory';
 import DropdownProfile from './DropdownProfile';
 import { FaUserCircle } from "react-icons/fa";
-import { FaUserCircle } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { getMe } from '../../redux/authSlice';
 
 const Navbar = () => {
-  const [mobileNavbar, setMobileNavbar] = useState(false);
-  const [dropdownKategori, setDropdownKategori] = useState(false);
   //   const isLogin = true;
 
-    const [mobileNavbar, setMobileNavbar] = useState(false);
-    const [dropdownKategori, setDropdownKategori] = useState(false);
-    const [dropdownProfile, setDropdownProfile] = useState(false)
-    const isLogin = true;
+  const [mobileNavbar, setMobileNavbar] = useState(false);
+  const [dropdownKategori, setDropdownKategori] = useState(false);
+  const [dropdownProfile, setDropdownProfile] = useState(false)
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // mengambil nilai userAuthReducer pada store
@@ -35,7 +32,7 @@ const Navbar = () => {
     // console.log(userAuth);
   }, [dispatch, navigate]);
 
-      
+
   const isLogin = userAuth;
 
   const logOut = async () => {
@@ -55,31 +52,16 @@ const Navbar = () => {
           mobileNavbar={mobileNavbar}
         />
 
-        <NavbarWebsite
-          setDropdownKategori={setDropdownKategori}
-          dropdownKategori={dropdownKategori}
-          isLogin={isLogin}
-        />
 
-        <NavbarMobile
-          setDropdownKategori={setDropdownKategori}
-          dropdownKategori={dropdownKategori}
-          mobileNavbar={mobileNavbar}
-          isLogin={isLogin}
-        />
+        <NavbarWebsite setDropdownKategori={setDropdownKategori} dropdownKategori={dropdownKategori} dropdownProfile={dropdownProfile} setDropdownProfile={setDropdownProfile} isLogin={isLogin} />
 
+        <NavbarMobile setDropdownKategori={setDropdownKategori} dropdownKategori={dropdownKategori} dropdownProfile={dropdownProfile} setDropdownProfile={setDropdownProfile} mobileNavbar={mobileNavbar} isLogin={isLogin} />
 
-{/* <NavbarWebsite setDropdownKategori={setDropdownKategori} dropdownKategori={dropdownKategori} dropdownProfile={dropdownProfile} setDropdownProfile={setDropdownProfile} isLogin={isLogin} />
+        <DropdownCategory display={dropdownKategori ? "flex" : "hidden"} />
 
-<NavbarMobile setDropdownKategori={setDropdownKategori} dropdownKategori={dropdownKategori} dropdownProfile={dropdownProfile} setDropdownProfile={setDropdownProfile} mobileNavbar={mobileNavbar} isLogin={isLogin} />
+        <DropdownProfile display={dropdownProfile ? "flex" : "hidden"} logoutProps={logOut} />
 
-<DropdownCategory display={dropdownKategori ? "flex" : "hidden"} />
-
-<DropdownProfile display={dropdownProfile ? "flex" : "hidden"} />
-</div> */}
-
-        <DropdownCategory display={dropdownKategori ? 'flex' : 'hidden'} />
-        <div className="text-white">{isLogin ? 'sudahh' : 'belum'}</div>
+        {/* <div className="text-white">{isLogin ? 'sudahh' : 'belum'}</div> */}
       </div>
     </>
   );
@@ -106,11 +88,6 @@ const Brand = ({ logoutProps }) => {
           Hair <br /> Hub
         </Link>
       </div>
-      <div>
-        <button className="text-red-400" onClick={logoutProps}>
-          logoout
-        </button>
-      </div>
     </div>
   );
 };
@@ -120,198 +97,112 @@ const HumbergerMenu = ({ setMobileNavbar, mobileNavbar }) => {
     setMobileNavbar(!mobileNavbar);
   };
 
-    return (
-        <div className='text-white lg:hidden xl:hidden items-center justify-end gap-2'>
-            <svg
-                onClick={() => setMobileNavbar(!mobileNavbar)}
-                onBlur={() => setMobileNavbar(!mobileNavbar)}
-                className={`w-5 h-5 transition-all ${mobileNavbar ? "rotate-90" : "rotate-0"}`}
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 17 14">
+  return (
+    <div className='text-white lg:hidden xl:hidden items-center justify-end gap-2'>
+      <svg
+        onClick={() => setMobileNavbar(!mobileNavbar)}
+        onBlur={() => setMobileNavbar(!mobileNavbar)}
+        className={`w-5 h-5 transition-all ${mobileNavbar ? "rotate-90" : "rotate-0"}`}
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 17 14">
 
-                <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
 
-            </svg>
-        </div>
-    )
+      </svg>
+    </div>
+  )
 }
 
 const NavbarWebsite = ({ setDropdownKategori, dropdownKategori, dropdownProfile, setDropdownProfile, isLogin }) => {
+  return (
+    <div className='text-white hidden lg:flex xl:flex items-center justify-end gap-6 w-3/4 xl:w-full '>
 
-      <Link to="#" className="text-sm font-medium py-1 px-4">
-        Syarat dan Ketentuan
-      </Link>
+      <input
+        placeholder='Cari apa?'
+        type="text"
+        className='bg-white border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 flex py-2 px-4  w-1/2' />
 
       <Link
         to="#"
-        onClick={() => handleDropdownKategori()}
-        className="text-sm font-medium gap-1 flex items-center py-1 px-4"
-      >
+        className='text-sm font-medium py-1 px-4'>Syarat dan Ketentuan</Link>
+
+      <Link
+        to="#"
+        onClick={() => setDropdownKategori(!dropdownKategori)}
+        onBlur={() => setDropdownKategori(!dropdownKategori)}
+        className='text-sm font-medium gap-1 flex items-center py-1 px-4'>
         Kategori
-        <FaAngleDown className="inline-block" />
+        <FaAngleDown className='inline-block' />
       </Link>
 
       {isLogin ? (
         <Link
-          to="/dashboard"
-          className="text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3"
-        >
-          <FaUserCircle className="inline-block scale-[2]" />
-          <FaAngleDown className="inline-block" />
+          to="#"
+          onClick={() => setDropdownProfile(!dropdownProfile)}
+          // onBlur={() => setDropdownProfile(!dropdownProfile)}
+          className='text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3'>
+          <FaUserCircle className='inline-block scale-[2]' />
+          <FaAngleDown className='inline-block' />
         </Link>
       ) : (
         <Link
-          to="#"
-          className="text-sm font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all"
-        >
-          Login
-        </Link>
+          to="/login"
+          className='text-sm font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all'>Login</Link>
       )}
+
+
     </div>
-  );
+  )
 };
 
-{/* <Link
-to="#"
-onClick={() => setDropdownKategori(!dropdownKategori)}
-onBlur={() => setDropdownKategori(!dropdownKategori)}
-className='text-sm font-medium gap-1 flex items-center py-1 px-4'>
-Kategori
-<FaAngleDown className='inline-block' />
-</Link>
-
-{isLogin ? (
-<Link
-    to="#"
-    onClick={() => setDropdownProfile(!dropdownProfile)}
-    // onBlur={() => setDropdownProfile(!dropdownProfile)}
-    className='text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3'>
-    <FaUserCircle className='inline-block scale-[2]' />
-    <FaAngleDown className='inline-block' />
-</Link>
-) : (
-<Link
-    to="/login"
-    className='text-sm font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all'>Login</Link>
-)} */}
-
-const NavbarMobile = ({
-  mobileNavbar,
-  setDropdownKategori,
-  dropdownKategori,
-  isLogin,
-}) => {
-  const handleDropdownKategori = () => {
-    setDropdownKategori(!dropdownKategori);
-  };
+const NavbarMobile = ({ mobileNavbar, setDropdownKategori, dropdownKategori, dropdownProfile, setDropdownProfile, isLogin }) => {
 
   return (
-    <div
-      className={`w-full h-fit z-20 px-3 py-7 md:px-8 flex flex-col gap-6 lg:hidden xl:hidden bg-[#1a1a1a] absolute transition-all text-white top-24 ${
-        mobileNavbar ? 'left-0' : 'left-[-450px] md:left-[-780px]'
-      }`}
-    >
-      <div className="flex gap-2">
+    <div className={`w-full h-fit z-20 px-3 py-7 md:px-8 flex flex-col gap-6 lg:hidden xl:hidden bg-[#1a1a1a] absolute transition-all text-white top-24 ${mobileNavbar ? "left-0" : "left-[-450px] md:left-[-780px]"}`}>
+      <div className='flex gap-2'>
         <input
-          placeholder="Cari apa?"
+          placeholder='Cari apa?'
           type="text"
-          className="bg-white border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 flex py-2 px-4 w-3/4"
-        />
-        <button className="p-2 bg-bg-rose-400 bg-rose-400 hover:bg-rose-500 text-white rounded-md w-1/4">
+          className='bg-white border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 flex py-2 px-4 w-3/4' />
+        <button className='p-2 bg-bg-rose-400 bg-rose-400 hover:bg-rose-500 text-white rounded-md w-1/4'>
           Cari
         </button>
       </div>
 
-      <Link to="#" className="text-sm inline-block font-medium py-1  w-fit">
-        Syarat dan Ketentuan
-      </Link>
-
       <Link
         to="#"
-        onClick={() => handleDropdownKategori()}
-        className="text-sm inline-block font-medium gap-1 items-center py-1  w-fit"
-      >
+        className='text-sm inline-block font-medium py-1  w-fit'>Syarat dan Ketentuan</Link>
+
+      <Link to="#"
+        onClick={() => setDropdownKategori(!dropdownKategori)}
+        onBlur={() => setDropdownKategori(!dropdownKategori)}
+        className='text-sm inline-block font-medium gap-1 items-center py-1  w-fit'>
         Kategori
-        <FaAngleDown className="inline-block ml-2" />
+        <FaAngleDown className='inline-block ml-2' />
       </Link>
 
-
-
       {isLogin ? (
-        // <Link
-        //     to="#"
-        //     className='text-sm inline-block font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all w-fit'>Dashboard</Link>
         <Link
-          to="/dashboard"
-          className="text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3"
-        >
-          <FaUserCircle className="inline-block scale-[2]" />
-          <FaAngleDown className="inline-block" />
+          onClick={() => setDropdownProfile(!dropdownProfile)}
+          onBlur={() => setDropdownProfile(!dropdownProfile)}
+          className='text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3'>
+          <FaUserCircle className='inline-block scale-[2]' />
+          <FaAngleDown className='inline-block' />
         </Link>
       ) : (
         <Link
-          to="#"
-          className="text-sm inline-block font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all w-fit"
-        >
-          Login
-        </Link>
+          to="/login"
+          className='text-sm inline-block font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all w-fit'>Login</Link>
       )}
+
     </div>
-  );
-};
+  )
+}
 
 export default Navbar;
-
-
-
-// const NavbarMobile = ({ mobileNavbar, setDropdownKategori, dropdownKategori, dropdownProfile, setDropdownProfile, isLogin }) => {
-
-//   return (
-//       <div className={`w-full h-fit z-20 px-3 py-7 md:px-8 flex flex-col gap-6 lg:hidden xl:hidden bg-[#1a1a1a] absolute transition-all text-white top-24 ${mobileNavbar ? "left-0" : "left-[-450px] md:left-[-780px]"}`}>
-//           <div className='flex gap-2'>
-//               <input
-//                   placeholder='Cari apa?'
-//                   type="text"
-//                   className='bg-white border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 flex py-2 px-4 w-3/4' />
-//               <button className='p-2 bg-bg-rose-400 bg-rose-400 hover:bg-rose-500 text-white rounded-md w-1/4'>
-//                   Cari
-//               </button>
-//           </div>
-
-//           <Link
-//               to="#"
-//               className='text-sm inline-block font-medium py-1  w-fit'>Syarat dan Ketentuan</Link>
-
-//           <Link to="#"
-//               onClick={() => setDropdownKategori(!dropdownKategori)}
-//               onBlur={() => setDropdownKategori(!dropdownKategori)}
-//               className='text-sm inline-block font-medium gap-1 items-center py-1  w-fit'>
-//               Kategori
-//               <FaAngleDown className='inline-block ml-2' />
-//           </Link>
-
-//           {isLogin ? (
-//               <Link
-//                   onClick={() => setDropdownProfile(!dropdownProfile)}
-//                   onBlur={() => setDropdownProfile(!dropdownProfile)}
-//                   className='text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3'>
-//                   <FaUserCircle className='inline-block scale-[2]' />
-//                   <FaAngleDown className='inline-block' />
-//               </Link>
-//           ) : (
-//               <Link
-//                   to="/login"
-//                   className='text-sm inline-block font-medium py-1 px-7 bg-rose-400 rounded-sm hover:bg-rose-500 transition-all w-fit'>Login</Link>
-//           )}
-
-//       </div>
-//   )
-// }
-
-// export default Navbar
