@@ -6,8 +6,13 @@ import { FaClipboardUser } from "react-icons/fa6";
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+// import { getMe } from '../../redux/authSlice';
+import { getMe } from '../redux/authSlice'
+import { useDispatch, useSelector } from 'react-redux';
 
-const role = 'User';
+const role = 'Superuser';
 
 const listUsaha = [
     {
@@ -29,6 +34,44 @@ const listUsaha = [
 ];
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    // mengambil nilai userAuthReducer pada store
+    const userAuthSelector = (state) => state.userAuthReducer.userAuth;
+    const userAuth = useSelector(userAuthSelector) || '';
+
+    useEffect(() => {
+        const getMeUser = async () => {
+            await dispatch(getMe());
+        };
+
+        getMeUser();
+        // console.log(userAuth);
+        // console.log(listBusiness);
+    }, [dispatch, navigate]);
+
+    const [listBusiness, setListBusiness] = useState([]);
+
+    const getMyBusiness = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5000/my-business`);
+
+            setListBusiness(response.data);
+        } catch (error) {
+            if (error.response) {
+                alert(error.response.data.msg);
+            } else {
+                console.log(error);
+            }
+        }
+    };
+
+    useEffect(() => {
+        getMyBusiness();
+
+        console.log(listBusiness);
+    }, [dispatch, navigate]);
 
     return (
         <div className={`min-h-full pb-32 z-10 w-72 transition-all rounded-br-full lg:rounded-none bg-white drop-shadow-md absolute ${showSidebar ? "left-0" : "left-[-300px]"} lg:left-0 lg:static`}>

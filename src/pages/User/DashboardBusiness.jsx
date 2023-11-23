@@ -49,9 +49,9 @@ const DashboardBussiness = () => {
             showSidebar={showSidebar}
             setShowSidebar={setShowSidebar}
           />
-          <DetailBussiness businessByUUID={businessByUUID} />
+          <DetailBusiness businessByUUID={businessByUUID} />
           <Services businessByUUID={businessByUUID} />
-          <Employee  businessByUUID={businessByUUID}/>
+          <Employee businessByUUID={businessByUUID} />
         </div>
       </div>
     </Layout>

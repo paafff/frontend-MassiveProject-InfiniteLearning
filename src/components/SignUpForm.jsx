@@ -43,7 +43,7 @@ const SignUpForm = () => {
       <div className="bg-white w-full xl:w-1/2 md:w-1/2 md:py-5 md:px-10 ">
         <div className="bg-white w-full border-2 border-solid shadow-slate-300 py-5 px-10">
           <form
-            className="bg-white shadow-xl w-full max-w-xs border-4 px-8 pt-6 pb-8 font-poppins"
+            className=""
             onSubmit={authRegister}
           >
             <p className="text-base md:text-lg font-bold text-center">Sign Up</p>
