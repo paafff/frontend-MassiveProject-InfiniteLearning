@@ -24,6 +24,9 @@ import Help from './pages/Help';
 import InputReview from './pages/User/InputReview';
 import DummyAs from './pages/DummyAs';
 
+// syarat ketentuan
+import InfoUmum from './pages/User/SK/InfoUmum';
+
 const App = () => {
   return (
     <>
@@ -41,8 +44,9 @@ const App = () => {
               path="/user/business-registration"
               element={<BusinessRegistration />}
             />
-            <Route path="/user/reservasi" element={<Reservasi />} />
+            <Route path="/user/reservation" element={<Reservasi />} />
             <Route path="/user/review" element={<InputReview />} />
+            <Route path="/user/basic-information" element={<InfoUmum />} />
 
             {/* Super User */}
             <Route
@@ -73,7 +77,7 @@ const App = () => {
 
 
 
-            <Route path="/dummyasmali" element={<DummyAs/>} />
+            <Route path="/dummyasmali" element={<DummyAs />} />
 
           </Routes>
         </BrowserRouter>

@@ -13,11 +13,11 @@ const DashboardBusiness = () => {
     return (
         <Layout>
 
-            <div className='flex bg-gray-200'>
+            <div className='flex  bg-gray-200'>
 
                 <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
-                <div className='w-screen min-h-screen'>
+                <div className=' min-h-screen'>
                     <BasicInformation showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
                     <DetailBusiness />
                     <Services />
