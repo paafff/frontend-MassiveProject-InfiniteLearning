@@ -22,6 +22,7 @@ import ManageReview from './pages/Admin/Review';
 import Help from './pages/Help';
 // import AccountAdmin from './pages/Admin/AccountAdmin';
 import InputReview from './pages/User/InputReview';
+import DummyAs from './pages/DummyAs';
 
 const App = () => {
   return (
@@ -67,6 +68,13 @@ const App = () => {
             <Route path="/admin/user" element={<ManageUser />} />
             <Route path="/admin/business" element={<ManageBusiness />} />
             <Route path="/admin/review" element={<ManageReview />} />
+
+
+
+
+
+            <Route path="/dummyasmali" element={<DummyAs/>} />
+
           </Routes>
         </BrowserRouter>
       </div>
