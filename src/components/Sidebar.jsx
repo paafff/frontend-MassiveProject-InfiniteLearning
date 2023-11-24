@@ -7,7 +7,7 @@ import { FaRegCalendarCheck } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';
 
-const role = 'User';
+const role = 'Admin';
 
 const listUsaha = [
     {
@@ -212,7 +212,7 @@ const AdminReview = () => {
 
 const AdminLayanan = () => {
     return (
-        <Link className='w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-20 py-12'>
+        <Link to="/admin/services" className='w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-20 py-12'>
             <p className='text-sm lg:text-base  flex items-center gap-4'>
                 <FaClipboardList className='inline-block scale-150' />
                 Layanan

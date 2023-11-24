@@ -13,15 +13,14 @@ import Login from './pages/Login';
 import BusinessRegistration from './pages/User/BusinessRegistration';
 import Reservasi from './pages/User/Reservasi';
 import Account from './pages/Admin/Account';
-// import InputReview from './pages/Admin/InputReview';
 import DashboardReview from './pages/User/DashboardReview';
 import DashboardAdmin from './pages/Admin/Dashboard';
 import ManageUser from './pages/Admin/User';
 import ManageBusiness from './pages/Admin/Business';
 import ManageReview from './pages/Admin/Review';
 import Help from './pages/Help';
-// import AccountAdmin from './pages/Admin/AccountAdmin';
 import InputReview from './pages/User/InputReview';
+import ManageServices from './pages/Admin/Services';
 
 const App = () => {
   return (
@@ -67,6 +66,7 @@ const App = () => {
             <Route path="/admin/user" element={<ManageUser />} />
             <Route path="/admin/business" element={<ManageBusiness />} />
             <Route path="/admin/review" element={<ManageReview />} />
+            <Route path="/admin/services" element={<ManageServices />} />
           </Routes>
         </BrowserRouter>
       </div>
