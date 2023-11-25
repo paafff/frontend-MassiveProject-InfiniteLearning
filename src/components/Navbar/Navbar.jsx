@@ -67,7 +67,7 @@ const HumbergerMenu = ({ setMobileNavbar, mobileNavbar }) => {
         <div className='text-white lg:hidden xl:hidden items-center justify-end gap-2'>
             <svg
                 onClick={() => setMobileNavbar(!mobileNavbar)}
-                onBlur={() => setMobileNavbar(!mobileNavbar)}
+                // onBlur={() => setMobileNavbar(!mobileNavbar)}
                 className={`w-5 h-5 transition-all ${mobileNavbar ? "rotate-90" : "rotate-0"}`}
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@ const NavbarWebsite = ({ setDropdownKategori, dropdownKategori, dropdownProfile,
             <Link
                 to="#"
                 onClick={() => setDropdownKategori(!dropdownKategori)}
-                onBlur={() => setDropdownKategori(!dropdownKategori)}
+                // onBlur={() => setDropdownKategori(!dropdownKategori)}
                 className='text-sm font-medium gap-1 flex items-center py-1 px-4'>
                 Kategori
                 <FaAngleDown className='inline-block' />
@@ -148,7 +148,7 @@ const NavbarMobile = ({ mobileNavbar, setDropdownKategori, dropdownKategori, dro
 
             <Link to="#"
                 onClick={() => setDropdownKategori(!dropdownKategori)}
-                onBlur={() => setDropdownKategori(!dropdownKategori)}
+                // onBlur={() => setDropdownKategori(!dropdownKategori)}
                 className='text-sm inline-block font-medium gap-1 items-center py-1  w-fit'>
                 Kategori
                 <FaAngleDown className='inline-block ml-2' />
@@ -157,7 +157,7 @@ const NavbarMobile = ({ mobileNavbar, setDropdownKategori, dropdownKategori, dro
             {isLogin ? (
                 <Link
                     onClick={() => setDropdownProfile(!dropdownProfile)}
-                    onBlur={() => setDropdownProfile(!dropdownProfile)}
+                    // onBlur={() => setDropdownProfile(!dropdownProfile)}
                     className='text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3'>
                     <FaUserCircle className='inline-block scale-[2]' />
                     <FaAngleDown className='inline-block' />

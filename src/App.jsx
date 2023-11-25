@@ -21,6 +21,7 @@ import ManageReview from './pages/Admin/Review';
 import Help from './pages/Help';
 import InputReview from './pages/User/InputReview';
 import ManageServices from './pages/Admin/Services';
+import ListBusiness from './pages/ListBusiness';
 
 const App = () => {
   return (
@@ -41,6 +42,7 @@ const App = () => {
             />
             <Route path="/user/reservasi" element={<Reservasi />} />
             <Route path="/user/review" element={<InputReview />} />
+            <Route path="/barbershop" element={<ListBusiness />} />
 
             {/* Super User */}
             <Route
