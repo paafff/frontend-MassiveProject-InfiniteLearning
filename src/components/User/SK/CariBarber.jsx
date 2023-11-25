@@ -22,7 +22,13 @@ const CariBarber = ({ showSidebar, setShowSidebar }) => {
 const SayaInginCari = () => {
     return (
         <div>
-            <p>saya ingin cari barber</p>
+            <p className='text-base md:text-lg font-semibold'>Saya ingin cari Barbershop atau Salon</p>
+
+            <hr className='my-5' />
+            <p className='text-sm'>Apakah saya harus memiliki akun HairHub untuk dapat mencari Barbershop atau Salon yang saya inginkan?
+            <br></br>Bagaimana cara membuat akun pencari Barbershop atau Salon?
+            <br></br>Apakah saya bisa membuat akun pencari dan pemilik Barbershop atau Salon sekaligus?
+            <br></br>Saya sudah membuat akun pencari Barbershop atau Salon, bagaimana cara carinya?</p>
         </div>
     )
 }

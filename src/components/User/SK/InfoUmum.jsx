@@ -17,6 +17,8 @@ const InfoUmum = ({ showSidebar, setShowSidebar }) => {
 
                     <CariBarberSalon />
 
+                    <Kerjasama />
+
                 </div>
 
             </div>
@@ -44,10 +46,24 @@ const CariBarberSalon = () => {
 
             <hr className='my-5' />
 
-            <p className='text-sm'>Apakah saya harus memiliki akun HairHub untuk dapat mencari Barbershop/Salon yang saya inginkan?
-                Bagaimana cara membuat akun pencari Barbershop/Salon?
-                Apakah saya bisa membuat akun pencari dan pemilik Barbershop/Salon sekaligus?
-                Saya sudah membuat akun pencari Barbershop/Salon, bagaimana cara carinya?</p>
+            <p className='text-sm'>Apakah saya harus memiliki akun HairHub untuk dapat mencari Barbershop atau Salon yang saya inginkan?
+                <br></br>Bagaimana cara membuat akun pencari Barbershop atau Salon?
+                <br></br>Apakah saya bisa membuat akun pencari dan pemilik Barbershop atau Salon sekaligus?
+                <br></br>Saya sudah membuat akun pencari Barbershop atau Salon, bagaimana cara carinya?</p>
+        </div>
+    )
+}
+
+const Kerjasama = () => {
+    return (
+        <div className='mb-8'>
+        <p className='text-base md:text-lg font-semibold'>Berkerjasama dengan HairHub</p>
+
+        <hr className='my-5' />
+        <p className='text-sm'>Apakah saya harus memiliki akun HairHub untuk dapat mendaftarkan bisnis saya?
+                <br></br>Bagaimana cara membuat akun sebagai pemilik Barbershop atau Salon?
+                <br></br>Apakah saya bisa membuat akun pemilik dan pencari Barbershop atau Salon sekaligus?
+                <br></br>Saya sudah membuat akun pemilik Barbershop atau Salon, bagaimana cara mendaftarkan bisnis saya?</p>
         </div>
     )
 }

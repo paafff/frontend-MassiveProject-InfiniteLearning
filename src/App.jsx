@@ -22,11 +22,14 @@ import ManageReview from './pages/Admin/Review';
 import Help from './pages/Help';
 // import AccountAdmin from './pages/Admin/AccountAdmin';
 import InputReview from './pages/User/InputReview';
-import DummyAs from './pages/DummyAs';
 
 // syarat ketentuan
 import InfoUmum from './pages/User/SK/InfoUmum';
 import CariBarber from './pages/User/SK/CariBarber';
+import Bekerjasama from './pages/User/SK/Bekerjasama';
+import Kebijakan from './pages/User/SK/Kebijakan';
+import SyaratKetentuan from './pages/User/SK/SyaratKetentuan';
+import PanduanKeamanan from './pages/User/SK/PanduanKeamanan';
 
 const App = () => {
   return (
@@ -51,6 +54,10 @@ const App = () => {
             {/* SK */}
             <Route path="/user/basic-information" element={<InfoUmum />} />
             <Route path="/user/search-barber" element={<CariBarber />} />
+            <Route path="/user/collaboration" element={<Bekerjasama />} />
+            <Route path="/user/policy" element={<Kebijakan />} />
+            <Route path="/user/term" element={<SyaratKetentuan />} />
+            <Route path="/user/guide" element={<PanduanKeamanan />} />
 
             {/* Super User */}
             <Route
@@ -76,13 +83,6 @@ const App = () => {
             <Route path="/admin/user" element={<ManageUser />} />
             <Route path="/admin/business" element={<ManageBusiness />} />
             <Route path="/admin/review" element={<ManageReview />} />
-
-
-
-
-
-            <Route path="/dummyasmali" element={<DummyAs />} />
-
           </Routes>
         </BrowserRouter>
       </div>
