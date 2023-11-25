@@ -1,6 +1,9 @@
 import React from 'react'
+
+// ini dicopas
 import Hamburger from '../../../pages/User/SK/Hamburger'
 
+// showSidebar, setShowSidebar
 const InfoUmum = ({ showSidebar, setShowSidebar }) => {
     return (
         <>

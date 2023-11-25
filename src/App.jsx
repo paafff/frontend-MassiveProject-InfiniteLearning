@@ -26,6 +26,7 @@ import DummyAs from './pages/DummyAs';
 
 // syarat ketentuan
 import InfoUmum from './pages/User/SK/InfoUmum';
+import CariBarber from './pages/User/SK/CariBarber';
 
 const App = () => {
   return (
@@ -46,7 +47,10 @@ const App = () => {
             />
             <Route path="/user/reservation" element={<Reservasi />} />
             <Route path="/user/review" element={<InputReview />} />
+
+            {/* SK */}
             <Route path="/user/basic-information" element={<InfoUmum />} />
+            <Route path="/user/search-barber" element={<CariBarber />} />
 
             {/* Super User */}
             <Route

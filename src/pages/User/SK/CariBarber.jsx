@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import Layout from '../../Layout'
 import Sidebar from './Sidebar'
-import ComponentInfoUmum from '../../../components/User/SK/InfoUmum'
+import ComponentCariBarber from '../../../components/User/SK/CariBarber'
 
-const InfoUmum = () => {
+const CariBarber = () => {
     const [showSidebar, setShowSidebar] = useState(false)
 
     return (
@@ -13,7 +13,9 @@ const InfoUmum = () => {
                 <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
                 <div className='w-full min-h-screen'>
-                    <ComponentInfoUmum showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+
+                    <ComponentCariBarber showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+
                 </div>
 
             </div>
@@ -21,4 +23,4 @@ const InfoUmum = () => {
     )
 }
 
-export default InfoUmum
+export default CariBarber
