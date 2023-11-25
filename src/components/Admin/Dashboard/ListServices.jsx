@@ -19,14 +19,19 @@ const style = {
     width: 400,
     bgcolor: 'background.paper',
     // border: '2px solid #000',
+    borderRadius: "5px",
     boxShadow: 24,
     p: 4,
 };
 
 const ListServices = ({ listServices, hamburgerMenu }) => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const [openUpdate, setOpenUpdate] = useState(false);
+    const handleOpenUpdate = () => setOpenUpdate(true);
+    const handleCloseUpdate = () => setOpenUpdate(false);
 
     const [newService, setNewService] = useState("")
 
@@ -50,14 +55,19 @@ const ListServices = ({ listServices, hamburgerMenu }) => {
             <div className='bg-white w-full rounded-lg p-4 lg:p-8 drop-shadow-md'>
 
                 <div className='flex justify-between'>
-                    <p className='text-base md:text-lg font-semibold'>Review</p>
+                    <p className='text-base md:text-lg font-semibold'>Services</p>
                     <AddButton handleOpen={handleOpen} />
                 </div>
 
                 <hr className='my-5' />
 
                 {listServices.map(service => (
-                    <Service id={service.id} name={service.name} date={service.created_at} />
+                    <Service
+                        id={service.id}
+                        name={service.name}
+                        date={service.created_at}
+                        handleOpenUpdate={handleOpenUpdate}
+                        handleCloseUpdate={handleCloseUpdate} />
                 ))}
 
                 <AddServices
@@ -68,13 +78,18 @@ const ListServices = ({ listServices, hamburgerMenu }) => {
                     onChangeAddService={onChangeAddService}
                 />
 
+                <UpdateServices
+                    open={openUpdate}
+                    handleOpenUpdate={handleOpenUpdate}
+                    handleCloseUpdate={handleCloseUpdate} />
+
 
             </div>
         </div>
     )
 }
 
-const Service = ({ id, name, date }) => {
+const Service = ({ id, name, date, handleOpenUpdate, handleCloseUpdate }) => {
 
     return (
 
@@ -84,7 +99,7 @@ const Service = ({ id, name, date }) => {
                 <p className='text-xs text-gray-500'>updated at: {date}</p>
             </div>
             <div className='w-1/4 flex flex-col md:flex-row gap-2 items-end justify-end'>
-                <div className=' px-2 flex gap-2 items-center justify-between bg-blue-600 hover:bg-blue-700 transition-all hover:cursor-pointer py-2 rounded shadow-md'>
+                <div idService={id} onClick={handleOpenUpdate} className=' px-2 flex gap-2 items-center justify-between bg-blue-600 hover:bg-blue-700 transition-all hover:cursor-pointer py-2 rounded shadow-md'>
                     <FiEdit className='inline-block text-white' />
                     <p className='text-white text-xs'>
                         Edit
@@ -103,8 +118,8 @@ const Service = ({ id, name, date }) => {
 
 const AddButton = ({ handleOpen }) => {
     return (
-        <div className='w-full flex justify-end'>
-            <div onClick={handleOpen} className='w-fit flex gap-2 bg-green-600 hover:bg-green-700 hover:cursor-pointer px-3 py-2 rounded shadow-md'>
+        <div className='w-full flex justify-end '>
+            <div onClick={handleOpen} className='w-fit flex gap-2 bg-green-600 hover:bg-green-700 hover:cursor-pointer px-3 py-2 rounded shadow-md '>
                 <MdOutlineAddCircle className='text-white' />
                 <p className='text-xs text-white'>Tambah Layanan</p>
             </div>
@@ -115,7 +130,6 @@ const AddButton = ({ handleOpen }) => {
 const AddServices = ({ open, handleOpen, handleClose, submitService, onChangeAddService }) => {
 
     return (
-        // <div>
         <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
@@ -136,7 +150,7 @@ const AddServices = ({ open, handleOpen, handleClose, submitService, onChangeAdd
                     </Typography>
                     <Typography id="transition-modal-description" sx={{ mt: 2 }}>
                         <form action="" onSubmit={submitService}>
-                            <TextField onChange={(e) => onChangeAddService(e.target.value)} id="outlined-basic" label="Nama layanan" name='service-name' variant="outlined" style={{ width: '100%' }} />
+                            <TextField autoComplete='off' onChange={(e) => onChangeAddService(e.target.value)} id="outlined-basic" label="Nama layanan" name='service-name' variant="outlined" style={{ width: '100%' }} />
                             <div className='w-full flex justify-end mt-3'>
                                 <button type='submit' className='w-fit px-3 py-2 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded shadow-md'>
                                     <p className='text-xs text-white'>Submit</p>
@@ -147,8 +161,43 @@ const AddServices = ({ open, handleOpen, handleClose, submitService, onChangeAdd
                 </Box>
             </Fade>
         </Modal>
-        // </div>
     );
+}
+
+const UpdateServices = ({ open, handleOpenUpdate, handleCloseUpdate, id }) => {
+    return (
+        <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            open={open}
+            onClose={handleCloseUpdate}
+            closeAfterTransition
+            slots={{ backdrop: Backdrop }}
+            slotProps={{
+                backdrop: {
+                    timeout: 500,
+                },
+            }}
+        >
+            <Fade in={open}>
+                <Box sx={style} >
+                    <Typography id="transition-modal-title" variant="h6" component="h2">
+                        <p className='text-center'>Edit Nama Layanan</p>
+                    </Typography>
+                    <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+                        <form action="" >
+                            <TextField autoComplete='off' id="outlined-basic" label="Nama layanan" name='service-name' variant="outlined" style={{ width: '100%' }} />
+                            <div className='w-full flex justify-end mt-3'>
+                                <button className='w-fit px-3 py-2 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded shadow-md'>
+                                    <p className='text-xs text-white'>Update</p>
+                                </button>
+                            </div>
+                        </form>
+                    </Typography>
+                </Box>
+            </Fade>
+        </Modal>
+    )
 }
 
 export default ListServices
