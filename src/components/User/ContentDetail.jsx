@@ -1,4 +1,5 @@
 import React from 'react';
+import ChatNow from './ChatNow';
 
 const ContentDetail = () => {
     return (
@@ -113,10 +114,7 @@ const ContentDetail = () => {
             </div>
             <div align='center'>
                 <div class='md:box-content overflow-hidden shadow-xl mt-10 px-5 py-8'>
-                    <button class='md:box-content py-4 px-4 bg-transparent hover:bg-rose-700 text-rose-500 font-normal hover:text-white border border-rose-500 border-2 hover:border-transparent rounded inline-flex items-center'>
-                        <img class='w-auto h-4 mr-2' src='/src/assets/images/icons/Chat.png'/>
-                        <span class='text-lg'>Chat Sekarang</span>
-                    </button>
+                    <ChatNow/>
                     <br/>
                     <button class='md:box-content py-4 px-7 mt-3 bg-rose-500 hover:bg-rose-700 text-white font-normal'>
                         <h1 class='text-lg'>Pesan Sekarang</h1>

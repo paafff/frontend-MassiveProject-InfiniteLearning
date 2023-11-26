@@ -43,7 +43,7 @@ const App = () => {
             />
             <Route path="/user/reservasi" element={<Reservasi />} />
             <Route path="/user/review" element={<InputReview />} />
-            <Route path= "/user/detail" element={<Detail />} /> 
+            <Route path= "/detail" element={<Detail />} /> 
 
             {/* Super User */}
             <Route
