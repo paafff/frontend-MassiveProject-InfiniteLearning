@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import BusinessRegistration from './pages/User/BusinessRegistration';
 import Reservasi from './pages/User/Reservasi';
 import Account from './pages/Admin/Account';
+import Detail from './pages/User/Detail';
 // import InputReview from './pages/Admin/InputReview';
 import DashboardReview from './pages/User/DashboardReview';
 import DashboardAdmin from './pages/Admin/Dashboard';
@@ -42,6 +43,7 @@ const App = () => {
             />
             <Route path="/user/reservasi" element={<Reservasi />} />
             <Route path="/user/review" element={<InputReview />} />
+            <Route path= "/user/detail" element={<Detail />} /> 
 
             {/* Super User */}
             <Route
