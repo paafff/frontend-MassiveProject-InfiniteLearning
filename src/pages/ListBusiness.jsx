@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Layout from './Layout'
-import ComponentListBusiness from '../components/User/ListBusiness';
+import ComponentListBusiness from '../components/ListBusiness';
 
 const listCity = [
     {
@@ -156,8 +156,7 @@ const dataSalon = [
 ]
 
 
-const ListBusiness = () => {
-    const page = "Salon";
+const ListBusiness = ({ page }) => {
 
     return (
         <Layout>

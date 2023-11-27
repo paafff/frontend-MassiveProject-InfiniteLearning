@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import BannerBarber from '../../assets/images/Banner/banner-barber.jpg'
-import BannerSalon from '../../assets/images/Banner/banner-salon.jpg'
-import ImageBarber from '../../assets/images/business/image1.jpg'
-import ImageSalon from '../../assets/images/business/image8.jpg'
+import BannerBarber from '../assets/images/banner/banner-barber.jpg'
+import BannerSalon from '../assets/images/banner/banner-salon.jpg'
+import ImageBarber from '../assets/images/business/image1.jpg'
+import ImageSalon from '../assets/images/business/image8.jpg'
 
 // MUI Select
 import InputLabel from '@mui/material/InputLabel';
