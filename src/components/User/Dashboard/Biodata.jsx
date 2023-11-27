@@ -14,6 +14,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from '../../../redux/authSlice';
 
+// Select
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+const API_KEY = "7b397cea3811e3799ae20fd43ac78bcbc0dba2f5954d6fef4361e5fff3af76f1";
+
 const dataUser = {
   profilePhoto: 'profile_dummy.jpg',
   fullname: 'Ilham Soejud Alkahfiardy',
@@ -30,7 +39,7 @@ const dataGender = {
 
 const Biodata = ({ showSidebar, setShowSidebar }) => {
   const [editBio, setEditBio] = useState(false);
-  console.log(editBio);
+  // console.log(editBio);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -44,8 +53,9 @@ const Biodata = ({ showSidebar, setShowSidebar }) => {
     };
 
     getMeUser();
-    console.log(userAuth);
   }, [dispatch, navigate]);
+
+  // console.log(userAuth);
 
   return (
     <div className="w-full flex flex-col py-10 lg:py-16 px-6 md:px-12 xl:px-24 lg:px-10 ">
@@ -70,7 +80,7 @@ const Biodata = ({ showSidebar, setShowSidebar }) => {
 };
 
 const ProfileCard = ({ userAuth }) => {
-  console.log('dalem componen', userAuth);
+  // console.log('dalem componen', userAuth);
   const copyURL = () => {
     // Get the current URL
     const currentURL = window.location.href;
@@ -210,6 +220,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
       console.log('data user', formUpdate);
       console.log(arrayAddressUser);
       console.log('sukses update data user');
+      useNavigate('/user/dashboard')
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -224,6 +235,120 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
     console.log(formData);
   };
 
+  // Fetch data for select
+  const handleProvinsi = (e) => {
+
+    console.log("prov data id ", e.target.value[0]);
+    console.log("prov data name", e.target.value[1]);
+
+    fetchKota(e.target.value[0])
+
+    setUserDataUpdate((prevUserData) => ({
+      ...prevUserData,
+      prov: e.target.value[1],
+    }));
+  }
+
+  const handleKota = (e) => {
+    console.log("kota data id ", e.target.value[0]);
+    console.log("kota data name ", e.target.value[1]);
+    fetchKecamatan(e.target.value[0])
+    setUserDataUpdate((prevUserData) => ({
+      ...prevUserData,
+      kab: e.target.value[1],
+    }));
+  }
+
+  const handleKec = (e) => {
+    console.log("kec data id ", e.target.value[0]);
+    console.log("kec data name ", e.target.value[1]);
+    fetchKelurahan(e.target.value[0])
+    setUserDataUpdate((prevUserData) => ({
+      ...prevUserData,
+      kec: e.target.value[1],
+    }));
+  }
+
+  const handleKel = (e) => {
+    console.log("kec data id ", e.target.value[0]);
+    console.log("kec data name ", e.target.value[1]);
+    setUserDataUpdate((prevUserData) => ({
+      ...prevUserData,
+      kel: e.target.value[1],
+    }));
+  }
+
+  const [allProvinsi, setAllProvinsi] = useState([]);
+  const [allKota, setAllKota] = useState([]);
+  const [allKecamatan, setAllKecamatan] = useState([]);
+  const [allKelurahan, setAllKelurahan] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.binderbyte.com/wilayah/provinsi?api_key=${API_KEY}`,
+          { withCredentials: false }
+        );
+        setAllProvinsi(response.data.value);
+        console.log("Fetch prov: ", allProvinsi);
+      } catch (error) {
+        console.error('Error fetching prov:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []); // The empty dependency array means this effect runs once after the initial render
+
+  const fetchKota = async (id) => {
+    try {
+      const response = await axios.get(
+        `https://api.binderbyte.com/wilayah/kabupaten?api_key=${API_KEY}&id_provinsi=${id}`,
+        { withCredentials: false }
+      );
+      setAllKota(response.data.value);
+      console.log("fetch kota: ", allKota);
+    } catch (error) {
+      console.error('Error fetching kota:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchKecamatan = async (id) => {
+    try {
+      const response = await axios.get(
+        `https://api.binderbyte.com/wilayah/kecamatan?api_key=${API_KEY}&id_kabupaten=${id}`,
+        { withCredentials: false }
+      );
+      setAllKecamatan(response.data.value);
+      console.log("fetch camat: ", allKecamatan);
+    } catch (error) {
+      console.error('Error fetching kec:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchKelurahan = async (id) => {
+    try {
+      const response = await axios.get(
+        `https://api.binderbyte.com/wilayah/kelurahan?api_key=${API_KEY}&id_kecamatan=${id}`,
+        { withCredentials: false }
+      );
+      setAllKelurahan(response.data.value);
+      console.log("fetch lurah: ", allKelurahan);
+    } catch (error) {
+      console.error('Error fetching kel:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <form
       className="mt-14 w-full flex flex-col gap-6 xl:w-1/2 xl:justify-start"
@@ -236,7 +361,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
             {userDataUpdate.photoProfile ? (
               <img
                 src={URL.createObjectURL(userDataUpdate.photoProfile)}
-                className="inline-block w-20 h-20 rounded-full"
+                className="inline-block w-20 h-20 rounded-full object-cover"
                 alt=""
               />
             ) : (
@@ -276,18 +401,20 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
           type="text"
           className="w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300"
           placeholder="nama lengkap"
-          onChange={(e) => handleChange(e.target)}
+          onChange={(e) => setUserDataUpdate((prevUserData) => ({
+            ...prevUserData,
+            username: e.target.value,
+          }))}
           defaultValue={userAuth.username}
           disabled={!editBio}
         />
       </div>
 
       <div
-        className={`flex flex-col gap-3 ${
-          !editBio
-            ? 'items-start md:flex-row md:justify-between md:items-center'
-            : 'gap-24 md:gap-60 lg:gap-24 xl:gap-24 md:flex-row md: md:items-center'
-        }`}
+        className={`flex flex-col gap-3 ${!editBio
+          ? 'items-start md:flex-row md:justify-between md:items-center'
+          : 'gap-24 md:gap-60 lg:gap-24 xl:gap-24 md:flex-row md: md:items-center'
+          }`}
       >
         <p className="text-sm lg:text-base">Jenis Kelamin</p>
 
@@ -296,7 +423,9 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
             type="text"
             className="w-1/4 md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300"
             placeholder="jenis kelamin"
-            defaultValue={dataUser.gender}
+
+            // aneh anjg
+            value={userAuth.gender == "woman" ? "wanita" : "pria"}
             disabled={!editBio}
           />
         ) : (
@@ -307,8 +436,9 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
               id="gender-man"
               value="man"
               onChange={(e) => handleChange(e.target)}
+              defaultChecked={userAuth.gender == "man" ? true : false}
             />
-            <label htmlFor="gender-man" className="text-sm">
+            <label htmlFor="gender-man" className="text-sm me-10">
               Pria
             </label>
 
@@ -318,6 +448,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
               id="gender-woman"
               value="woman"
               onChange={(e) => handleChange(e.target)}
+              defaultChecked={userAuth.gender == "woman" ? true : false}
             />
             <label htmlFor="gender-woman" className="text-sm">
               Wanita
@@ -327,17 +458,194 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
       </div>
 
       <div className="flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-start">
-        <label className="text-sm lg:text-base">Alamat</label>
-        <textarea
-          type="text"
-          rows={10}
-          className="w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300"
-          placeholder="alamat"
-          defaultValue={userAuth.address}
-          disabled={!editBio}
-          onChange={(e) => handleChange(e.target)}
-          name="address"
-        />
+        <label className="text-sm w-fit lg:text-base">Alamat</label>
+
+        {editBio ? (
+          <div className='flex gap-10 w-3/4 md:w-1/2 lg:w-3/4 flex-wrap'>
+
+            {/* Select provinsi */}
+            <select
+              className='h-10 rounded w-3/4 xl:w-full px-3 text-xs'
+              name="provinsi"
+              id="provinsi"
+              onChange={(e) => {
+                fetchKota(e.target.value)
+                const selectedOption =
+                  e.target.options[e.target.selectedIndex];
+                const selectedName = selectedOption.getAttribute('name');
+
+                setUserDataUpdate((prevUserData) => ({
+                  ...prevUserData,
+                  prov: selectedName,
+                }));
+                console.log(selectedName);
+              }}>
+
+              <option value="" selected className='text-grey-400'>Provinsi</option>
+              {allProvinsi.map(provinsi => (
+                <option name={provinsi.name} value={provinsi.id}>{provinsi.name}</option>
+              ))}
+            </select>
+            {/* <Box sx={{ minWidth: 120, backgroundColor: 'white' }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Provinsi</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Age"
+                  onChange={(e) => {
+                    fetchKota(e.target.value)
+
+                    const selectedOption = e.target.opt
+                      e.target.options[e.target.selectedIndex];
+                    const selectedName = selectedOption.getAttribute('name');
+
+                    setUserDataUpdate((prevUserData) => ({
+                      ...prevUserData,
+                      kab: selectedName,
+                    }));
+
+                  }}
+
+                >
+                  {allProvinsi.map(provinsi => (
+
+                    <option value={provinsi.id}>{provinsi.name}</option>
+
+                  ))}
+
+                </Select>
+              </FormControl>
+            </Box> */}
+
+            {/* Select kota */}
+            <select
+              className='h-10 rounded w-3/4 xl:w-full px-3 text-xs'
+              name="kota"
+              id="kota"
+              onChange={(e) => {
+                fetchKecamatan(e.target.value)
+                const selectedOption = e.target.options[e.target.selectedIndex];
+                const selectedName = selectedOption.getAttribute('name');
+
+                setUserDataUpdate((prevUserData) => ({
+                  ...prevUserData,
+                  kec: selectedName,
+                }));
+              }}>
+
+              <option value="" selected className='text-grey-400'>Kota</option>
+              {allKota.map(kota => (
+                <option name={kota.name} value={kota.id}>{kota.name}</option>
+              ))}
+            </select>
+
+            {/* <Box sx={{ minWidth: 120, backgroundColor: 'white' }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Kota</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Age"
+                  onChange={(e) => handleKota(e)}
+                >
+                  {allKota.map(kota => (
+                    <MenuItem value={[kota.id, kota.name]}>{kota.name}</MenuItem>
+                  ))}
+
+                </Select>
+              </FormControl>
+            </Box> */}
+
+            {/* Select kecamatan */}
+            <select
+              className='h-10 rounded w-3/4 xl:w-full px-3 text-xs'
+              name="kecamatan"
+              id="kecamatan"
+              onChange={(e) => {
+                fetchKelurahan(e.target.value)
+                const selectedOption = e.target.options[e.target.selectedIndex];
+                const selectedName = selectedOption.getAttribute('name');
+
+                setUserDataUpdate((prevUserData) => ({
+                  ...prevUserData,
+                  kec: selectedName,
+                }));
+              }}>
+
+              <option value="" selected className='text-grey-400'>Kecamatan</option>
+              {allKecamatan.map(kecamatan => (
+                <option name={kecamatan.name} value={kecamatan.id}>{kecamatan.name}</option>
+              ))}
+            </select>
+
+            {/* <Box sx={{ minWidth: 120, backgroundColor: 'white' }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Kecamatan</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Age"
+                  onChange={(e) => handleKec(e)}
+                >
+                  {allKecamatan.map(kecamatan => (
+                    <MenuItem value={[kecamatan.id, kecamatan.name]}>{kecamatan.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box> */}
+
+            {/* Select kelurahan */}
+            <select
+              className='h-10 rounded w-3/4 xl:w-full px-3 text-xs'
+              name="kelurahan"
+              id="kelurahan"
+              onChange={(e) => {
+
+                const selectedOption = e.target.options[e.target.selectedIndex];
+                const selectedName = selectedOption.getAttribute('name');
+
+                setUserDataUpdate((prevUserData) => ({
+                  ...prevUserData,
+                  kel: selectedName,
+                }));
+              }}>
+
+              <option value="" selected className='text-grey-400'>Kelurahan</option>
+              {allKelurahan.map(kelurahan => (
+                <option name={kelurahan.name} value={kelurahan.id}>{kelurahan.name}</option>
+              ))}
+            </select>
+            {/* <Box sx={{ minWidth: 120, backgroundColor: 'white' }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Kelurahan</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Age"
+                  onChange={(e) => handleKel(e)}
+                >
+                  {allKelurahan.map(kelurahan => (
+                    <MenuItem value={[kelurahan.id, kelurahan.name]}>{kelurahan.name}</MenuItem>
+                  ))}
+
+                </Select>
+              </FormControl>
+            </Box> */}
+          </div>
+        ) : (
+
+          <input
+            type="text"
+            className="w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300"
+            placeholder="alamat"
+            value={userAuth.address}
+            disabled={!editBio}
+            name="address"
+          />
+        )}
+
+
       </div>
 
       <div className="flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center">
@@ -365,7 +673,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
         />
       </div>
 
-      <div className="flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center">
+      {/* <div className="flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center">
         <label className="text-sm lg:text-base">Confirm Password</label>
         <input
           type="password"
@@ -375,7 +683,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
           onChange={(e) => handleChange(e.target)}
           name="confpassword"
         />
-      </div>
+      </div> */}
 
       <div className="mt-8 flex gap-5 justify-end">
         {editBio ? (

@@ -12,7 +12,7 @@ const Dashboard = () => {
     return (
         <Layout>
 
-            <div className='flex relative bg-gray-200 h-full'>
+            <div className='flex relative bg-gray-200 min-h-screen'>
                 <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
                 {/* updatebusiness */}
                 <Biodata showSidebar={showSidebar} setShowSidebar={setShowSidebar} />

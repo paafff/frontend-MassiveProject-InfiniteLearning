@@ -25,6 +25,7 @@ const BusinessRegistration = () => {
     kel: '',
     rtrw: '',
   });
+
   const [addressSelectedBusiness, setAddressSelectedBusiness] = useState({
     prov: '',
     kab: '',
@@ -291,528 +292,534 @@ const BusinessRegistration = () => {
 
   return (
     <Layout>
-      <h1 align="center" class="text-3xl font-semibold pt-10">
-        Form Pengajuan Usaha
-      </h1>
-      <hr class="mx-auto mt-2 mb-20 max-w-sm border-2 border-dashed border-rose-400" />
-      <form onSubmit={handleSubmit}>
-        <div class="mx-20">
-          <h4 class="text-lg font-semibold">Data Pemilik Usaha</h4>
-          <hr class="mx-auto border-2 border-rose-400 shadow" />
-          <div class="flex flex-row my-6">
-            <div class="basis-1/3">
-              <label class="block text-sm font-medium leading-6 text-gray-900 md:text-left">
-                {' '}
-                Nama Pemilik Usaha
-              </label>
+      <div className='w-3/4 mx-auto my-24'>
+        <h1 align="center" class="text-3xl font-semibold pt-10">
+          Form Pengajuan Usaha
+        </h1>
+        <hr class="mx-auto mt-2 mb-20 max-w-sm border-2 border-dashed border-rose-400" />
+        <form onSubmit={handleSubmit}>
+          <div class="mx-20">
+            <h4 class="text-lg font-semibold">Data Pemilik Usaha</h4>
+            <hr class="mx-auto border-2 border-rose-400 shadow" />
+            <div class="flex flex-row my-6">
+              <div class="basis-1/3">
+                <label class="block text-sm font-medium leading-6 text-gray-900 md:text-left">
+                  {' '}
+                  Nama Pemilik Usaha
+                </label>
+              </div>
+              <div class="basis-2/3">
+                <input
+                  type="text"
+                  name="fullname"
+                  id="fullname"
+                  className="border"
+                  class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  // placeholder={
+                  //   userAuth.username ? userAuth.username : 'Nama Pemilik Usaha'
+                  // }
+                  placeholder={
+                    userAuth.username ? userAuth.username : 'Nama Pemilik Usaha'
+                  }
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      username: e.target.value,
+                    })
+                  }
+                  required
+                />
+              </div>
             </div>
-            <div class="basis-2/3">
+            <div class="flex flex-row my-6">
+              <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
+                Jenis Kelamin
+              </label>
               <input
-                type="text"
-                name="fullname"
-                id="fullname"
+                type="radio"
+                name="gender"
+                id="male"
+                value="male"
                 className="border"
-                class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                // placeholder={
-                //   userAuth.username ? userAuth.username : 'Nama Pemilik Usaha'
-                // }
-                placeholder={
-                  userAuth.username ? userAuth.username : 'Nama Pemilik Usaha'
-                }
                 onChange={(e) =>
                   setUserData({
                     ...userData,
-                    username: e.target.value,
+                    gender: e.target.value,
                   })
                 }
                 required
               />
-            </div>
-          </div>
-          <div class="flex flex-row my-6">
-            <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
-              Jenis Kelamin
-            </label>
-            <input
-              type="radio"
-              name="gender"
-              id="male"
-              value="male"
-              className="border"
-              onChange={(e) =>
-                setUserData({
-                  ...userData,
-                  gender: e.target.value,
-                })
-              }
-              required
-            />
-            <label class="ml-2">Pria</label>
-            <input
-              type="radio"
-              name="gender"
-              id="female"
-              value="female"
-              className="border ml-12"
-              onChange={(e) =>
-                setUserData({
-                  ...userData,
-                  gender: e.target.value,
-                })
-              }
-              required
-            />
-            <label class="ml-2">Wanita</label>
-          </div>
-          <div class="flex flex-row my-6">
-            <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
-              Email
-            </label>
-            <input
-              autoComplete="off"
-              type="email"
-              name="email"
-              id="email"
-              className="border"
-              class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
-              placeholder={userAuth.email ? userAuth.email : 'Email Anda'}
-              onChange={(e) =>
-                setUserData({
-                  ...userData,
-                  email: e.target.value,
-                })
-              }
-            />
-          </div>
-          <div class="flex flex-row my-6">
-            <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
-              No Telepon
-            </label>
-            <input
-              type="text"
-              name="phoneNumber"
-              id="phoneNumber"
-              className="border"
-              class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
-              placeholder={userAuth.phone ? userAuth.phone : 'No. Telepon Anda'}
-              onChange={(e) =>
-                setUserData({
-                  ...userData,
-                  gender: e.target.value,
-                })
-              }
-            />
-          </div>
-          <div class="flex flex-row my-6">
-            <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
-              No Identitas
-            </label>
-            <input
-              type="text"
-              name="identityNumber"
-              id="identityNumber"
-              className="border"
-              class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
-              placeholder={
-                userAuth.cardId ? userAuth.cardId : 'Nomor Identitas Anda'
-              }
-            />
-          </div>
-          <div class="flex flex-row my-6">
-            <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
-              Alamat
-            </label>
-            <div class="basis-2/3 flex flex-wrap">
-              {/* prov */}
-
-              {/* nang */}
-              <select
-                class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                onChange={(e) => {
-                  getKabUser(e.target.value);
-
-                  const selectedOption =
-                    e.target.options[e.target.selectedIndex];
-                  const selectedId = selectedOption.getAttribute('id');
-                  const selectedName = selectedOption.getAttribute('name');
-
-                  // setUserData({ ...userData, address: selectedName });
-
-                  setAddressSelectedUser({
-                    ...addressSelectedUser,
-                    // prov: selectedId,
-                    prov: selectedName,
-                  });
-                }}
-              >
-                <option selected disabled class="text-grey-400">
-                  Provinsi
-                </option>
-                {provUser.map((prov) => (
-                  <option
-                    name={prov.name}
-                    id={prov.id}
-                    key={prov.id}
-                    value={prov.id}
-                  >
-                    {prov.name}
-                  </option>
-                ))}
-              </select>
-
-              {/* kab */}
-              <select
-                class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                onChange={(e) => {
-                  getKecUser(e.target.value);
-
-                  const selectedOption =
-                    e.target.options[e.target.selectedIndex];
-                  // const selectedId = selectedOption.getAttribute('id');
-                  const selectedName = selectedOption.getAttribute('name');
-
-                  setAddressSelectedUser({
-                    ...addressSelectedUser,
-                    // kab: selectedId,
-                    kab: selectedName,
-                  });
-                }}
-              >
-                <option selected disabled class="text-grey-400">
-                  Kabupaten/Kota
-                </option>
-                {kabUser.map((kab) => (
-                  <option
-                    name={kab.name}
-                    id={kab.id}
-                    key={kab.id}
-                    value={kab.id}
-                  >
-                    {kab.name}
-                  </option>
-                ))}
-              </select>
-              {/* kec */}
-              <select
-                class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                onChange={(e) => {
-                  getKelUser(e.target.value);
-
-                  const selectedOption =
-                    e.target.options[e.target.selectedIndex];
-                  // const selectedId = selectedOption.getAttribute('id');
-                  const selectedName = selectedOption.getAttribute('name');
-
-                  setAddressSelectedUser({
-                    ...addressSelectedUser,
-                    // kec: selectedId,
-                    kec: selectedName,
-                  });
-                }}
-              >
-                <option selected disabled class="text-grey-400">
-                  Kecamatan
-                </option>
-                {kecUser.map((kec) => (
-                  <option
-                    name={kec.name}
-                    id={kec.id}
-                    key={kec.id}
-                    value={kec.id}
-                  >
-                    {kec.name}
-                  </option>
-                ))}
-              </select>
-              {/* kel */}
-              <select
-                class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                onChange={(e) => {
-                  // getKelUser(e.target.value);
-
-                  const selectedOption =
-                    e.target.options[e.target.selectedIndex];
-                  // const selectedId = selectedOption.getAttribute('id');
-                  const selectedName = selectedOption.getAttribute('name');
-
-                  setAddressSelectedUser({
-                    ...addressSelectedUser,
-                    // kel: selectedId,
-                    kel: selectedName,
-                  });
-                }}
-              >
-                <option selected disabled class="text-grey-400">
-                  Kelurahan
-                </option>
-                {kelUser.map((kel) => (
-                  <option
-                    name={kel.name}
-                    id={kel.id}
-                    key={kel.id}
-                    value={kel.id}
-                  >
-                    {kel.name}
-                  </option>
-                ))}
-              </select>
+              <label htmlFor='male' class="ml-2">Pria</label>
               <input
-                type="text"
-                class="mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                type="radio"
+                name="gender"
+                id="female"
+                value="female"
+                className="border ml-12"
                 onChange={(e) =>
-                  setAddressSelectedUser({
-                    ...addressSelectedUser,
-                    rtrw: e.target.value,
+                  setUserData({
+                    ...userData,
+                    gender: e.target.value,
                   })
                 }
-                // placeholder={userAuth.address ? userAuth.address[1] : 'RT/RW'}
-                placeholder="RT/RW"
+                required
               />
+              <label htmlFor='female' class="ml-2">Wanita</label>
             </div>
-          </div>
-          <h4 class="text-lg font-semibold mt-10">Detail Usaha</h4>
-          <hr class="mx-auto border-2 border-rose-400 shadow" />
-          <div class="flex flex-row my-6">
-            <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
-              Judul Brand
-            </label>
-            <input
-              type="text"
-              name="brandName"
-              id="brandName"
-              className="border"
-              class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
-              placeholder="Nama Brand Anda"
-              onChange={(e) =>
-                setBusinessData({
-                  ...businessData,
-                  name: e.target.value,
-                })
-              }
-            />
-          </div>
-          <div class="flex flex-row my-6">
-            <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
-              Jenis Usaha
-            </label>
-            <input
-              type="radio"
-              value="barbershop"
-              className="border"
-              onChange={(e) =>
-                setBusinessData({
-                  ...businessData,
-                  typeBusiness: e.target.value,
-                })
-              }
-              required
-            />
-            <label class="ml-2">Barbershop</label>
-            <input
-              type="radio"
-              value="salon"
-              className="border ml-12"
-              onChange={(e) =>
-                setBusinessData({
-                  ...businessData,
-                  typeBusiness: e.target.value,
-                })
-              }
-              required
-            />
-            <label class="ml-2">Salon</label>
-          </div>
-          <div class="flex flex-row my-6">
-            <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
-              Lokasi
-            </label>
-            <div class="basis-2/3 flex flex-wrap">
-              {/* prov */}
-
-              {/* nang */}
-              <select
-                class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                onChange={(e) => {
-                  getKabBusiness(e.target.value);
-
-                  const selectedOption =
-                    e.target.options[e.target.selectedIndex];
-                  const selectedId = selectedOption.getAttribute('id');
-                  const selectedName = selectedOption.getAttribute('name');
-
-                  setAddressSelectedBusiness({
-                    ...addressSelectedBusiness,
-                    provId: selectedId,
-                    prov: selectedName,
-                  });
-                }}
-              >
-                <option selected disabled class="text-grey-400">
-                  Provinsi
-                </option>
-                {provBusiness.map((prov) => (
-                  <option
-                    name={prov.name}
-                    id={prov.id}
-                    key={prov.id}
-                    value={prov.id}
-                  >
-                    {prov.name}
-                  </option>
-                ))}
-              </select>
-
-              {/* kab */}
-              <select
-                class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                onChange={(e) => {
-                  getKecBusiness(e.target.value);
-
-                  const selectedOption =
-                    e.target.options[e.target.selectedIndex];
-                  const selectedId = selectedOption.getAttribute('id');
-                  const selectedName = selectedOption.getAttribute('name');
-
-                  setAddressSelectedBusiness({
-                    ...addressSelectedBusiness,
-                    kabId: selectedId,
-                    kab: selectedName,
-                  });
-                }}
-              >
-                <option selected disabled class="text-grey-400">
-                  Kabupaten/Kota
-                </option>
-                {kabBusiness.map((kab) => (
-                  <option
-                    name={kab.name}
-                    id={kab.id}
-                    key={kab.id}
-                    value={kab.id}
-                  >
-                    {kab.name}
-                  </option>
-                ))}
-              </select>
-              {/* kec */}
-              <select
-                class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                onChange={(e) => {
-                  getKelBusiness(e.target.value);
-
-                  const selectedOption =
-                    e.target.options[e.target.selectedIndex];
-                  const selectedId = selectedOption.getAttribute('id');
-                  const selectedName = selectedOption.getAttribute('name');
-
-                  setAddressSelectedBusiness({
-                    ...addressSelectedBusiness,
-                    kecId: selectedId,
-                    kec: selectedName,
-                  });
-                }}
-              >
-                <option selected disabled class="text-grey-400">
-                  Kecamatan
-                </option>
-                {kecBusiness.map((kec) => (
-                  <option
-                    name={kec.name}
-                    id={kec.id}
-                    key={kec.id}
-                    value={kec.id}
-                  >
-                    {kec.name}
-                  </option>
-                ))}
-              </select>
-              {/* kel */}
-              <select
-                class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                onChange={(e) => {
-                  // getKelBusiness(e.target.value);
-
-                  const selectedOption =
-                    e.target.options[e.target.selectedIndex];
-                  const selectedId = selectedOption.getAttribute('id');
-                  const selectedName = selectedOption.getAttribute('name');
-
-                  setAddressSelectedBusiness({
-                    ...addressSelectedBusiness,
-                    kelId: selectedId,
-                    kel: selectedName,
-                  });
-                }}
-              >
-                <option selected disabled class="text-grey-400">
-                  Kelurahan
-                </option>
-                {kelBusiness.map((kel) => (
-                  <option
-                    name={kel.name}
-                    id={kel.id}
-                    key={kel.id}
-                    value={kel.id}
-                  >
-                    {kel.name}
-                  </option>
-                ))}
-              </select>
+            <div class="flex flex-row my-6">
+              <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
+                Email
+              </label>
               <input
-                type="text"
-                class="mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                autoComplete="off"
+                type="email"
+                name="email"
+                id="email"
+                className="border"
+                class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
+                placeholder={userAuth.email ? userAuth.email : 'Email Anda'}
                 onChange={(e) =>
-                  setAddressSelectedBusiness({
-                    ...addressSelectedBusiness,
-                    rtrw: e.target.value,
+                  setUserData({
+                    ...userData,
+                    email: e.target.value,
                   })
                 }
-                // placeholder={userAuth.address ? userAuth.address[1] : 'RT/RW'}
-                placeholder="RT/RW"
               />
+            </div>
+            <div class="flex flex-row my-6">
+              <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
+                No Telepon
+              </label>
+              <input
+                type="text"
+                name="phoneNumber"
+                id="phoneNumber"
+                className="border"
+                class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
+                placeholder={userAuth.phone ? userAuth.phone : 'No. Telepon Anda'}
+                onChange={(e) =>
+                  setUserData({
+                    ...userData,
+                    gender: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div class="flex flex-row my-6">
+              <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
+                No Identitas
+              </label>
+              <input
+                type="text"
+                name="identityNumber"
+                id="identityNumber"
+                className="border"
+                class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
+                placeholder={
+                  userAuth.cardId ? userAuth.cardId : 'Nomor Identitas Anda'
+                }
+              />
+            </div>
+            <div class="flex flex-row my-6">
+              <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
+                Alamat
+              </label>
+              <div class="basis-2/3 flex flex-wrap">
+                {/* prov */}
+
+                {/* nang */}
+                <select
+                  class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  onChange={(e) => {
+                    getKabUser(e.target.value);
+
+                    const selectedOption =
+                      e.target.options[e.target.selectedIndex];
+                    const selectedId = selectedOption.getAttribute('id');
+                    const selectedName = selectedOption.getAttribute('name');
+
+                    // setUserData({ ...userData, address: selectedName });
+
+                    setAddressSelectedUser({
+                      ...addressSelectedUser,
+                      // prov: selectedId,
+                      prov: selectedName,
+                    });
+                  }}
+                >
+                  <option selected disabled class="text-gray-400">
+                    Provinsi
+                  </option>
+                  {provUser.map((prov) => (
+                    <option
+                      name={prov.name}
+                      id={prov.id}
+                      key={prov.id}
+                      value={prov.id}
+                    >
+                      {prov.name}
+                    </option>
+                  ))}
+                </select>
+
+                {/* kab */}
+                <select
+                  class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  onChange={(e) => {
+                    getKecUser(e.target.value);
+
+                    const selectedOption =
+                      e.target.options[e.target.selectedIndex];
+                    // const selectedId = selectedOption.getAttribute('id');
+                    const selectedName = selectedOption.getAttribute('name');
+
+                    setAddressSelectedUser({
+                      ...addressSelectedUser,
+                      // kab: selectedId,
+                      kab: selectedName,
+                    });
+                  }}
+                >
+                  <option selected disabled class="text-grey-400">
+                    Kabupaten/Kota
+                  </option>
+                  {kabUser.map((kab) => (
+                    <option
+                      name={kab.name}
+                      id={kab.id}
+                      key={kab.id}
+                      value={kab.id}
+                    >
+                      {kab.name}
+                    </option>
+                  ))}
+                </select>
+                {/* kec */}
+                <select
+                  class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  onChange={(e) => {
+                    getKelUser(e.target.value);
+
+                    const selectedOption =
+                      e.target.options[e.target.selectedIndex];
+                    // const selectedId = selectedOption.getAttribute('id');
+                    const selectedName = selectedOption.getAttribute('name');
+
+                    setAddressSelectedUser({
+                      ...addressSelectedUser,
+                      // kec: selectedId,
+                      kec: selectedName,
+                    });
+                  }}
+                >
+                  <option selected disabled class="text-grey-400">
+                    Kecamatan
+                  </option>
+                  {kecUser.map((kec) => (
+                    <option
+                      name={kec.name}
+                      id={kec.id}
+                      key={kec.id}
+                      value={kec.id}
+                    >
+                      {kec.name}
+                    </option>
+                  ))}
+                </select>
+                {/* kel */}
+                <select
+                  class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  onChange={(e) => {
+                    // getKelUser(e.target.value);
+
+                    const selectedOption =
+                      e.target.options[e.target.selectedIndex];
+                    // const selectedId = selectedOption.getAttribute('id');
+                    const selectedName = selectedOption.getAttribute('name');
+
+                    setAddressSelectedUser({
+                      ...addressSelectedUser,
+                      // kel: selectedId,
+                      kel: selectedName,
+                    });
+                  }}
+                >
+                  <option selected disabled class="text-grey-400">
+                    Kelurahan
+                  </option>
+                  {kelUser.map((kel) => (
+                    <option
+                      name={kel.name}
+                      id={kel.id}
+                      key={kel.id}
+                      value={kel.id}
+                    >
+                      {kel.name}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="text"
+                  class="mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  onChange={(e) =>
+                    setAddressSelectedUser({
+                      ...addressSelectedUser,
+                      rtrw: e.target.value,
+                    })
+                  }
+                  // placeholder={userAuth.address ? userAuth.address[1] : 'RT/RW'}
+                  placeholder="RT/RW"
+                />
+              </div>
+            </div>
+            <h4 class="text-lg font-semibold mt-10">Detail Usaha</h4>
+            <hr class="mx-auto border-2 border-rose-400 shadow" />
+            <div class="flex flex-row my-6">
+              <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
+                Judul Brand
+              </label>
+              <input
+                type="text"
+                name="brandName"
+                id="brandName"
+                className="border"
+                class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
+                placeholder="Nama Brand Anda"
+                onChange={(e) =>
+                  setBusinessData({
+                    ...businessData,
+                    name: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div class="flex flex-row my-6">
+              <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
+                Jenis Usaha
+              </label>
+              <input
+                id='barbershop'
+                type="radio"
+                name='jenis-usaha'
+                value="barbershop"
+                className="border"
+                onChange={(e) =>
+                  setBusinessData({
+                    ...businessData,
+                    typeBusiness: e.target.value,
+                  })
+                }
+                required
+              />
+              <label htmlFor='barbershop' class="ml-2">Barbershop</label>
+              <input
+                id='salon'
+                type="radio"
+                value="salon"
+                name='jenis-usaha'
+                className="border ml-12"
+                onChange={(e) =>
+                  setBusinessData({
+                    ...businessData,
+                    typeBusiness: e.target.value,
+                  })
+                }
+                required
+              />
+              <label htmlFor='salon' class="ml-2">Salon</label>
+            </div>
+            <div class="flex flex-row my-6">
+              <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
+                Lokasi
+              </label>
+              <div class="basis-2/3 flex flex-wrap">
+                {/* prov */}
+
+                {/* nang */}
+                <select
+                  class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  onChange={(e) => {
+                    getKabBusiness(e.target.value);
+
+                    const selectedOption =
+                      e.target.options[e.target.selectedIndex];
+                    const selectedId = selectedOption.getAttribute('id');
+                    const selectedName = selectedOption.getAttribute('name');
+
+                    setAddressSelectedBusiness({
+                      ...addressSelectedBusiness,
+                      provId: selectedId,
+                      prov: selectedName,
+                    });
+                  }}
+                >
+                  <option selected disabled class="text-grey-400">
+                    Provinsi
+                  </option>
+                  {provBusiness.map((prov) => (
+                    <option
+                      name={prov.name}
+                      id={prov.id}
+                      key={prov.id}
+                      value={prov.id}
+                    >
+                      {prov.name}
+                    </option>
+                  ))}
+                </select>
+
+                {/* kab */}
+                <select
+                  class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  onChange={(e) => {
+                    getKecBusiness(e.target.value);
+
+                    const selectedOption =
+                      e.target.options[e.target.selectedIndex];
+                    const selectedId = selectedOption.getAttribute('id');
+                    const selectedName = selectedOption.getAttribute('name');
+
+                    setAddressSelectedBusiness({
+                      ...addressSelectedBusiness,
+                      kabId: selectedId,
+                      kab: selectedName,
+                    });
+                  }}
+                >
+                  <option selected disabled class="text-grey-400">
+                    Kabupaten/Kota
+                  </option>
+                  {kabBusiness.map((kab) => (
+                    <option
+                      name={kab.name}
+                      id={kab.id}
+                      key={kab.id}
+                      value={kab.id}
+                    >
+                      {kab.name}
+                    </option>
+                  ))}
+                </select>
+                {/* kec */}
+                <select
+                  class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  onChange={(e) => {
+                    getKelBusiness(e.target.value);
+
+                    const selectedOption =
+                      e.target.options[e.target.selectedIndex];
+                    const selectedId = selectedOption.getAttribute('id');
+                    const selectedName = selectedOption.getAttribute('name');
+
+                    setAddressSelectedBusiness({
+                      ...addressSelectedBusiness,
+                      kecId: selectedId,
+                      kec: selectedName,
+                    });
+                  }}
+                >
+                  <option selected disabled class="text-grey-400">
+                    Kecamatan
+                  </option>
+                  {kecBusiness.map((kec) => (
+                    <option
+                      name={kec.name}
+                      id={kec.id}
+                      key={kec.id}
+                      value={kec.id}
+                    >
+                      {kec.name}
+                    </option>
+                  ))}
+                </select>
+                {/* kel */}
+                <select
+                  class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  onChange={(e) => {
+                    // getKelBusiness(e.target.value);
+
+                    const selectedOption =
+                      e.target.options[e.target.selectedIndex];
+                    const selectedId = selectedOption.getAttribute('id');
+                    const selectedName = selectedOption.getAttribute('name');
+
+                    setAddressSelectedBusiness({
+                      ...addressSelectedBusiness,
+                      kelId: selectedId,
+                      kel: selectedName,
+                    });
+                  }}
+                >
+                  <option selected disabled class="text-grey-400">
+                    Kelurahan
+                  </option>
+                  {kelBusiness.map((kel) => (
+                    <option
+                      name={kel.name}
+                      id={kel.id}
+                      key={kel.id}
+                      value={kel.id}
+                    >
+                      {kel.name}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="text"
+                  class="mr-5 w-60 px-3 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  onChange={(e) =>
+                    setAddressSelectedBusiness({
+                      ...addressSelectedBusiness,
+                      rtrw: e.target.value,
+                    })
+                  }
+                  // placeholder={userAuth.address ? userAuth.address[1] : 'RT/RW'}
+                  placeholder="RT/RW"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-row my-6">
+              <label class="basis-1/3">Deskripsi Usaha</label>
+              <textarea
+                rows="6"
+                class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
+                onChange={(e) =>
+                  setBusinessData({
+                    ...businessData,
+                    description: e.target.value,
+                  })
+                }
+              ></textarea>
             </div>
           </div>
 
-          <div class="flex flex-row my-6">
-            <label class="basis-1/3">Deskripsi Usaha</label>
-            <textarea
-              rows="6"
-              class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
-              onChange={(e) =>
-                setBusinessData({
-                  ...businessData,
-                  description: e.target.value,
-                })
-              }
-            ></textarea>
-          </div>
-        </div>
-
-        {/* sementara */}
-        {/* <button
+          {/* sementara */}
+          {/* <button
           class="mt-5 ml-80 bg-rose-400 hover:bg-rose-600 text-white font-bold py-2 px-5 rounded shadow-lg"
           // onSubmit={() => handleClick()}
           type="submit"
         >
           Simpan
         </button> */}
-        {/* sementara */}
-      </form>
-      <div class="columns-2 mt-20">
-        <img src="src/assets/images/image.png" class="mb-5" />
-        <div class="ml-20 justify-end">
-          <input class="ml-4" type="checkbox" required />
-          <label class="ml-2">
-            Saya bersedia bekerjasama dengan website ini
-          </label>
-          <br />
-          <button
-            class="mt-5 ml-80 bg-rose-400 hover:bg-rose-600 text-white font-bold py-2 px-5 rounded shadow-lg"
-            onClick={handleSubmit}
+          {/* sementara */}
+        </form>
+        <div class="columns-2 mt-20">
+          <img src="src/assets/images/image.png" class="mb-5" />
+          <div class="justify-end">
+            <input class="ml-4" type="checkbox" required />
+            <label class="ml-2">
+              Saya bersedia bekerjasama dengan website ini
+            </label>
+            <br />
+            <button
+              class="mt-5 ml-80 bg-rose-400 hover:bg-rose-600 text-white font-bold py-2 px-5 rounded shadow-lg"
+              onClick={handleSubmit}
             // type="submit"
-          >
-            Simpan
-          </button>
+            >
+              Simpan
+            </button>
+          </div>
         </div>
       </div>
     </Layout>

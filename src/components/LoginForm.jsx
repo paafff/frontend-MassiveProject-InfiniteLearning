@@ -60,7 +60,7 @@ const LoginForm = () => {
                 placeholder="name@gmail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                autoComplete="off"
+                autoComplete={false}
               />
             </div>
 

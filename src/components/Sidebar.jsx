@@ -12,7 +12,7 @@ import axios from 'axios';
 import { getMe } from '../redux/authSlice'
 import { useDispatch, useSelector } from 'react-redux';
 
-const role = 'Superuser';
+
 
 const listUsaha = [
     {
@@ -70,8 +70,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
     useEffect(() => {
         getMyBusiness();
 
-        console.log(listBusiness);
+        console.log("list bisnis ", listBusiness);
     }, [dispatch, navigate]);
+
+    const role = userAuth.role;
 
     return (
         <div className={`min-h-full pb-32 z-10 w-72 transition-all rounded-br-full lg:rounded-none bg-white drop-shadow-md absolute ${showSidebar ? "left-0" : "left-[-300px]"} lg:left-0 lg:static`}>
@@ -96,7 +98,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 <>
                     <UserBiodata />
 
-                    <UserUsaha />
+                    <UserUsaha listBusiness={listBusiness} />
 
                     <UserBooking />
 
@@ -137,7 +139,7 @@ const UserAjukanUsaha = () => {
     )
 }
 
-const UserUsaha = () => {
+const UserUsaha = ({ listBusiness }) => {
     return (
         <Link className='w-full h-fit  transition-all white flex flex-col gap-8 justify-start px-20 py-12'>
             <p className='text-sm lg:text-base text-black flex items-center gap-4'>
@@ -147,11 +149,18 @@ const UserUsaha = () => {
             </p>
             <div className='flex flex-col gap-3'>
 
-                {listUsaha.map((usaha) => (
-                    <Link to="/superuser/dashboard-business" className='py-2 px-4 hover:bg-gray-200 transition-all rounded'>
-                        <p className='text-xs' key={usaha.id}>{usaha.name}</p>
+                {listBusiness.map((business) => (
+                    <Link
+                        to={`/superuser/dashboard-business/${business.uuid}`}
+                        // to={`/dashboard-business/${business.uuid}`}
+                        className="py-2 px-4 hover:bg-gray-200 transition-all rounded"
+                    >
+                        <p className="text-xs" key={business.id}>
+                            {business.name}
+                        </p>
                     </Link>
                 ))}
+
             </div>
         </Link>
     )
