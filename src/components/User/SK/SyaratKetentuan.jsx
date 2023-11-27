@@ -6,6 +6,8 @@ const SyaratKetentuan = ({ showSidebar, setShowSidebar }) => {
         <>
             <Hamburger showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
+            <p>Ke Info Umum</p>
+
             <div className='w-full px-5 lg:py-5'>
 
                 <div className='bg-white w-full rounded-md lg:p-8 drop-shadow-md'>
@@ -26,10 +28,9 @@ const Term = () => {
 
         <hr className='my-5' />
         <p className='text-lg font-semibold'>Pemilik</p>
-        <p className='text-sm'> <u>Syarat dan Ketentuan Layanan Pemilik Bisnis</u></p>
-        <br></br>
+        <p className='text-sm py-3'> <u>Syarat dan Ketentuan Layanan Pemilik Bisnis</u></p>
         <p className='text-lg font-semibold'>Pencari</p>
-        <p className='text-sm'> <u>Syarat dan Ketentuan Pencari Barbershop atau Salon</u></p>
+        <p className='text-sm py-3'> <u>Syarat dan Ketentuan Pencari Barbershop atau Salon</u></p>
         </div>
     )
 }
