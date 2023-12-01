@@ -13,6 +13,9 @@ const Help = () => {
                 <p>/user/business-registration</p>
                 <p>/user/reservasi</p>
                 <p>/user/review</p>
+                <p>/barbershop</p>
+                <p>/salon</p>
+                <p>/hair-trend</p>
             </div>
             <div className='flex flex-col'>
                 <p className='text-lg font-semibold'>Superuser</p>

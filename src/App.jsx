@@ -23,6 +23,7 @@ import InputReview from './pages/User/InputReview';
 import ManageServices from './pages/Admin/Services';
 import ListBusiness from './pages/ListBusiness';
 import HairTrend from './pages/HairTrend';
+import ComponentPriceList from './components/User/subscription/PriceList';
 
 const App = () => {
   return (
@@ -30,7 +31,10 @@ const App = () => {
       <div>
         <BrowserRouter>
           <Routes>
+            {/* Test component */}
+            <Route path="/price-list" element={<ComponentPriceList />} />
             <Route path="/help" element={<Help />} />
+
             {/* User / Guest */}
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />

@@ -42,16 +42,16 @@ const Brand = () => {
 const Sosmed = () => {
     return (
         <div className='flex gap-3'>
-            <div className='bg-white w-fit p-4 rounded-md hover:scale-[1.2] transition-all'>
+            <div className='bg-white w-fit p-4 rounded-md hover:scale-[1.2] hover:cursor-pointer transition-all'>
                 <FaXTwitter className='scale-150 ' />
             </div>
-            <div className='bg-white w-fit p-4 rounded-md hover:scale-[1.2] transition-all'>
+            <div className='bg-white w-fit p-4 rounded-md hover:scale-[1.2] hover:cursor-pointer transition-all'>
                 <FaLinkedin className='scale-150' />
             </div>
-            <div className='bg-white w-fit p-4 rounded-md hover:scale-[1.2] transition-all'>
+            <div className='bg-white w-fit p-4 rounded-md hover:scale-[1.2] hover:cursor-pointer transition-all'>
                 <FaInstagram className='scale-150' />
             </div>
-            <div className='bg-white w-fit p-4 rounded-md hover:scale-[1.2] transition-all'>
+            <div className='bg-white w-fit p-4 rounded-md hover:scale-[1.2] hover:cursor-pointer transition-all'>
                 <FaFacebook className='scale-150' />
             </div>
         </div>

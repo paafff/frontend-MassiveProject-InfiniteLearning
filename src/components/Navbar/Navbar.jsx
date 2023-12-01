@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import Logo from '../../assets/images/logo/logo.png'
+import Logo from '../../assets/images/logo/logo2.png'
 import { Link } from 'react-router-dom';
 import { FaAngleDown } from 'react-icons/fa'
 import DropdownCategory from './DropdownCategory';
@@ -41,7 +41,7 @@ const Brand = () => {
             <Link to="/">
                 <img
                     src={Logo}
-                    className='w-24'
+                    className='w-16'
                     alt="" />
             </Link>
             <div>

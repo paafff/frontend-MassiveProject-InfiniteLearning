@@ -7,12 +7,12 @@ const DropdownCategory = (props) => {
             <ul className='flex flex-col gap-3'>
 
                 <Link
-                    to="#"
+                    to="/barbershop"
                     className='transition-all text-sm hover:bg-slate-200 rounded-sm py-2 px-4'>
                     Barbershop
                 </Link>
                 <Link
-                    to="#"
+                    to="/salon"
                     className='transition-all text-sm hover:bg-slate-200 rounded-sm py-2 px-4'>
                     Salon
                 </Link>

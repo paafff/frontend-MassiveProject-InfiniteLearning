@@ -9,10 +9,6 @@ import SoftBangs from '../assets/images/trend/softbangs.jpg'
 import FrenchCrop from '../assets/images/trend/frenchcrop.jpg'
 import IconHeader from '../assets/images/icons/gataunamanya.png'
 
-// Carousel
-import Carousel from 'react-material-ui-carousel'
-import { Paper, Button } from '@mui/material'
-
 const HairTrend = () => {
     return (
         <div className='w-full flex flex-col lg:flex-row xl:w-3/4 lg:mx-auto'>
@@ -85,53 +81,3 @@ const Overflow = (props) => {
 }
 
 export default HairTrend
-
-
-// const CarouselTrend = (props) => {
-//     var items = [
-//         {
-//             name: "Comma Hair",
-//             model: CommaHair
-//         },
-//         {
-//             name: "Bob Hair",
-//             model: BobHairCarousel
-//         },
-//         {
-//             name: "Mullet",
-//             model: Mullet
-//         },
-//         {
-//             name: "Soft Bangs",
-//             model: SoftBangs
-//         },
-//         {
-//             name: "French Crop",
-//             model: FrenchCrop
-//         },
-//     ]
-
-//     return (
-//         <Carousel>
-//             {
-//                 items.map((item, i) => (
-//                     <>
-//                         <Item key={i} item={item} />
-//                     </>
-//                 ))
-//             }
-//         </Carousel>
-//     )
-// }
-
-// const Item = (props) => {
-//     return (
-//         <Paper className='flex items-center justify-evenly py-2 md:w-3/4 md:mx-auto'>
-
-//             <div className='w-52 h-52 flex items-end justify-center p-3 rounded shadow-sm object-cover bg-no-repeat' style={{ backgroundImage: `url(${props.item.model})` }}>
-//                 <p className='px-2 py-1 bg-white rounded text-sm font-semibold'>{props.item.name}</p>
-//             </div>
-
-//         </Paper>
-//     )
-// }
