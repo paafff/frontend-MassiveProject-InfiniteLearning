@@ -50,7 +50,7 @@ const DashboardBussiness = () => {
             setShowSidebar={setShowSidebar}
           />
           {console.log("data uuid from page : ", businessByUUID.socialMedia)}
-          <DetailBusiness businessByUUID={businessByUUID} socialMedia={businessByUUID.socialMedia} />
+          <DetailBusiness businessByUUID={businessByUUID} />
           <Services businessByUUID={businessByUUID} />
           <Employee businessByUUID={businessByUUID} />
         </div>

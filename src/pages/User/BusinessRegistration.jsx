@@ -804,8 +804,8 @@ const BusinessRegistration = () => {
         </button> */}
           {/* sementara */}
         </form>
-        <div class="columns-2 mt-20">
-          <img src="src/assets/images/image.png" class="mb-5" />
+        <div class="columns-2 mt-20 flex justify-end">
+          {/* <img src="src/assets/images/image.png" class="mb-5" /> */}
           <div class="justify-end">
             <input class="ml-4" type="checkbox" required />
             <label class="ml-2">

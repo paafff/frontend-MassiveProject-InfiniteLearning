@@ -374,13 +374,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
             >
               Change
             </p>
-            {userDataUpdate.photoProfile ? (
-              <p className="text-sm text-white bg-green-600 py-1 px-3 rounded drop-shadow hover:cursor-pointer hover:bg-green-700 transition-all">
-                Save Picture
-              </p>
-            ) : (
-              ''
-            )}
           </div>
 
           <input

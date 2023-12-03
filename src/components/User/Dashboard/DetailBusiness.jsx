@@ -8,7 +8,7 @@ import { IoReturnDownBackOutline } from 'react-icons/io5';
 
 import axios from 'axios';
 
-const DetailBussiness = ({ businessByUUID, socialMedia }) => {
+const DetailBussiness = ({ businessByUUID }) => {
 
   const [editForm, setEditForm] = useState(true);
 
@@ -33,15 +33,15 @@ const DetailBussiness = ({ businessByUUID, socialMedia }) => {
   // }, [editForm]);
 
   // INPUT SOSMED
-  console.log("ini data sosmed uuid : ", socialMedia);
+  // console.log("ini data sosmed uuid : ", socialMedia);
   // const socmedDefault = businessByUUID.socialMedia;
-  console.log("socmed default ", socialMedia);
+  const businessData = businessByUUID || ""
+  console.log("socmed default ", businessByUUID.socialMedia);
 
   const [instagramLink, setInstagramLink] = useState(null);
   const [facebookLink, setFacebookLink] = useState(null);
   const [twitterLink, setTwitterLink] = useState(null);
   const [youtubeLink, setYoutubeLink] = useState(null);
-
 
   return (
     <div className="w-screen lg:w-full py-10 px-5 md:px-12 xl:px-24 xl:w-3/4">
@@ -65,6 +65,7 @@ const DetailBussiness = ({ businessByUUID, socialMedia }) => {
             setYoutubeLink={setYoutubeLink}
 
             // data default
+            businessByUUID={businessByUUID}
             IGdefault={instagramLink}
             FBdefault={facebookLink}
             TWdefault={twitterLink}
@@ -241,10 +242,11 @@ const Socmed = ({
   setFacebookLink,
   setTwitterLink,
   setYoutubeLink,
+  businessByUUID,
   IGdefault,
   FBdefault,
   TWdefault,
-  YTdefault
+  YTdefault,
 }) => {
 
 
@@ -264,9 +266,9 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link instagram"
-          defaultValue={IGdefault}
-        />
+          defaultValue={businessByUUID ? businessByUUID.socialMedia[0] : ""}
 
+        />
 
       </form>
       <form
@@ -282,7 +284,7 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link Facebook"
-        // defaultValue={FBdefault}
+          defaultValue={businessByUUID ? businessByUUID.socialMedia[1] : ""}
         />
 
       </form>
@@ -299,7 +301,7 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link twitter"
-        // defaultValue={TWdefault}
+          defaultValue={businessByUUID ? businessByUUID.socialMedia[2] : ""}
         />
 
       </form>
@@ -316,7 +318,7 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link youtube"
-        // defaultValue={YTdefault}
+          defaultValue={businessByUUID ? businessByUUID.socialMedia[3] : ""}
         />
 
       </form>
@@ -408,7 +410,8 @@ const Form = ({
     businessData.facebook,
     businessData.twitter,
     businessData.youtube,
-    // businessData.l,
+    businessData.maps,
+
   ];
 
   const updateBusiness = async (e) => {
@@ -460,6 +463,7 @@ const Form = ({
               onChange={(e) => handleChange(e.target)}
               className="text-xs lg:text-sm w-full text-gray-700 border border-gray-300 rounded p-2 placeholder:text-xs placeholder:text-gray-500 disabled:bg-gray-200"
               disabled={editForm}
+              defaultValue={businessByUUID.description}
               placeholder="Deskripsi"
               name="description"
               id="desc"
@@ -476,6 +480,7 @@ const Form = ({
             onChange={(e) => handleChange(e.target)}
             className="text-xs w-full h-10 text-gray-700 border border-gray-300 rounded p-2 placeholder:text-xs placeholder:text-gray-500 disabled:bg-gray-200"
             disabled={editForm}
+            defaultValue={businessByUUID ? businessByUUID.socialMedia[4] : ""}
             placeholder="Masukkan link"
             name="maps"
             id="maps"

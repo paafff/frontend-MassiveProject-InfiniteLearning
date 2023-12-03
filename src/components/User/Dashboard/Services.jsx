@@ -73,9 +73,23 @@ const Services = ({ businessByUUID }) => {
     srv1: '',
     srv2: '',
     srv3: '',
+    srv4: '',
+    srv5: '',
+    srv6: '',
+    srv7: '',
+    srv8: '',
+    srv9: '',
+    srv10: '',
     price1: '',
     price2: '',
     price3: '',
+    price4: '',
+    price5: '',
+    price6: '',
+    price7: '',
+    price8: '',
+    price9: '',
+    price10: '',
   });
 
   const handleService = (e) => {
@@ -123,6 +137,7 @@ const Services = ({ businessByUUID }) => {
         <hr className="my-5" />
 
         <form action="">
+
           {listLayanan.map((service) => (
             <Service editForm={editForm} id={service.id} name={service.name} handleService={handleService} handlePrice={handlePrice} />
           ))}
