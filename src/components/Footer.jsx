@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import Logo from '../assets/images/logo/logo.png'
+import Logo from '../assets/images/logo/logo2.png'
 import { Link } from 'react-router-dom';
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin, FaInstagram, FaFacebook, FaPhoneAlt, FaEnvelope } from "react-icons/fa";

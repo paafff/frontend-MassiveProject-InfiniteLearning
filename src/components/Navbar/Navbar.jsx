@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import Logo from '../../assets/images/logo/logo.png';
+import Logo from '../../assets/images/logo/logo2.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaAngleDown } from 'react-icons/fa';
 import DropdownCategory from './DropdownCategory';
@@ -135,7 +135,7 @@ const NavbarWebsite = ({ setDropdownKategori, dropdownKategori, dropdownProfile,
       <Link
         to="#"
         onClick={() => setDropdownKategori(!dropdownKategori)}
-        onBlur={() => setDropdownKategori(!dropdownKategori)}
+        // onBlur={() => setDropdownKategori(!dropdownKategori)}
         className='text-sm font-medium gap-1 flex items-center py-1 px-4'>
         Kategori
         <FaAngleDown className='inline-block' />
