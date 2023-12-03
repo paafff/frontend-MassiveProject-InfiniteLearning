@@ -23,6 +23,7 @@ import ManageReview from './pages/Admin/Review';
 import Help from './pages/Help';
 // import AccountAdmin from './pages/Admin/AccountAdmin';
 import InputReview from './pages/User/InputReview';
+import Subscription from './pages/User/Subscription';
 
 const App = () => {
   return (
@@ -44,6 +45,7 @@ const App = () => {
             <Route path="/user/reservasi" element={<Reservasi />} />
             <Route path="/user/review" element={<InputReview />} />
             <Route path= "/detail" element={<Detail />} /> 
+            <Route path="/subscription" element={<Subscription />} />
 
             {/* Super User */}
             <Route
