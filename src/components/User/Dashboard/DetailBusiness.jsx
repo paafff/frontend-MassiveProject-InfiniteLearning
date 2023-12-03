@@ -8,29 +8,40 @@ import { IoReturnDownBackOutline } from 'react-icons/io5';
 
 import axios from 'axios';
 
-const DetailBussiness = ({ businessByUUID }) => {
+const DetailBussiness = ({ businessByUUID, socialMedia }) => {
+
   const [editForm, setEditForm] = useState(true);
 
-  const bannerRef = useRef(null);
-  const [banner, setBanner] = useState(null);
+  // const bannerRef = useRef(null);
+  // const [banner, setBanner] = useState(null);
 
-  const handleBannerClick = () => {
-    bannerRef.current.click();
-  };
+  // const handleBannerClick = () => {
+  //   bannerRef.current.click();
+  // };
 
-  const handleBannerChange = (event) => {
-    // console.log("ambil gambar");
-    const file = event.target.files[0];
-    console.log(file);
-    console.log(businessByUUID);
-    setBanner(file);
-  };
+  // const handleBannerChange = (event) => {
+  //   const file = event.target.files[0];
+  //   console.log(file);
+  //   console.log(businessByUUID);
+  //   setBanner(file);
+  // };
 
-  useEffect(() => {
-    if (editForm == true) {
-      setBanner('');
-    }
-  }, [editForm]);
+  // useEffect(() => {
+  //   if (editForm == true) {
+  //     setBanner('');
+  //   }
+  // }, [editForm]);
+
+  // INPUT SOSMED
+  console.log("ini data sosmed uuid : ", socialMedia);
+  // const socmedDefault = businessByUUID.socialMedia;
+  console.log("socmed default ", socialMedia);
+
+  const [instagramLink, setInstagramLink] = useState(null);
+  const [facebookLink, setFacebookLink] = useState(null);
+  const [twitterLink, setTwitterLink] = useState(null);
+  const [youtubeLink, setYoutubeLink] = useState(null);
+
 
   return (
     <div className="w-screen lg:w-full py-10 px-5 md:px-12 xl:px-24 xl:w-3/4">
@@ -39,107 +50,208 @@ const DetailBussiness = ({ businessByUUID }) => {
         <hr className="my-5" />
 
         <div className="xl:flex xl:flex-row flex flex-col gap-4 mb-6">
-          <Banner banner={banner} businessByUUID={businessByUUID} />
+          <Banner
+            editForm={editForm}
+            setEditForm={setEditForm}
+            // banner={banner}
+            businessByUUID={businessByUUID} />
 
-          <Socmed editForm={editForm} setEditForm={setEditForm} />
+          <Socmed
+            editForm={editForm}
+            setEditForm={setEditForm}
+            setFacebookLink={setFacebookLink}
+            setInstagramLink={setInstagramLink}
+            setTwitterLink={setTwitterLink}
+            setYoutubeLink={setYoutubeLink}
+
+            // data default
+            IGdefault={instagramLink}
+            FBdefault={facebookLink}
+            TWdefault={twitterLink}
+            YTdefault={youtubeLink}
+          />
         </div>
 
         <Form
           businessByUUID={businessByUUID}
-          banner={banner}
+          // banner={banner}
           editForm={editForm}
           setEditForm={setEditForm}
-          handleBannerClick={handleBannerClick}
-          handleBannerChange={handleBannerChange}
-          bannerRef={bannerRef}
+          // handleBannerClick={handleBannerClick}
+          // handleBannerChange={handleBannerChange}
+          // bannerRef={bannerRef}
+
+          // passing sosmed to form
+          inputIG={instagramLink}
+          inputFB={facebookLink}
+          inputTW={twitterLink}
+          inputYT={youtubeLink}
         />
       </div>
     </div>
   );
 };
 
-const Banner = ({ banner, businessByUUID }) => {
+const Banner = ({ editForm, setEditForm, banner, businessByUUID }) => {
+
+  // Banner default
   const photoDefault = businessByUUID ? businessByUUID.imageURL[0] : '';
+
+  const changeBannerRef = useRef(null)
+  const picture1Ref = useRef(null)
+  const picture2Ref = useRef(null)
+  const picture3Ref = useRef(null)
+  const picture4Ref = useRef(null)
+
+  const [pictureBanner, setPictureBanner] = useState(null)
+  const [picture1, setPicture1] = useState(null)
+  const [picture2, setPicture2] = useState(null)
+  const [picture3, setPicture3] = useState(null)
+  const [picture4, setPicture4] = useState(null)
+
+  // Banner
+  const handleBannerClick = () => {
+    changeBannerRef.current.click();
+  }
+  const handleBannerChange = (event) => {
+    // console.log("ambil gambar");
+    const file = event.target.files[0]
+    console.log(file);
+    setPictureBanner(file)
+  }
+
+  // Picture 1
+  const handlePicture1Click = () => {
+    picture1Ref.current.click();
+  }
+  const handlePicture1Change = (event) => {
+    // console.log("ambil gambar");
+    const file = event.target.files[0]
+    console.log(file);
+    setPicture1(file)
+  }
+
+  // Picture 2
+  const handlePicture2Click = () => {
+    picture2Ref.current.click();
+  }
+  const handlePicture2Change = (event) => {
+    // console.log("ambil gambar");
+    const file = event.target.files[0]
+    console.log(file);
+    setPicture2(file)
+  }
+
+  // Picture 3
+  const handlePicture3Click = () => {
+    picture3Ref.current.click();
+  }
+  const handlePicture3Change = (event) => {
+    // console.log("ambil gambar");
+    const file = event.target.files[0]
+    console.log(file);
+    setPicture3(file)
+  }
+
+  // Picture 4
+  const handlePicture4Click = () => {
+    picture4Ref.current.click();
+  }
+  const handlePicture4Change = (event) => {
+    // console.log("ambil gambar");
+    const file = event.target.files[0]
+    console.log(file);
+    setPicture4(file)
+  }
+
+  useEffect(() => {
+    if (editForm == true) {
+      setPicture1('')
+      setPicture1('')
+    }
+  }, [editForm])
+
   return (
     <div className="w-full xl:my-auto xl:w-1/2 border border-gray-300 rounded p-2 flex flex-col gap-3 mb-5">
+      {console.log(banner)}
       {banner ? (
         <img
           src={URL.createObjectURL(banner)}
           className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain"
         />
       ) : (
-        <img src={photoDefault} />
 
-        // <div className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video bg-gray-500 rounded flex items-center justify-center">
-        //   <p className="text-white">Banner</p>
-        // </div>
+        editForm ? (
+          <img src={photoDefault} />
+        ) : (
+          <img src={pictureBanner ? URL.createObjectURL(pictureBanner) : photoDefault} onClick={handleBannerClick} className='hover:cursor-pointer hover:scale-95 transition-all' />
+        )
+
       )}
 
+      <input type="file" name='banner' id='banner' className='hidden' ref={changeBannerRef} onChange={handleBannerChange} />
+
       {/* </div> */}
-      <div className="flex justify-center gap-3">
-        <div className="w-20 bg-gray-500 aspect-square rounded flex items-center justify-center ">
-          <p className="text-xs text-white">Foto</p>
+      <div className='flex justify-center gap-3'>
+        <div className='w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ' onClick={handlePicture1Click}   >
+          {picture1 ? (
+            <img src={URL.createObjectURL(picture1)} className='w-full ' alt="" srcset="" />
+          ) : (
+            <p className='text-xs text-white'>Foto 1</p>
+          )}
+          <input type="file" id='picture1' name='picture1' className='hidden' ref={picture1Ref} onChange={handlePicture1Change} />
         </div>
-        <div className="w-20 bg-gray-500 aspect-square rounded flex items-center justify-center ">
-          <p className="text-xs text-white">Foto</p>
+        <div className='w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ' onClick={handlePicture2Click}>
+          {picture2 ? (
+            <img src={URL.createObjectURL(picture2)} className='w-full ' alt="" srcset="" />
+          ) : (
+            <p className='text-xs text-white'>Foto 2</p>
+          )}
+          <input type="file" id='picture2' name='picture2' className='hidden' ref={picture2Ref} onChange={handlePicture2Change} />
+
         </div>
-        <div className="w-20 bg-gray-500 aspect-square rounded flex items-center justify-center ">
-          <p className="text-xs text-white">Foto</p>
+        <div className='w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ' onClick={handlePicture3Click}>
+          {picture3 ? (
+            <img src={URL.createObjectURL(picture3)} className='w-full ' alt="" srcset="" />
+          ) : (
+            <p className='text-xs text-white'>Foto 3</p>
+          )}
+          <input type="file" id='picture1' name='picture1' className='hidden' ref={picture3Ref} onChange={handlePicture3Change} />
+
         </div>
-        <div className="w-20 bg-gray-500 aspect-square rounded flex items-center justify-center ">
-          <p className="text-xs text-white">Foto</p>
+        <div className='w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ' onClick={handlePicture4Click}>
+          {picture4 ? (
+            <img src={URL.createObjectURL(picture4)} className='w-full ' alt="" srcset="" />
+          ) : (
+            <p className='text-xs text-white'>Foto 4</p>
+          )
+          }
+          <input type="file" id='picture1' name='picture1' className='hidden' ref={picture4Ref} onChange={handlePicture4Change} />
+
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
-const Socmed = ({ editForm, setEditForm }) => {
-  const [instagramLink, setInstagramLink] = useState(null);
-  const [facebookLink, setFacebookLink] = useState(null);
-  const [twitterLink, setTwitterLink] = useState(null);
-  const [youtubeLink, setYoutubeLink] = useState(null);
+const Socmed = ({
+  editForm,
+  setEditForm,
+  setInstagramLink,
+  setFacebookLink,
+  setTwitterLink,
+  setYoutubeLink,
+  IGdefault,
+  FBdefault,
+  TWdefault,
+  YTdefault
+}) => {
 
-  // Instagram
-  const handlerInstagram = (e) => {
-    e.preventDefault();
-    setEditForm(!editForm);
-
-    // logic input instagram
-    console.log(instagramLink);
-  };
-
-  // Facebook
-  const handlerFacebook = (e) => {
-    e.preventDefault();
-    setEditForm(!editForm);
-
-    // logic input facebook
-    console.log(facebookLink);
-  };
-
-  // Twitter
-  const handlerTwitter = (e) => {
-    e.preventDefault();
-    setEditForm(!editForm);
-
-    // logic input Twitter
-    console.log(twitterLink);
-  };
-
-  // Youtube
-  const handlerYoutube = (e) => {
-    e.preventDefault();
-    setEditForm(!editForm);
-
-    // logic input Youtube
-    console.log(youtubeLink);
-  };
 
   return (
     <div className="flex flex-col md:items-start md:px-3 xl:w-1/2 xl:justify-center xl:items-center xl:ml-3 gap-3">
       <form
-        onSubmit={handlerInstagram}
+
         className="flex items-center gap-3 md:w-3/4 xl:w-full"
       >
         <div className="w-7">
@@ -149,22 +261,16 @@ const Socmed = ({ editForm, setEditForm }) => {
           onChange={(e) => setInstagramLink(e.target.value)}
           type="text"
           name="instagram"
-          className="w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
+          className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link instagram"
+          defaultValue={IGdefault}
         />
 
-        {!editForm && (
-          <button
-            type="submit"
-            className="px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded"
-          >
-            <IoIosSave className="inline-block text-white" />
-          </button>
-        )}
+
       </form>
       <form
-        onSubmit={handlerFacebook}
+
         className="flex items-center gap-3 md:w-3/4 xl:w-full"
       >
         <div className="w-7">
@@ -173,21 +279,15 @@ const Socmed = ({ editForm, setEditForm }) => {
         <input
           onChange={(e) => setFacebookLink(e.target.value)}
           type="text"
-          className="w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
+          className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link Facebook"
+        // defaultValue={FBdefault}
         />
-        {!editForm && (
-          <button
-            type="submit"
-            className="px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded"
-          >
-            <IoIosSave className="inline-block text-white" />
-          </button>
-        )}
+
       </form>
       <form
-        onSubmit={handlerTwitter}
+
         className="flex items-center gap-3 md:w-3/4 xl:w-full"
       >
         <div className="w-7">
@@ -196,21 +296,15 @@ const Socmed = ({ editForm, setEditForm }) => {
         <input
           onChange={(e) => setTwitterLink(e.target.value)}
           type="text"
-          className="w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
+          className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link twitter"
+        // defaultValue={TWdefault}
         />
-        {!editForm && (
-          <button
-            type="submit"
-            className="px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded"
-          >
-            <IoIosSave className="inline-block text-white" />
-          </button>
-        )}
+
       </form>
       <form
-        onSubmit={handlerYoutube}
+
         className="flex items-center gap-3 md:w-3/4 xl:w-full"
       >
         <div className="w-7">
@@ -219,18 +313,12 @@ const Socmed = ({ editForm, setEditForm }) => {
         <input
           onChange={(e) => setYoutubeLink(e.target.value)}
           type="text"
-          className="w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
+          className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link youtube"
+        // defaultValue={YTdefault}
         />
-        {!editForm && (
-          <button
-            type="submit"
-            className="px-3 py-1 bg-green-600 hover:bg-green-700 transition-all hover:cursor-pointer rounded"
-          >
-            <IoIosSave className="inline-block text-white" />
-          </button>
-        )}
+
       </form>
     </div>
   );
@@ -244,6 +332,10 @@ const Form = ({
   setEditForm,
   banner,
   businessByUUID,
+  inputIG,
+  inputFB,
+  inputTW,
+  inputYT,
 }) => {
   const [desc, setDesc] = useState('');
   const [maps, setMaps] = useState('');
@@ -279,18 +371,44 @@ const Form = ({
     img4: null,
     img5: null,
     description: '',
-    instagram: 'Link',
-    facebook: 'Link',
-    twitter: 'Link',
-    youtube: 'Link',
-    maps: 'Link',
+    instagram: inputIG,
+    facebook: inputFB,
+    twitter: inputTW,
+    youtube: inputYT,
+    maps: '',
   });
+
+  // set sosmed from input to final state (bingung? sama gw juga)
+  useEffect(() => {
+    setBusinessData((prev) => ({
+      ...prev,
+      instagram: inputIG,
+    }));
+
+    setBusinessData((prev) => ({
+      ...prev,
+      facebook: inputFB,
+    }));
+
+    setBusinessData((prev) => ({
+      ...prev,
+      twitter: inputTW,
+    }));
+
+    setBusinessData((prev) => ({
+      ...prev,
+      youtube: inputYT,
+    }));
+
+  }, [inputIG, inputFB, inputTW, inputYT])
+
 
   const arraySocialMedia = [
     businessData.instagram,
     businessData.facebook,
     businessData.twitter,
     businessData.youtube,
+    // businessData.l,
   ];
 
   const updateBusiness = async (e) => {
@@ -328,71 +446,7 @@ const Form = ({
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="w-full flex flex-col gap-2">
-        <label htmlFor="" className="text-sm">
-          Banner
-        </label>
-        <form className="flex gap-3">
-          {!editForm ? (
-            <div
-              className={`w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2`}
-              onClick={handleBannerClick}
-            >
-              <p className="text-xs text-gray-700">
-                {banner ? banner.name : 'Upload Banner'}
-              </p>
-            </div>
-          ) : (
-            <div className="w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2 bg-gray-200 ">
-              <p className="text-xs text-gray-500">Upload Banner </p>
-            </div>
-          )}
-          <input
-            type="file"
-            name="banner"
-            id="banner"
-            className="hidden"
-            ref={bannerRef}
-            onChange={handleBannerChange}
-          />
 
-          <button
-            type="submit"
-            disabled={editForm}
-            className={`py-2 px-3  text-xs rounded ${
-              editForm ? 'bg-gray-200 text-gray-500' : 'bg-zinc-800 text-white '
-            } `}
-          >
-            Upload
-          </button>
-        </form>
-      </div>
-      <div className="w-full flex flex-col gap-2">
-        <label htmlFor="" className="text-sm">
-          Foto
-        </label>
-        <form className="flex gap-3">
-          {/* <input type="file" name='banner' id='banner' className='hidden' ref={bannerRef} /> */}
-          {!editForm ? (
-            <div className="w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2">
-              <p className="text-xs text-gray-700">Upload Foto</p>
-            </div>
-          ) : (
-            <div className="w-full md:w-3/4 xl:w-1/2 h-10 border border-gray-300 rounded flex items-center px-2 bg-gray-200 ">
-              <p className="text-xs text-gray-500">Upload Foto Banner </p>
-            </div>
-          )}
-          <button
-            type="submit"
-            disabled={editForm}
-            className={`py-2 px-3 text-xs rounded ${
-              editForm ? 'bg-gray-200 text-gray-500' : 'bg-zinc-800 text-white'
-            }`}
-          >
-            Upload
-          </button>
-        </form>
-      </div>
       <form onSubmit={updateBusiness} action="" className="flex flex-col gap-2">
         <div className="w-full md:w-3/4 xl:w-1/2 flex flex-col gap-2">
           <label htmlFor="" className="text-sm">
@@ -404,7 +458,7 @@ const Form = ({
             </p>
             <textarea
               onChange={(e) => handleChange(e.target)}
-              className="text-xs w-full text-gray-700 border border-gray-300 rounded p-2 placeholder:text-xs placeholder:text-gray-500 disabled:bg-gray-200"
+              className="text-xs lg:text-sm w-full text-gray-700 border border-gray-300 rounded p-2 placeholder:text-xs placeholder:text-gray-500 disabled:bg-gray-200"
               disabled={editForm}
               placeholder="Deskripsi"
               name="description"

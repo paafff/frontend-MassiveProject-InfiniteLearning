@@ -63,9 +63,12 @@ const listLayanan = [
 const Services = ({ businessByUUID }) => {
   const [editForm, setEditForm] = useState(true);
 
-  const arrayService = ['layanan1', 'layanan2', 'layanan3'];
-  const arrayServicePrice = ['1223', '1212', '1213'];
+  // const arrayService = ['layanan1', 'layanan2', 'layanan3'];
+  const [arrayService, setArrayService] = useState([]);
+  // const arrayServicePrice = ['1223', '1212', '1213'];
+  const [arrayServicePrice, setArrayServicePrice] = useState([]);
   const businessId = businessByUUID.id;
+
   const [serviceData, setServiceData] = useState({
     srv1: '',
     srv2: '',
@@ -74,6 +77,24 @@ const Services = ({ businessByUUID }) => {
     price2: '',
     price3: '',
   });
+
+  const handleService = (e) => {
+    const { value, checked } = e.target
+
+    if (checked) {
+      setArrayService(pre => [...pre, value])
+    }
+    console.log(e.target.id);
+  }
+
+  const handlePrice = (e) => {
+    const value = e.target.value
+    setArrayServicePrice(pre => [...pre, value])
+
+  }
+
+  console.log('service yg dicentang ', arrayService);
+  console.log('harga service ', arrayServicePrice);
 
   const createServices = async (e) => {
     e.preventDefault();
@@ -103,7 +124,7 @@ const Services = ({ businessByUUID }) => {
 
         <form action="">
           {listLayanan.map((service) => (
-            <Service editForm={editForm} id={service.id} name={service.name} />
+            <Service editForm={editForm} id={service.id} name={service.name} handleService={handleService} handlePrice={handlePrice} />
           ))}
 
           <hr />
@@ -121,13 +142,15 @@ const Services = ({ businessByUUID }) => {
   );
 };
 
-const Service = ({ id, name, editForm }) => {
+const Service = ({ id, name, editForm, handleService, handlePrice }) => {
   return (
     <div
       className="w-full py-3 px-5 border-t border-gray-200 flex justify-start gap-10"
       key={id}
     >
-      <input type="checkbox" className="scale-125" id={id} />
+      {!editForm && (
+        <input type="checkbox" value={name} onChange={handleService} className="scale-125" id={id} />
+      )}
       <div className="w-1/2 flex items-center">
         <p className="text-sm font-thin">{name}</p>
       </div>
@@ -139,6 +162,7 @@ const Service = ({ id, name, editForm }) => {
           type="number"
           className="w-3/4 border border-gray-300 rounded px-2 h-7 text-xs disabled:bg-gray-200"
           disabled={editForm}
+          onChange={handlePrice}
         />
       </div>
     </div>
@@ -156,7 +180,7 @@ const Button = ({ editForm, setEditForm }) => {
           >
             <p className="text-xs md:text-sm text-white flex gap-2 items-center">
               <FiEdit className="inline-block" />
-              Ubah Akun
+              Update Layanan
             </p>
           </div>
         </div>
