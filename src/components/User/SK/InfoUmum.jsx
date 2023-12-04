@@ -2,6 +2,7 @@ import React from 'react'
 
 // ini dicopas
 import Hamburger from '../../../pages/User/SK/Hamburger'
+import { Link } from 'react-router-dom'
 
 // showSidebar, setShowSidebar
 const InfoUmum = ({ showSidebar, setShowSidebar }) => {
@@ -9,11 +10,9 @@ const InfoUmum = ({ showSidebar, setShowSidebar }) => {
         <>
             <Hamburger showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
-            <p>Ke Info Umum</p>
-
             <div className='w-full px-5 lg:py-5'>
 
-                <div className='bg-white w-full rounded-md lg:p-8 drop-shadow-md'>
+                <div className='bg-white w-full rounded-md p-5 lg:p-8 drop-shadow-md'>
 
                     <InfoUmumDesc />
 
@@ -59,13 +58,13 @@ const CariBarberSalon = () => {
 const Kerjasama = () => {
     return (
         <div className='mb-8'>
-        <p className='text-base md:text-lg font-semibold'>Berkerjasama dengan HairHub</p>
+            <p className='text-base md:text-lg font-semibold'>Berkerjasama dengan HairHub</p>
 
-        <hr className='my-5' />
-        <p className='text-sm'>Apakah saya harus memiliki akun HairHub untuk dapat mendaftarkan bisnis saya?</p>
-        <p className='text-sm'>Bagaimana cara membuat akun sebagai pemilik Barbershop atau Salon?</p>
-        <p className='text-sm'>Apakah saya bisa membuat akun pemilik dan pencari Barbershop atau Salon sekaligus?</p>
-        <p className='text-sm'>Saya sudah membuat akun pemilik Barbershop atau Salon, bagaimana cara mendaftarkan bisnis saya?</p>
+            <hr className='my-5' />
+            <p className='text-sm'>Apakah saya harus memiliki akun HairHub untuk dapat mendaftarkan bisnis saya?</p>
+            <p className='text-sm'>Bagaimana cara membuat akun sebagai pemilik Barbershop atau Salon?</p>
+            <p className='text-sm'>Apakah saya bisa membuat akun pemilik dan pencari Barbershop atau Salon sekaligus?</p>
+            <p className='text-sm'>Saya sudah membuat akun pemilik Barbershop atau Salon, bagaimana cara mendaftarkan bisnis saya?</p>
         </div>
     )
 }

@@ -1,7 +1,10 @@
 import React from 'react'
 import { FaCheck } from "react-icons/fa6";
+import { useLocation } from 'react-router-dom';
 
 const PriceList = ({ textColor, title, borderColor, price, text, services, bgColor }) => {
+
+    const pathname = useLocation().pathname
 
     const formattedPrice = new Intl.NumberFormat('id-ID', {
         style: 'currency',
@@ -11,7 +14,7 @@ const PriceList = ({ textColor, title, borderColor, price, text, services, bgCol
     }).format(price);
 
     return (
-        <div className={`m-3 min-w-[384px] xl:w-[300px] mx-auto xl:mx-0 h-[582px] flex flex-col justify-between bg-white rounded-2xl p-6 drop-shadow-md  border-2 ${borderColor}`}>
+        <div className={`m-3 min-w-[384px] ${pathname == '/subscription' ? "scale-75 h-fit" : ""} xl:w-[300px] mx-auto xl:mx-0 h-[582px] flex flex-col justify-between bg-white rounded-2xl p-6 drop-shadow-md  border-2 ${borderColor}`}>
             <div className='flex flex-col'>
                 <div className='w-full flex justify-start'>
                     <p className={`font-semibold text-base tracking-wide ${textColor}`}>{title}</p>
@@ -34,9 +37,11 @@ const PriceList = ({ textColor, title, borderColor, price, text, services, bgCol
                     ))}
                 </div>
             </div>
-            <div className={`w-full h-16 flex justify-center items-center rounded-3xl ${bgColor} hover:scale-95 transition-all shadow-lg hover:shadow-none hover:cursor-pointer`}>
-                <p className='text-white font-semibold tracking-wider text-lg'>Dapatkan Sekarang</p>
-            </div>
+            {pathname != '/subscription' ? (
+                <div className={`w-full h-16 flex justify-center items-center rounded-3xl ${bgColor} hover:scale-95 transition-all shadow-lg hover:shadow-none hover:cursor-pointer`}>
+                    <p className='text-white font-semibold tracking-wider text-lg'>Dapatkan Sekarang</p>
+                </div>
+            ) : ""}
         </div>
     )
 }

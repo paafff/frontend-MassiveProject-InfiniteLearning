@@ -6,11 +6,9 @@ const Kebijakan = ({ showSidebar, setShowSidebar }) => {
         <>
             <Hamburger showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
-            <p>Ke Info Umum</p>
-
             <div className='w-full px-5 lg:py-5'>
 
-                <div className='bg-white w-full rounded-md lg:p-8 drop-shadow-md'>
+                <div className='bg-white w-full rounded-md lg:p-8 p-5 drop-shadow-md'>
 
                     <Policy />
 
@@ -24,13 +22,13 @@ const Kebijakan = ({ showSidebar, setShowSidebar }) => {
 const Policy = () => {
     return (
         <div className='mb-8'>
-        <p className='text-base md:text-xl font-semibold'>Kebijakan HairHub</p>
+            <p className='text-base md:text-xl font-semibold'>Kebijakan HairHub</p>
 
-        <hr className='my-5' />
-        <p className='text-lg font-semibold'>Kebijakan Privasi</p>
-        <p className='text-sm py-3'> <u> Kebijakan Privasi HairHub</u></p>
-        <p className='text-lg font-semibold'>Kebijakan Penalti Pengguna</p>
-        <p className='text-sm py-3'> <u>Kebijakan Penalti Pengguna</u></p>
+            <hr className='my-5' />
+            <p className='text-lg font-semibold'>Kebijakan Privasi</p>
+            <p className='text-sm py-3'> <u> Kebijakan Privasi HairHub</u></p>
+            <p className='text-lg font-semibold'>Kebijakan Penalti Pengguna</p>
+            <p className='text-sm py-3'> <u>Kebijakan Penalti Pengguna</u></p>
         </div>
     )
 }

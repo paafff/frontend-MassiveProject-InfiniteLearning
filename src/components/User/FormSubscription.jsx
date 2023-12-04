@@ -1,11 +1,12 @@
 import React from 'react'
+import Header from '../../assets/images/icons/gataunamanya.png'
 
 const FormSubscription = () => {
     return (
-        <div class='p-2 m-10'>
+        <div class='p-10 -mt-10'>
             <div align='center'>
                 <h1 class='text-xl font-semibold' align='center'>Lakukan Pembayaran!</h1>
-                <img class='mt-3' src='/src/assets/images/icons/diamondLine.png' />
+                <img class='mt-3' src={Header} />
             </div>
             <div>
                 <form>
@@ -21,7 +22,7 @@ const FormSubscription = () => {
                         <label class='block text-sm font-xl leading-6 text-gray-900 basis-1/4'> Price :</label>
                         <input autoComplete='off' type='text' name='price' id='price' className='border' class='block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-3/4' placeholder='Masukkan Price' />
                     </div>
-                    <hr class='m-5 border-2 border-black'/>
+                    <hr class='m-5 border-2 border-black' />
                     <div>
                         <label class='block text-sm font-xl leading-6 text-gray-900 basis-1/4'> Nominal :</label>
                         <input autoComplete='off' type='text' name='nominal' id='nominal' className='border' class='block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-3/4' placeholder='Rp....' />

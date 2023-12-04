@@ -118,7 +118,7 @@ const Home = () => {
 
         <div className='w-full  flex bg-rose-400 p-3 lg:px-20 xl:px-64 py-7'>
           <div className='w-3/4 px-3 flex items-center justify-center'>
-            <p className='text-sm md:text-base lg:text-lg text-white'>
+            <p className='text-sm md:text-base lg:text-lg xl:text-xl text-white'>
               "Temukan Gaya Anda! Bergabunglah Bersama Kami untuk Menemukan Barbershop & Salon Impian Anda. Semua Ada di Sini!"
             </p>
           </div>

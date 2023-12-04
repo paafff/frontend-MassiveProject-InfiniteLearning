@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import Layout from '../../Layout'
 import Sidebar from './Sidebar'
-import ComponentBekerjasama from '../../../components/User/SK/Bekerjasama'
+import Layout from '../../Layout'
+import ComponentHubungi from '../../../components/User/SK/Hubungi'
 
-const Bekerjasama = () => {
+const Hubungi = () => {
     const [showSidebar, setShowSidebar] = useState(false)
 
     return (
@@ -14,7 +14,7 @@ const Bekerjasama = () => {
 
                 <div className='w-full min-h-screen'>
 
-                    <ComponentBekerjasama showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+                    <ComponentHubungi showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
                 </div>
 
@@ -23,4 +23,4 @@ const Bekerjasama = () => {
     )
 }
 
-export default Bekerjasama
+export default Hubungi

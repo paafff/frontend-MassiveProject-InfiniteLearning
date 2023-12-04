@@ -38,6 +38,8 @@ import SyaratKetentuanPemilik from './pages/User/SK/SyaratKetentuanPemilik';
 import SyaratKetentuanPencari from './pages/User/SK/SyaratKetentuanPencari';
 
 import Subscription from './pages/User/Subscription';
+import Hubungi from './pages/User/SK/Hubungi';
+import KategoriBantuan from './pages/User/SK/KategoriBantuan';
 
 const App = () => {
   return (
@@ -71,7 +73,7 @@ const App = () => {
             <Route path="/user/review" element={<InputReview />} />
             <Route path="/barbershop" element={<ListBusiness page={"Barbershop"} />} />
             <Route path="/salon" element={<ListBusiness page={"Salon"} />} />
-            <Route path="/detail" element={<Detail />} /> 
+            <Route path="/detail" element={<Detail />} />
 
             {/* Super User */}
             {/* <Route
@@ -100,16 +102,18 @@ const App = () => {
             <Route path="/subscription" element={<Subscription />} />
 
             {/* SK */}
+            <Route path="/help-category" element={<KategoriBantuan />} />
             <Route path="/basic-information" element={<InfoUmum />} />
             <Route path="/search-barber" element={<CariBarber />} />
             <Route path="/collaboration" element={<Bekerjasama />} />
             <Route path="/policy" element={<Kebijakan />} />
             <Route path="/term" element={<SyaratKetentuan />} />
             <Route path="/guide" element={<PanduanKeamanan />} />
-            <Route path="/private" element={<Privasi />} />
+            <Route path="/privacy" element={<Privasi />} />
             <Route path="/penalty" element={<Penalti />} />
             <Route path="/term-owner" element={<SyaratKetentuanPemilik />} />
             <Route path="/term-searcher" element={<SyaratKetentuanPencari />} />
+            <Route path="/call-centre" element={<Hubungi />} />
           </Routes>
         </BrowserRouter>
       </div>

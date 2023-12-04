@@ -8,11 +8,11 @@ const Privasi = () => {
 
     return (
         <Layout>
-            <div className='flex  bg-gray-200 h-screen'>
+            <div className='flex  bg-gray-200 min-h-screen'>
 
                 <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
-                <div className='w-full min-h-screen'>
+                <div className='w-full min-h-screen mb-20'>
 
                     <ComponentPrivasi showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
@@ -20,7 +20,7 @@ const Privasi = () => {
 
             </div>
         </Layout>
-  )
+    )
 }
 
 export default Privasi

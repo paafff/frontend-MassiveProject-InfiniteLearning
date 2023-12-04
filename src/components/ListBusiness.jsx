@@ -21,7 +21,7 @@ const ListBusiness = ({ listCity, dataList, page }) => {
     };
 
     return (
-        <div className=' w-screen min-h-screen'>
+        <div className=' min-w-full min-h-screen'>
 
             <Banner page={page} />
 

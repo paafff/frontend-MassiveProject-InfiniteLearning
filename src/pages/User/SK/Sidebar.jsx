@@ -18,7 +18,7 @@ const style = {
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
     return (
-        <div className={`flex z-10 flex-col bg-white w-80 lg:w-96 h-full drop-shadow-md absolute lg:static transition-all ${showSidebar ? "left-0" : "left-[-320px]"}`}>
+        <div className={`flex z-10 flex-col bg-white w-80 lg:w-96 min-h-screen drop-shadow-md absolute lg:static transition-all ${showSidebar ? "left-0" : "left-[-320px]"}`}>
 
             <InfoUmum />
 
@@ -48,12 +48,17 @@ const InfoUmum = () => {
                 </Typography>
             </AccordionSummary>
             <AccordionDetails className=''>
-                <Link className='px-5'>
+                <Link className='px-5' to="/basic-information">
+                    Info Umum
+                </Link>
+            </AccordionDetails>
+            <AccordionDetails className=''>
+                <Link className='px-5' to="/search-barber">
                     Cari Barbershop / Salon
                 </Link>
             </AccordionDetails>
             <AccordionDetails className=''>
-                <Link className='px-5'>
+                <Link className='px-5' to="/collaboration">
                     Bekerjasama HairHub
                 </Link>
             </AccordionDetails>
@@ -75,13 +80,18 @@ const KebijakanHairHub = () => {
                 </Typography>
             </AccordionSummary>
             <AccordionDetails className=''>
-                <Link className='px-5'>
+                <Link className='px-5' to="/policy">
+                    Kebijakan HairHub
+                </Link>
+            </AccordionDetails>
+            <AccordionDetails className=''>
+                <Link className='px-5' to="/privacy">
                     Kebijakan Privasi
                 </Link>
             </AccordionDetails>
             <AccordionDetails className=''>
-                <Link className='px-5'>
-                    Kebijakan Pengguna
+                <Link className='px-5' to="/penalty">
+                    Kebijakan Penalti
                 </Link>
             </AccordionDetails>
         </Accordion>
@@ -102,12 +112,17 @@ const SyaratKetentuan = () => {
                 </Typography>
             </AccordionSummary>
             <AccordionDetails className=''>
-                <Link className='px-5'>
+                <Link className='px-5' to="/term">
+                    Syarat dan Ketentuan
+                </Link>
+            </AccordionDetails>
+            <AccordionDetails className=''>
+                <Link className='px-5' to="/term-owner">
                     Pemilik
                 </Link>
             </AccordionDetails>
             <AccordionDetails className=''>
-                <Link className='px-5'>
+                <Link className='px-5' to="/term-searcher">
                     Pencari
                 </Link>
             </AccordionDetails>
@@ -125,7 +140,9 @@ const PanduanKeamanan = () => {
             >
                 <Typography className='px-5 '>
                     <BsJournalBookmark className='inline-block scale-150 mr-5' />
-                    Panduan Keamanan
+                    <Link to="/guide">
+                        Panduan Keamanan
+                    </Link>
                 </Typography>
             </AccordionSummary>
         </Accordion>
@@ -142,7 +159,9 @@ const HubungiHairHub = () => {
             >
                 <Typography className='px-5 '>
                     <TfiHeadphoneAlt className='inline-block scale-150 mr-5' />
-                    Hubungi HairHub
+                    <Link to="/call-centre">
+                        Hubungi HairHub
+                    </Link>
                 </Typography>
             </AccordionSummary>
         </Accordion>

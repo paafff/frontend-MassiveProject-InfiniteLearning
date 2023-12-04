@@ -8,7 +8,7 @@ const CariBarber = ({ showSidebar, setShowSidebar }) => {
 
             <div className='w-full px-5 lg:py-5'>
 
-                <div className='bg-white w-full rounded-md lg:p-8 drop-shadow-md'>
+                <div className='bg-white w-full rounded-md lg:p-8 p-5 drop-shadow-md'>
 
                     <SayaInginCari />
 

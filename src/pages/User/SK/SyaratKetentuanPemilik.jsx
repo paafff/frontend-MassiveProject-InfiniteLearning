@@ -8,7 +8,7 @@ const SyaratKetentuanPemilik = () => {
 
     return (
         <Layout>
-            <div className='flex  bg-gray-200 h-screen'>
+            <div className='flex  bg-gray-200 min-h-screen'>
 
                 <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 

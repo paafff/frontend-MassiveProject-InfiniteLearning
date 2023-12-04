@@ -123,14 +123,14 @@ const NavbarWebsite = ({ setDropdownKategori, dropdownKategori, dropdownProfile,
   return (
     <div className='text-white hidden lg:flex xl:flex items-center justify-end gap-6 w-3/4 xl:w-full '>
 
-      <input
+      {/* <input
         placeholder='Cari apa?'
         type="text"
-        className='bg-white border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 flex py-2 px-4  w-1/2' />
+        className='bg-white border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 flex py-2 px-4  w-1/2' /> */}
 
       <Link
         to="#"
-        className='text-sm font-medium py-1 px-4'>Syarat dan Ketentuan</Link>
+        className='text-sm font-medium py-1 px-4'>Cari apa?</Link>
 
       <Link
         to="#"
@@ -181,7 +181,7 @@ const NavbarMobile = ({ mobileNavbar, setDropdownKategori, dropdownKategori, dro
 
       <Link to="#"
         onClick={() => setDropdownKategori(!dropdownKategori)}
-        onBlur={() => setDropdownKategori(!dropdownKategori)}
+        // onBlur={() => setDropdownKategori(!dropdownKategori)}
         className='text-sm inline-block font-medium gap-1 items-center py-1  w-fit'>
         Kategori
         <FaAngleDown className='inline-block ml-2' />
@@ -190,7 +190,7 @@ const NavbarMobile = ({ mobileNavbar, setDropdownKategori, dropdownKategori, dro
       {isLogin ? (
         <Link
           onClick={() => setDropdownProfile(!dropdownProfile)}
-          onBlur={() => setDropdownProfile(!dropdownProfile)}
+          // onBlur={() => setDropdownProfile(!dropdownProfile)}
           className='text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3'>
           <FaUserCircle className='inline-block scale-[2]' />
           <FaAngleDown className='inline-block' />
