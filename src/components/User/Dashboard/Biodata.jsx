@@ -523,7 +523,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
 
                 setUserDataUpdate((prevUserData) => ({
                   ...prevUserData,
-                  kec: selectedName,
+                  kab: selectedName,
                 }));
               }}>
 

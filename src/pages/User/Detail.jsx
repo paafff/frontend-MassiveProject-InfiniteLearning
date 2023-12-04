@@ -6,7 +6,7 @@ import ContentDetail from '../../components/User/ContentDetail';
 const Detail = () => {
     return (
         <Layout>
-            <div class='mx-20 my-10'>
+            <div class='xl:w-3/4 w-full px-3 md:px-5 min-h-screen my-5 mx-auto'>
                 <Gallery />
                 <ContentDetail />
             </div>

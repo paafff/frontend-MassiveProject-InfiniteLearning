@@ -20,11 +20,16 @@ const Subscription = () => {
       "Waktu respon dukungan 24 jam",
     ]
   }
-
+  const formattedPrice = new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR', // Change this to your desired currency code
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(dataPriceList.price);
 
   return (
     <Layout>
-      <div class='w-full min-h-screen'>
+      <div class='w-full min-h-screen flex flex-col lg:flex-row items-center xl:w-3/4 xl:mx-auto'>
         <PriceList
           textColor={dataPriceList.textColor}
           bgColor={dataPriceList.bgColor}
@@ -33,8 +38,11 @@ const Subscription = () => {
           price={dataPriceList.price}
           text={dataPriceList.text}
           services={dataPriceList.services}
+
         />
-        <FormSubscription />
+        <FormSubscription
+          price={formattedPrice}
+        />
       </div>
     </Layout>
   )

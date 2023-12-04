@@ -1,13 +1,23 @@
 import React from 'react';
+import Dmoze1 from '../../assets/images/dmozeSalon/dmoze1.png'
+import Dmoze2 from '../../assets/images/dmozeSalon/dmoze2.png'
+import Dmoze3 from '../../assets/images/dmozeSalon/dmoze3.png'
 
 const FormReservasi = () => {
     return (
-        <div class='grid grid-cols-2'>
-            <div class='mx-5 mt-5'>
-                <img class='mb-2' src='/src/assets/images/dmozeSalon/dmoze1.png' />
-                <div class='flex flex-row'>
-                    <img class='mr-1 w-1/2' src='/src/assets/images/dmozeSalon/dmoze2.png' />
-                    <img class='w-1/2' src='/src/assets/images/dmozeSalon/dmoze3.png' />
+        <div class='min-h-screen w-screen grid grid-cols-2 '>
+            <div class='mx-5 mt-5 flex flex-col gap-3'>
+                <div className='w-full h-1/2' style={{ backgroundImage: `url(${Dmoze1})`, backgroundSize: 'cover' }}>
+
+                </div>
+                {/* <img class='mb-2' src='/src/assets/images/dmozeSalon/dmoze1.png' /> */}
+                <div class='w-full h-full flex flex-row'>
+                    <div className='w-full h-full' style={{ backgroundImage: `url(${Dmoze2})`, backgroundSize: 'cover' }}>
+
+                    </div>
+                    <div className='w-full h-full' style={{ backgroundImage: `url(${Dmoze3})`, backgroundSize: 'cover' }}>
+
+                    </div>
                 </div>
             </div>
             <div class='mx-10'>
@@ -40,8 +50,8 @@ const FormReservasi = () => {
                     <label >Deskripsi</label>
                     <textarea rows='6' class='mt-4 block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3' placeholder='Deskripsi...'></textarea>
                     <div class='my-20 flex justify-end'>
-                        <button class='mr-6 bg-black hover:bg-gray-700 text-white font-bold py-2 px-5 rounded shadow-lg'>Cancel</button>
-                        <button class='bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-5 rounded shadow-lg'>Submit</button>
+                        <div class='mr-6 bg-black hover:bg-gray-700 text-white font-bold py-2 px-5 rounded shadow-lg'>Cancel</div>
+                        <div class='bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-5 rounded shadow-lg'>Submit</div>
                     </div>
                 </form>
             </div>

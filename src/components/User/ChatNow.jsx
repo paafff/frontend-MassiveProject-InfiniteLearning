@@ -1,12 +1,15 @@
 import React from "react";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+
 
 export default function Chat() {
     const [showModal, setShowModal] = React.useState(false);
     return (
         <>
-            <button class='md:box-content py-4 px-4 bg-transparent hover:bg-rose-700 text-rose-500 font-normal hover:text-white border border-rose-500 border-2 hover:border-transparent rounded inline-flex items-center' onClick={() => setShowModal(true)}>
-                <img class='w-auto h-4 mr-2' src='/src/assets/images/icons/Chat.png' />
-                <span class='text-lg'>Chat Sekarang</span>
+            <button class='w-1/2 xl:w-full justify-center xl:py-4 xl:px-4 py-3 px-4 gap-2 bg-transparent hover:bg-rose-600 text-rose-500 font-normal hover:text-white border border-rose-500 hover:border-transparent rounded inline-flex items-center hover:cursor-pointer' onClick={() => setShowModal(true)}>
+                {/* <img class='w-auto h-4 mr-2' src='/src/assets/images/icons/Chat.png' /> */}
+                <IoChatbubbleEllipsesOutline className="w-5 h-5" />
+                <span class='xl:text-lg text-sm'>Chat Sekarang</span>
             </button>
             {showModal ? (
                 <>
@@ -26,51 +29,51 @@ export default function Chat() {
                                     <h1 align='left' class='text-xl font-semibold'>Pilih Pertanyaan</h1>
                                     <form class='my-2 mt-3'>
                                         <label>
-                                            <input type='radio' name='chat' class='mr-3'/> 
+                                            <input type='radio' name='chat' class='mr-3' />
                                             Saya butuh cepat nih, apakah bisa booking sekarang?
                                         </label>
-                                        <br/>
+                                        <br />
                                         <label>
-                                            <input type='radio' name='chat' class='mr-3'/> 
+                                            <input type='radio' name='chat' class='mr-3' />
                                             Apakah ada diskon untuk potong rambut?
                                         </label>
-                                        <br/>
+                                        <br />
                                         <label>
-                                            <input type='radio' name='chat' class='mr-3'/> 
+                                            <input type='radio' name='chat' class='mr-3' />
                                             Saya ingin survey layanan dulu
                                         </label>
-                                        <br/>
+                                        <br />
                                         <label>
-                                            <input type='radio' name='chat' class='mr-3'/> 
+                                            <input type='radio' name='chat' class='mr-3' />
                                             Alamat barbershop dimana?
                                         </label>
-                                        <br/>
+                                        <br />
                                         <label>
-                                            <input type='radio' name='chat' class='mr-3'/> 
+                                            <input type='radio' name='chat' class='mr-3' />
                                             Cara menghubungi pemilik barbershop?
                                         </label>
-                                        <br/>
+                                        <br />
                                         <label>
-                                            <input type='radio' name='chat' class='mr-3'/> 
+                                            <input type='radio' name='chat' class='mr-3' />
                                             Boleh tanya-tanya dulu?
                                         </label>
-                                        <br/>
+                                        <br />
                                         <label>
-                                            <input type='radio' name='chat' class='mr-3'/> 
+                                            <input type='radio' name='chat' class='mr-3' />
                                             Apakah ada jenis layanan lain?
                                         </label>
-                                        <br/>
+                                        <br />
                                         <label>
-                                            <input type='radio' name='chat' class='mr-3'/> 
+                                            <input type='radio' name='chat' class='mr-3' />
                                             Apakah barber yang saya inginkan senggang?
                                         </label>
-                                        <br/>
+                                        <br />
                                     </form>
                                 </div>
-                                <hr class='mx-5'/>
+                                <hr class='mx-5' />
                                 <p class='text-xs my-3 mx-5'>
-                                    Dengan mengirim pesan, anda menyetujui untuk berkomunikasi dengan pemilik hanya 
-                                    melalui chatroom HairHub untuk melindungi pengguna kami. 
+                                    Dengan mengirim pesan, anda menyetujui untuk berkomunikasi dengan pemilik hanya
+                                    melalui chatroom HairHub untuk melindungi pengguna kami.
                                     <a href='#' class='text-rose-400'> Lihat Syarat dan Ketentuan.</a>
                                 </p>
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">

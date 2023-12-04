@@ -6,8 +6,11 @@ import FormReservasi from '../../components/User/FormReservasi';
 const Reservasi = () => {
     return (
         <Layout>
-            <Banner/>
-            <FormReservasi/>
+            <div className="w-screen min-h-screen">
+
+                <Banner />
+                <FormReservasi />
+            </div>
         </Layout>
     );
 };
