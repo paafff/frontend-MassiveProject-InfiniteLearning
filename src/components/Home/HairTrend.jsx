@@ -5,6 +5,7 @@ import BobHair from '../../assets/images/trend/bobhaircarousel.jpg'
 import Mullet from '../../assets/images/trend/mullet.jpg'
 import SoftBangs from '../../assets/images/trend/softbangs.jpg'
 import FrenchCrop from '../../assets/images/trend/frenchcrop.jpg'
+import { Link } from 'react-router-dom'
 
 const HairTrend = () => {
     const dataHair = [
@@ -54,9 +55,9 @@ const HairTrend = () => {
 const Hair = ({ id, title, image }) => {
     return (
         <div className='min-h-[150px] min-w-[150px] xl:min-h-[200px] xl:min-w-[200px] p-2 flex justify-center items-end bg-[length:160px_160px] xl:bg-[length:200px_200px] bg-gray-500 rounded' style={{ backgroundImage: `url(${image})` }}>
-            <p className='w-full text-center font-semibold text-xs lg:text-sm bg-white py-1 px-2 rounded'>
+            <Link to="/hair-trend" className='w-full text-center font-semibold text-xs lg:text-sm bg-white py-1 px-2 rounded'>
                 {title}
-            </p>
+            </Link>
         </div>
     )
 }

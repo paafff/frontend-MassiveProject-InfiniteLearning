@@ -12,6 +12,7 @@ import Select from '@mui/material/Select';
 
 // Icon
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { Link } from 'react-router-dom'
 
 const ListBusiness = ({ listCity, dataList, page }) => {
     const [city, setCity] = useState('');
@@ -91,11 +92,11 @@ const Card = ({ id, name, city, page }) => {
                     <p className='text-zinc-800 font-bold text-xs md:text-sm xl:text-base'>{name}</p>
                     <p className='text-gray-500 font-thin text-xs xl:text-sm'>{city}</p>
                 </div>
-                <div className='h-full flex items-center'>
+                <Link to="/detail" className='h-full flex items-center'>
                     <div className='h-8 w-8 bg-rose-500 rounded-lg flex justify-center items-center shadow-md hover:shadow-none hover:scale-90 transition-all'>
                         <IoIosArrowRoundForward className='text-white scale-150' />
                     </div>
-                </div>
+                </Link>
             </div>
         </div>
     )

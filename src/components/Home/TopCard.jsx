@@ -5,6 +5,7 @@ import ImageCard from '../../assets/images/business/image8.jpg'
 import { TbMoustache } from "react-icons/tb";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { FaArrowRight } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 const TopCard = ({ dataList }) => {
     return (
@@ -54,9 +55,9 @@ const CardTopRecommend = () => {
                     <p className='text-xs lg:text-base text-gray-500'>Jakarta</p>
                 </div>
                 <div className='flex justify-center items-center'>
-                    <div className='w-8 h-8 flex justify-center items-center bg-rose-500 rounded-lg drop-shadow-md hover:scale-90 hover:cursor-pointer transition-all'>
+                    <Link to="/detail" className='w-8 h-8 flex justify-center items-center bg-rose-500 rounded-lg drop-shadow-md hover:scale-90 hover:cursor-pointer transition-all'>
                         <FaArrowRight className='text-white' />
-                    </div>
+                    </Link>
                 </div>
             </div>
         </div>

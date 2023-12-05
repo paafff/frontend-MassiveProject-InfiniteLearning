@@ -14,8 +14,8 @@ const Gallery = () => {
         <div className='w-full h-1/2 bg-no-repeat' style={{ backgroundImage: `url(${Foto2})`, backgroundSize: 'cover' }}>
 
         </div>
-        <div className='w-full h-1/2 bg-no-repeat' style={{ backgroundImage: `url(${Foto3})`, backgroundSize: 'cover' }}>
-
+        <div className='w-full h-1/2 bg-no-repeat flex justify-center items-center' style={{ backgroundImage: `url(${Foto3})`, backgroundSize: 'cover' }}>
+          <DetailPhoto />
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ export default function Chat() {
     const [showModal, setShowModal] = React.useState(false);
     return (
         <>
-            <button class='absolute bottom-0 mb-4 ml-20 md:box-content py-4 px-7 mt-3 bg-rose-500 hover:bg-rose-700 text-white font-normal' type='button' onClick={() => setShowModal(true)}>
+            <button class='w-fit h-fit md:box-content py-4 px-7 bg-rose-500 hover:bg-rose-700 text-white font-normal' type='button' onClick={() => setShowModal(true)}>
                 Lihat Selengkapnya
             </button>
             {showModal ? (
@@ -22,15 +22,15 @@ export default function Chat() {
                                     </button>
                                 </div>
                                 <div align='center' className='relative flex-auto px-6 py-2 grid grid-cols-2 gap-2 m-5'>
-                                  <div class='col-span-2'>
-                                    <img src='/src/assets/images/Barbershop/barbershop1.png' />
-                                  </div>
-                                  <img class='w-full' src='/src/assets/images/Barbershop/barbershop2.png' />
-                                  <img class='w-full' src='/src/assets/images/Barbershop/barbershop3.png' />
-                                  <img class='w-full' src='/src/assets/images/Barbershop/barbershop1.png' />
-                                  <img class='w-full' src='/src/assets/images/Barbershop/barbershop2.png' />
+                                    <div class='col-span-2'>
+                                        <img src='/src/assets/images/Barbershop/barbershop1.png' />
+                                    </div>
+                                    <img class='w-full' src='/src/assets/images/Barbershop/barbershop2.png' />
+                                    <img class='w-full' src='/src/assets/images/Barbershop/barbershop3.png' />
+                                    <img class='w-full' src='/src/assets/images/Barbershop/barbershop1.png' />
+                                    <img class='w-full' src='/src/assets/images/Barbershop/barbershop2.png' />
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>

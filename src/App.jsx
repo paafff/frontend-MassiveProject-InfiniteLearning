@@ -40,6 +40,7 @@ import SyaratKetentuanPencari from './pages/User/SK/SyaratKetentuanPencari';
 import Subscription from './pages/User/Subscription';
 import Hubungi from './pages/User/SK/Hubungi';
 import KategoriBantuan from './pages/User/SK/KategoriBantuan';
+import HairTrend from './pages/HairTrend';
 
 const App = () => {
   return (
@@ -65,6 +66,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/sample" element={<Sample />} />
             <Route path="/user/dashboard" element={<DashboardUser />} />
+            <Route path="/hair-trend" element={<HairTrend />} />
             <Route
               path="/user/business-registration"
               element={<BusinessRegistration />}

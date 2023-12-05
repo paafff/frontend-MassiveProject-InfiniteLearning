@@ -74,8 +74,8 @@ const Kebijakan = () => {
         <div className='flex flex-col gap-2'>
             <p className='text-white font-bold text-lg'>KEBIJAKAN</p>
             <div className='flex flex-col gap-3'>
-                <Link to="#" className='text-white text-sm'>Pusat Bantuan</Link>
-                <Link to="#" className='text-white text-sm'>Syarat dan Ketentuan</Link>
+                <Link to="/help-category" className='text-white text-sm'>Pusat Bantuan</Link>
+                <Link to="/term" className='text-white text-sm'>Syarat dan Ketentuan</Link>
             </div>
         </div>
     )

@@ -206,7 +206,7 @@ const ContentDetail = () => {
 
             <div className='w-3/4'>
                 <ReviewModal />
-                <p className='hover:curpo'>Beri Ulasan Page</p>
+                <Link to="/user/review" className='hover:curpo'>Beri Ulasan Page</Link>
             </div>
 
             {/* <div align='center'>

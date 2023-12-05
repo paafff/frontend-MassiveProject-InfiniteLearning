@@ -487,7 +487,7 @@ const Form = ({
           />
         </div>
 
-        <input
+        {/* <input
           type="file"
           accept="image/*"
           id="img1"
@@ -521,7 +521,7 @@ const Form = ({
           id="img5"
           name="img5"
           onChange={(e) => handleImageChange(e.target)}
-        />
+        /> */}
 
         <hr className="my-5" />
         <div className="w-full flex justify-between md:justify-end gap-5">
