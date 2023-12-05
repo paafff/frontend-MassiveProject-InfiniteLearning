@@ -41,6 +41,7 @@ import Subscription from './pages/User/Subscription';
 import Hubungi from './pages/User/SK/Hubungi';
 import KategoriBantuan from './pages/User/SK/KategoriBantuan';
 import HairTrend from './pages/HairTrend';
+import AdminServices from './pages/Admin/Services';
 
 const App = () => {
   return (
@@ -94,6 +95,7 @@ const App = () => {
               path="/superuser/dashboard-review"
               element={<DashboardReview />}
             />
+            <Route path="/subscription" element={<Subscription />} />
 
             {/* Admin */}
             <Route path="/admin/account" element={<Account />} />
@@ -101,7 +103,7 @@ const App = () => {
             <Route path="/admin/user" element={<ManageUser />} />
             <Route path="/admin/business" element={<ManageBusiness />} />
             <Route path="/admin/review" element={<ManageReview />} />
-            <Route path="/subscription" element={<Subscription />} />
+            <Route path="/admin/services" element={<AdminServices />} />
 
             {/* SK */}
             <Route path="/help-category" element={<KategoriBantuan />} />
