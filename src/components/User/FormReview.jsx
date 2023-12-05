@@ -10,7 +10,7 @@ const FormReview = ({ showSidebar, setShowSidebar}) => {
             <div class="m-5 rounded overflow-hidden shadow-lg bg-grey-400">
                 <div class="px-6 py-4">
                     <form>
-                        <div class='flex flex-row my-6'>
+                        {/* <div class='flex flex-row my-6'>
                             <label class='basis-1/3 block text-sm font-medium leading-6 text-gray-900 md:text-left'>Kategori</label>
                             <select class='basis-2/3 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' required>
                                 <option selected disabled>Kategori</option>
@@ -29,7 +29,7 @@ const FormReview = ({ showSidebar, setShowSidebar}) => {
                                     <option selected disabled>Lokasi</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> */}
                         <div class='flex flex-roy my-6'>
                             <label class='w-1/3 block text-sm font-medium leading-6 text-gray-900'>Beri nilai ulasan</label>
                             <select class='w-2/3 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'>
