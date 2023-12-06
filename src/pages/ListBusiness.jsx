@@ -1,171 +1,93 @@
-import React, { useState } from 'react'
-import Layout from './Layout'
+import React, { useEffect, useState } from 'react';
+import Layout from './Layout';
 import ComponentListBusiness from '../components/ListBusiness';
+import axios from 'axios';
 
 const listCity = [
-    {
-        id: 0,
-        name: "Malang"
-    },
-    {
-        id: 1,
-        name: "Surabaya"
-    },
-    {
-        id: 2,
-        name: "Blitar"
-    },
-    {
-        id: 3,
-        name: "Tulungagung"
-    },
-    {
-        id: 4,
-        name: "Sidoarjo"
-    },
-    {
-        id: 5,
-        name: "Kediri"
-    },
-    {
-        id: 6,
-        name: "Gresik"
-    },
-    {
-        id: 7,
-        name: "Solo"
-    },
-]
-
-const dataBarber = [
-    {
-        id: 0,
-        name: "Javanese",
-        city: "Depok",
-        open: "09:00",
-        close: "18:00",
-    },
-    {
-        id: 1,
-        name: "Javanese",
-        city: "Depok",
-        open: "09:00",
-        close: "18:00",
-    },
-    {
-        id: 2,
-        name: "Javanese",
-        city: "Depok",
-        open: "09:00",
-        close: "18:00",
-    },
-    {
-        id: 3,
-        name: "Javanese",
-        city: "Depok",
-        open: "09:00",
-        close: "18:00",
-    },
-    {
-        id: 4,
-        name: "Javanese",
-        city: "Depok",
-        open: "09:00",
-        close: "18:00",
-    },
-    {
-        id: 5,
-        name: "Javanese",
-        city: "Depok",
-        open: "09:00",
-        close: "18:00",
-    },
-    {
-        id: 6,
-        name: "Javanese",
-        city: "Depok",
-        open: "09:00",
-        close: "18:00",
-    },
-    {
-        id: 7,
-        name: "Javanese",
-        city: "Depok",
-        open: "09:00",
-        close: "18:00",
-    },
-]
-
-const dataSalon = [
-    {
-        id: 0,
-        name: "D'Moze",
-        city: "Bogor",
-        open: "09:00",
-        close: "18:00",
-    },
-    {
-        id: 1,
-        name: "D'Moze",
-        city: "Bogor",
-        open: "09:00",
-        close: "18:00",
-    },
-    {
-        id: 2,
-        name: "D'Moze",
-        city: "Bogor",
-        open: "09:00",
-        close: "18:00",
-    },
-    {
-        id: 3,
-        name: "D'Moze",
-        city: "Bogor",
-        open: "09:00",
-        close: "18:00",
-    },
-    {
-        id: 4,
-        name: "D'Moze",
-        city: "Bogor",
-        open: "09:00",
-        close: "18:00",
-    },
-    {
-        id: 5,
-        name: "D'Moze",
-        city: "Bogor",
-        open: "09:00",
-        close: "18:00",
-    },
-    {
-        id: 6,
-        name: "D'Moze",
-        city: "Bogor",
-        open: "09:00",
-        close: "18:00",
-    },
-    {
-        id: 7,
-        name: "D'Moze",
-        city: "Bogor",
-        open: "09:00",
-        close: "18:00",
-    },
-]
-
+  {
+    id: 0,
+    name: 'Garut',
+  },
+  {
+    id: 1,
+    name: 'Bandung',
+  },
+  {
+    id: 2,
+    name: 'Bekasi',
+  },
+  {
+    id: 3,
+    name: 'Mentawai',
+  },
+  {
+    id: 4,
+    name: 'Bogor',
+  },
+  {
+    id: 5,
+    name: 'Kediri',
+  },
+  {
+    id: 6,
+    name: 'Gresik',
+  },
+  {
+    id: 7,
+    name: 'Solo',
+  },
+];
 
 const ListBusiness = ({ page }) => {
+  const [dataBarber, setDataBarber] = useState([]);
+  const [dataSalon, setDataSalon] = useState([]);
 
-    return (
-        <Layout>
+  const getBarbershopBusiness = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/barbershop`
+      );
 
-            <ComponentListBusiness listCity={listCity} page={page} dataList={page == "Barbershop" ? dataBarber : dataSalon} />
+      setDataBarber(response.data);
+      console.log(dataBarber);
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.msg);
+      } else {
+        console.log(error);
+      }
+    }
+  };
 
-        </Layout>
-    )
-}
+  const getSalonBusiness = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/salon`);
 
+      setDataSalon(response.data);
+      console.log(dataSalon);
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.msg);
+      } else {
+        console.log(error);
+      }
+    }
+  };
 
-export default ListBusiness
+  useEffect(() => {
+    getBarbershopBusiness();
+    getSalonBusiness();
+  }, []);
+
+  return (
+    <Layout>
+      <ComponentListBusiness
+        listCity={listCity}
+        page={page}
+        dataList={page == 'barbershop' ? dataBarber : dataSalon}
+      />
+    </Layout>
+  );
+};
+
+export default ListBusiness;

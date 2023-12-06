@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { FaAddressBook } from "react-icons/fa";
-import { MdMail } from "react-icons/md";
-import { FaUnlock } from "react-icons/fa";
-import { FaKey } from "react-icons/fa6";
-import Logosignup from "../assets/images/logo/signup.png"
+import { FaAddressBook } from 'react-icons/fa';
+import { MdMail } from 'react-icons/md';
+import { FaUnlock } from 'react-icons/fa';
+import { FaKey } from 'react-icons/fa6';
+import Logosignup from '../assets/images/logo/signup.png';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -17,12 +17,15 @@ const SignUpForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/register', {
-        username: fullName,
-        email: email,
-        password: password,
-        confPassword: confirmPassword,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/register`,
+        {
+          username: fullName,
+          email: email,
+          password: password,
+          confPassword: confirmPassword,
+        }
+      );
       alert(response.data.msg);
       // navigate('/');
       window.location.reload();
@@ -36,23 +39,21 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className='bg-white flex flex-col lg:flex-row lg:items-center justify-center w-full min-h-screen lg:p-8 xl:flex xl:w-3/4 xl:mx-auto '>
-      <div className='md:w-1/2 lg:h-fit mx-auto xl:w-1/2 '>
+    <div className="bg-white flex flex-col lg:flex-row lg:items-center justify-center w-full min-h-screen lg:p-8 xl:flex xl:w-3/4 xl:mx-auto ">
+      <div className="md:w-1/2 lg:h-fit mx-auto xl:w-1/2 ">
         <img src={Logosignup}></img>
       </div>
       <div className="bg-white w-full xl:w-1/2 md:w-1/2 md:py-5 md:px-10 ">
         <div className="bg-white w-full border-2 border-solid shadow-slate-300 py-5 px-10">
-          <form
-            className=""
-            onSubmit={authRegister}
-          >
-            <p className="text-base md:text-lg font-bold text-center">Sign Up</p>
-            <div className='flex flex-col gap-5 xl:flex-col xl:justify-start'>
+          <form className="" onSubmit={authRegister}>
+            <p className="text-base md:text-lg font-bold text-center">
+              Sign Up
+            </p>
+            <div className="flex flex-col gap-5 xl:flex-col xl:justify-start">
               <div className="flex flex-col gap-3 md:items-start md:justify-between">
-                <label
-                  className="text-sm font-semibold"
-                  htmlFor="username"
-                > <FaAddressBook className='inline-block mr-2 scale-125' />
+                <label className="text-sm font-semibold" htmlFor="username">
+                  {' '}
+                  <FaAddressBook className="inline-block mr-2 scale-125" />
                   Nama
                 </label>
                 <input
@@ -66,10 +67,9 @@ const SignUpForm = () => {
               </div>
 
               <div className="flex flex-col gap-2 md:items-start md:justify-between">
-                <label
-                  className="text-sm font-semibold"
-                  for="email"
-                > <MdMail className='inline-block mr-2 scale-125' />
+                <label className="text-sm font-semibold" for="email">
+                  {' '}
+                  <MdMail className="inline-block mr-2 scale-125" />
                   Email
                 </label>
                 <input
@@ -83,10 +83,9 @@ const SignUpForm = () => {
               </div>
 
               <div className="flex flex-col gap-2 md:items-start md:justify-between">
-                <label
-                  className="text-sm font-semibold"
-                  for="password"
-                > <FaUnlock className='inline-block mr-2 scale-125' />
+                <label className="text-sm font-semibold" for="password">
+                  {' '}
+                  <FaUnlock className="inline-block mr-2 scale-125" />
                   Password
                 </label>
                 <input
@@ -100,10 +99,9 @@ const SignUpForm = () => {
               </div>
 
               <div className="flex flex-col gap-2 md:items-start md:justify-between">
-                <label
-                  className="text-sm font-semibold"
-                  for="password"
-                > <FaKey className='inline-block mr-2 scale-125' />
+                <label className="text-sm font-semibold" for="password">
+                  {' '}
+                  <FaKey className="inline-block mr-2 scale-125" />
                   Ulangi Password
                 </label>
                 <input
@@ -115,8 +113,11 @@ const SignUpForm = () => {
                 />
               </div>
 
-              <button className='w-full flex py-2 px-5 bg-red-400 hover:bg-red-500 hover:cursor-pointer transition-all rounded' type="submit">
-                <p className='text-base md:text-sm font-semibold text-center text-white w-full'>
+              <button
+                className="w-full flex py-2 px-5 bg-red-400 hover:bg-red-500 hover:cursor-pointer transition-all rounded"
+                type="submit"
+              >
+                <p className="text-base md:text-sm font-semibold text-center text-white w-full">
                   Sign Up
                 </p>
               </button>

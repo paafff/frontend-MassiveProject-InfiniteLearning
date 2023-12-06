@@ -74,9 +74,9 @@ const App = () => {
             />
             <Route path="/user/reservasi" element={<Reservasi />} />
             <Route path="/user/review" element={<InputReview />} />
-            <Route path="/barbershop" element={<ListBusiness page={"Barbershop"} />} />
-            <Route path="/salon" element={<ListBusiness page={"Salon"} />} />
-            <Route path="/detail" element={<Detail />} />
+            <Route path="/barbershop" element={<ListBusiness page={"barbershop"} />} />
+            <Route path="/salon" element={<ListBusiness page={"salon"} />} />
+            <Route path="/detail/:uuid" element={<Detail />} />
 
             {/* Super User */}
             {/* <Route

@@ -63,10 +63,16 @@ const listLayanan = [
 const Services = ({ businessByUUID }) => {
   const [editForm, setEditForm] = useState(true);
 
-  // const arrayService = ['layanan1', 'layanan2', 'layanan3'];
-  const [arrayService, setArrayService] = useState([]);
-  // const arrayServicePrice = ['1223', '1212', '1213'];
-  const [arrayServicePrice, setArrayServicePrice] = useState([]);
+  const arrayService = [
+    'layanan1',
+    'layanan2',
+    'layanan3',
+    'layanan4',
+    'layanan5',
+  ];
+  // const [arrayService, setArrayService] = useState([]);
+  const arrayServicePrice = ['1223', '1212', '1213', '111', '9999'];
+  // const [arrayServicePrice, setArrayServicePrice] = useState([]);
   const businessId = businessByUUID.id;
 
   const [serviceData, setServiceData] = useState({
@@ -93,19 +99,18 @@ const Services = ({ businessByUUID }) => {
   });
 
   const handleService = (e) => {
-    const { value, checked } = e.target
+    const { value, checked } = e.target;
 
     if (checked) {
-      setArrayService(pre => [...pre, value])
+      setArrayService((pre) => [...pre, value]);
     }
     console.log(e.target.id);
-  }
+  };
 
   const handlePrice = (e) => {
-    const value = e.target.value
-    setArrayServicePrice(pre => [...pre, value])
-
-  }
+    const value = e.target.value;
+    setArrayServicePrice((pre) => [...pre, value]);
+  };
 
   console.log('service yg dicentang ', arrayService);
   console.log('harga service ', arrayServicePrice);
@@ -137,9 +142,14 @@ const Services = ({ businessByUUID }) => {
         <hr className="my-5" />
 
         <form action="">
-
           {listLayanan.map((service) => (
-            <Service editForm={editForm} id={service.id} name={service.name} handleService={handleService} handlePrice={handlePrice} />
+            <Service
+              editForm={editForm}
+              id={service.id}
+              name={service.name}
+              handleService={handleService}
+              handlePrice={handlePrice}
+            />
           ))}
 
           <hr />
@@ -164,7 +174,13 @@ const Service = ({ id, name, editForm, handleService, handlePrice }) => {
       key={id}
     >
       {!editForm && (
-        <input type="checkbox" value={name} onChange={handleService} className="scale-125" id={id} />
+        <input
+          type="checkbox"
+          value={name}
+          onChange={handleService}
+          className="scale-125"
+          id={id}
+        />
       )}
       <div className="w-1/2 flex items-center">
         <p className="text-sm font-thin">{name}</p>
