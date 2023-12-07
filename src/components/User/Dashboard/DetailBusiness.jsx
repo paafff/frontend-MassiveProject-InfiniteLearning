@@ -98,6 +98,8 @@ const Banner = ({ editForm, setEditForm, banner, businessByUUID }) => {
   // Banner default
   const photoDefault = businessByUUID ? businessByUUID.imageURL[0] : '';
 
+
+
   const changeBannerRef = useRef(null)
   const picture1Ref = useRef(null)
   const picture2Ref = useRef(null)

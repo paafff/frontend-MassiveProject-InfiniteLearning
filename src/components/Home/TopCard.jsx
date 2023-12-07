@@ -20,7 +20,9 @@ const TopCard = ({ dataList }) => {
 
         setDataBusiness(response.data);
         console.log(dataBusiness);
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     getSubsBusiness();
