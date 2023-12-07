@@ -9,7 +9,6 @@ import { IoReturnDownBackOutline } from 'react-icons/io5';
 import axios from 'axios';
 
 const DetailBussiness = ({ businessByUUID, sosmed }) => {
-
   const [editForm, setEditForm] = useState(true);
 
   // const bannerRef = useRef(null);
@@ -42,7 +41,7 @@ const DetailBussiness = ({ businessByUUID, sosmed }) => {
   // const [twitterLink, setTwitterLink] = useState(businessByUUID.socialMedia[2]);
   // const [youtubeLink, setYoutubeLink] = useState(businessByUUID.socialMedia[3]);
 
-  console.log("data uuid from komponen ig ", businessByUUID.socialMedia);
+  console.log('data uuid from komponen ig ', businessByUUID.socialMedia);
 
   const [instagramLink, setInstagramLink] = useState(null);
   const [facebookLink, setFacebookLink] = useState(null);
@@ -60,7 +59,8 @@ const DetailBussiness = ({ businessByUUID, sosmed }) => {
             editForm={editForm}
             setEditForm={setEditForm}
             // banner={banner}
-            businessByUUID={businessByUUID} />
+            businessByUUID={businessByUUID}
+          />
 
           <Socmed
             editForm={editForm}
@@ -69,7 +69,6 @@ const DetailBussiness = ({ businessByUUID, sosmed }) => {
             setInstagramLink={setInstagramLink}
             setTwitterLink={setTwitterLink}
             setYoutubeLink={setYoutubeLink}
-
             // data default
             businessByUUID={businessByUUID}
             IGdefault={instagramLink}
@@ -93,11 +92,26 @@ const DetailBussiness = ({ businessByUUID, sosmed }) => {
           inputFB={facebookLink}
           inputTW={twitterLink}
           inputYT={youtubeLink}
-
-          stateIG={businessByUUID.socialMedia ? businessByUUID.socialMedia[0] : "coba ig"}
-          stateFB={businessByUUID.socialMedia ? businessByUUID.socialMedia[1] : "coba ig"}
-          stateTW={businessByUUID.socialMedia ? businessByUUID.socialMedia[2] : "coba ig"}
-          stateYT={businessByUUID.socialMedia ? businessByUUID.socialMedia[3] : "coba ig"}
+          stateIG={
+            businessByUUID.socialMedia
+              ? businessByUUID.socialMedia[0]
+              : 'coba ig'
+          }
+          stateFB={
+            businessByUUID.socialMedia
+              ? businessByUUID.socialMedia[1]
+              : 'coba ig'
+          }
+          stateTW={
+            businessByUUID.socialMedia
+              ? businessByUUID.socialMedia[2]
+              : 'coba ig'
+          }
+          stateYT={
+            businessByUUID.socialMedia
+              ? businessByUUID.socialMedia[3]
+              : 'coba ig'
+          }
         />
       </div>
     </div>
@@ -105,83 +119,82 @@ const DetailBussiness = ({ businessByUUID, sosmed }) => {
 };
 
 const Banner = ({ editForm, setEditForm, banner, businessByUUID }) => {
-
   // Banner default
   const photoDefault = businessByUUID ? businessByUUID.imageURL[0] : '';
 
-  const changeBannerRef = useRef(null)
-  const picture1Ref = useRef(null)
-  const picture2Ref = useRef(null)
-  const picture3Ref = useRef(null)
-  const picture4Ref = useRef(null)
+  const changeBannerRef = useRef(null);
+  const picture1Ref = useRef(null);
+  const picture2Ref = useRef(null);
+  const picture3Ref = useRef(null);
+  const picture4Ref = useRef(null);
 
-  const [pictureBanner, setPictureBanner] = useState(null)
-  const [picture1, setPicture1] = useState(null)
-  const [picture2, setPicture2] = useState(null)
-  const [picture3, setPicture3] = useState(null)
-  const [picture4, setPicture4] = useState(null)
+  const [pictureBanner, setPictureBanner] = useState(null);
+  const [picture1, setPicture1] = useState(null);
+  const [picture2, setPicture2] = useState(null);
+  const [picture3, setPicture3] = useState(null);
+  const [picture4, setPicture4] = useState(null);
 
   // Banner
   const handleBannerClick = () => {
     changeBannerRef.current.click();
-  }
+  };
   const handleBannerChange = (event) => {
     // console.log("ambil gambar");
-    const file = event.target.files[0]
+    const file = event.target.files[0];
     console.log(file);
-    setPictureBanner(file)
-  }
+    setPictureBanner(file);
+  };
 
   // Picture 1
   const handlePicture1Click = () => {
     picture1Ref.current.click();
-  }
+  };
   const handlePicture1Change = (event) => {
     // console.log("ambil gambar");
-    const file = event.target.files[0]
+    const file = event.target.files[0];
     console.log(file);
-    setPicture1(file)
-  }
+    setPicture1(file);
+  };
 
   // Picture 2
   const handlePicture2Click = () => {
     picture2Ref.current.click();
-  }
+  };
   const handlePicture2Change = (event) => {
     // console.log("ambil gambar");
-    const file = event.target.files[0]
+    const file = event.target.files[0];
     console.log(file);
-    setPicture2(file)
-  }
+    setPicture2(file);
+  };
 
   // Picture 3
   const handlePicture3Click = () => {
     picture3Ref.current.click();
-  }
+  };
   const handlePicture3Change = (event) => {
     // console.log("ambil gambar");
-    const file = event.target.files[0]
+    const file = event.target.files[0];
     console.log(file);
-    setPicture3(file)
-  }
+    setPicture3(file);
+  };
 
   // Picture 4
   const handlePicture4Click = () => {
     picture4Ref.current.click();
-  }
+  };
   const handlePicture4Change = (event) => {
     // console.log("ambil gambar");
-    const file = event.target.files[0]
+    const file = event.target.files[0];
     console.log(file);
-    setPicture4(file)
-  }
+    setPicture4(file);
+  };
 
   useEffect(() => {
     if (editForm == true) {
-      setPicture1('')
-      setPicture1('')
+      setPicture1('');
+      setPicture1('');
     }
-  }, [editForm])
+  }, [editForm]);
 
   return (
     <div className="w-full xl:my-auto xl:w-1/2 border border-gray-300 rounded p-2 flex flex-col gap-3 mb-5">
@@ -191,58 +204,123 @@ const Banner = ({ editForm, setEditForm, banner, businessByUUID }) => {
           src={URL.createObjectURL(banner)}
           className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain"
         />
+      ) : editForm ? (
+        <img src={photoDefault} />
       ) : (
-
-        editForm ? (
-          <img src={photoDefault} />
-        ) : (
-          <img src={pictureBanner ? URL.createObjectURL(pictureBanner) : photoDefault} onClick={handleBannerClick} className='hover:cursor-pointer hover:scale-95 transition-all' />
-        )
-
+        <img
+          src={
+            pictureBanner ? URL.createObjectURL(pictureBanner) : photoDefault
+          }
+          onClick={handleBannerClick}
+          className="hover:cursor-pointer hover:scale-95 transition-all"
+        />
       )}
 
-      <input type="file" name='banner' id='banner' className='hidden' ref={changeBannerRef} onChange={handleBannerChange} />
+      <input
+        type="file"
+        name="banner"
+        id="banner"
+        className="hidden"
+        ref={changeBannerRef}
+        onChange={handleBannerChange}
+      />
 
       {/* </div> */}
-      <div className='flex justify-center gap-3'>
-        <div className='w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ' onClick={handlePicture1Click}   >
+      <div className="flex justify-center gap-3">
+        <div
+          className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center "
+          onClick={handlePicture1Click}
+        >
           {picture1 ? (
-            <img src={URL.createObjectURL(picture1)} className='w-full ' alt="" srcset="" />
+            <img
+              src={URL.createObjectURL(picture1)}
+              className="w-full "
+              alt=""
+              srcset=""
+            />
           ) : (
-            <p className='text-xs text-white'>Foto 1</p>
+            <p className="text-xs text-white">Foto 1</p>
           )}
-          <input type="file" id='picture1' name='picture1' className='hidden' ref={picture1Ref} onChange={handlePicture1Change} />
+          <input
+            type="file"
+            id="picture1"
+            name="picture1"
+            className="hidden"
+            ref={picture1Ref}
+            onChange={handlePicture1Change}
+          />
         </div>
-        <div className='w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ' onClick={handlePicture2Click}>
+        <div
+          className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center "
+          onClick={handlePicture2Click}
+        >
           {picture2 ? (
-            <img src={URL.createObjectURL(picture2)} className='w-full ' alt="" srcset="" />
+            <img
+              src={URL.createObjectURL(picture2)}
+              className="w-full "
+              alt=""
+              srcset=""
+            />
           ) : (
-            <p className='text-xs text-white'>Foto 2</p>
+            <p className="text-xs text-white">Foto 2</p>
           )}
-          <input type="file" id='picture2' name='picture2' className='hidden' ref={picture2Ref} onChange={handlePicture2Change} />
-
+          <input
+            type="file"
+            id="picture2"
+            name="picture2"
+            className="hidden"
+            ref={picture2Ref}
+            onChange={handlePicture2Change}
+          />
         </div>
-        <div className='w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ' onClick={handlePicture3Click}>
+        <div
+          className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center "
+          onClick={handlePicture3Click}
+        >
           {picture3 ? (
-            <img src={URL.createObjectURL(picture3)} className='w-full ' alt="" srcset="" />
+            <img
+              src={URL.createObjectURL(picture3)}
+              className="w-full "
+              alt=""
+              srcset=""
+            />
           ) : (
-            <p className='text-xs text-white'>Foto 3</p>
+            <p className="text-xs text-white">Foto 3</p>
           )}
-          <input type="file" id='picture1' name='picture1' className='hidden' ref={picture3Ref} onChange={handlePicture3Change} />
-
+          <input
+            type="file"
+            id="picture1"
+            name="picture1"
+            className="hidden"
+            ref={picture3Ref}
+            onChange={handlePicture3Change}
+          />
         </div>
-        <div className='w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ' onClick={handlePicture4Click}>
+        <div
+          className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center "
+          onClick={handlePicture4Click}
+        >
           {picture4 ? (
-            <img src={URL.createObjectURL(picture4)} className='w-full ' alt="" srcset="" />
+            <img
+              src={URL.createObjectURL(picture4)}
+              className="w-full "
+              alt=""
+              srcset=""
+            />
           ) : (
-            <p className='text-xs text-white'>Foto 4</p>
-          )
-          }
-          <input type="file" id='picture1' name='picture1' className='hidden' ref={picture4Ref} onChange={handlePicture4Change} />
-
+            <p className="text-xs text-white">Foto 4</p>
+          )}
+          <input
+            type="file"
+            id="picture1"
+            name="picture1"
+            className="hidden"
+            ref={picture4Ref}
+            onChange={handlePicture4Change}
+          />
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
@@ -259,14 +337,9 @@ const Socmed = ({
   TWdefault,
   YTdefault,
 }) => {
-
-
   return (
     <div className="flex flex-col md:items-start md:px-3 xl:w-1/2 xl:justify-center xl:items-center xl:ml-3 gap-3">
-      <form
-
-        className="flex items-center gap-3 md:w-3/4 xl:w-full"
-      >
+      <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
         <div className="w-7">
           <img src={InstagramLogo} className="w-full" alt="" />
         </div>
@@ -277,14 +350,15 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link instagram"
-          defaultValue={businessByUUID.socialMedia ? businessByUUID.socialMedia[0] : "coba ig"}
+          defaultValue={businessByUUID?.socialMedia?.[0]}
+          // placeholder={
+          //   businessByUUID.socialMedia
+          //     ? businessByUUID.socialMedia[0]
+          //     : 'coba ig'
+          // }
         />
-
       </form>
-      <form
-
-        className="flex items-center gap-3 md:w-3/4 xl:w-full"
-      >
+      <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
         <div className="w-7">
           <FaFacebookSquare className="inline-block w-full h-full text-blue-600" />
         </div>
@@ -294,14 +368,15 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link Facebook"
-          defaultValue={businessByUUID.socialMedia ? businessByUUID.socialMedia[1] : "coba fb"}
+          defaultValue={businessByUUID?.socialMedia?.[1]}
+          // placeholder={
+          //   businessByUUID.socialMedia
+          //     ? businessByUUID.socialMedia[1]
+          //     : 'coba ig'
+          // }
         />
-
       </form>
-      <form
-
-        className="flex items-center gap-3 md:w-3/4 xl:w-full"
-      >
+      <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
         <div className="w-7">
           <FaXTwitter className="inline-block w-full h-full text-gray-900" />
         </div>
@@ -311,14 +386,15 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link twitter"
-          defaultValue={businessByUUID.socialMedia ? businessByUUID.socialMedia[2] : "coba tw"}
+          defaultValue={businessByUUID?.socialMedia?.[2]}
+          // placeholder={
+          //   businessByUUID.socialMedia
+          //     ? businessByUUID.socialMedia[2]
+          //     : 'coba ig'
+          // }
         />
-
       </form>
-      <form
-
-        className="flex items-center gap-3 md:w-3/4 xl:w-full"
-      >
+      <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
         <div className="w-7">
           <FaYoutube className="inline-block w-full h-full text-red-600" />
         </div>
@@ -328,9 +404,13 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link youtube"
-          defaultValue={businessByUUID.socialMedia ? businessByUUID.socialMedia[2] : "coba yt"}
+          defaultValue={businessByUUID?.socialMedia?.[2]}
+          // placeholder={
+          //   businessByUUID.socialMedia
+          //     ? businessByUUID.socialMedia[3]
+          //     : 'coba ig'
+          // }
         />
-
       </form>
     </div>
   );
@@ -415,17 +495,32 @@ const Form = ({
       ...prev,
       youtube: inputYT,
     }));
+  }, [inputIG, inputFB, inputTW, inputYT]);
 
-  }, [inputIG, inputFB, inputTW, inputYT])
+  // const arraySocialMedia = [
+  //   businessData.instagram || businessByUUID?.socialMedia[0],
+  //   businessData.facebook || businessByUUID?.socialMedia[1],
+  //   businessData.twitter || businessByUUID?.socialMedia[2],
+  //   businessData.youtube || businessByUUID?.socialMedia[3],
+  //   businessData.maps || 'ini meps',
+  // ];
 
+  // const sosmed1 = businessByUUID.socialMedia[0]|| 'lala';
 
   const arraySocialMedia = [
-    businessData.instagram || businessByUUID?.socialMedia,
-    businessData.facebook || businessByUUID?.socialMedia,
-    businessData.twitter || businessByUUID?.socialMedia,
-    businessData.youtube || businessByUUID?.socialMedia,
-    businessData.maps,
-
+    businessData.instagram
+      ? businessData.instagram
+      : businessByUUID?.socialMedia?.[0],
+    businessData.facebook
+      ? businessData.facebook
+      : businessByUUID?.socialMedia?.[1],
+    businessData.twitter
+      ? businessData.twitter
+      : businessByUUID?.socialMedia?.[2],
+    businessData.youtube
+      ? businessData.youtube
+      : businessByUUID?.socialMedia?.[3],
+    businessData.maps || 'ini meps',
   ];
 
   const updateBusiness = async (e) => {
@@ -463,7 +558,6 @@ const Form = ({
 
   return (
     <div className="flex flex-col gap-3">
-
       <form onSubmit={updateBusiness} action="" className="flex flex-col gap-2">
         <div className="w-full md:w-3/4 xl:w-1/2 flex flex-col gap-2">
           <label htmlFor="" className="text-sm">
