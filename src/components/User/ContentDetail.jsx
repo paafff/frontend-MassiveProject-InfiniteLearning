@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import ChatNow from './ChatNow';
 import { FaLocationDot } from 'react-icons/fa6';
 import { FaStar } from 'react-icons/fa';
@@ -24,33 +24,27 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 1000,
+  height: 700,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
+  borderRadius: 5,
   p: 4,
 };
 
 const ContentDetail = ({ businessByUUID }) => {
-  //   const businessAddress = businessByUUID.address || '';
 
   const [services, setServices] = useState([businessByUUID.services]);
 
-  //   const getWorkers = async () => {
-  //     try {
-  //       const response = await axios.get;
-  //     } catch (error) {}
-  //   };
-
   useEffect(() => {
-    console.log(businessByUUID.workers);
-    console.log(businessByUUID.services);
-  }, []);
+    console.log("all data detail ", businessByUUID);
+  }, [businessByUUID]);
 
   return (
     <div class="flex flex-col gap-10">
       <div class="w-full flex flex-col md:flex-row-reverse md:items-start my-5">
-        <div className="w-full xl:w-1/4 flex flex-col items-end gap-2">
+        <div className="w-full xl:w-1/4 flex flex-col items-end gap-5">
           <div className="w-full flex xl:flex-col xl:items-end gap-2">
             <ChatNow />
 
@@ -83,10 +77,10 @@ const ContentDetail = ({ businessByUUID }) => {
                 {businessByUUID.address ? businessByUUID.address[1] : ''}
               </p>
             </div>
-            <div class=" my-auto flex gap-1">
+            {/* <div class=" my-auto flex gap-1">
               <FaStar className="w-3 h-3 text-amber-500" />
               <h6 class="ml-1 text-xs">4.8</h6>
-            </div>
+            </div> */}
           </div>
 
           <div class="flex flex-row mt-10">
@@ -94,59 +88,54 @@ const ContentDetail = ({ businessByUUID }) => {
               <h1 class="font-bold text-2xl">
                 Dikelola oleh {businessByUUID.userData?.username}
               </h1>
-              <h6 class="text-slate-500">@captainbarbershop</h6>
             </div>
-            <img
-              class="w-14 ml-40"
-              src="/src/assets/images/profiles/ProfileDummy1.png"
-            />
           </div>
-
-          {/* <div className='w-full flex justify-start'>
-                        <div class='flex flex-row border border-rose-400 rounded mr-3'>
-                            <img class='h-3 my-auto mx-2' src='/src/assets/images/icons/Bookmark.png' />
-                            <h6 class='mr-2 my-1'>Simpan</h6>
-                        </div>
-                        <div class='flex flex-row border border-rose-400 rounded'>
-                            <img class='h-4 my-auto mx-2' src='/src/assets/images/icons/PinkShare.png' />
-                            <h6 class='mr-2 my-1'>Bagikan</h6>
-                        </div>
-                    </div> */}
         </div>
       </div>
 
-      <div className="w-3/4 border-t border-gray-500 py-10">
-        <h1 class="font-bold text-2xl">Deskripsi Barbershop</h1>
-        <p>
-          Captain barbershop adalah merek barbershop premium di Indonesia. kami
-          dengan memberikan layanan berkualitas tinggi seperti perlengkapan
-          sanitasi, fasilitas nyaman, dan tukang cukur berpengalaman.
-          <br />
-          ......
-          <br />
-          <b>lihat lebih banyak</b>
+      <div className="w-3/4 border-b border-gray-200 py-5">
+        <p class="font-bold text-2xl mb-4">Deskripsi Barbershop</p>
+        <p className='text-base'>
+          {businessByUUID.description ? businessByUUID.description : "belum ada deskripsi"}
         </p>
       </div>
 
-      <div className="w-3/4 border-t border-gray-500 py-10">
-        <h1 class="font-bold text-2xl">Jenis Layanan</h1>
+      <div className="w-3/4 border-gray-200 py-5">
+        <p class="font-bold text-2xl mb-4">Jenis Layanan</p>
+        {/* {businessByUUID.services.length > 0 ? businessByUUID.services?.map((service) => ( */}
         {businessByUUID.services?.map((service) => (
           <>
-            <div class="flex  items-center justify-between">
-              <div>
-                {service.name.map((serviceName) => (
-                  <div class="flex flex-row items-center mt-2 gap-5">
-                    <TbMassage className="w-8 h-8" />
-                    <h1 class="text-slate-500">{serviceName}</h1>
-                  </div>
-                ))}
+            <div class="w-full flex flex-col items-center justify-between">
+              <div className='w-full flex justify-start mb-4 mt-8'>
+                <div className='w-1/2'>
+                  <p className='text-base font-bold text-gray-400'>
+                    Nama Layanan
+                  </p>
+                </div>
+                <div className='w-1/2'>
+                  <p className='text-base font-bold text-gray-400'>
+                    Harga
+                  </p>
+                </div>
               </div>
-              <div>
-                {service.price.map((servicePrice) => (
-                  <div>
-                    <h1>
-                      {'Rp' + parseInt(servicePrice).toLocaleString('id-ID')}
-                    </h1>
+
+              <div className='w-full flex flex-col'>
+
+
+                {service.name.map((serviceName, index) => (
+                  <div className='w-full flex justify-start'>
+                    <div className='w-1/2'>
+                      <p className='text-base py-2 border-b border-gray-400'>
+                        {serviceName}
+                      </p>
+                    </div>
+                    <div className='w-1/2'>
+                      <p className='text-base py-2 border-b border-gray-400'>
+
+                        {'Rp' + parseInt(service.price[index]).toLocaleString('id-ID')}
+
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -155,38 +144,49 @@ const ContentDetail = ({ businessByUUID }) => {
         ))}
       </div>
 
-      <div className="w-3/4 border-t border-gray-500 py-10">
-        <h1 class="font-bold text-2xl">Jam Operasional</h1>
+      <div className="w-3/4 border-b border-gray-200 py-5">
+        <h1 class="font-bold text-2xl mb-4">Jam Operasional</h1>
         <div class="flex flex-row ml-1 mt-2">
           <img
             class="w-auto h-5 mr-4"
             src="/src/assets/images/icons/Clock.png "
           />
-          <h1>Buka / Tutup : 09:00 - 16:00</h1>
+          <h1>Buka / Tutup : {businessByUUID.schedule}</h1>
+
         </div>
       </div>
 
-      <div className="w-3/4 border-t border-gray-500 py-10">
+      <div className="w-3/4 border-b border-gray-200 py-5">
         <h1 class="font-bold text-2xl">Daftar Karyawan</h1>
+
+        <div className='w-full flex gap-32 mt-8 mb-4'>
+          <div className='w-1/3'>
+            <p className='text-lg font-bold text-gray-400'>Profil</p>
+          </div>
+          <div className='w-1/3'>
+            <p className='text-lg font-bold text-gray-400'>Nama</p>
+          </div>
+          <div className='w-1/3'>
+            <p className='text-lg font-bold text-gray-400'>Skill</p>
+          </div>
+        </div>
+
         {businessByUUID.workers?.map((worker) => (
-          <div class="grid grid-cols-4 ml-1 mt-2">
-            <div>
-              <h1 class="text-slate-500">Foto</h1>
-              <img class="my-1 " src={worker?.imageURL} />
+          <div class="w-full flex gap-32 items-center my-2">
+            <div className='w-1/3'>
+              <img class="my-1 w-20 rounded-full border-2 border-gray-600" src={worker?.imageURL} />
             </div>
-            <div class="col-span-2">
-              <h1 class="my-1 text-slate-500">Nama</h1>
+            <div className='w-1/3'>
               <h1>{worker?.name}</h1>
             </div>
-            <div>
-              <h1 class="my-1 text-slate-500">Skill</h1>
+            <div className='w-1/3'>
               <h1>{worker?.skill}</h1>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="w-3/4 border-t border-gray-500 py-10">
+      <div className="w-3/4 border-b border-gray-200 py-5">
         <h1 class="font-bold text-2xl">Lokasi dan Lingkungan Sekitar</h1>
         <div class="flex flex-row">
           <img
@@ -256,27 +256,8 @@ const ContentDetail = ({ businessByUUID }) => {
 
       <div className="w-3/4">
         <ReviewModal />
-        <Link to="/user/review" className="hover:curpo">
-          Beri Ulasan Page
-        </Link>
       </div>
 
-      {/* <div align='center'>
-                <div class='md:box-content overflow-hidden shadow-xl mt-10 px-5 py-8'>
-                    <ChatNow/>
-                    <br/>
-                    <button class='md:box-content py-4 px-7 mt-3 bg-rose-500 hover:bg-rose-700 text-white font-normal'>
-                        <h1 class='text-lg'>Pesan Sekarang</h1>
-                    </button>
-                </div>
-                <div class='max-w-xs overflow-hidden shadow-xl mt-10 inline-flex items-center px-8 py-2 gap gap-2 rounded-3xl divide-x-2 divide-slate-500'>
-                    <img src='/src/assets/images/icons/instagram.png'/>
-                    <img class='w-10' src='/src/assets/images/icons/x.png'/>
-                    <img class='px-3' src='/src/assets/images/icons/facebook.png'/>
-                    <img class='px-3' src='/src/assets/images/icons/Youtube.png'/>
-                    
-                </div>
-            </div> */}
     </div>
   );
 };
@@ -285,11 +266,18 @@ const ReviewModal = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  // useState for rating
+  const [rating, setRating] = useState(0)
+  const handleRatingChange = (newRating) => {
+    setRating(newRating);
+  };
+
   return (
     <div>
-      <Button onClick={handleOpen}>
-        <p className="hover:cursor-pointer">Beri Ulasan Modal</p>
-      </Button>
+      <div className='w-full hover:cursor-pointer hover:bg-rose-500 transition-all shadow drop-shadow bg-rose-400 text-center font-medium py-2 rounded text-white' onClick={handleOpen}>
+        <p className="">Beri Ulasan</p>
+      </div>
       <Modal
         open={open}
         onClose={handleClose}
@@ -297,12 +285,45 @@ const ReviewModal = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <div id="modal-modal-title" className='w-full flex justify-end'>
+            <p className='px-3 py-2 hover:bg-zinc-800 hover:text-white hover:cursor-pointer transition-all' onClick={handleClose}>
+              X
+            </p>
+          </div>
+          <div id="modal-modal-description" className='w-full bg-gray-200 py-4 px-5 shadow-md drop-shadow mt-3'>
+            <p className='text-base'>
+              Silahkan Beri Ulasan Disini!!
+            </p>
+          </div>
+          <div className='w-full mt-10 flex flex-col items-center justify-center'>
+            <div className='w-4/5 flex items-center gap-20 py-5 '>
+              <div className='w-1/4'>
+                <p className='text-xl font-medium'>Rating Review</p>
+              </div>
+              <div className='w-3/4 flex justify-evenly'>
+
+                {[1, 2, 3, 4, 5].map(star => (
+                  <FaStar
+                    key={star}
+                    className={`${star == 0 ? "" : "text-gray-200"} ${star <= rating ? "text-amber-400" : "text-gray-200"}  scale-[2.5] transition-all hover:cursor-pointer`}
+                    onClick={(e) => handleRatingChange(star)} />
+                ))}
+
+              </div>
+            </div>
+            <div className='w-4/5 flex items-start gap-20 py-5 '>
+              <div className='w-1/4'>
+                <p className='text-xl font-medium'>Deskripsi Ulasan</p>
+              </div>
+              <div className='w-3/4'>
+                <textarea name="" className='w-full p-4 border border-gray-300 bg-gray-100 rounded-md placeholder:' placeholder='Deskripsi' id="" cols="30" rows="10"></textarea>
+              </div>
+            </div>
+            <div className='w-4/5 flex items-center justify-end gap-5 py-5'>
+              <p className='px-4 py-2 transition-all bg-zinc-900 rounded text-white shadow drop-shadow hover:cursor-pointer hover:bg-zinc-800'>Posting</p>
+              <p className='px-4 py-2 transition-all bg-green-600 rounded text-white shadow drop-shadow hover:cursor-pointer hover:bg-green-700'>Posting</p>
+            </div>
+          </div>
         </Box>
       </Modal>
     </div>

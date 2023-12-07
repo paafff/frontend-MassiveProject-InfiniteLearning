@@ -135,7 +135,7 @@ const ListServices = ({ hamburgerMenu }) => {
           handleCloseUpdate={handleCloseUpdate}
           handleClose={handleClose}
           getListServices={getListServices}
-          //   handleCloseUpdate={handleCloseUpdate}
+        //   handleCloseUpdate={handleCloseUpdate}
         />
       </div>
     </div>
@@ -186,7 +186,7 @@ const Service = ({
           <p className="text-white text-xs">Edit</p>
         </div>
         <div className=" px-2 flex gap-2 items-center justify-between bg-red-600 hover:bg-red-700 transition-all hover:cursor-pointer py-2 rounded shadow-md">
-          <button onClick={deleteListService}>
+          <button className='flex gap-2' onClick={deleteListService}>
             <FaRegTrashAlt className="inline-block text-white" />
             <p className="text-white text-xs">Hapus</p>
           </button>

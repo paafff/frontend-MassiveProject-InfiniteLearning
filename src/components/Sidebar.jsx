@@ -83,7 +83,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 <>
                     <AdminAccount />
 
-                    <AdminDashboard />
+                    {/* <AdminDashboard /> */}
 
                     <AdminUser />
 

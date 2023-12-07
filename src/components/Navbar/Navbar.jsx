@@ -42,6 +42,8 @@ const Navbar = () => {
     window.location.reload();
   };
 
+  console.log("role ku apa? ", userAuth);
+
   return (
     <>
       <div className="z-20 w-full h-24 bg-zinc-900 flex items-center justify-between px-6 lg:px-16 xl:px-16">
@@ -57,9 +59,9 @@ const Navbar = () => {
 
         <NavbarMobile setDropdownKategori={setDropdownKategori} dropdownKategori={dropdownKategori} dropdownProfile={dropdownProfile} setDropdownProfile={setDropdownProfile} mobileNavbar={mobileNavbar} isLogin={isLogin} />
 
-        <DropdownCategory display={dropdownKategori ? "flex" : "hidden"} />
+        <DropdownCategory role={userAuth} display={dropdownKategori ? "flex" : "hidden"} />
 
-        <DropdownProfile display={dropdownProfile ? "flex" : "hidden"} logoutProps={logOut} />
+        <DropdownProfile role={userAuth} display={dropdownProfile ? "flex" : "hidden"} logoutProps={logOut} />
 
         {/* <div className="text-white">{isLogin ? 'sudahh' : 'belum'}</div> */}
       </div>
