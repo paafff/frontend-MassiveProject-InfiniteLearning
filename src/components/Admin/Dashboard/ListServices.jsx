@@ -63,6 +63,9 @@ const ListServices = ({ hamburgerMenu }) => {
       await axios.post(`${import.meta.env.VITE_API_URL}/list-service`, {
         name: newService,
       });
+
+      handleClose();
+      getListServices();
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -109,9 +112,10 @@ const ListServices = ({ hamburgerMenu }) => {
           <Service
             id={service.id}
             name={service.name}
-            date={service.created_at}
+            date={service.updatedAt}
             handleOpenUpdate={handleOpenUpdate}
             handleCloseUpdate={handleCloseUpdate}
+            getListServices={getListServices}
           />
         ))}
 
@@ -129,14 +133,38 @@ const ListServices = ({ hamburgerMenu }) => {
           open={openUpdate}
           handleOpenUpdate={handleOpenUpdate}
           handleCloseUpdate={handleCloseUpdate}
-          W
+          handleClose={handleClose}
+          getListServices={getListServices}
+          //   handleCloseUpdate={handleCloseUpdate}
         />
       </div>
     </div>
   );
 };
 
-const Service = ({ id, name, date, handleOpenUpdate, handleCloseUpdate }) => {
+const Service = ({
+  id,
+  name,
+  date,
+  handleOpenUpdate,
+  handleCloseUpdate,
+  getListServices,
+}) => {
+  const deleteListService = async () => {
+    try {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/list-service/${id}`);
+
+      console.log('berhasil menghapus data');
+      getListServices();
+      //   window.location.reload();
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.msg);
+      } else {
+        console.log(error);
+      }
+    }
+  };
   return (
     <div
       className="w-full py-3 px-5 border-b border-gray-200 flex justify-between gap-10"
@@ -158,8 +186,10 @@ const Service = ({ id, name, date, handleOpenUpdate, handleCloseUpdate }) => {
           <p className="text-white text-xs">Edit</p>
         </div>
         <div className=" px-2 flex gap-2 items-center justify-between bg-red-600 hover:bg-red-700 transition-all hover:cursor-pointer py-2 rounded shadow-md">
-          <FaRegTrashAlt className="inline-block text-white" />
-          <p className="text-white text-xs">Hapus</p>
+          <button onClick={deleteListService}>
+            <FaRegTrashAlt className="inline-block text-white" />
+            <p className="text-white text-xs">Hapus</p>
+          </button>
         </div>
       </div>
     </div>
@@ -240,10 +270,34 @@ const UpdateServices = ({
   id,
   selectedNameService,
   selectedIdService,
+  handleClose,
+  getListServices,
+  //   handleCloseUpdate
 }) => {
+  const [name, setName] = useState('');
 
+  const updateListService = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.patch(
+        `${import.meta.env.VITE_API_URL}/list-service/${selectedIdService}`,
+        {
+          name: name,
+        }
+      );
 
-    const
+      handleCloseUpdate();
+      getListServices();
+      console.log(name);
+      //   window.location.reload();
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.msg);
+      } else {
+        console.log(error);
+      }
+    }
+  };
 
   return (
     <Modal
@@ -274,10 +328,14 @@ const UpdateServices = ({
                 label="Nama layanan"
                 name="service-name"
                 variant="outlined"
+                onChange={(e) => setName(e.target.value)}
                 style={{ width: '100%' }}
               />
               <div className="w-full flex justify-end mt-3">
-                <button className="w-fit px-3 py-2 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded shadow-md">
+                <button
+                  onClick={updateListService}
+                  className="w-fit px-3 py-2 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded shadow-md"
+                >
                   <p className="text-xs text-white">Update</p>
                 </button>
               </div>
