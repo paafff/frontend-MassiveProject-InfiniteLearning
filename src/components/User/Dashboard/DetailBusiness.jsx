@@ -8,7 +8,7 @@ import { IoReturnDownBackOutline } from 'react-icons/io5';
 
 import axios from 'axios';
 
-const DetailBussiness = ({ businessByUUID }) => {
+const DetailBussiness = ({ businessByUUID, sosmed }) => {
 
   const [editForm, setEditForm] = useState(true);
 
@@ -35,8 +35,14 @@ const DetailBussiness = ({ businessByUUID }) => {
   // INPUT SOSMED
   // console.log("ini data sosmed uuid : ", socialMedia);
   // const socmedDefault = businessByUUID.socialMedia;
-  const businessData = businessByUUID || ""
-  console.log("socmed default ", businessByUUID.socialMedia);
+  // console.log("socmed default ", businessByUUID);
+
+  // const [instagramLink, setInstagramLink] = useState(businessByUUID.socialMedia[0]);
+  // const [facebookLink, setFacebookLink] = useState(businessByUUID.socialMedia[1]);
+  // const [twitterLink, setTwitterLink] = useState(businessByUUID.socialMedia[2]);
+  // const [youtubeLink, setYoutubeLink] = useState(businessByUUID.socialMedia[3]);
+
+  console.log("data uuid from komponen ig ", businessByUUID.socialMedia);
 
   const [instagramLink, setInstagramLink] = useState(null);
   const [facebookLink, setFacebookLink] = useState(null);
@@ -87,6 +93,11 @@ const DetailBussiness = ({ businessByUUID }) => {
           inputFB={facebookLink}
           inputTW={twitterLink}
           inputYT={youtubeLink}
+
+          stateIG={businessByUUID.socialMedia ? businessByUUID.socialMedia[0] : "coba ig"}
+          stateFB={businessByUUID.socialMedia ? businessByUUID.socialMedia[1] : "coba ig"}
+          stateTW={businessByUUID.socialMedia ? businessByUUID.socialMedia[2] : "coba ig"}
+          stateYT={businessByUUID.socialMedia ? businessByUUID.socialMedia[3] : "coba ig"}
         />
       </div>
     </div>
@@ -266,8 +277,7 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link instagram"
-          defaultValue={businessByUUID ? businessByUUID.socialMedia[0] : ""}
-
+          defaultValue={businessByUUID.socialMedia ? businessByUUID.socialMedia[0] : "coba ig"}
         />
 
       </form>
@@ -284,7 +294,7 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link Facebook"
-          defaultValue={businessByUUID ? businessByUUID.socialMedia[1] : ""}
+          defaultValue={businessByUUID.socialMedia ? businessByUUID.socialMedia[1] : "coba fb"}
         />
 
       </form>
@@ -301,7 +311,7 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link twitter"
-          defaultValue={businessByUUID ? businessByUUID.socialMedia[2] : ""}
+          defaultValue={businessByUUID.socialMedia ? businessByUUID.socialMedia[2] : "coba tw"}
         />
 
       </form>
@@ -318,7 +328,7 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link youtube"
-          defaultValue={businessByUUID ? businessByUUID.socialMedia[3] : ""}
+          defaultValue={businessByUUID.socialMedia ? businessByUUID.socialMedia[2] : "coba yt"}
         />
 
       </form>
@@ -338,6 +348,10 @@ const Form = ({
   inputFB,
   inputTW,
   inputYT,
+  stateIG,
+  stateFB,
+  stateTW,
+  stateYT,
 }) => {
   const [desc, setDesc] = useState('');
   const [maps, setMaps] = useState('');
@@ -373,10 +387,10 @@ const Form = ({
     img4: null,
     img5: null,
     description: '',
-    instagram: inputIG,
-    facebook: inputFB,
-    twitter: inputTW,
-    youtube: inputYT,
+    instagram: null,
+    facebook: null,
+    twitter: null,
+    youtube: null,
     maps: '',
   });
 
@@ -406,10 +420,10 @@ const Form = ({
 
 
   const arraySocialMedia = [
-    businessData.instagram,
-    businessData.facebook,
-    businessData.twitter,
-    businessData.youtube,
+    businessData.instagram || businessByUUID?.socialMedia,
+    businessData.facebook || businessByUUID?.socialMedia,
+    businessData.twitter || businessByUUID?.socialMedia,
+    businessData.youtube || businessByUUID?.socialMedia,
     businessData.maps,
 
   ];
@@ -480,7 +494,7 @@ const Form = ({
             onChange={(e) => handleChange(e.target)}
             className="text-xs w-full h-10 text-gray-700 border border-gray-300 rounded p-2 placeholder:text-xs placeholder:text-gray-500 disabled:bg-gray-200"
             disabled={editForm}
-            defaultValue={businessByUUID ? businessByUUID.socialMedia[4] : ""}
+            defaultValue={maps}
             placeholder="Masukkan link"
             name="maps"
             id="maps"

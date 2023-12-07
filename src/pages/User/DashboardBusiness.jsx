@@ -24,8 +24,8 @@ const DashboardBussiness = () => {
 
         setBusinessByUUID(response.data);
         // console.log('detailbusines', businessByUUID);
-        console.log('uuid nya params', uuid);
-        console.log('detailbusines', businessByUUID);
+        // console.log('uuid nya params', uuid);
+        // console.log('detailbusines', businessByUUID);
       } catch (error) {
         if (error.response) {
           alert(error.response.data.msg);
@@ -44,14 +44,19 @@ const DashboardBussiness = () => {
         <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
         <div className="w-screen flex flex-col">
+
           <BasicInformation
             businessByUUID={businessByUUID}
             showSidebar={showSidebar}
             setShowSidebar={setShowSidebar}
           />
+
           {console.log("data uuid from page : ", businessByUUID.socialMedia)}
-          <DetailBusiness businessByUUID={businessByUUID} />
+
+          <DetailBusiness businessByUUID={businessByUUID} sosmed={businessByUUID.socialMedia} />
+
           <Services businessByUUID={businessByUUID} />
+
           <Employee businessByUUID={businessByUUID} />
         </div>
       </div>

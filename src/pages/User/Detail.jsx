@@ -19,7 +19,7 @@ const Detail = () => {
 
         setBusinessByUUID(response.data);
         // console.log('detailbusines', businessByUUID);
-        console.log('uuid nya params', uuid);
+        // console.log('uuid nya params', uuid);
         console.log('detailbusines', businessByUUID);
       } catch (error) {
         if (error.response) {

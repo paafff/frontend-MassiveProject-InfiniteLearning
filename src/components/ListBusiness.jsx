@@ -21,24 +21,25 @@ const ListBusiness = ({ listCity, dataList, page }) => {
   const [kota, setKota] = useState(null);
 
   const handleCity = (event) => {
-    setCity(event.target.value);
+    setCity(event);
+    setKota(event)
   };
 
   const [searchBusinessData, setSearchBusinessData] = useState([]);
+
   useEffect(() => {
     const getBusinessByParams = async () => {
       try {
         const response = await axios.get(
-          `${
-            import.meta.env.VITE_API_URL
+          `${import.meta.env.VITE_API_URL
           }/business-search/${kota}?typeBusiness=${page}`
         );
 
         setSearchBusinessData(response.data);
-        console.log(kota);
-        console.log('inicity', city);
-        console.log(page);
-        console.log(searchBusinessData);
+        // console.log(kota);
+        // console.log(page);
+        // console.log('inicity', city);
+        // console.log(searchBusinessData);
       } catch (error) {
         if (error.response) {
           alert(error.response.data.msg);
@@ -61,18 +62,23 @@ const ListBusiness = ({ listCity, dataList, page }) => {
             1-12 from 100 results
           </p>
 
-          <SelectCity city={city} handleCity={handleCity} listCity={listCity} />
+          <SelectCity
+            // city={city} 
+            handleCity={handleCity}
+            listCity={listCity} />
         </div>
 
         {kota ? (
           <div className="w-full p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:px-72 gap-4 xl:gap-8 md:gap-3 items-center">
+            
             {searchBusinessData.map((data) => (
               // child
               <Card
                 id={data.id}
                 name={data.name}
-                city={data.city}
+                city={data.address[1]}
                 page={page}
+                uuid={data.uuid}
               />
             ))}
           </div>
@@ -83,8 +89,9 @@ const ListBusiness = ({ listCity, dataList, page }) => {
               <Card
                 id={data.id}
                 name={data.name}
-                city={data.city}
+                city={data.address[1]}
                 page={page}
+                uuid={data.uuid}
               />
             ))}
           </div>
@@ -99,9 +106,8 @@ const Banner = ({ page }) => {
     <div
       className="w-full h-32 md:h-56 lg:h-72 xl:h-96 flex items-end justify-start py-5 px-7 bg-gray-400 bg-cover "
       style={{
-        backgroundImage: `url(${
-          page == 'Barbershop' ? BannerBarber : BannerSalon
-        })`,
+        backgroundImage: `url(${page == 'barbershop' ? BannerBarber : BannerSalon
+          })`,
         backgroundRepeat: 'no-repeat',
       }}
     >
@@ -121,32 +127,34 @@ const SelectCity = ({ city, handleCity, listCity }) => {
       <Select
         labelId="demo-simple-select-autowidth-label"
         id="demo-simple-select-autowidth"
-        value={city}
-        onChange={handleCity}
+        // value={()}
+        onChange={(e) => handleCity(e.target.value)}
         autoWidth
         label="Age"
       >
         <MenuItem>
           <em className="">Pilih Kota</em>
         </MenuItem>
+
         {listCity.map((city) => (
           <MenuItem value={city.name}>
             <em>{city.name}</em>
           </MenuItem>
         ))}
+
       </Select>
+
     </FormControl>
   );
 };
 
-const Card = ({ id, name, city, page }) => {
+const Card = ({ id, name, city, page, uuid }) => {
   return (
     <div
       className="rounded-lg p-4 drop-shadow-2xl flex items-end justify-center  aspect-square bg-red-700"
       style={{
-        backgroundImage: `url(${
-          page == 'Barbershop' ? ImageBarber : ImageSalon
-        })`,
+        backgroundImage: `url(${page == 'Barbershop' ? ImageBarber : ImageSalon
+          })`,
         backgroundSize: 'cover',
       }}
       key={id}
@@ -159,7 +167,7 @@ const Card = ({ id, name, city, page }) => {
           </p>
           <p className="text-gray-500 font-thin text-xs xl:text-sm">{city}</p>
         </div>
-        <Link to="/detail" className="h-full flex items-center">
+        <Link to={`/detail/${uuid}`} className="h-full flex items-center">
           <div className="h-8 w-8 bg-rose-500 rounded-lg flex justify-center items-center shadow-md hover:shadow-none hover:scale-90 transition-all">
             <IoIosArrowRoundForward className="text-white scale-150" />
           </div>

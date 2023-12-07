@@ -50,7 +50,7 @@ const ContentDetail = ({ businessByUUID }) => {
   return (
     <div class="flex flex-col gap-10">
       <div class="w-full flex flex-col md:flex-row-reverse md:items-start my-5">
-        <div className="w-full xl:w-1/4 flex flex-col items-end gap-2">
+        <div className="w-full xl:w-1/4 flex flex-col items-end gap-5">
           <div className="w-full flex xl:flex-col xl:items-end gap-2">
             <ChatNow />
 
@@ -116,23 +116,52 @@ const ContentDetail = ({ businessByUUID }) => {
       </div>
 
       <div className="w-3/4 border-t border-gray-500 py-10">
-        <h1 class="font-bold text-2xl">Deskripsi Barbershop</h1>
+        <p class="font-bold text-2xl mb-4">Deskripsi Barbershop</p>
         <p>
-          Captain barbershop adalah merek barbershop premium di Indonesia. kami
-          dengan memberikan layanan berkualitas tinggi seperti perlengkapan
-          sanitasi, fasilitas nyaman, dan tukang cukur berpengalaman.
-          <br />
-          ......
-          <br />
-          <b>lihat lebih banyak</b>
+          {businessByUUID.description}
         </p>
       </div>
 
       <div className="w-3/4 border-t border-gray-500 py-10">
-        <h1 class="font-bold text-2xl">Jenis Layanan</h1>
+        <p class="font-bold text-2xl mb-4">Jenis Layanan</p>
         {businessByUUID.services?.map((service) => (
           <>
-            <div class="flex  items-center justify-between">
+            <div class="w-full flex flex-col items-center justify-between">
+              <div className='w-full flex justify-start mb-4 mt-8'>
+                <div className='w-1/2'>
+                  <p className='text-base font-bold text-gray-400'>
+                    Nama Layanan
+                  </p>
+                </div>
+                <div className='w-1/2'>
+                  <p className='text-base font-bold text-gray-400'>
+                    Harga
+                  </p>
+                </div>
+              </div>
+
+              <div className='w-full flex flex-col'>
+
+
+                {service.name.map((serviceName, index) => (
+                  <div className='w-full flex justify-start'>
+                    <div className='w-1/2'>
+                      <p className='text-base py-2 border-b border-gray-400'>
+                        {serviceName}
+                      </p>
+                    </div>
+                    <div className='w-1/2'>
+                      <p className='text-base py-2 border-b border-gray-400'>
+
+                        {'Rp ' + parseInt(service.price[index]).toLocaleString('id-ID')}
+
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* <div class="flex  items-center justify-between">
               <div>
                 {service.name.map((serviceName) => (
                   <div class="flex flex-row items-center mt-2 gap-5">
@@ -150,7 +179,7 @@ const ContentDetail = ({ businessByUUID }) => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </>
         ))}
       </div>
@@ -168,18 +197,26 @@ const ContentDetail = ({ businessByUUID }) => {
 
       <div className="w-3/4 border-t border-gray-500 py-10">
         <h1 class="font-bold text-2xl">Daftar Karyawan</h1>
+        <div className='w-full flex gap-32 mt-8 mb-4'>
+          <div className='w-1/3'>
+            <p className='text-lg font-bold text-gray-400'>Profil</p>
+          </div>
+          <div className='w-1/3'>
+            <p className='text-lg font-bold text-gray-400'>Nama</p>
+          </div>
+          <div className='w-1/3'>
+            <p className='text-lg font-bold text-gray-400'>Skill</p>
+          </div>
+        </div>
         {businessByUUID.workers?.map((worker) => (
-          <div class="grid grid-cols-4 ml-1 mt-2">
-            <div>
-              <h1 class="text-slate-500">Foto</h1>
-              <img class="my-1 " src={worker?.imageURL} />
+          <div class="w-full flex gap-32 items-center my-2">
+            <div className='w-1/3'>
+              <img class="my-1 w-20 rounded-full border-2 border-gray-600" src={worker?.imageURL} />
             </div>
-            <div class="col-span-2">
-              <h1 class="my-1 text-slate-500">Nama</h1>
+            <div className='w-1/3'>
               <h1>{worker?.name}</h1>
             </div>
-            <div>
-              <h1 class="my-1 text-slate-500">Skill</h1>
+            <div className='w-1/3'>
               <h1>{worker?.skill}</h1>
             </div>
           </div>

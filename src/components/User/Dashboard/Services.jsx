@@ -112,8 +112,8 @@ const Services = ({ businessByUUID }) => {
     setArrayServicePrice((pre) => [...pre, value]);
   };
 
-  console.log('service yg dicentang ', arrayService);
-  console.log('harga service ', arrayServicePrice);
+  // console.log('service yg dicentang ', arrayService);
+  // console.log('harga service ', arrayServicePrice);
 
   const createServices = async (e) => {
     e.preventDefault();
