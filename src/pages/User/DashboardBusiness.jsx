@@ -38,10 +38,13 @@ const DashboardBussiness = () => {
     getBusinessByUUID();
   }, [uuid]);
 
+  
+
   return (
     <Layout>
       <div className="flex bg-gray-200">
         <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+
 
         <div className="w-screen flex flex-col">
 
@@ -51,7 +54,7 @@ const DashboardBussiness = () => {
             setShowSidebar={setShowSidebar}
           />
 
-          {console.log("data uuid from page : ", businessByUUID.socialMedia)}
+          {/* {console.log("data uuid from page : ", businessByUUID.socialMedia)} */}
 
           <DetailBusiness businessByUUID={businessByUUID} sosmed={businessByUUID.socialMedia} />
 

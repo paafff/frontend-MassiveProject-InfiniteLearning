@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormReview = ({ showSidebar, setShowSidebar}) => {
+const FormReview = ({ showSidebar, setShowSidebar }) => {
     return (
         <div class='col-span-3'>
             <div class='ml-5 mt-10 mb-2 flex flex-row'>
@@ -10,26 +10,6 @@ const FormReview = ({ showSidebar, setShowSidebar}) => {
             <div class="m-5 rounded overflow-hidden shadow-lg bg-grey-400">
                 <div class="px-6 py-4">
                     <form>
-                        {/* <div class='flex flex-row my-6'>
-                            <label class='basis-1/3 block text-sm font-medium leading-6 text-gray-900 md:text-left'>Kategori</label>
-                            <select class='basis-2/3 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' required>
-                                <option selected disabled>Kategori</option>
-                                <option>Barbershop</option>
-                                <option>Salon</option>
-                            </select>
-                        </div>
-                        <div class='flex flex-row my-6'>
-                            <label class='basis-1/3 block text-sm font-medium leading-6 text-gray-900 md:text-left'>Nama Tempat</label>
-                            <div class='flex flex-wrap basis-2/3'>
-                                <select class='mr-1 w-68 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' required>
-                                    <option selected disabled>Pilih Nama Tempat</option>
-                                </select>
-                                <img class='mx-2' src='/src/assets/images/icons/MapPinLine.png' />
-                                <select class='w-64 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' required>
-                                    <option selected disabled>Lokasi</option>
-                                </select>
-                            </div>
-                        </div> */}
                         <div class='flex flex-roy my-6'>
                             <label class='w-1/3 block text-sm font-medium leading-6 text-gray-900'>Beri nilai ulasan</label>
                             <select class='w-2/3 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'>
