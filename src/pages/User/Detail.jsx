@@ -4,6 +4,9 @@ import Gallery from '../../components/User/Gallery';
 import ContentDetail from '../../components/User/ContentDetail';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { getMe } from '../../redux/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Detail = () => {
   const { uuid } = useParams();
@@ -33,12 +36,27 @@ const Detail = () => {
     getBusinessByUUID();
   }, [uuid]);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // mengambil nilai userAuthReducer pada store
+  const userAuthSelector = (state) => state.userAuthReducer.userAuth;
+  const userAuth = useSelector(userAuthSelector);
+
+  useEffect(() => {
+    const getMeUser = async () => {
+      await dispatch(getMe());
+    };
+
+    getMeUser();
+    // console.log(userAuth);
+  }, [dispatch, navigate]);
+
   return (
     <Layout>
       <div class="xl:w-3/4 w-full px-3 md:px-5 min-h-screen my-5 mx-auto">
-        <Gallery />
+        <Gallery businessByUUID={businessByUUID} />
 
-        <ContentDetail businessByUUID={businessByUUID} />
+        <ContentDetail userAuth={userAuth} businessByUUID={businessByUUID} />
       </div>
     </Layout>
   );

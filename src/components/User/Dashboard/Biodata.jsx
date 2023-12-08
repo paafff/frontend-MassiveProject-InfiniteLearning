@@ -212,7 +212,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
       // formUpdate.append('address', JSON.stringify(arrayAddressUser));
 
       await axios.patch(
-        `http://localhost:5000/user/${userAuth.uuid}`,
+        `${import.meta.env.VITE_API_URL}/user/${userAuth.uuid}`,
         formUpdate,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );

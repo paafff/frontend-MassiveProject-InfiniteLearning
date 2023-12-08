@@ -52,6 +52,7 @@ const ListBusiness = ({ listCity, dataList, page }) => {
     getBusinessByParams();
   }, [page, city]);
 
+
   return (
     <div className=" min-w-full min-h-screen">
       <Banner page={page} />
@@ -79,6 +80,7 @@ const ListBusiness = ({ listCity, dataList, page }) => {
                 city={data.address[1]}
                 page={page}
                 uuid={data.uuid}
+                schedule={data.schedule}
               />
             ))}
           </div>
@@ -92,6 +94,7 @@ const ListBusiness = ({ listCity, dataList, page }) => {
                 city={data.address[1]}
                 page={page}
                 uuid={data.uuid}
+                schedule={data.schedule}
               />
             ))}
           </div>
@@ -148,7 +151,45 @@ const SelectCity = ({ city, handleCity, listCity }) => {
   );
 };
 
-const Card = ({ id, name, city, page, uuid }) => {
+const Card = ({ id, name, city, page, uuid,schedule }) => {
+
+    //scheduleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee yak
+    const [status, setStatus] = useState('');
+    const currentTime = new Date().toLocaleTimeString('id-ID', {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+    const targetTimeOpen = schedule?.[0];
+    const targetTimeClose = schedule?.[1];
+  
+    const currentHours = parseInt(currentTime.split(':')[0]);
+    const currentMinutes = parseInt(currentTime.split(':')[1]);
+  
+    const targetHoursOpen = parseInt(targetTimeOpen?.split(':')[0]);
+    const targetMinutesOpen = parseInt(targetTimeOpen?.split(':')[1]);
+  
+    const targetHoursClose = parseInt(targetTimeClose?.split(':')[0]);
+    const targetMinutesClose = parseInt(targetTimeClose?.split(':')[1]);
+    useEffect(() => {
+      if (
+        // currentHours > targetHoursOpen ||
+        // (currentHours === targetHoursOpen && currentMinutes > targetMinutesOpen)
+  
+        (currentHours > targetHoursOpen ||
+          (currentHours === targetHoursOpen &&
+            currentMinutes > targetMinutesOpen)) &&
+        //pemisah
+        (currentHours < targetHoursClose ||
+          (currentHours === targetHoursClose &&
+            currentMinutes < targetMinutesClose))
+      ) {
+        setStatus(`Buka Blok, tutup jam ${schedule?.[0]}`);
+      } else {
+        setStatus(`Tutup  Blok, buka jam ${schedule?.[1]}`);
+      }
+    }, [targetTimeClose, targetTimeOpen]);
+
   return (
     <div
       className="rounded-lg p-4 drop-shadow-2xl flex items-end justify-center  aspect-square bg-red-700"
@@ -161,7 +202,7 @@ const Card = ({ id, name, city, page, uuid }) => {
     >
       <div className="w-full p-4 min-h-[25%] bg-white rounded-md flex justify-between items-center hover:scale-95 transition-all hover:cursor-pointer">
         <div className="w-full h-full flex flex-col justify-between">
-          <p className="text-red-600 font-semibold text-xs xl:text-sm">Tutup</p>
+          <p className="text-red-600 font-semibold text-xs xl:text-sm">{status}</p>
           <p className="text-zinc-800 font-bold text-xs md:text-sm xl:text-base">
             {name}
           </p>

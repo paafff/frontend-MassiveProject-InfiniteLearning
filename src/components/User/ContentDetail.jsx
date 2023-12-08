@@ -33,13 +33,49 @@ const style = {
   p: 4,
 };
 
-const ContentDetail = ({ businessByUUID }) => {
-
+const ContentDetail = ({ businessByUUID, userAuth }) => {
   const [services, setServices] = useState([businessByUUID.services]);
 
   useEffect(() => {
-    console.log("all data detail ", businessByUUID);
+    console.log('all data detail ', businessByUUID);
   }, [businessByUUID]);
+
+  //scheduleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee yak
+  const [status, setStatus] = useState('');
+  const currentTime = new Date().toLocaleTimeString('id-ID', {
+    hour12: false,
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+  const targetTimeOpen = businessByUUID?.schedule?.[0];
+  const targetTimeClose = businessByUUID?.schedule?.[1];
+
+  const currentHours = parseInt(currentTime.split(':')[0]);
+  const currentMinutes = parseInt(currentTime.split(':')[1]);
+
+  const targetHoursOpen = parseInt(targetTimeOpen?.split(':')[0]);
+  const targetMinutesOpen = parseInt(targetTimeOpen?.split(':')[1]);
+
+  const targetHoursClose = parseInt(targetTimeClose?.split(':')[0]);
+  const targetMinutesClose = parseInt(targetTimeClose?.split(':')[1]);
+  useEffect(() => {
+    if (
+      // currentHours > targetHoursOpen ||
+      // (currentHours === targetHoursOpen && currentMinutes > targetMinutesOpen)
+
+      (currentHours > targetHoursOpen ||
+        (currentHours === targetHoursOpen &&
+          currentMinutes > targetMinutesOpen)) &&
+      //pemisah
+      (currentHours < targetHoursClose ||
+        (currentHours === targetHoursClose &&
+          currentMinutes < targetMinutesClose))
+    ) {
+      setStatus(`Buka Blok, tutup jam ${businessByUUID?.schedule?.[0]}`);
+    } else {
+      setStatus(`Tutup  Blok, buka jam ${businessByUUID?.schedule?.[1]}`);
+    }
+  }, [targetTimeClose, targetTimeOpen]);
 
   return (
     <div class="flex flex-col gap-10">
@@ -70,7 +106,7 @@ const ContentDetail = ({ businessByUUID }) => {
           <p class="xl:text-2xl text-xl font-bold">{businessByUUID.name}</p>
 
           <div className="w-full flex gap-5">
-            <p class="text-blue-500">Buka</p>
+            <p class="text-blue-500">{status}</p>
             <div className="flex gap-1">
               <FaLocationDot className="text-rose-400" />
               <p class="">
@@ -95,8 +131,10 @@ const ContentDetail = ({ businessByUUID }) => {
 
       <div className="w-3/4 border-b border-gray-200 py-5">
         <p class="font-bold text-2xl mb-4">Deskripsi Barbershop</p>
-        <p className='text-base'>
-          {businessByUUID.description ? businessByUUID.description : "belum ada deskripsi"}
+        <p className="text-base">
+          {businessByUUID.description
+            ? businessByUUID.description
+            : 'belum ada deskripsi'}
         </p>
       </div>
 
@@ -106,34 +144,31 @@ const ContentDetail = ({ businessByUUID }) => {
         {businessByUUID.services?.map((service) => (
           <>
             <div class="w-full flex flex-col items-center justify-between">
-              <div className='w-full flex justify-start mb-4 mt-8'>
-                <div className='w-1/2'>
-                  <p className='text-base font-bold text-gray-400'>
+              <div className="w-full flex justify-start mb-4 mt-8">
+                <div className="w-1/2">
+                  <p className="text-base font-bold text-gray-400">
                     Nama Layanan
                   </p>
                 </div>
-                <div className='w-1/2'>
-                  <p className='text-base font-bold text-gray-400'>
-                    Harga
-                  </p>
+                <div className="w-1/2">
+                  <p className="text-base font-bold text-gray-400">Harga</p>
                 </div>
               </div>
 
-              <div className='w-full flex flex-col'>
-
-
+              <div className="w-full flex flex-col">
                 {service.name.map((serviceName, index) => (
-                  <div className='w-full flex justify-start'>
-                    <div className='w-1/2'>
-                      <p className='text-base py-2 border-b border-gray-400'>
+                  <div className="w-full flex justify-start">
+                    <div className="w-1/2">
+                      <p className="text-base py-2 border-b border-gray-400">
                         {serviceName}
                       </p>
                     </div>
-                    <div className='w-1/2'>
-                      <p className='text-base py-2 border-b border-gray-400'>
-
-                        {'Rp' + parseInt(service.price[index]).toLocaleString('id-ID')}
-
+                    <div className="w-1/2">
+                      <p className="text-base py-2 border-b border-gray-400">
+                        {'Rp' +
+                          parseInt(service.price[index]).toLocaleString(
+                            'id-ID'
+                          )}
                       </p>
                     </div>
                   </div>
@@ -151,35 +186,40 @@ const ContentDetail = ({ businessByUUID }) => {
             class="w-auto h-5 mr-4"
             src="/src/assets/images/icons/Clock.png "
           />
-          <h1>Buka / Tutup : {businessByUUID.schedule}</h1>
-
+          <div className="flex flex-row space-x-10">
+            <h1>{businessByUUID.schedule?.[0]}</h1>
+            <h1> {businessByUUID.schedule?.[1]}</h1>
+          </div>
         </div>
       </div>
 
       <div className="w-3/4 border-b border-gray-200 py-5">
         <h1 class="font-bold text-2xl">Daftar Karyawan</h1>
 
-        <div className='w-full flex gap-32 mt-8 mb-4'>
-          <div className='w-1/3'>
-            <p className='text-lg font-bold text-gray-400'>Profil</p>
+        <div className="w-full flex gap-32 mt-8 mb-4">
+          <div className="w-1/3">
+            <p className="text-lg font-bold text-gray-400">Profil</p>
           </div>
-          <div className='w-1/3'>
-            <p className='text-lg font-bold text-gray-400'>Nama</p>
+          <div className="w-1/3">
+            <p className="text-lg font-bold text-gray-400">Nama</p>
           </div>
-          <div className='w-1/3'>
-            <p className='text-lg font-bold text-gray-400'>Skill</p>
+          <div className="w-1/3">
+            <p className="text-lg font-bold text-gray-400">Skill</p>
           </div>
         </div>
 
         {businessByUUID.workers?.map((worker) => (
           <div class="w-full flex gap-32 items-center my-2">
-            <div className='w-1/3'>
-              <img class="my-1 w-20 rounded-full border-2 border-gray-600" src={worker?.imageURL} />
+            <div className="w-1/3">
+              <img
+                class="my-1 w-20 rounded-full border-2 border-gray-600"
+                src={worker?.imageURL}
+              />
             </div>
-            <div className='w-1/3'>
+            <div className="w-1/3">
               <h1>{worker?.name}</h1>
             </div>
-            <div className='w-1/3'>
+            <div className="w-1/3">
               <h1>{worker?.skill}</h1>
             </div>
           </div>
@@ -199,83 +239,122 @@ const ContentDetail = ({ businessByUUID }) => {
         </div>
       </div>
 
+      {/* //ntar maping nang */}
       <div>
         <h1 class="font-semibold text-lg">4.8 (3 Ulasan)</h1>
-        <div class="mt-10 ml-5 flex flex-row">
-          <img src="/src/assets/images/icons/AvatarEllipse1.png" />
-          <div class="ml-2 flex flex-row gap gap-x-2">
-            <div class="ml-1">
-              <h4 class="font-semibold">Putri L.</h4>
-              <h6 class="text-xs text-gray-500">2 minggu yang lalu</h6>
+
+        {businessByUUID.feedbacks?.map((feedback) => (
+          <>
+            <div class="mt-10 ml-5 flex flex-row">
+              <img
+                className="w-10"
+                // src={feedback.userData?.imageURL}
+                src={feedback.userData?.profileURL}
+                // src="/src/assets/images/icons/AvatarEllipse1.png"
+              />
+              <div class="ml-2 flex flex-row gap gap-x-2">
+                <div class="ml-1">
+                  <h4 class="font-semibold"> {feedback.userData?.username}</h4>
+                  <h6 class="text-xs text-gray-500">2 minggu yang lalu</h6>
+                </div>
+                <div class="border border-rose-400 flex flex-row py-1 px-1 h-6">
+                  <img
+                    class="h-3 mr-1"
+                    src="/src/assets/images/icons/Star.png"
+                    // src={feedback.imageURL}
+                  />
+                  <h6 class="text-xs">{feedback?.rating}.0</h6>
+                </div>
+              </div>
             </div>
-            <div class="border border-rose-400 flex flex-row py-1 px-1 h-6">
-              <img class="h-3 mr-1" src="/src/assets/images/icons/Star.png" />
-              <h6 class="text-xs">5.0</h6>
-            </div>
-          </div>
-        </div>
-        <p class="text-xs ml-20">
-          Pelayanan ramah, harga terjangkau tapi bisa dapatin model rambut yang
-          keren bangettt
-        </p>
-        <div class="mt-10 ml-5 flex flex-row">
-          <img src="/src/assets/images/icons/AvatarEllipse1.png" />
-          <div class="ml-2 flex flex-row gap gap-x-2">
-            <div class="ml-1">
-              <h4 class="font-semibold">Putri L.</h4>
-              <h6 class="text-xs text-gray-500">2 minggu yang lalu</h6>
-            </div>
-            <div class="border border-rose-400 flex flex-row py-1 px-1 h-6">
-              <img class="h-3 mr-1" src="/src/assets/images/icons/Star.png" />
-              <h6 class="text-xs">5.0</h6>
-            </div>
-          </div>
-        </div>
-        <p class="text-xs ml-20">
-          Pelayanan ramah, harga terjangkau tapi bisa dapatin model rambut yang
-          keren bangettt
-        </p>
-        <div class="mt-10 ml-5 flex flex-row">
-          <img src="/src/assets/images/icons/AvatarEllipse1.png" />
-          <div class="ml-2 flex flex-row gap gap-x-2">
-            <div class="ml-1">
-              <h4 class="font-semibold">Putri L.</h4>
-              <h6 class="text-xs text-gray-500">2 minggu yang lalu</h6>
-            </div>
-            <div class="border border-rose-400 flex flex-row py-1 px-1 h-6">
-              <img class="h-3 mr-1" src="/src/assets/images/icons/Star.png" />
-              <h6 class="text-xs">5.0</h6>
-            </div>
-          </div>
-        </div>
-        <p class="text-xs ml-20">
-          Pelayanan ramah, harga terjangkau tapi bisa dapatin model rambut yang
-          keren bangettt
-        </p>
+            {/* <p class="text-xs ml-20">
+              Pelayanan ramah, harga terjangkau tapi bisa dapatin model rambut
+              yang keren bangettt
+            </p> */}
+            <p class="text-xs ml-20">{feedback?.description}</p>
+          </>
+        ))}
       </div>
 
       <div className="w-3/4">
-        <ReviewModal />
+        <ReviewModal userAuth={userAuth} businessByUUID={businessByUUID} />
       </div>
-
     </div>
   );
 };
 
-const ReviewModal = () => {
+const ReviewModal = ({ userAuth, businessByUUID }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   // useState for rating
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(0);
   const handleRatingChange = (newRating) => {
     setRating(newRating);
   };
 
+  // Input data to state
+  const handleChange = (e) => {
+    const name = e.name;
+    // const id = e.name;
+    const value = e.value;
+    setFeedbackData((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
+
+  const handlePictureChange = (event) => {
+    const file = event.target.files[0];
+    console.log(file);
+    // setPicture(file);
+    setFeedbackData({ ...feedbackData, feedbackPhoto: file });
+  };
+
+  const [feedbackData, setFeedbackData] = useState({
+    // businessId: businessByUUID?.id,
+    description: '',
+    feedbackPhoto: null,
+  });
+
+  const [feedbackPhoto, setFeedbackPhoto] = useState('');
+
+  const createFeedback = async () => {
+    try {
+      const feedbackForm = new FormData();
+
+      console.log(feedbackData);
+
+      feedbackForm.append('description', feedbackData.description);
+      feedbackForm.append('businessId', businessByUUID.id);
+      feedbackForm.append('feedbackPhoto', feedbackData.feedbackPhoto);
+      feedbackForm.append('rating', rating);
+
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/feedback`,
+        feedbackForm,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        }
+      );
+
+      console.log(feedbackData);
+      console.log('berhasil input feedback');
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.msg);
+      } else {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <div>
-      <div className='w-full hover:cursor-pointer hover:bg-rose-500 transition-all shadow drop-shadow bg-rose-400 text-center font-medium py-2 rounded text-white' onClick={handleOpen}>
+      <div
+        className="w-full hover:cursor-pointer hover:bg-rose-500 transition-all shadow drop-shadow bg-rose-400 text-center font-medium py-2 rounded text-white"
+        onClick={handleOpen}
+      >
         <p className="">Beri Ulasan</p>
       </div>
       <Modal
@@ -285,43 +364,75 @@ const ReviewModal = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div id="modal-modal-title" className='w-full flex justify-end'>
-            <p className='px-3 py-2 hover:bg-zinc-800 hover:text-white hover:cursor-pointer transition-all' onClick={handleClose}>
+          <div id="modal-modal-title" className="w-full flex justify-end">
+            <p
+              className="px-3 py-2 hover:bg-zinc-800 hover:text-white hover:cursor-pointer transition-all"
+              onClick={handleClose}
+            >
               X
             </p>
           </div>
-          <div id="modal-modal-description" className='w-full bg-gray-200 py-4 px-5 shadow-md drop-shadow mt-3'>
-            <p className='text-base'>
-              Silahkan Beri Ulasan Disini!!
-            </p>
+          <div
+            id="modal-modal-description"
+            className="w-full bg-gray-200 py-4 px-5 shadow-md drop-shadow mt-3"
+          >
+            <p className="text-base">Silahkan Beri Ulasan Disini!!</p>
           </div>
-          <div className='w-full mt-10 flex flex-col items-center justify-center'>
-            <div className='w-4/5 flex items-center gap-20 py-5 '>
-              <div className='w-1/4'>
-                <p className='text-xl font-medium'>Rating Review</p>
+          <div className="w-full mt-10 flex flex-col items-center justify-center">
+            <div className="w-4/5 flex items-center gap-20 py-5 ">
+              <div className="w-1/4">
+                <p className="text-xl font-medium">Rating Review</p>
               </div>
-              <div className='w-3/4 flex justify-evenly'>
-
-                {[1, 2, 3, 4, 5].map(star => (
+              <div className="w-3/4 flex justify-evenly">
+                {[1, 2, 3, 4, 5].map((star) => (
                   <FaStar
                     key={star}
-                    className={`${star == 0 ? "" : "text-gray-200"} ${star <= rating ? "text-amber-400" : "text-gray-200"}  scale-[2.5] transition-all hover:cursor-pointer`}
-                    onClick={(e) => handleRatingChange(star)} />
+                    className={`${star == 0 ? '' : 'text-gray-200'} ${
+                      star <= rating ? 'text-amber-400' : 'text-gray-200'
+                    }  scale-[2.5] transition-all hover:cursor-pointer`}
+                    onClick={(e) => handleRatingChange(star)}
+                  />
                 ))}
-
               </div>
             </div>
-            <div className='w-4/5 flex items-start gap-20 py-5 '>
-              <div className='w-1/4'>
-                <p className='text-xl font-medium'>Deskripsi Ulasan</p>
+            <div className="w-4/5 flex items-start gap-20 py-5 ">
+              <div className="w-1/4">
+                <p className="text-xl font-medium">Deskripsi Ulasan</p>
               </div>
-              <div className='w-3/4'>
-                <textarea name="" className='w-full p-4 border border-gray-300 bg-gray-100 rounded-md placeholder:' placeholder='Deskripsi' id="" cols="30" rows="10"></textarea>
+              <div className="w-3/4">
+                <textarea
+                  name="description"
+                  className="w-full p-4 border border-gray-300 bg-gray-100 rounded-md placeholder:"
+                  placeholder="Deskripsi"
+                  id=""
+                  cols="30"
+                  rows="10"
+                  onChange={(e) => handleChange(e.target)}
+                ></textarea>
               </div>
             </div>
-            <div className='w-4/5 flex items-center justify-end gap-5 py-5'>
-              <p className='px-4 py-2 transition-all bg-zinc-900 rounded text-white shadow drop-shadow hover:cursor-pointer hover:bg-zinc-800'>Posting</p>
-              <p className='px-4 py-2 transition-all bg-green-600 rounded text-white shadow drop-shadow hover:cursor-pointer hover:bg-green-700'>Posting</p>
+            <div>
+              <input
+                type="file"
+                // onChange={(e) =>
+                //   setFeedbackData({
+                //     ...feedbackData,
+                //     feedbackPhoto: e.target.files[0],
+                //   })
+                // }
+                // onChange={(e) => setFeedbackPhoto(e.target.files[0])}
+                onChange={handlePictureChange}
+              />
+            </div>
+            <div className="w-4/5 flex items-center justify-end gap-5 py-5">
+              {/* <p className="px-4 py-2 transition-all bg-zinc-900 rounded text-white shadow drop-shadow hover:cursor-pointer hover:bg-zinc-800">
+                Posting
+              </p> */}
+              <button onClick={createFeedback}>
+                <p className="px-4 py-2 transition-all bg-green-600 rounded text-white shadow drop-shadow hover:cursor-pointer hover:bg-green-700">
+                  Posting
+                </p>
+              </button>
             </div>
           </div>
         </Box>
@@ -329,136 +440,5 @@ const ReviewModal = () => {
     </div>
   );
 };
-
-//const ContentDetail = () => {
-//     return (
-//         <div class='grid grid-cols-3'>
-//             <div  class='col-span-2'>
-//                 <h1 class='text-3xl font-bold mt-10'>Captain Barbershop</h1>
-//                 <div class='flex flex-row mt-2'>
-//                     <h6 class='text-teal-500 mr-8'>Buka</h6>
-//                     <img class='h-4 mt-1 mr-1' src='/src/assets/images/icons/Location.png' />
-//                     <h6 class='mr-8'>Bekasi Kota</h6>
-//                     <div class='ml-3 my-auto flex flex-row'>
-//                         <img class='h-3' src='/src/assets/images/icons/Star.png' />
-//                         <h6 class='ml-1 text-xs'>4.8</h6>
-//                     </div>
-//                 </div>
-//                 <div class='flex flex-row mt-2 ml-40'>
-//                     <div class='flex flex-row border border-rose-400 rounded mr-3'>
-//                         <img class='h-3 my-auto mx-2' src='/src/assets/images/icons/Bookmark.png' />
-//                         <h6 class='mr-2 my-1'>Simpan</h6>
-//                     </div>
-//                     <div class='flex flex-row border border-rose-400 rounded'>
-//                         <img class='h-4 my-auto mx-2' src='/src/assets/images/icons/PinkShare.png' />
-//                         <h6 class='mr-2 my-1'>Bagikan</h6>
-//                     </div>
-//                 </div>
-//                 <div class='flex flex-row mt-10'>
-//                     <div>
-//                         <h1 class='font-bold text-2xl'>Dikelola oleh Ranto</h1>
-//                         <h6 class='text-slate-500'>@captainbarbershop</h6>
-//                     </div>
-//                     <img class='w-14 ml-40' src='/src/assets/images/profiles/ProfileDummy1.png' />
-//                 </div>
-//                 <hr class='mt-8 mb-10' />
-//                 <div>
-//                     <h1 class='font-bold text-2xl'>Deskripsi Barbershop</h1>
-//                     <p>Captain barbershop adalah merek barbershop premium di Indonesia. kami dengan memberikan layanan berkualitas tinggi seperti perlengkapan sanitasi, fasilitas nyaman, dan tukang cukur berpengalaman.
-//                         <br />......
-//                         <br /><b>lihat lebih banyak</b></p>
-//                 </div>
-//                 <hr class='mt-8 mb-10' />
-//                 <div>
-//                     <div>
-//                         <h1 class='font-bold text-2xl'>Jenis Layanan</h1>
-//                         <div class='columns-2'>
-//                             <div class='flex flex-row mt-2'>
-//                                 <img class='w-5 ml-1 mr-4' src='/src/assets/images/icons/Massage.png' />
-//                                 <h1 class='text-slate-500'>Pijat</h1>
-//                             </div>
-//                             <h1>Rp 15.000,00</h1>
-//                         </div>
-//                         <div class='columns-2'>
-//                             <div class='flex flex-row mt-2'>
-//                                 <img class='w-5 ml-1 mr-4' src='/src/assets/images/icons/Scrissor.png' />
-//                                 <h1 class='text-slate-500'>Potong Rambut</h1>
-//                             </div>
-//                             <h1>Rp 55.000,00</h1>
-//                         </div>
-//                     </div>
-//                 </div>
-//                 <hr class='mt-8 mb-10' />
-//                 <div>
-//                     <h1 class='font-bold text-2xl'>Jam Operasional</h1>
-//                     <div class='flex flex-row ml-1 mt-2'>
-//                         <img class='w-auto h-5 mr-4' src='/src/assets/images/icons/Clock.png ' />
-//                         <h1>Buka / Tutup : 09:00 - 16:00</h1>
-//                     </div>
-//                 </div>
-//                 <hr class='mt-8 mb-10' />
-//                 <div>
-//                     <h1 class='font-bold text-2xl'>Daftar Karyawan</h1>
-//                     <div class='grid grid-cols-4 ml-1 mt-2'>
-//                         <div>
-//                             <h1 class='text-slate-500'>Foto</h1>
-//                             <img class='my-1' src='/src/assets/images/icons/IconUser.png' />
-//                         </div>
-//                         <div class='col-span-2'>
-//                             <h1 class='my-1 text-slate-500'>Nama</h1>
-//                             <h1>Agus Munawar</h1>
-//                         </div>
-//                         <div>
-//                             <h1 class='my-1 text-slate-500'>Skill</h1>
-//                             <h1>Cut Hair</h1>
-//                         </div>
-//                     </div>
-//                 </div>
-//                 <hr class='mt-8 mb-10' />
-//                 <div>
-//                     <h1 class='font-bold text-2xl'>Lokasi dan Lingkungan Sekitar</h1>
-//                     <div class='flex flex-row'>
-//                         <img class='h-4 mt-1 mx-1' src='/src/assets/images/icons/Location.png' />
-//                         <h1>Kecamatan Bekasi, Kota Bekasi, Jawa Barat</h1>
-//                     </div>
-//                 </div>
-//                 <hr class='mt-8 mb-10' />
-//                 <div>
-//                     <h1 class='font-semibold text-lg'>4.8 (3 Ulasan)</h1>
-//                     <div class='mt-10 ml-5 flex flex-row'>
-//                         <img src='/src/assets/images/icons/AvatarEllipse1.png' />
-//                         <div class='ml-2 flex flex-row gap gap-x-2'>
-//                             <div class='ml-1'>
-//                                 <h4 class='font-semibold'>Putri L.</h4>
-//                                 <h6 class='text-xs text-gray-500'>2 minggu yang lalu</h6>
-//                             </div>
-//                             <div class='border border-rose-400 flex flex-row py-1 px-1 h-6'>
-//                                 <img class='h-3 mr-1' src='/src/assets/images/icons/Star.png' />
-//                                 <h6 class='text-xs'>5.0</h6>
-//                             </div>
-//                         </div>
-//                     </div>
-//                     <p class='text-xs ml-20'>Pelayanan ramah, harga terjangkau tapi bisa dapatin model rambut yang keren bangettt</p>
-//                 </div>
-//             </div>
-//             <div align='center'>
-//                 <div class='md:box-content overflow-hidden shadow-xl mt-10 px-5 py-8'>
-//                     <ChatNow/>
-//                     <br/>
-//                     <button class='md:box-content py-4 px-7 mt-3 bg-rose-500 hover:bg-rose-700 text-white font-normal'>
-//                         <h1 class='text-lg'>Pesan Sekarang</h1>
-//                     </button>
-//                 </div>
-//                 <div class='max-w-xs overflow-hidden shadow-xl mt-10 inline-flex items-center px-8 py-2 gap gap-2 rounded-3xl divide-x-2 divide-slate-500'>
-//                     <img src='/src/assets/images/icons/instagram.png'/>
-//                     <img class='w-10' src='/src/assets/images/icons/x.png'/>
-//                     <img class='px-3' src='/src/assets/images/icons/facebook.png'/>
-//                     <img class='px-3' src='/src/assets/images/icons/Youtube.png'/>
-
-//                 </div>
-//             </div>
-//         </div>
-//     )
-// }
 
 export default ContentDetail;
