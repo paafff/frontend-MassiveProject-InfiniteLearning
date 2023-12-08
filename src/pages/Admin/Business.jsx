@@ -5,6 +5,7 @@ import ListBusiness from '../../components/Admin/Dashboard/ListBusiness';
 import DetailBusiness from '../../components/Admin/Dashboard/DetailBusiness';
 import HamburgerMenu from '../../components/Admin/Dashboard/HamburgerMenu';
 import axios from 'axios';
+import ReviewUser from '../../components/Admin/Dashboard/ReviewUser';
 
 const dataBusiness = [
   {
@@ -39,11 +40,45 @@ const dataBusiness = [
   },
 ];
 
+const listFeedback = [
+  {
+    uuid: 0,
+    desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt maiores ea enim voluptatibus! Nihil nisi, harum dolores soluta dolore, maiores rem rerum facere aperiam totam molestias consectetur minus tempore modi!',
+    rating: 5,
+    created_at: '07/07/2023',
+  },
+  {
+    uuid: 1,
+    desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt maiores ea enim voluptatibus! Nihil nisi, harum dolores soluta dolore, maiores rem rerum facere aperiam totam molestias consectetur minus tempore modi!',
+    rating: 4,
+    created_at: '07/07/2023',
+  },
+  {
+    uuid: 2,
+    desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt maiores ea enim voluptatibus! Nihil nisi, harum dolores soluta dolore, maiores rem rerum facere aperiam totam molestias consectetur minus tempore modi!',
+    rating: 4,
+    created_at: '07/07/2023',
+  },
+  {
+    uuid: 3,
+    desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt maiores ea enim voluptatibus! Nihil nisi, harum dolores soluta dolore, maiores rem rerum facere aperiam totam molestias consectetur minus tempore modi!',
+    rating: 4,
+    created_at: '07/07/2023',
+  },
+  {
+    uuid: 4,
+    desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt maiores ea enim voluptatibus! Nihil nisi, harum dolores soluta dolore, maiores rem rerum facere aperiam totam molestias consectetur minus tempore modi!',
+    rating: 4,
+    created_at: '07/07/2023',
+  },
+];
+
 const Business = () => {
   const [showSidebar, setShowSidebar] = useState(false);
 
   const [dataBusiness, setDataBusiness] = useState([]);
   const [selectedBusinessUUID, setSelectedBusinessUUID] = useState('');
+  const [selectedBusinessId, setSelectedBusinessId] = useState('');
 
   useEffect(() => {
     const getAllBusiness = async () => {
@@ -81,12 +116,16 @@ const Business = () => {
                 setShowSidebar={setShowSidebar}
               />
             }
-
-
             setSelectedBusinessUUID={setSelectedBusinessUUID}
+            setSelectedBusinessId={setSelectedBusinessId}
           />
 
           <DetailBusiness selectedBusinessUUID={selectedBusinessUUID} />
+
+          <ReviewUser
+            listFeedback={listFeedback}
+            selectedBusinessId={selectedBusinessId}
+          />
         </div>
       </div>
     </Layout>

@@ -8,33 +8,33 @@ import ReviewUser from '../../components/Admin/Dashboard/ReviewUser';
 import axios from 'axios';
 
 // data user dummy
-const dataUserPalsu = [
-  {
-    uuid: 0,
-    name: 'Ilham',
-    created_at: '07/07/2023',
-  },
-  {
-    uuid: 1,
-    name: 'ilham',
-    created_at: '07/07/2023',
-  },
-  {
-    uuid: 2,
-    name: 'ilham',
-    created_at: '07/07/2023',
-  },
-  {
-    uuid: 3,
-    name: 'ilham',
-    created_at: '07/07/2023',
-  },
-  {
-    uuid: 4,
-    name: 'ilham',
-    created_at: '07/07/2023',
-  },
-];
+// const dataUserPalsu = [
+//   {
+//     uuid: 0,
+//     name: 'Ilham',
+//     created_at: '07/07/2023',
+//   },
+//   {
+//     uuid: 1,
+//     name: 'ilham',
+//     created_at: '07/07/2023',
+//   },
+//   {
+//     uuid: 2,
+//     name: 'ilham',
+//     created_at: '07/07/2023',
+//   },
+//   {
+//     uuid: 3,
+//     name: 'ilham',
+//     created_at: '07/07/2023',
+//   },
+//   {
+//     uuid: 4,
+//     name: 'ilham',
+//     created_at: '07/07/2023',
+//   },
+// ];
 
 // data user dummy
 const listFeedback = [
@@ -117,7 +117,7 @@ const User = () => {
 
           <DetailUser selectedUserUUID={selectedUserUUID} />
 
-          <ReviewUser listFeedback={listFeedback} />
+          {/* <ReviewUser listFeedback={listFeedback} /> */}
         </div>
       </div>
     </Layout>

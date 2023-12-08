@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaChevronLeft, FaEye } from 'react-icons/fa';
 import { MdOutlineOpenInNew } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
 
 const ListBusiness = ({
   setSelectedBusinessUUID,
+  setSelectedBusinessId,
   showSidebar,
   setShowSidebar,
   listBusiness,
   hamburgerMenu,
 }) => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 5; // Jumlah item per halaman
+
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const offset = currentPage * itemsPerPage;
+  const pageCount = Math.ceil(listBusiness.length / itemsPerPage);
+
+  const displayedBusiness = listBusiness.slice(offset, offset + itemsPerPage);
+
   return (
     <div className="w-full lg:w-full xl:w-3/4 xl:px-24 py-10 px-5 md:px-12 lg:pt-16">
       {hamburgerMenu}
@@ -18,9 +32,10 @@ const ListBusiness = ({
         <p className="text-base md:text-lg font-semibold">Usaha</p>
         <hr className="my-5" />
 
-        {listBusiness.map((business, index) => (
+        {displayedBusiness.map((business, index) => (
           <Business
             setSelectedBusinessUUID={setSelectedBusinessUUID}
+            setSelectedBusinessId={setSelectedBusinessId}
             index={index}
             id={business.id}
             name={business.name}
@@ -29,6 +44,21 @@ const ListBusiness = ({
             uuid={business.uuid}
           />
         ))}
+
+        <ReactPaginate className='flex space-x-5 justify-center'
+          previousLabel={'previous'}
+          nextLabel={'next'}
+          breakLabel={'...'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          //UI
+          containerClassName={'pagination'}
+          activeClassName={'bg-blue-500'}
+          nextClassName={'bg-red-500'}
+          previousClassName={'bg-yellow-500'}
+        />
       </div>
     </div>
   );
@@ -37,6 +67,7 @@ const ListBusiness = ({
 const Business = ({
   uuid,
   setSelectedBusinessUUID,
+  setSelectedBusinessId,
   id,
   name,
   type,
@@ -70,7 +101,8 @@ const Business = ({
             <button
               onClick={(e) => {
                 setSelectedBusinessUUID(uuid);
-                // console.log(uuid);
+                setSelectedBusinessId(id);
+                console.log(id);
               }}
             >
               <FaEye className="inline-block text-white scale-125" />

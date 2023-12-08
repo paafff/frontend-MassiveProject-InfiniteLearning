@@ -11,7 +11,7 @@ const DetailBusiness = ({ selectedBusinessUUID }) => {
     const getBusinessByUUID = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/business/${selectedBusinessUUID}`
+          `${import.meta.env.VITE_API_URL}/business/${selectedBusinessUUID}`
         );
 
         setBusinessData(response.data);
@@ -54,28 +54,22 @@ const Business = ({ businessData }) => {
           {businessData.imageURL ? (
             <img src={businessData.imageURL[0]} alt="" />
           ) : (
-
             <p className="text-white">Banner</p>
           )}
         </div>
 
         <div className="flex justify-center gap-3">
           <div className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ">
-
-
             {businessData.imageURL ? (
               <img src={businessData.imageURL[1]} alt="" />
             ) : (
-
               <p className="text-xs text-white">Foto 1</p>
             )}
-
           </div>
           <div className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ">
             {businessData.imageURL ? (
               <img src={businessData.imageURL[2]} alt="" />
             ) : (
-
               <p className="text-xs text-white">Foto 1</p>
             )}
           </div>
@@ -83,7 +77,6 @@ const Business = ({ businessData }) => {
             {businessData.imageURL ? (
               <img src={businessData.imageURL[3]} alt="" />
             ) : (
-
               <p className="text-xs text-white">Foto 1</p>
             )}
           </div>
@@ -91,7 +84,6 @@ const Business = ({ businessData }) => {
             {businessData.imageURL ? (
               <img src={businessData.imageURL[4]} alt="" />
             ) : (
-
               <p className="text-xs text-white">Foto 1</p>
             )}
           </div>
@@ -102,7 +94,7 @@ const Business = ({ businessData }) => {
 };
 
 const Socmed = ({ businessData }) => {
-  console.log("bisnis data utk sosmed ", businessData);
+  console.log('bisnis data utk sosmed ', businessData);
   return (
     <div className="flex flex-col md:items-start md:px-3 xl:w-1/2 xl:justify-center xl:items-center xl:ml-3 gap-3">
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -114,8 +106,10 @@ const Socmed = ({ businessData }) => {
           name="instagram"
           className="w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={true}
-          placeholder='Link instagram'
-          defaultValue={businessData.socialMedia ? businessData.socialMedia[0] : ""}
+          placeholder="Link instagram"
+          defaultValue={
+            businessData.socialMedia ? businessData.socialMedia[0] : ''
+          }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -127,7 +121,9 @@ const Socmed = ({ businessData }) => {
           className="w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={true}
           placeholder="Link Facebook"
-          defaultValue={businessData.socialMedia ? businessData.socialMedia[1] : ""}
+          defaultValue={
+            businessData.socialMedia ? businessData.socialMedia[1] : ''
+          }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -139,7 +135,9 @@ const Socmed = ({ businessData }) => {
           className="w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={true}
           placeholder="Link twitter"
-          defaultValue={businessData.socialMedia ? businessData.socialMedia[2] : ""}
+          defaultValue={
+            businessData.socialMedia ? businessData.socialMedia[2] : ''
+          }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -151,7 +149,9 @@ const Socmed = ({ businessData }) => {
           className="w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={true}
           placeholder="Link youtube"
-          defaultValue={businessData.socialMedia ? businessData.socialMedia[3] : ""}
+          defaultValue={
+            businessData.socialMedia ? businessData.socialMedia[3] : ''
+          }
         />
       </form>
     </div>
@@ -218,8 +218,7 @@ const BasicInformation = ({ businessData }) => {
             placeholder="Alamat"
             className="w-full md:w-3/4 xl:w-full border border-gray-400 rounded-md text-sm p-2 placeholder:text-xs disabled:bg-gray-200"
             defaultValue={businessData.address}
-          >
-          </textarea>
+          ></textarea>
         </div>
       </div>
     </div>

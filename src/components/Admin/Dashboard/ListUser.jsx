@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import { FaChevronLeft, FaEye } from 'react-icons/fa';
 import { MdOutlineOpenInNew } from 'react-icons/md';
 import { Link } from 'react-router-dom';
@@ -10,6 +11,18 @@ const ListUser = ({
   hamburgerMenu,
   setSelectedUserUUID,
 }) => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 5; // Jumlah item per halaman
+
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const offset = currentPage * itemsPerPage;
+  const pageCount = Math.ceil(listUser.length / itemsPerPage);
+
+  const displayedUsers = listUser.slice(offset, offset + itemsPerPage);
+
   return (
     <div className="w-full lg:w-full xl:w-3/4 xl:px-24 py-10 px-5 md:px-12 lg:pt-16">
       {hamburgerMenu}
@@ -18,7 +31,7 @@ const ListUser = ({
         <p className="text-base md:text-lg font-semibold">User</p>
         <hr className="my-5" />
 
-        {listUser.map((user, index) => (
+        {displayedUsers.map((user, index) => (
           <User
             setSelectedUserUUID={setSelectedUserUUID}
             index={index}
@@ -28,6 +41,21 @@ const ListUser = ({
             uuid={user.uuid}
           />
         ))}
+
+<ReactPaginate className='flex space-x-5 justify-center'
+          previousLabel={'previous'}
+          nextLabel={'next'}
+          breakLabel={'...'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          //UI
+          containerClassName={'pagination'}
+          activeClassName={'bg-blue-500'}
+          nextClassName={'bg-red-500'}
+          previousClassName={'bg-yellow-500'}
+        />
       </div>
     </div>
   );

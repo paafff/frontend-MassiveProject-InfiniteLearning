@@ -89,7 +89,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
                     <AdminUsaha />
 
-                    <AdminReview />
+                    {/* <AdminReview /> */}
 
                     <AdminLayanan />
 
