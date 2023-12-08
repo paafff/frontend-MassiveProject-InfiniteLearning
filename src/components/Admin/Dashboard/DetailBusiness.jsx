@@ -17,7 +17,6 @@ const DetailBusiness = ({ selectedBusinessUUID }) => {
         setBusinessData(response.data);
         // console.log('detailbusines', businessByUUID);
         // console.log('uuid nya params', uuid);
-        console.log('detailbusines', businessData);
       } catch (error) {
         if (error.response) {
           alert(error.response.data.msg);
@@ -47,26 +46,54 @@ const DetailBusiness = ({ selectedBusinessUUID }) => {
   );
 };
 
-const Business = ({businessData}) => {
+const Business = ({ businessData }) => {
   return (
     <div className="w-full xl:my-auto xl:w-1/2 border border-gray-300 rounded p-2 mb-5 flex flex-col gap-2">
       <div className="flex flex-col gap-3">
         <div className="w-full hover:cursor-pointer md:w-3/4 mx-auto md:max-h-72 aspect-video bg-gray-500 hover:bg-gray-600 transition-all rounded flex items-center justify-center">
-          <p className="text-white">Banner</p>
+          {businessData.imageURL ? (
+            <img src={businessData.imageURL[0]} alt="" />
+          ) : (
+
+            <p className="text-white">Banner</p>
+          )}
         </div>
 
         <div className="flex justify-center gap-3">
           <div className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ">
-            <p className="text-xs text-white">Foto 1</p>
+
+
+            {businessData.imageURL ? (
+              <img src={businessData.imageURL[1]} alt="" />
+            ) : (
+
+              <p className="text-xs text-white">Foto 1</p>
+            )}
+
           </div>
           <div className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ">
-            <p className="text-xs text-white">Foto 2</p>
+            {businessData.imageURL ? (
+              <img src={businessData.imageURL[2]} alt="" />
+            ) : (
+
+              <p className="text-xs text-white">Foto 1</p>
+            )}
           </div>
           <div className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ">
-            <p className="text-xs text-white">Foto 3</p>
+            {businessData.imageURL ? (
+              <img src={businessData.imageURL[3]} alt="" />
+            ) : (
+
+              <p className="text-xs text-white">Foto 1</p>
+            )}
           </div>
           <div className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ">
-            <p className="text-xs text-white">Foto 4</p>
+            {businessData.imageURL ? (
+              <img src={businessData.imageURL[4]} alt="" />
+            ) : (
+
+              <p className="text-xs text-white">Foto 1</p>
+            )}
           </div>
         </div>
       </div>
@@ -74,7 +101,8 @@ const Business = ({businessData}) => {
   );
 };
 
-const Socmed = ({businessData}) => {
+const Socmed = ({ businessData }) => {
+  console.log("bisnis data utk sosmed ", businessData);
   return (
     <div className="flex flex-col md:items-start md:px-3 xl:w-1/2 xl:justify-center xl:items-center xl:ml-3 gap-3">
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -86,7 +114,8 @@ const Socmed = ({businessData}) => {
           name="instagram"
           className="w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={true}
-          placeholder="Link instagram"
+          placeholder='Link instagram'
+          defaultValue={businessData.socialMedia ? businessData.socialMedia[0] : ""}
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -98,6 +127,7 @@ const Socmed = ({businessData}) => {
           className="w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={true}
           placeholder="Link Facebook"
+          defaultValue={businessData.socialMedia ? businessData.socialMedia[1] : ""}
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -109,6 +139,7 @@ const Socmed = ({businessData}) => {
           className="w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={true}
           placeholder="Link twitter"
+          defaultValue={businessData.socialMedia ? businessData.socialMedia[2] : ""}
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -120,13 +151,14 @@ const Socmed = ({businessData}) => {
           className="w-3/4 h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={true}
           placeholder="Link youtube"
+          defaultValue={businessData.socialMedia ? businessData.socialMedia[3] : ""}
         />
       </form>
     </div>
   );
 };
 
-const BasicInformation = ({businessData}) => {
+const BasicInformation = ({ businessData }) => {
   return (
     <div className="flex flex-col gap-4 mt-8 xl:flex-row xl:justify-start">
       <div className="flex flex-col gap-4 xl:w-1/2">
@@ -143,6 +175,7 @@ const BasicInformation = ({businessData}) => {
             className="w-full md:w-3/4 xl:w-full border border-gray-400 rounded-md h-10 text-sm px-2 placeholder:text-xs disabled:bg-gray-200"
             defaultValue={businessData.name}
           />
+          {/* {console.log("welwelrlwer ", businessData.name)} */}
         </div>
         <div className="flex flex-col gap-2 md:items-start md:justify-between">
           <label htmlFor="" className="text-sm">
@@ -154,6 +187,7 @@ const BasicInformation = ({businessData}) => {
             name="email"
             id="email"
             placeholder="Email"
+            defaultValue={businessData.email}
             className="w-full md:w-3/4 xl:w-full border border-gray-400 rounded-md h-10 text-sm px-2 placeholder:text-xs disabled:bg-gray-200"
           />
         </div>
@@ -167,6 +201,7 @@ const BasicInformation = ({businessData}) => {
             name="phone"
             id="phone"
             placeholder="Telepon"
+            defaultValue={businessData.phone}
             className="w-full md:w-3/4 xl:w-full border border-gray-400 rounded-md h-10 text-sm px-2 placeholder:text-xs disabled:bg-gray-200"
           />
         </div>
@@ -182,7 +217,9 @@ const BasicInformation = ({businessData}) => {
             disabled={true}
             placeholder="Alamat"
             className="w-full md:w-3/4 xl:w-full border border-gray-400 rounded-md text-sm p-2 placeholder:text-xs disabled:bg-gray-200"
-          ></textarea>
+            defaultValue={businessData.address}
+          >
+          </textarea>
         </div>
       </div>
     </div>
