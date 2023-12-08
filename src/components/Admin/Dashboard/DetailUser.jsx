@@ -17,6 +17,8 @@ const DetailUser = ({ selectedUserUUID }) => {
 
 const Form = ({ selectedUserUUID }) => {
   const [dataUser, setDataUser] = useState('');
+  const [date, setDate] = useState(null)
+
   useEffect(() => {
     const getUserByUUID = async () => {
       try {
@@ -36,8 +38,21 @@ const Form = ({ selectedUserUUID }) => {
     };
 
     getUserByUUID();
+
+
+    if (dataUser) {
+
+      const dateString = dataUser?.createdAt
+      const dateObj = new Date(dateString)
+      const utcString = dateObj.toISOString()
+
+      setDate(dateObj)
+    }
+
   }, [selectedUserUUID]);
+
   return (
+
     <div className="flex flex-col gap-4 px-3">
       <div className="w-20 h-20">
         {dataUser ? (
@@ -65,8 +80,10 @@ const Form = ({ selectedUserUUID }) => {
           disabled={true}
           className="w-full md:w-3/4 xl:w-1/2 text-xs focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-gray-200 rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-200"
           placeholder="email"
+          defaultValue={dataUser?.email}
         />
       </div>
+
       <div className="flex flex-col gap-2">
         <p className="text-xs">Terdaftar Pada</p>
         <input
@@ -75,6 +92,7 @@ const Form = ({ selectedUserUUID }) => {
           disabled={true}
           className="w-full md:w-3/4 xl:w-1/2 text-xs focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-gray-200 rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-200"
           placeholder=" tanggal registrasi"
+          defaultValue={date}
         />
       </div>
       <hr className="my-3" />

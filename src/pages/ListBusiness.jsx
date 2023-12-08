@@ -81,11 +81,13 @@ const ListBusiness = ({ page }) => {
 
   return (
     <Layout>
+
       <ComponentListBusiness
         listCity={listCity}
         page={page}
         dataList={page == 'barbershop' ? dataBarber : dataSalon}
       />
+
     </Layout>
   );
 };

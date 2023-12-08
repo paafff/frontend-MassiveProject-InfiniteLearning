@@ -41,8 +41,6 @@ const DetailBussiness = ({ businessByUUID, sosmed }) => {
   // const [twitterLink, setTwitterLink] = useState(businessByUUID.socialMedia[2]);
   // const [youtubeLink, setYoutubeLink] = useState(businessByUUID.socialMedia[3]);
 
-  console.log('data uuid from komponen ig ', businessByUUID.socialMedia);
-
   const [instagramLink, setInstagramLink] = useState(null);
   const [facebookLink, setFacebookLink] = useState(null);
   const [twitterLink, setTwitterLink] = useState(null);

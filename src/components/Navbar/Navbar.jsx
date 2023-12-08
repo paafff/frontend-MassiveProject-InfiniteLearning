@@ -42,8 +42,6 @@ const Navbar = () => {
     window.location.reload();
   };
 
-  console.log("role ku apa? ", userAuth);
-
   return (
     <>
       <div className="z-20 w-full h-24 bg-zinc-900 flex items-center justify-between px-6 lg:px-16 xl:px-16">

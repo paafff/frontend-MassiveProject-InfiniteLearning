@@ -69,12 +69,9 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
     useEffect(() => {
         getMyBusiness();
-
-        console.log("list bisnis ", listBusiness);
     }, [dispatch, navigate]);
 
     const role = userAuth.role;
-    console.log("role ku ", role);
 
     return (
         <div className={`min-h-full pb-32 z-10 w-72 transition-all rounded-br-full lg:rounded-none bg-white drop-shadow-md absolute ${showSidebar ? "left-0" : "left-[-300px]"} lg:left-0 lg:static`}>
