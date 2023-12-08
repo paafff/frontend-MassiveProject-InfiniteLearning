@@ -22,7 +22,7 @@ const ListBusiness = ({ listCity, dataList, page }) => {
 
   const handleCity = (event) => {
     setCity(event);
-    setKota(event)
+    setKota(event);
   };
 
   const [searchBusinessData, setSearchBusinessData] = useState([]);
@@ -31,7 +31,8 @@ const ListBusiness = ({ listCity, dataList, page }) => {
     const getBusinessByParams = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL
+          `${
+            import.meta.env.VITE_API_URL
           }/business-search/${kota}?typeBusiness=${page}`
         );
 
@@ -52,7 +53,6 @@ const ListBusiness = ({ listCity, dataList, page }) => {
     getBusinessByParams();
   }, [page, city]);
 
-
   return (
     <div className=" min-w-full min-h-screen">
       <Banner page={page} />
@@ -64,14 +64,14 @@ const ListBusiness = ({ listCity, dataList, page }) => {
           </p>
 
           <SelectCity
-            // city={city} 
+            // city={city}
             handleCity={handleCity}
-            listCity={listCity} />
+            listCity={listCity}
+          />
         </div>
 
         {kota ? (
           <div className="w-full p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:px-72 gap-4 xl:gap-8 md:gap-3 items-center">
-            
             {searchBusinessData.map((data) => (
               // child
               <Card
@@ -95,6 +95,7 @@ const ListBusiness = ({ listCity, dataList, page }) => {
                 page={page}
                 uuid={data.uuid}
                 schedule={data.schedule}
+                data={data}
               />
             ))}
           </div>
@@ -109,8 +110,9 @@ const Banner = ({ page }) => {
     <div
       className="w-full h-32 md:h-56 lg:h-72 xl:h-96 flex items-end justify-start py-5 px-7 bg-gray-400 bg-cover "
       style={{
-        backgroundImage: `url(${page == 'barbershop' ? BannerBarber : BannerSalon
-          })`,
+        backgroundImage: `url(${
+          page == 'barbershop' ? BannerBarber : BannerSalon
+        })`,
         backgroundRepeat: 'no-repeat',
       }}
     >
@@ -144,65 +146,65 @@ const SelectCity = ({ city, handleCity, listCity }) => {
             <em>{city.name}</em>
           </MenuItem>
         ))}
-
       </Select>
-
     </FormControl>
   );
 };
 
-const Card = ({ id, name, city, page, uuid,schedule }) => {
+const Card = ({ id, name, city, page, uuid, schedule, data }) => {
+  //scheduleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee yak
+  const [status, setStatus] = useState('');
+  const currentTime = new Date().toLocaleTimeString('id-ID', {
+    hour12: false,
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+  const targetTimeOpen = schedule?.[0];
+  const targetTimeClose = schedule?.[1];
 
-    //scheduleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee yak
-    const [status, setStatus] = useState('');
-    const currentTime = new Date().toLocaleTimeString('id-ID', {
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-    const targetTimeOpen = schedule?.[0];
-    const targetTimeClose = schedule?.[1];
-  
-    const currentHours = parseInt(currentTime.split(':')[0]);
-    const currentMinutes = parseInt(currentTime.split(':')[1]);
-  
-    const targetHoursOpen = parseInt(targetTimeOpen?.split(':')[0]);
-    const targetMinutesOpen = parseInt(targetTimeOpen?.split(':')[1]);
-  
-    const targetHoursClose = parseInt(targetTimeClose?.split(':')[0]);
-    const targetMinutesClose = parseInt(targetTimeClose?.split(':')[1]);
-    useEffect(() => {
-      if (
-        // currentHours > targetHoursOpen ||
-        // (currentHours === targetHoursOpen && currentMinutes > targetMinutesOpen)
-  
-        (currentHours > targetHoursOpen ||
-          (currentHours === targetHoursOpen &&
-            currentMinutes > targetMinutesOpen)) &&
-        //pemisah
-        (currentHours < targetHoursClose ||
-          (currentHours === targetHoursClose &&
-            currentMinutes < targetMinutesClose))
-      ) {
-        setStatus(`Buka Blok, tutup jam ${schedule?.[0]}`);
-      } else {
-        setStatus(`Tutup  Blok, buka jam ${schedule?.[1]}`);
-      }
-    }, [targetTimeClose, targetTimeOpen]);
+  const currentHours = parseInt(currentTime.split(':')[0]);
+  const currentMinutes = parseInt(currentTime.split(':')[1]);
+
+  const targetHoursOpen = parseInt(targetTimeOpen?.split(':')[0]);
+  const targetMinutesOpen = parseInt(targetTimeOpen?.split(':')[1]);
+
+  const targetHoursClose = parseInt(targetTimeClose?.split(':')[0]);
+  const targetMinutesClose = parseInt(targetTimeClose?.split(':')[1]);
+  useEffect(() => {
+    if (
+      // currentHours > targetHoursOpen ||
+      // (currentHours === targetHoursOpen && currentMinutes > targetMinutesOpen)
+
+      (currentHours > targetHoursOpen ||
+        (currentHours === targetHoursOpen &&
+          currentMinutes > targetMinutesOpen)) &&
+      //pemisah
+      (currentHours < targetHoursClose ||
+        (currentHours === targetHoursClose &&
+          currentMinutes < targetMinutesClose))
+    ) {
+      setStatus(`Buka`);
+    } else {
+      setStatus(`Tutup`);
+    }
+  }, [targetTimeClose, targetTimeOpen]);
 
   return (
     <div
       className="rounded-lg p-4 drop-shadow-2xl flex items-end justify-center  aspect-square bg-red-700"
       style={{
-        backgroundImage: `url(${page == 'Barbershop' ? ImageBarber : ImageSalon
-          })`,
+        backgroundImage: `url(${
+          page == 'barbershop' ? data?.imageURL[0] : data?.imageURL[0]
+        })`,
         backgroundSize: 'cover',
       }}
       key={id}
     >
       <div className="w-full p-4 min-h-[25%] bg-white rounded-md flex justify-between items-center hover:scale-95 transition-all hover:cursor-pointer">
         <div className="w-full h-full flex flex-col justify-between">
-          <p className="text-red-600 font-semibold text-xs xl:text-sm">{status}</p>
+          <p className="text-red-600 font-semibold text-xs xl:text-sm">
+            {status}
+          </p>
           <p className="text-zinc-800 font-bold text-xs md:text-sm xl:text-base">
             {name}
           </p>

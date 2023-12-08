@@ -71,9 +71,9 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
         (currentHours === targetHoursClose &&
           currentMinutes < targetMinutesClose))
     ) {
-      setStatus(`Buka Blok, tutup jam ${businessByUUID?.schedule?.[0]}`);
+      setStatus(`Buka`);
     } else {
-      setStatus(`Tutup  Blok, buka jam ${businessByUUID?.schedule?.[1]}`);
+      setStatus(`Tutup` );
     }
   }, [targetTimeClose, targetTimeOpen]);
 
