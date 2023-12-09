@@ -3,6 +3,8 @@ import ChatNow from './ChatNow';
 import { FaLocationDot } from 'react-icons/fa6';
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { FaImage } from "react-icons/fa";
+
 
 // Sosmed
 import { FaInstagramSquare } from 'react-icons/fa';
@@ -25,7 +27,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 1000,
-  height: 700,
+
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -34,6 +36,7 @@ const style = {
 };
 
 const ContentDetail = ({ businessByUUID, userAuth }) => {
+  console.log("data semua mengenai detail bisnis ", businessByUUID);
   const [services, setServices] = useState([businessByUUID.services]);
 
   useEffect(() => {
@@ -73,7 +76,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
     ) {
       setStatus(`Buka`);
     } else {
-      setStatus(`Tutup` );
+      setStatus(`Tutup`);
     }
   }, [targetTimeClose, targetTimeOpen]);
 
@@ -106,7 +109,15 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
           <p class="xl:text-2xl text-xl font-bold">{businessByUUID.name}</p>
 
           <div className="w-full flex gap-5">
-            <p class="text-blue-500">{status}</p>
+            {status == 'Tutup' ? (
+              <p class="text-red-500">
+                {status}
+              </p>
+            ) : (
+              <p class="text-blue-500">
+                {status}
+              </p>
+            )}
             <div className="flex gap-1">
               <FaLocationDot className="text-rose-400" />
               <p class="">
@@ -119,11 +130,14 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
             </div> */}
           </div>
 
-          <div class="flex flex-row mt-10">
+          <div class="flex flex-row justify-between items-center pr-24 mt-10">
             <div>
               <h1 class="font-bold text-2xl">
                 Dikelola oleh {businessByUUID.userData?.username}
               </h1>
+            </div>
+            <div className='w-20 h-20 rounded-full border-2 border-zinc-900' style={{ backgroundImage: `url(${businessByUUID.userData?.profileURL})`, backgroundSize: 'cover' }}>
+              {/* <img src={businessByUUID.userData?.profileURL} className='rounded-full' alt="" srcset="" /> */}
             </div>
           </div>
         </div>
@@ -138,10 +152,10 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
         </p>
       </div>
 
-      <div className="w-3/4 border-gray-200 py-5">
+      <div className="w-3/4 border-gray-200 py-5" >
         <p class="font-bold text-2xl mb-4">Jenis Layanan</p>
         {/* {businessByUUID.services.length > 0 ? businessByUUID.services?.map((service) => ( */}
-        {businessByUUID.services?.map((service) => (
+        {businessByUUID.services?.map((service, index) => (
           <>
             <div class="w-full flex flex-col items-center justify-between">
               <div className="w-full flex justify-start mb-4 mt-8">
@@ -157,7 +171,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
 
               <div className="w-full flex flex-col">
                 {service.name.map((serviceName, index) => (
-                  <div className="w-full flex justify-start">
+                  <div className="w-full flex justify-start" key={index}>
                     <div className="w-1/2">
                       <p className="text-base py-2 border-b border-gray-400">
                         {serviceName}
@@ -243,14 +257,44 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
       <div>
         <h1 class="font-semibold text-lg">4.8 (3 Ulasan)</h1>
 
+        {[1,2].map(test => (
+
+        <div className='w-3/4 flex flex-col gap-3'>
+          <div class="mt-10 ml-5 flex flex-row">
+            <FaImage
+              className="w-10 h-10"
+            />
+            <div class="ml-2 flex flex-row gap gap-x-2">
+              <div class="ml-1">
+                <h4 class="font-semibold"> test username reviewer</h4>
+                <h6 class="text-xs text-gray-500">2 minggu yang lalu</h6>
+              </div>
+              <div class="border border-rose-400 flex flex-row py-1 px-1 h-6">
+                <img
+                  class="h-3 mr-1"
+                  src="/src/assets/images/icons/Star.png"
+                // src={feedback.imageURL}
+                />
+                <h6 class="text-xs">4.0</h6>
+              </div>
+            </div>
+          </div>
+          <div className='flex flex-col gap-3 px-5'>
+            <p className='text-sm '>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur repellat consequatur obcaecati. Quam voluptates, molestias maxime ratione soluta officiis tempora ab quas labore aspernatur, eaque deserunt rem corporis ad assumenda!</p>
+            <FaImage className='w-24 h-24 text-gray-200'/>
+          </div>
+        </div>
+        ))}
+
         {businessByUUID.feedbacks?.map((feedback) => (
+
           <>
             <div class="mt-10 ml-5 flex flex-row">
               <img
                 className="w-10"
                 // src={feedback.userData?.imageURL}
                 src={feedback.userData?.profileURL}
-                // src="/src/assets/images/icons/AvatarEllipse1.png"
+              // src="/src/assets/images/icons/AvatarEllipse1.png"
               />
               <div class="ml-2 flex flex-row gap gap-x-2">
                 <div class="ml-1">
@@ -261,7 +305,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
                   <img
                     class="h-3 mr-1"
                     src="/src/assets/images/icons/Star.png"
-                    // src={feedback.imageURL}
+                  // src={feedback.imageURL}
                   />
                   <h6 class="text-xs">{feedback?.rating}.0</h6>
                 </div>
@@ -294,6 +338,13 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
     setRating(newRating);
   };
 
+  // useRef for input image
+  const imageRef = useRef(null)
+  const imageClick = () => {
+    imageRef.current.click()
+    console.log("gambar diklik");
+  }
+
   // Input data to state
   const handleChange = (e) => {
     const name = e.name;
@@ -323,7 +374,7 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
     try {
       const feedbackForm = new FormData();
 
-      console.log(feedbackData);
+      // console.log(feedbackData)
 
       feedbackForm.append('description', feedbackData.description);
       feedbackForm.append('businessId', businessByUUID.id);
@@ -387,12 +438,28 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
                 {[1, 2, 3, 4, 5].map((star) => (
                   <FaStar
                     key={star}
-                    className={`${star == 0 ? '' : 'text-gray-200'} ${
-                      star <= rating ? 'text-amber-400' : 'text-gray-200'
-                    }  scale-[2.5] transition-all hover:cursor-pointer`}
+                    className={`${star <= rating ? 'text-amber-400' : 'text-gray-200'
+                      }  scale-[2.5] transition-all hover:cursor-pointer`}
                     onClick={(e) => handleRatingChange(star)}
                   />
                 ))}
+              </div>
+            </div>
+            <div className="w-4/5 flex items-start gap-20 py-5 ">
+              <div className="w-1/4">
+                <p className="text-xl font-medium">Lampirkan Foto</p>
+              </div>
+              <div className='w-3/4 flex flex-col gap-5'>
+                <div onClick={imageClick} className="w-full py-3 rounded-md px-4 border border-gray-300 bg-gray-100 hover:cursor-pointer transition-all active:bg-gray-200">
+                  <p className='text-sm text-gray-400 font-normal'>Upload foto</p>
+                </div>
+                <div>
+                  {feedbackData.feedbackPhoto ? (
+                    <img src={URL.createObjectURL(feedbackData.feedbackPhoto)} className='w-32' alt="" />
+                  ) : (
+                    <FaImage className='w-24 h-24 rounded-sm text-gray-200 ' />
+                  )}
+                </div>
               </div>
             </div>
             <div className="w-4/5 flex items-start gap-20 py-5 ">
@@ -413,14 +480,9 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
             </div>
             <div>
               <input
+                ref={imageRef}
+                className='hidden'
                 type="file"
-                // onChange={(e) =>
-                //   setFeedbackData({
-                //     ...feedbackData,
-                //     feedbackPhoto: e.target.files[0],
-                //   })
-                // }
-                // onChange={(e) => setFeedbackPhoto(e.target.files[0])}
                 onChange={handlePictureChange}
               />
             </div>

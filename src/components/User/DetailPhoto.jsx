@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Chat() {
+export default function DetailPhoto({businessImage}) {
     const [showModal, setShowModal] = React.useState(false);
     return (
         <>
@@ -23,12 +23,12 @@ export default function Chat() {
                                 </div>
                                 <div align='center' className='relative flex-auto px-6 py-2 grid grid-cols-2 gap-2 m-5'>
                                     <div class='col-span-2'>
-                                        <img src='/src/assets/images/Barbershop/barbershop1.png' />
+                                        <img src={businessImage?.[0]} />
                                     </div>
-                                    <img class='w-full' src='/src/assets/images/Barbershop/barbershop2.png' />
-                                    <img class='w-full' src='/src/assets/images/Barbershop/barbershop3.png' />
-                                    <img class='w-full' src='/src/assets/images/Barbershop/barbershop1.png' />
-                                    <img class='w-full' src='/src/assets/images/Barbershop/barbershop2.png' />
+                                    <img class='w-full' src={businessImage?.[1]} />
+                                    <img class='w-full' src={businessImage?.[2]} />
+                                    <img class='w-full' src={businessImage?.[3]} />
+                                    <img class='w-full' src={businessImage?.[4]} />
                                 </div>
 
                             </div>

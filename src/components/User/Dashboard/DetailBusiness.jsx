@@ -11,42 +11,24 @@ import axios from 'axios';
 const DetailBussiness = ({ businessByUUID, sosmed }) => {
   const [editForm, setEditForm] = useState(true);
 
-  // const bannerRef = useRef(null);
-  // const [banner, setBanner] = useState(null);
-
-  // const handleBannerClick = () => {
-  //   bannerRef.current.click();
-  // };
-
-  // const handleBannerChange = (event) => {
-  //   const file = event.target.files[0];
-  //   console.log(file);
-  //   console.log(businessByUUID);
-  //   setBanner(file);
-  // };
-
-  // useEffect(() => {
-  //   if (editForm == true) {
-  //     setBanner('');
-  //   }
-  // }, [editForm]);
-
-  // INPUT SOSMED
-  // console.log("ini data sosmed uuid : ", socialMedia);
-  // const socmedDefault = businessByUUID.socialMedia;
-  // console.log("socmed default ", businessByUUID);
-
-  // const [instagramLink, setInstagramLink] = useState(businessByUUID.socialMedia[0]);
-  // const [facebookLink, setFacebookLink] = useState(businessByUUID.socialMedia[1]);
-  // const [twitterLink, setTwitterLink] = useState(businessByUUID.socialMedia[2]);
-  // const [youtubeLink, setYoutubeLink] = useState(businessByUUID.socialMedia[3]);
-
   console.log('data uuid from komponen ig ', businessByUUID.socialMedia);
 
   const [instagramLink, setInstagramLink] = useState(null);
   const [facebookLink, setFacebookLink] = useState(null);
   const [twitterLink, setTwitterLink] = useState(null);
   const [youtubeLink, setYoutubeLink] = useState(null);
+
+  const changeBannerRef = useRef(null);
+  const picture1Ref = useRef(null);
+  const picture2Ref = useRef(null);
+  const picture3Ref = useRef(null);
+  const picture4Ref = useRef(null);
+
+  const [pictureBanner, setPictureBanner] = useState(null);
+  const [picture1, setPicture1] = useState(null);
+  const [picture2, setPicture2] = useState(null);
+  const [picture3, setPicture3] = useState(null);
+  const [picture4, setPicture4] = useState(null);
 
   return (
     <div className="w-screen lg:w-full py-10 px-5 md:px-12 xl:px-24 xl:w-3/4">
@@ -60,6 +42,27 @@ const DetailBussiness = ({ businessByUUID, sosmed }) => {
             setEditForm={setEditForm}
             // banner={banner}
             businessByUUID={businessByUUID}
+
+            // handleImage
+            changeBannerRef={changeBannerRef}
+            picture1Ref={picture1Ref}
+            picture2Ref={picture2Ref}
+            picture3Ref={picture3Ref}
+            picture4Ref={picture4Ref}
+
+            pictureBanner={pictureBanner}
+            setPictureBanner={setPictureBanner}
+
+            picture1={picture1}
+            picture2={picture2}
+            picture3={picture3}
+            picture4={picture4}
+
+            setPicture1={setPicture1}
+            setPicture2={setPicture2}
+            setPicture3={setPicture3}
+            setPicture4={setPicture4}
+
           />
 
           <Socmed
@@ -80,12 +83,28 @@ const DetailBussiness = ({ businessByUUID, sosmed }) => {
 
         <Form
           businessByUUID={businessByUUID}
-          // banner={banner}
           editForm={editForm}
           setEditForm={setEditForm}
-          // handleBannerClick={handleBannerClick}
-          // handleBannerChange={handleBannerChange}
-          // bannerRef={bannerRef}
+
+          // handleImage
+          changeBannerRef={changeBannerRef}
+          picture1Ref={picture1Ref}
+          picture2Ref={picture2Ref}
+          picture3Ref={picture3Ref}
+          picture4Ref={picture4Ref}
+
+          pictureBanner={pictureBanner}
+          setPictureBanner={setPictureBanner}
+
+          picture1={picture1}
+          picture2={picture2}
+          picture3={picture3}
+          picture4={picture4}
+
+          setPicture1={setPicture1}
+          setPicture2={setPicture2}
+          setPicture3={setPicture3}
+          setPicture4={setPicture4}
 
           // passing sosmed to form
           inputIG={instagramLink}
@@ -118,21 +137,39 @@ const DetailBussiness = ({ businessByUUID, sosmed }) => {
   );
 };
 
-const Banner = ({ editForm, setEditForm, banner, businessByUUID }) => {
-  // Banner default
+const Banner = ({
+  editForm,
+  setEditForm,
+  banner,
+  businessByUUID,
+
+  changeBannerRef,
+  picture1Ref,
+  picture2Ref,
+  picture3Ref,
+  picture4Ref,
+
+  pictureBanner,
+  setPictureBanner,
+
+  picture1,
+  picture2,
+  picture3,
+  picture4,
+
+  setPicture1,
+  setPicture2,
+  setPicture3,
+  setPicture4,
+
+}) => {
+  // Foto default
   const photoDefault = businessByUUID ? businessByUUID.imageURL[0] : '';
-
-  const changeBannerRef = useRef(null);
-  const picture1Ref = useRef(null);
-  const picture2Ref = useRef(null);
-  const picture3Ref = useRef(null);
-  const picture4Ref = useRef(null);
-
-  const [pictureBanner, setPictureBanner] = useState(null);
-  const [picture1, setPicture1] = useState(null);
-  const [picture2, setPicture2] = useState(null);
-  const [picture3, setPicture3] = useState(null);
-  const [picture4, setPicture4] = useState(null);
+  const bannerDefault = businessByUUID ? businessByUUID.imageURL[0] : '';
+  const photoDefault1 = businessByUUID ? businessByUUID.imageURL[1] : '';
+  const photoDefault2 = businessByUUID ? businessByUUID.imageURL[2] : '';
+  const photoDefault3 = businessByUUID ? businessByUUID.imageURL[3] : '';
+  const photoDefault4 = businessByUUID ? businessByUUID.imageURL[4] : '';
 
   // Banner
   const handleBannerClick = () => {
@@ -198,21 +235,21 @@ const Banner = ({ editForm, setEditForm, banner, businessByUUID }) => {
 
   return (
     <div className="w-full xl:my-auto xl:w-1/2 border border-gray-300 rounded p-2 flex flex-col gap-3 mb-5">
-      {console.log(banner)}
+      {console.log("ini lo foto default ",photoDefault)}
       {banner ? (
         <img
           src={URL.createObjectURL(banner)}
           className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain"
         />
       ) : editForm ? (
-        <img src={photoDefault} />
+        <img src={photoDefault} className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain" />
       ) : (
         <img
           src={
             pictureBanner ? URL.createObjectURL(pictureBanner) : photoDefault
           }
           onClick={handleBannerClick}
-          className="hover:cursor-pointer hover:scale-95 transition-all"
+          className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain"
         />
       )}
 
@@ -221,14 +258,14 @@ const Banner = ({ editForm, setEditForm, banner, businessByUUID }) => {
         name="banner"
         id="banner"
         className="hidden"
-        ref={changeBannerRef}
+        // ref={changeBannerRef}
         onChange={handleBannerChange}
       />
 
       {/* </div> */}
       <div className="flex justify-center gap-3">
         <div
-          className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center "
+          className="w-20 bg-gray-100 hover:bg-gray-200 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center "
           onClick={handlePicture1Click}
         >
           {picture1 ? (
@@ -239,19 +276,19 @@ const Banner = ({ editForm, setEditForm, banner, businessByUUID }) => {
               srcset=""
             />
           ) : (
-            <p className="text-xs text-white">Foto 1</p>
+            <img src={photoDefault1} className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain" />
           )}
           <input
             type="file"
             id="picture1"
             name="picture1"
             className="hidden"
-            ref={picture1Ref}
+            // ref={picture1Ref}
             onChange={handlePicture1Change}
           />
         </div>
         <div
-          className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center "
+          className="w-20 bg-gray-100 hover:bg-gray-200 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center "
           onClick={handlePicture2Click}
         >
           {picture2 ? (
@@ -262,19 +299,19 @@ const Banner = ({ editForm, setEditForm, banner, businessByUUID }) => {
               srcset=""
             />
           ) : (
-            <p className="text-xs text-white">Foto 2</p>
+            <img src={photoDefault2} className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain" />
           )}
           <input
             type="file"
             id="picture2"
             name="picture2"
             className="hidden"
-            ref={picture2Ref}
+            // ref={picture2Ref}
             onChange={handlePicture2Change}
           />
         </div>
         <div
-          className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center "
+          className="w-20 bg-gray-100 hover:bg-gray-200 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center "
           onClick={handlePicture3Click}
         >
           {picture3 ? (
@@ -285,7 +322,7 @@ const Banner = ({ editForm, setEditForm, banner, businessByUUID }) => {
               srcset=""
             />
           ) : (
-            <p className="text-xs text-white">Foto 3</p>
+            <img src={photoDefault3} className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain" />
           )}
           <input
             type="file"
@@ -297,7 +334,7 @@ const Banner = ({ editForm, setEditForm, banner, businessByUUID }) => {
           />
         </div>
         <div
-          className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center "
+          className="w-20 bg-gray-100 hover:bg-gray-200 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center "
           onClick={handlePicture4Click}
         >
           {picture4 ? (
@@ -308,7 +345,7 @@ const Banner = ({ editForm, setEditForm, banner, businessByUUID }) => {
               srcset=""
             />
           ) : (
-            <p className="text-xs text-white">Foto 4</p>
+            <img src={photoDefault4} className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain" />
           )}
           <input
             type="file"
@@ -351,11 +388,11 @@ const Socmed = ({
           disabled={editForm}
           placeholder="Link instagram"
           defaultValue={businessByUUID?.socialMedia?.[0]}
-          // placeholder={
-          //   businessByUUID.socialMedia
-          //     ? businessByUUID.socialMedia[0]
-          //     : 'coba ig'
-          // }
+        // placeholder={
+        //   businessByUUID.socialMedia
+        //     ? businessByUUID.socialMedia[0]
+        //     : 'coba ig'
+        // }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -369,11 +406,11 @@ const Socmed = ({
           disabled={editForm}
           placeholder="Link Facebook"
           defaultValue={businessByUUID?.socialMedia?.[1]}
-          // placeholder={
-          //   businessByUUID.socialMedia
-          //     ? businessByUUID.socialMedia[1]
-          //     : 'coba ig'
-          // }
+        // placeholder={
+        //   businessByUUID.socialMedia
+        //     ? businessByUUID.socialMedia[1]
+        //     : 'coba ig'
+        // }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -387,11 +424,11 @@ const Socmed = ({
           disabled={editForm}
           placeholder="Link twitter"
           defaultValue={businessByUUID?.socialMedia?.[2]}
-          // placeholder={
-          //   businessByUUID.socialMedia
-          //     ? businessByUUID.socialMedia[2]
-          //     : 'coba ig'
-          // }
+        // placeholder={
+        //   businessByUUID.socialMedia
+        //     ? businessByUUID.socialMedia[2]
+        //     : 'coba ig'
+        // }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -405,11 +442,11 @@ const Socmed = ({
           disabled={editForm}
           placeholder="Link youtube"
           defaultValue={businessByUUID?.socialMedia?.[2]}
-          // placeholder={
-          //   businessByUUID.socialMedia
-          //     ? businessByUUID.socialMedia[3]
-          //     : 'coba ig'
-          // }
+        // placeholder={
+        //   businessByUUID.socialMedia
+        //     ? businessByUUID.socialMedia[3]
+        //     : 'coba ig'
+        // }
         />
       </form>
     </div>
@@ -417,21 +454,28 @@ const Socmed = ({
 };
 
 const Form = ({
-  handleBannerChange,
-  handleBannerClick,
-  bannerRef,
   editForm,
   setEditForm,
-  banner,
+  
   businessByUUID,
   inputIG,
   inputFB,
   inputTW,
   inputYT,
-  stateIG,
-  stateFB,
-  stateTW,
-  stateYT,
+
+  changeBannerRef,
+  picture1Ref,
+  picture2Ref,
+  picture3Ref,
+  picture4Ref,
+
+  setPictureBanner,
+
+  setPicture1,
+  setPicture2,
+  setPicture3,
+  setPicture4,
+
 }) => {
   const [desc, setDesc] = useState('');
   const [maps, setMaps] = useState('');
@@ -449,8 +493,48 @@ const Form = ({
     });
   };
 
-  const handleImageChange = (e) => {
-    // setImage(e.target.files[0]);
+  const handleImageChange = (e, index) => {
+
+    switch (index) {
+      case "banner": {
+        const file = e.files[0];
+        console.log(file);
+        setPictureBanner(file);
+        break;
+      }
+
+      case "picture1": {
+        const file = e.files[0];
+        console.log(file);
+        setPicture1(file);
+        break
+      }
+
+      case "picture2": {
+        const file = e.files[0];
+        console.log(file);
+        setPicture2(file);
+        break
+      }
+
+      case "picture3": {
+        const file = e.files[0];
+        console.log(file);
+        setPicture3(file);
+        break
+      }
+
+      case "picture4": {
+        const file = e.files[0];
+        console.log(file);
+        setPicture4(file);
+        break
+      }
+
+      default:
+        break;
+    }
+
     const name = e.name;
     const file = e.files;
     // const id = e.id;
@@ -556,6 +640,14 @@ const Form = ({
     }
   };
 
+  const handleBannerChange = (event) => {
+    handleImageChange(event.target)
+
+    const file = event.target.files[0];
+    console.log(file);
+    setPictureBanner(file);
+  };
+
   return (
     <div className="flex flex-col gap-3">
       <form onSubmit={updateBusiness} action="" className="flex flex-col gap-2">
@@ -595,41 +687,51 @@ const Form = ({
           />
         </div>
 
-        {/* <input
+        <input
           type="file"
           accept="image/*"
+          className='hidden'
           id="img1"
           name="img1"
-          onChange={(e) => handleImageChange(e.target)}
+          ref={changeBannerRef}
+          onChange={(e) => handleImageChange(e.target, "banner")}
         />
         <input
           type="file"
           accept="image/*"
+          className='hidden'
           id="img2"
           name="img2"
-          onChange={(e) => handleImageChange(e.target)}
+          ref={picture1Ref}
+          onChange={(e) => handleImageChange(e.target, "picture1")}
         />
         <input
           type="file"
           accept="image/*"
+          className='hidden'
           id="img3"
           name="img3"
-          onChange={(e) => handleImageChange(e.target)}
+          ref={picture2Ref}
+          onChange={(e) => handleImageChange(e.target, "picture2")}
         />
         <input
           type="file"
           accept="image/*"
+          className='hidden'
           id="img4"
           name="img4"
-          onChange={(e) => handleImageChange(e.target)}
+          ref={picture3Ref}
+          onChange={(e) => handleImageChange(e.target, "picture3")}
         />
         <input
           type="file"
           accept="image/*"
+          className='hidden'
           id="img5"
           name="img5"
-          onChange={(e) => handleImageChange(e.target)}
-        /> */}
+          ref={picture4Ref}
+          onChange={(e) => handleImageChange(e.target, "picture4")}
+        />
 
         <hr className="my-5" />
         <div className="w-full flex justify-between md:justify-end gap-5">

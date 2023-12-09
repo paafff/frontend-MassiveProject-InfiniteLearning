@@ -22,8 +22,8 @@ const Detail = () => {
 
         setBusinessByUUID(response.data);
         // console.log('detailbusines', businessByUUID);
-        console.log('uuid nya params', uuid);
-        console.log('detailbusines', businessByUUID);
+        // console.log('uuid nya params', uuid);
+        // console.log('detailbusines', businessByUUID);
       } catch (error) {
         if (error.response) {
           alert(error.response.data.msg);
@@ -54,7 +54,7 @@ const Detail = () => {
   return (
     <Layout>
       <div class="xl:w-3/4 w-full px-3 md:px-5 min-h-screen my-5 mx-auto">
-        <Gallery businessByUUID={businessByUUID} />
+        <Gallery businessByUUID={businessByUUID} businessImage={businessByUUID.imageURL} />
 
         <ContentDetail userAuth={userAuth} businessByUUID={businessByUUID} />
       </div>

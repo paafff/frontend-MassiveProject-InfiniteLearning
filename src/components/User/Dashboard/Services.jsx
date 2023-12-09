@@ -80,48 +80,117 @@ const Services = ({ businessByUUID }) => {
     srv2: '',
     srv3: '',
     srv4: '',
-    srv5: '',
-    srv6: '',
-    srv7: '',
-    srv8: '',
-    srv9: '',
-    srv10: '',
+    srv5: ''
+  });
+
+  const [priceData, setPriceData] = useState({
     price1: '',
     price2: '',
     price3: '',
     price4: '',
     price5: '',
-    price6: '',
-    price7: '',
-    price8: '',
-    price9: '',
-    price10: '',
   });
 
-  const handleService = (e) => {
-    const { value, checked } = e.target;
+  const handleService = (service, value) => {
+    console.log("memilih service ke- ", service);
 
-    if (checked) {
-      setArrayService((pre) => [...pre, value]);
+    switch (service) {
+      case "srv1":
+        setServiceData((prev) => ({
+          ...prev,
+          srv1: value,
+        }));
+        break;
+
+      case "srv2":
+        setServiceData((prev) => ({
+          ...prev,
+          srv2: value,
+        }));
+        break;
+
+      case "srv3":
+        setServiceData((prev) => ({
+          ...prev,
+          srv3: value,
+        }));
+        break;
+
+      case "srv4":
+        setServiceData((prev) => ({
+          ...prev,
+          srv4: value,
+        }));
+        break;
+
+      case "srv5":
+        setServiceData((prev) => ({
+          ...prev,
+          srv5: value,
+        }));
+        break;
+
+      default:
+        break;
     }
-    console.log(e.target.id);
+
   };
 
-  const handlePrice = (e) => {
-    const value = e.target.value;
-    setArrayServicePrice((pre) => [...pre, value]);
+  const handlePrice = (price, value) => {
+    console.log("mengisi harga service ke- ", price);
+
+    switch (price) {
+      case "price1":
+        setPriceData((prev) => ({
+          ...prev,
+          price1: value,
+        }));
+        break;
+
+      case "price2":
+        setPriceData((prev) => ({
+          ...prev,
+          price2: value,
+        }));
+        break;
+
+      case "price3":
+        setPriceData((prev) => ({
+          ...prev,
+          price3: value,
+        }));
+        break;
+
+      case "price4":
+        setPriceData((prev) => ({
+          ...prev,
+          price4: value,
+        }));
+        break;
+
+      case "price5":
+        setPriceData((prev) => ({
+          ...prev,
+          price5: value,
+        }));
+        break;
+
+      default:
+        break;
+    }
+
   };
 
-  console.log('service yg dicentang ', arrayService);
-  console.log('harga service ', arrayServicePrice);
+  console.log("melihat isi dalam state service ", serviceData);
+  console.log("melihat isi dalam state price ", priceData);
 
   const createServices = async (e) => {
     e.preventDefault();
 
     try {
       await axios.post(`http://localhost:5000/service`, {
-        name: arrayService,
-        price: arrayServicePrice,
+        name: serviceData,
+        price: priceData,
         businessId: businessId,
       });
 
@@ -135,6 +204,37 @@ const Services = ({ businessByUUID }) => {
     }
   };
 
+  const tempServices = [
+    {
+      id: 0,
+      name: "creambath"
+    },
+    {
+      id: 1,
+      name: "haircut"
+    },
+    {
+      id: 2,
+      name: "manicure"
+    },
+    {
+      id: 3,
+      name: "pedicure"
+    },
+    {
+      id: 4,
+      name: "nail art"
+    },
+    {
+      id: 5,
+      name: "hair color"
+    },
+    {
+      id: 6,
+      name: "smoothing"
+    },
+  ]
+
   return (
     <div className="w-screen lg:w-full py-10 px-5 md:px-12 xl:px-24 xl:w-3/4">
       <div className="bg-white w-full rounded-lg p-4 lg:p-8 drop-shadow-md">
@@ -142,72 +242,70 @@ const Services = ({ businessByUUID }) => {
         <hr className="my-5" />
 
         <form action="">
-          {listLayanan.map((service) => (
-            <Service
-              editForm={editForm}
-              id={service.id}
-              name={service.name}
-              handleService={handleService}
-              handlePrice={handlePrice}
-            />
-          ))}
 
-          <hr />
+          <Service
+            data={tempServices}
+            editForm={editForm}
+            handleService={handleService}
+            handlePrice={handlePrice}
+          />
 
-          <Button editForm={editForm} setEditForm={setEditForm} />
+          <Button 
+          createServices={createServices} 
+          editForm={editForm} 
+          setEditForm={setEditForm} />
         </form>
 
         {/* <p>{businessByUUID.id}</p> */}
-        <button onClick={createServices} className="bg-blue-100">
+        {/* <button onClick={createServices} className="bg-blue-100">
           {' '}
           ini coba kirim layanan
-        </button>
+        </button> */}
       </div>
     </div>
   );
 };
 
-const Service = ({ id, name, editForm, handleService, handlePrice }) => {
-  return (
-    <div
-      className="w-full py-3 px-5 border-t border-gray-200 flex justify-start gap-10"
-      key={id}
-    >
-      {!editForm && (
-        <input
-          type="checkbox"
-          value={name}
-          onChange={handleService}
-          className="scale-125"
-          id={id}
-        />
-      )}
-      <div className="w-1/2 flex items-center">
-        <p className="text-sm font-thin">{name}</p>
-      </div>
-      <div className="flex gap-2 items-center">
-        <p className="text-sm text-gray-400 font-thin" id={id}>
-          Rp
-        </p>
-        <input
-          type="number"
-          className="w-3/4 border border-gray-300 rounded px-2 h-7 text-xs disabled:bg-gray-200"
-          disabled={editForm}
-          onChange={handlePrice}
-        />
-      </div>
-    </div>
-  );
-};
-
-const Button = ({ editForm, setEditForm }) => {
+const Service = ({
+  data,
+  editForm,
+  handleService,
+  handlePrice,
+}) => {
   return (
     <>
+      <div className='w-full flex flex-col gap-3'>
+
+        {/* tampilkan 5 dropdown dengan onChange yg berbeda beda */}
+        {[1, 2, 3, 4, 5].map((selectService, index) => (
+
+          <div className='w-full flex gap-3' key={index}>
+
+            <select onChange={(e) => handleService(("srv" + (index + 1)), e.target.value)} disabled={editForm} name="service1" className='w-1/2 text-xs py-2 px-3 rounded disabled:bg-gray-200 bg-gray-100' id="" >
+              <option value="" className='text-xs'>Pilih layanan</option>
+              {data.map(service => (
+                <option value={service.name} className='text-xs'>{service.name}</option>
+              ))}
+            </select>
+
+            <input onChange={(e) => handlePrice(("price" + (index + 1)), e.target.value)} disabled={editForm} className='disabled:bg-gray-200 bg-gray-100 rounded border border-gray-200 text-xs w-1/2 placeholder:text-xs px-2' placeholder='Rp' type="number" />
+
+          </div>
+        ))}
+
+      </div>
+    </>
+  );
+};
+
+const Button = ({ editForm, setEditForm, createServices }) => {
+  return (
+    <div className='mt-10'>
       {editForm ? (
         <div className="w-full flex justify-end">
           <div
             onClick={() => setEditForm(!editForm)}
-            className="mt-5 w-fit hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded "
+            className=" w-fit hover:bg-zinc-800 hover:cursor-pointer transition-all py-2 px-5 bg-zinc-950 rounded "
           >
             <p className="text-xs md:text-sm text-white flex gap-2 items-center">
               <FiEdit className="inline-block" />
@@ -226,7 +324,7 @@ const Button = ({ editForm, setEditForm }) => {
               Back
             </p>
           </div>
-          <div className="w-fit flex justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded">
+          <div onClick={createServices} className="w-fit flex justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded">
             <p className="text-xs md:text-sm text-white flex gap-2 items-center">
               <FaSave className="inline-block" />
               Simpan Perubahan
@@ -234,7 +332,7 @@ const Button = ({ editForm, setEditForm }) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

@@ -194,7 +194,6 @@ const Form = ({ businessByUUID }) => {
     <div className="bg-white w-full rounded-lg p-4 lg:p-8 drop-shadow-md">
       <p className="text-base md:text-lg font-semibold">
         Informasi Dasar{' '}
-        {businessByUUID.address ? businessByUUID.addressId[0] : 'q'}
       </p>
 
       <hr className="my-5" />
