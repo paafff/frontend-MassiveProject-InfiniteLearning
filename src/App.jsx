@@ -23,6 +23,7 @@ import Help from './pages/Help';
 // import AccountAdmin from './pages/Admin/AccountAdmin';
 import InputReview from './pages/User/InputReview';
 import ListBusiness from './pages/ListBusiness';
+import ListAllBusiness from './pages/ListAllBusiness';
 import Detail from './pages/User/Detail';
 
 // syarat ketentuan
@@ -59,8 +60,6 @@ const App = () => {
               element={<DashboardBusiness />}
             />
 
-            {/* <Route path="/dashboard-business/:uuid" element={<DummyPage />} /> */}
-
             <Route path="/dashboard-employee" element={<DashboardEmployee />} />
             <Route path="/dashboard-booking" element={<DashboardBooking />} />
             <Route path="/signup" element={<SignUp />} />
@@ -76,13 +75,9 @@ const App = () => {
             <Route path="/user/review" element={<InputReview />} />
             <Route path="/barbershop" element={<ListBusiness page={"barbershop"} />} />
             <Route path="/salon" element={<ListBusiness page={"salon"} />} />
+            <Route path="/business" element={<ListAllBusiness />} />
             <Route path="/detail/:uuid" element={<Detail />} />
 
-            {/* Super User */}
-            {/* <Route
-              path="/superuser/dashboard-business"
-              element={<DashboardBusiness />}
-            /> */}
             <Route
               path="/superuser/dashboard-employee"
               element={<DashboardEmployee />}

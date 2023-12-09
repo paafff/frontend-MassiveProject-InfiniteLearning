@@ -235,7 +235,7 @@ const Banner = ({
 
   return (
     <div className="w-full xl:my-auto xl:w-1/2 border border-gray-300 rounded p-2 flex flex-col gap-3 mb-5">
-      {console.log("ini lo foto default ",photoDefault)}
+      {console.log("ini lo foto default ", photoDefault)}
       {banner ? (
         <img
           src={URL.createObjectURL(banner)}
@@ -456,7 +456,7 @@ const Socmed = ({
 const Form = ({
   editForm,
   setEditForm,
-  
+
   businessByUUID,
   inputIG,
   inputFB,
@@ -556,6 +556,8 @@ const Form = ({
     twitter: null,
     youtube: null,
     maps: '',
+    open:'',
+    close:'',
   });
 
   // set sosmed from input to final state (bingung? sama gw juga)
@@ -607,6 +609,11 @@ const Form = ({
     businessData.maps || 'ini meps',
   ];
 
+  const schedule = [
+    businessData.open,
+    businessData.close,
+  ]
+
   const updateBusiness = async (e) => {
     e.preventDefault();
     try {
@@ -618,6 +625,7 @@ const Form = ({
       formUpdateBusiness.append('img4', businessData.img4);
       formUpdateBusiness.append('img5', businessData.img5);
       formUpdateBusiness.append('description', businessData.description);
+      formUpdateBusiness.append('schedule', schedule);
       formUpdateBusiness.append(
         'socialMedia',
         JSON.stringify(arraySocialMedia)
@@ -647,6 +655,35 @@ const Form = ({
     console.log(file);
     setPictureBanner(file);
   };
+
+  const times = [
+    "01:00",
+    "02:00",
+    "03:00",
+    "04:00",
+    "05:00",
+    "06:00",
+    "07:00",
+    "08:00",
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00",
+    "19:00",
+    "20:00",
+    "21:00",
+    "22:00",
+    "23:00",
+    "24:00",
+  ]
+
+  console.log("jadwal nya ", businessData);
 
   return (
     <div className="flex flex-col gap-3">
@@ -685,6 +722,30 @@ const Form = ({
             name="maps"
             id="maps"
           />
+        </div>
+
+        <div className="w-full md:w-3/4 xl:w-1/2 flex flex-col gap-2">
+          <label htmlFor="" className="text-sm">
+            Jadwal Usaha
+          </label>
+          <div className='w-full flex gap-10'>
+            <div>
+              <select name="open" id="" onChange={(e)=>handleChange(e.target)}>
+                <option value="" className='text-sm'>Jadwal Buka</option>
+                {times.map(time => (
+                  <option value={time}>{time}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <select name="close" id="" onChange={(e)=>handleChange(e.target)}>
+                <option value="" className='text-sm'>Jadwal Tutup</option>
+                {times.map(time => (
+                  <option value={time}>{time}</option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
 
         <input

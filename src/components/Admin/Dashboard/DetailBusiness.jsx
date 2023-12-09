@@ -52,7 +52,7 @@ const Business = ({ businessData }) => {
       <div className="flex flex-col gap-3">
         <div className="w-full hover:cursor-pointer md:w-3/4 mx-auto md:max-h-72 aspect-video bg-gray-500 hover:bg-gray-600 transition-all rounded flex items-center justify-center">
           {businessData.imageURL ? (
-            <img src={businessData.imageURL[0]} alt="" />
+            <img src={businessData.imageURL[0]} className='w-60' alt="" />
           ) : (
             <p className="text-white">Banner</p>
           )}
@@ -61,28 +61,28 @@ const Business = ({ businessData }) => {
         <div className="flex justify-center gap-3">
           <div className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ">
             {businessData.imageURL ? (
-              <img src={businessData.imageURL[1]} alt="" />
+              <img className='w-20' src={businessData.imageURL[1]} alt="" />
             ) : (
               <p className="text-xs text-white">Foto 1</p>
             )}
           </div>
           <div className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ">
             {businessData.imageURL ? (
-              <img src={businessData.imageURL[2]} alt="" />
+              <img className='w-20' src={businessData.imageURL[2]} alt="" />
             ) : (
               <p className="text-xs text-white">Foto 1</p>
             )}
           </div>
           <div className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ">
             {businessData.imageURL ? (
-              <img src={businessData.imageURL[3]} alt="" />
+              <img className='w-20' src={businessData.imageURL[3]} alt="" />
             ) : (
               <p className="text-xs text-white">Foto 1</p>
             )}
           </div>
           <div className="w-20 bg-gray-500 hover:bg-gray-600 hover:cursor-pointer transition-all aspect-square rounded flex items-center justify-center ">
             {businessData.imageURL ? (
-              <img src={businessData.imageURL[4]} alt="" />
+              <img className='w-20' src={businessData.imageURL[4]} alt="" />
             ) : (
               <p className="text-xs text-white">Foto 1</p>
             )}

@@ -34,7 +34,7 @@ const ReviewUser = ({ selectedBusinessId }) => {
         <p className="text-base md:text-lg font-semibold">Review</p>
         <hr className="my-5" />
 
-        <div className="grid grid-cols-1 xl:grid-cols-2 justify-center gap-3">
+        <div className="grid grid-cols-1 xl:grid-cols-2 justify-center place-content-center gap-5">
           {listFeedback?.map((feedback) => (
             <Card feedback={feedback} />
           ))}
@@ -48,12 +48,15 @@ const ReviewUser = ({ selectedBusinessId }) => {
 const Card = ({ uuid, desc, rating, date, feedback }) => {
   return (
     <div className="w-full md:w-3/4 mx-auto p-3 md:p-5 bg-white drop-shadow-lg flex flex-col gap-3 rounded-md">
-      <div className="w-10">
-        <img src={feedback.userData?.profileURL} alt="" />
-        <p className="text-sm line-clamp-4">{feedback.userData?.username}</p>
+      <div className="w-10 flex items-center gap-5">
+        <img src={feedback.userData?.profileURL} className='border border-gray-300 rounded-full' alt="" />
+        <p className="text-lg font-medium ">{feedback.userData?.username}</p>
       </div>
-      <div className="w-full h-24">
+      <div className="w-full my-2 space-y-3">
         <p className="text-sm line-clamp-4">{feedback.description}</p>
+        <div className='w-full '>
+          <img src={feedback.imageURL} className='w-24' alt="" />
+        </div>
       </div>
       <div className="w-1/3 justify-between flex gap-2 items-center">
         <p className="text-red-600 text-sm">Rating</p>

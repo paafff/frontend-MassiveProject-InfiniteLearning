@@ -130,7 +130,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
             </div> */}
           </div>
 
-          <div class="flex flex-row justify-between items-center pr-24 mt-10">
+          <div class="flex flex-row justify-start items-center pr-24 gap-24 mt-10">
             <div>
               <h1 class="font-bold text-2xl">
                 Dikelola oleh {businessByUUID.userData?.username}
@@ -257,44 +257,48 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
       <div>
         <h1 class="font-semibold text-lg">4.8 (3 Ulasan)</h1>
 
-        {[1,2].map(test => (
+        {businessByUUID.feedbacks?.map((feedback) => (
+          <>
+            <div className='w-3/4 flex flex-col gap-3 border-b border-gray-200 pb-5'>
+              <div class="mt-10 ml-5 flex flex-row items-center gap-5">
+                {feedback.userData?.profileURL ? (
+                  <img src={feedback.userData?.profileURL} className='w-20' alt="" />
+                ) : (
 
-        <div className='w-3/4 flex flex-col gap-3'>
-          <div class="mt-10 ml-5 flex flex-row">
-            <FaImage
-              className="w-10 h-10"
-            />
-            <div class="ml-2 flex flex-row gap gap-x-2">
-              <div class="ml-1">
-                <h4 class="font-semibold"> test username reviewer</h4>
-                <h6 class="text-xs text-gray-500">2 minggu yang lalu</h6>
+                  <FaImage
+                    className="w-10 h-10"
+                  />
+                )}
+                <div class="ml-2 flex flex-row gap gap-5">
+                  <div class="ml-1">
+                    <h4 class="text-lg font-semibold"> {feedback.userData?.username}</h4>
+                    <h6 class="text-xs text-gray-500">{feedback.createdAt}</h6>
+                  </div>
+                  <div class="items-center gap-4 flex flex-row py-1 px-1 h-6">
+                    
+                    <FaStar className='w-7 h-7 text-amber-400'/>
+                    <p class="text-lg font-semibold">{feedback.rating}</p>
+                  </div>
+                </div>
               </div>
-              <div class="border border-rose-400 flex flex-row py-1 px-1 h-6">
-                <img
-                  class="h-3 mr-1"
-                  src="/src/assets/images/icons/Star.png"
-                // src={feedback.imageURL}
-                />
-                <h6 class="text-xs">4.0</h6>
+              <div className='flex flex-col gap-3 px-5'>
+                <p className='text-base '>
+                  {feedback.description}
+                </p>
+                {feedback.userData?.profileURL ? (
+                  <img src={feedback.imageURL} className='w-24' alt="" />
+                ) : (
+
+                  <FaImage
+                    className="w-10 h-10"
+                  />
+                )}
               </div>
             </div>
-          </div>
-          <div className='flex flex-col gap-3 px-5'>
-            <p className='text-sm '>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur repellat consequatur obcaecati. Quam voluptates, molestias maxime ratione soluta officiis tempora ab quas labore aspernatur, eaque deserunt rem corporis ad assumenda!</p>
-            <FaImage className='w-24 h-24 text-gray-200'/>
-          </div>
-        </div>
-        ))}
-
-        {businessByUUID.feedbacks?.map((feedback) => (
-
-          <>
-            <div class="mt-10 ml-5 flex flex-row">
+            {/* <div class="mt-10 ml-5 flex flex-row">
               <img
                 className="w-10"
-                // src={feedback.userData?.imageURL}
                 src={feedback.userData?.profileURL}
-              // src="/src/assets/images/icons/AvatarEllipse1.png"
               />
               <div class="ml-2 flex flex-row gap gap-x-2">
                 <div class="ml-1">
@@ -311,11 +315,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
                 </div>
               </div>
             </div>
-            {/* <p class="text-xs ml-20">
-              Pelayanan ramah, harga terjangkau tapi bisa dapatin model rambut
-              yang keren bangettt
-            </p> */}
-            <p class="text-xs ml-20">{feedback?.description}</p>
+            <p class="text-xs ml-20">{feedback?.description}</p> */}
           </>
         ))}
       </div>
