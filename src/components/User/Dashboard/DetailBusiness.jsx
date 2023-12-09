@@ -42,27 +42,22 @@ const DetailBussiness = ({ businessByUUID, sosmed }) => {
             setEditForm={setEditForm}
             // banner={banner}
             businessByUUID={businessByUUID}
-
             // handleImage
             changeBannerRef={changeBannerRef}
             picture1Ref={picture1Ref}
             picture2Ref={picture2Ref}
             picture3Ref={picture3Ref}
             picture4Ref={picture4Ref}
-
             pictureBanner={pictureBanner}
             setPictureBanner={setPictureBanner}
-
             picture1={picture1}
             picture2={picture2}
             picture3={picture3}
             picture4={picture4}
-
             setPicture1={setPicture1}
             setPicture2={setPicture2}
             setPicture3={setPicture3}
             setPicture4={setPicture4}
-
           />
 
           <Socmed
@@ -85,27 +80,22 @@ const DetailBussiness = ({ businessByUUID, sosmed }) => {
           businessByUUID={businessByUUID}
           editForm={editForm}
           setEditForm={setEditForm}
-
           // handleImage
           changeBannerRef={changeBannerRef}
           picture1Ref={picture1Ref}
           picture2Ref={picture2Ref}
           picture3Ref={picture3Ref}
           picture4Ref={picture4Ref}
-
           pictureBanner={pictureBanner}
           setPictureBanner={setPictureBanner}
-
           picture1={picture1}
           picture2={picture2}
           picture3={picture3}
           picture4={picture4}
-
           setPicture1={setPicture1}
           setPicture2={setPicture2}
           setPicture3={setPicture3}
           setPicture4={setPicture4}
-
           // passing sosmed to form
           inputIG={instagramLink}
           inputFB={facebookLink}
@@ -161,7 +151,6 @@ const Banner = ({
   setPicture2,
   setPicture3,
   setPicture4,
-
 }) => {
   // Foto default
   const photoDefault = businessByUUID ? businessByUUID.imageURL[0] : '';
@@ -235,14 +224,17 @@ const Banner = ({
 
   return (
     <div className="w-full xl:my-auto xl:w-1/2 border border-gray-300 rounded p-2 flex flex-col gap-3 mb-5">
-      {console.log("ini lo foto default ", photoDefault)}
+      {console.log('ini lo foto default ', photoDefault)}
       {banner ? (
         <img
           src={URL.createObjectURL(banner)}
           className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain"
         />
       ) : editForm ? (
-        <img src={photoDefault} className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain" />
+        <img
+          src={photoDefault}
+          className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain"
+        />
       ) : (
         <img
           src={
@@ -276,7 +268,10 @@ const Banner = ({
               srcset=""
             />
           ) : (
-            <img src={photoDefault1} className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain" />
+            <img
+              src={photoDefault1}
+              className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain"
+            />
           )}
           <input
             type="file"
@@ -299,7 +294,10 @@ const Banner = ({
               srcset=""
             />
           ) : (
-            <img src={photoDefault2} className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain" />
+            <img
+              src={photoDefault2}
+              className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain"
+            />
           )}
           <input
             type="file"
@@ -322,7 +320,10 @@ const Banner = ({
               srcset=""
             />
           ) : (
-            <img src={photoDefault3} className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain" />
+            <img
+              src={photoDefault3}
+              className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain"
+            />
           )}
           <input
             type="file"
@@ -345,7 +346,10 @@ const Banner = ({
               srcset=""
             />
           ) : (
-            <img src={photoDefault4} className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain" />
+            <img
+              src={photoDefault4}
+              className="w-full md:w-3/4 mx-auto md:max-h-72 aspect-video rounded flex items-center justify-center object-contain"
+            />
           )}
           <input
             type="file"
@@ -388,11 +392,11 @@ const Socmed = ({
           disabled={editForm}
           placeholder="Link instagram"
           defaultValue={businessByUUID?.socialMedia?.[0]}
-        // placeholder={
-        //   businessByUUID.socialMedia
-        //     ? businessByUUID.socialMedia[0]
-        //     : 'coba ig'
-        // }
+          // placeholder={
+          //   businessByUUID.socialMedia
+          //     ? businessByUUID.socialMedia[0]
+          //     : 'coba ig'
+          // }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -406,11 +410,11 @@ const Socmed = ({
           disabled={editForm}
           placeholder="Link Facebook"
           defaultValue={businessByUUID?.socialMedia?.[1]}
-        // placeholder={
-        //   businessByUUID.socialMedia
-        //     ? businessByUUID.socialMedia[1]
-        //     : 'coba ig'
-        // }
+          // placeholder={
+          //   businessByUUID.socialMedia
+          //     ? businessByUUID.socialMedia[1]
+          //     : 'coba ig'
+          // }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -424,11 +428,11 @@ const Socmed = ({
           disabled={editForm}
           placeholder="Link twitter"
           defaultValue={businessByUUID?.socialMedia?.[2]}
-        // placeholder={
-        //   businessByUUID.socialMedia
-        //     ? businessByUUID.socialMedia[2]
-        //     : 'coba ig'
-        // }
+          // placeholder={
+          //   businessByUUID.socialMedia
+          //     ? businessByUUID.socialMedia[2]
+          //     : 'coba ig'
+          // }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -442,11 +446,11 @@ const Socmed = ({
           disabled={editForm}
           placeholder="Link youtube"
           defaultValue={businessByUUID?.socialMedia?.[2]}
-        // placeholder={
-        //   businessByUUID.socialMedia
-        //     ? businessByUUID.socialMedia[3]
-        //     : 'coba ig'
-        // }
+          // placeholder={
+          //   businessByUUID.socialMedia
+          //     ? businessByUUID.socialMedia[3]
+          //     : 'coba ig'
+          // }
         />
       </form>
     </div>
@@ -475,7 +479,6 @@ const Form = ({
   setPicture2,
   setPicture3,
   setPicture4,
-
 }) => {
   const [desc, setDesc] = useState('');
   const [maps, setMaps] = useState('');
@@ -494,41 +497,40 @@ const Form = ({
   };
 
   const handleImageChange = (e, index) => {
-
     switch (index) {
-      case "banner": {
+      case 'banner': {
         const file = e.files[0];
         console.log(file);
         setPictureBanner(file);
         break;
       }
 
-      case "picture1": {
+      case 'picture1': {
         const file = e.files[0];
         console.log(file);
         setPicture1(file);
-        break
+        break;
       }
 
-      case "picture2": {
+      case 'picture2': {
         const file = e.files[0];
         console.log(file);
         setPicture2(file);
-        break
+        break;
       }
 
-      case "picture3": {
+      case 'picture3': {
         const file = e.files[0];
         console.log(file);
         setPicture3(file);
-        break
+        break;
       }
 
-      case "picture4": {
+      case 'picture4': {
         const file = e.files[0];
         console.log(file);
         setPicture4(file);
-        break
+        break;
       }
 
       default:
@@ -556,8 +558,8 @@ const Form = ({
     twitter: null,
     youtube: null,
     maps: '',
-    open:'',
-    close:'',
+    open: '',
+    close: '',
   });
 
   // set sosmed from input to final state (bingung? sama gw juga)
@@ -609,10 +611,7 @@ const Form = ({
     businessData.maps || 'ini meps',
   ];
 
-  const schedule = [
-    businessData.open,
-    businessData.close,
-  ]
+  const arraySchedule = [businessData?.open, businessData?.close];
 
   const updateBusiness = async (e) => {
     e.preventDefault();
@@ -625,7 +624,7 @@ const Form = ({
       formUpdateBusiness.append('img4', businessData.img4);
       formUpdateBusiness.append('img5', businessData.img5);
       formUpdateBusiness.append('description', businessData.description);
-      formUpdateBusiness.append('schedule', schedule);
+      formUpdateBusiness.append('schedule', JSON.stringify(arraySchedule));
       formUpdateBusiness.append(
         'socialMedia',
         JSON.stringify(arraySocialMedia)
@@ -649,7 +648,7 @@ const Form = ({
   };
 
   const handleBannerChange = (event) => {
-    handleImageChange(event.target)
+    handleImageChange(event.target);
 
     const file = event.target.files[0];
     console.log(file);
@@ -657,33 +656,33 @@ const Form = ({
   };
 
   const times = [
-    "01:00",
-    "02:00",
-    "03:00",
-    "04:00",
-    "05:00",
-    "06:00",
-    "07:00",
-    "08:00",
-    "09:00",
-    "10:00",
-    "11:00",
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-    "17:00",
-    "18:00",
-    "19:00",
-    "20:00",
-    "21:00",
-    "22:00",
-    "23:00",
-    "24:00",
-  ]
+    '01:00',
+    '02:00',
+    '03:00',
+    '04:00',
+    '05:00',
+    '06:00',
+    '07:00',
+    '08:00',
+    '09:00',
+    '10:00',
+    '11:00',
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+    '18:00',
+    '19:00',
+    '20:00',
+    '21:00',
+    '22:00',
+    '23:00',
+    '24:00',
+  ];
 
-  console.log("jadwal nya ", businessData);
+  console.log('jadwal nya ', businessData);
 
   return (
     <div className="flex flex-col gap-3">
@@ -728,19 +727,31 @@ const Form = ({
           <label htmlFor="" className="text-sm">
             Jadwal Usaha
           </label>
-          <div className='w-full flex gap-10'>
+          <div className="w-full flex gap-10">
             <div>
-              <select name="open" id="" onChange={(e)=>handleChange(e.target)}>
-                <option value="" className='text-sm'>Jadwal Buka</option>
-                {times.map(time => (
+              <select
+                name="open"
+                id=""
+                onChange={(e) => handleChange(e.target)}
+              >
+                <option value="" className="text-sm">
+                  Jadwal Buka
+                </option>
+                {times.map((time) => (
                   <option value={time}>{time}</option>
                 ))}
               </select>
             </div>
             <div>
-              <select name="close" id="" onChange={(e)=>handleChange(e.target)}>
-                <option value="" className='text-sm'>Jadwal Tutup</option>
-                {times.map(time => (
+              <select
+                name="close"
+                id=""
+                onChange={(e) => handleChange(e.target)}
+              >
+                <option value="" className="text-sm">
+                  Jadwal Tutup
+                </option>
+                {times.map((time) => (
                   <option value={time}>{time}</option>
                 ))}
               </select>
@@ -751,47 +762,47 @@ const Form = ({
         <input
           type="file"
           accept="image/*"
-          className='hidden'
+          className="hidden"
           id="img1"
           name="img1"
           ref={changeBannerRef}
-          onChange={(e) => handleImageChange(e.target, "banner")}
+          onChange={(e) => handleImageChange(e.target, 'banner')}
         />
         <input
           type="file"
           accept="image/*"
-          className='hidden'
+          className="hidden"
           id="img2"
           name="img2"
           ref={picture1Ref}
-          onChange={(e) => handleImageChange(e.target, "picture1")}
+          onChange={(e) => handleImageChange(e.target, 'picture1')}
         />
         <input
           type="file"
           accept="image/*"
-          className='hidden'
+          className="hidden"
           id="img3"
           name="img3"
           ref={picture2Ref}
-          onChange={(e) => handleImageChange(e.target, "picture2")}
+          onChange={(e) => handleImageChange(e.target, 'picture2')}
         />
         <input
           type="file"
           accept="image/*"
-          className='hidden'
+          className="hidden"
           id="img4"
           name="img4"
           ref={picture3Ref}
-          onChange={(e) => handleImageChange(e.target, "picture3")}
+          onChange={(e) => handleImageChange(e.target, 'picture3')}
         />
         <input
           type="file"
           accept="image/*"
-          className='hidden'
+          className="hidden"
           id="img5"
           name="img5"
           ref={picture4Ref}
-          onChange={(e) => handleImageChange(e.target, "picture4")}
+          onChange={(e) => handleImageChange(e.target, 'picture4')}
         />
 
         <hr className="my-5" />

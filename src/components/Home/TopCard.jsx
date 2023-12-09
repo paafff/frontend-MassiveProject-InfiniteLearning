@@ -45,10 +45,12 @@ const TopCard = ({ dataList }) => {
       </div>
       <div className="w-full  flex justify-center items-center">
         <div className="bg-rose-400 py-1 px-3 rounded-md hover:bg-rose-500 hover:scale-90 shadow-md transition-all hover:cursor-pointer">
-          <p className="text-white">
-            <FaAngleDown className="inline-block text-white me-2" />
-            Show more
-          </p>
+          <Link to={'/business'}>
+            <p className="text-white">
+              <FaAngleDown className="inline-block text-white me-2" />
+              Show more
+            </p>
+          </Link>
         </div>
       </div>
     </div>
@@ -56,10 +58,47 @@ const TopCard = ({ dataList }) => {
 };
 
 const CardTopRecommend = ({ card }) => {
+  //scheduleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee yak
+  const [status, setStatus] = useState('');
+  const currentTime = new Date().toLocaleTimeString('id-ID', {
+    hour12: false,
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+  const targetTimeOpen = card.schedule?.[0];
+  const targetTimeClose = card.schedule?.[1];
+
+  const currentHours = parseInt(currentTime.split(':')[0]);
+  const currentMinutes = parseInt(currentTime.split(':')[1]);
+
+  const targetHoursOpen = parseInt(targetTimeOpen?.split(':')[0]);
+  const targetMinutesOpen = parseInt(targetTimeOpen?.split(':')[1]);
+
+  const targetHoursClose = parseInt(targetTimeClose?.split(':')[0]);
+  const targetMinutesClose = parseInt(targetTimeClose?.split(':')[1]);
+  useEffect(() => {
+    if (
+      // currentHours > targetHoursOpen ||
+      // (currentHours === targetHoursOpen && currentMinutes > targetMinutesOpen)
+
+      (currentHours > targetHoursOpen ||
+        (currentHours === targetHoursOpen &&
+          currentMinutes > targetMinutesOpen)) &&
+      //pemisah
+      (currentHours < targetHoursClose ||
+        (currentHours === targetHoursClose &&
+          currentMinutes < targetMinutesClose))
+    ) {
+      setStatus(`Buka`);
+    } else {
+      setStatus(`Tutup`);
+    }
+  }, [targetTimeClose, targetTimeOpen]);
+
   return (
     <div
       className="p-3 min-w-[288px] xl:min-w-[350px] h-96 xl:h-[450px] bg-red-500 flex flex-col justify-between rounded-lg xl:rounded-xl object-contain drop-shadow-md"
-      style={{ backgroundImage: `url(${ImageCard})` }}
+      style={{ backgroundImage: `url(${card?.imageURL?.[0]})` }}
     >
       <div className="w-full flex justify-end gap-3">
         <div className="px-2 h-8 bg-white rounded-full flex justify-center items-center">
@@ -75,7 +114,7 @@ const CardTopRecommend = ({ card }) => {
       <div className="w-full flex justify-between items-center bg-white rounded-md p-3 lg:px-5 hover:cursor-pointer">
         <div className="flex flex-col gap-1">
           <p className="text-xs lg:text-base text-red-600 font-semibold">
-            Tutup
+            {status}
           </p>
           <p className="text-xs lg:text-base font-semibold">{card.name}</p>
           {/* [prov,kab,kec,kel,rtrw] */}
