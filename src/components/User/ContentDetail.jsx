@@ -41,6 +41,11 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
   console.log('data semua mengenai detail bisnis ', businessByUUID);
   const [services, setServices] = useState([businessByUUID.services]);
 
+  // modal reservation
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   useEffect(() => {
     console.log('all data detail ', businessByUUID);
   }, [businessByUUID]);
@@ -113,18 +118,23 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
+    <>
+    <FormReservasi
+        open={open}
+        handleClose={handleClose}
+      />
     <div class="flex flex-col gap-10">
       <div class="w-full flex flex-col md:flex-row-reverse md:items-start my-5">
         <div className="w-full xl:w-1/4 flex flex-col items-end gap-5">
           <div className="w-full flex xl:flex-col xl:items-end gap-2">
             <ChatNow />
 
-            <Link
-              to="/user/reservasi"
+            <div
+            onClick={handleOpen}
               class="justify-center w-1/2 xl:w-full xl:py-4 xl:px-4 py-3 px-4 gap-2 border border-rose-500 bg-rose-600 hover:bg-white hover:cursor-pointer text-white hover:text-rose-500 font-normal rounded inline-flex items-center transition-all"
             >
               <span class="xl:text-lg text-sm ">Pesan Sekarang</span>
-            </Link>
+            </div>
           </div>
           <div className="w-full flex justify-center items-center shadow-md px-3 py-2 rounded-full gap-10">
             <FaInstagramSquare className="hover:cursor-pointer inline-block w-8 h-8 text-rose-400" />
@@ -319,7 +329,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col gap-3 px-5">
+              <div className="flex flex-col gap-3 px-20">
                 <p className="text-base ">{feedback.description}</p>
                 {feedback.userData?.profileURL ? (
                   <img src={feedback.imageURL} className="w-24" alt="" />
@@ -356,6 +366,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
       {/* coomponent reservasi */}
       <FormReservasi businessId={businessByUUID?.id} />
     </div>
+    </>
   );
 };
 

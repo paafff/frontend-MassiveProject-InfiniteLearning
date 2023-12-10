@@ -97,8 +97,8 @@ const CardTopRecommend = ({ card }) => {
 
   return (
     <div
-      className="p-3 min-w-[288px] xl:min-w-[350px] h-96 xl:h-[450px] bg-red-500 flex flex-col justify-between rounded-lg xl:rounded-xl object-contain drop-shadow-md"
-      style={{ backgroundImage: `url(${card?.imageURL?.[0]})` }}
+      className="p-3 min-w-[288px] xl:min-w-[350px] h-96 xl:h-[450px] bg-red-500 flex flex-col justify-between rounded-lg xl:rounded-xl drop-shadow-md"
+      style={{ backgroundImage: `url(${card?.imageURL?.[0]})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
     >
       <div className="w-full flex justify-end gap-3">
         <div className="px-2 h-8 bg-white rounded-full flex justify-center items-center">

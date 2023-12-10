@@ -74,7 +74,6 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
   }, [dispatch, navigate]);
 
   const role = userAuth.role;
-  console.log('role ku ', role);
 
   return (
     <div
@@ -125,7 +124,7 @@ const UserBiodata = () => {
   return (
     <Link
       to="/user/dashboard"
-      className="w-full h-fit flex items-center justify-start px-20 py-12"
+      className="w-full h-fit hover:bg-gray-200 transition-all flex items-center justify-start px-10 py-12"
     >
       <p className="text-sm lg:text-base text-black flex items-center gap-4">
         <IoMdInformationCircleOutline className="inline-block scale-150" />
@@ -139,7 +138,7 @@ const UserAjukanUsaha = () => {
   return (
     <Link
       to="/user/business-registration"
-      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-20 py-12"
+      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-10 py-12"
     >
       <p className="text-sm lg:text-base text-black flex items-center gap-4">
         <FaRegBuilding className="inline-block scale-150" />
@@ -151,7 +150,7 @@ const UserAjukanUsaha = () => {
 
 const UserUsaha = ({ listBusiness }) => {
   return (
-    <Link className="w-full h-fit  transition-all white flex flex-col gap-8 justify-start px-20 py-12">
+    <Link className="w-full h-fit  transition-all white flex flex-col gap-8 justify-start px-10 py-12">
       <p className="text-sm lg:text-base text-black flex items-center gap-4">
         <IoLocationOutline className="inline-block scale-150" />
         Usaha <FaAngleDown className="inline-block text-zinc-900" />
@@ -175,7 +174,7 @@ const UserUsaha = ({ listBusiness }) => {
 
 const UserBooking = ({ listBusiness }) => {
   return (
-    <Link className="w-full h-fit  transition-all white flex flex-col gap-8 justify-start px-20 py-12">
+    <Link className="w-full h-fit  transition-all white flex flex-col gap-8 justify-start px-10 py-12">
       <p className="text-sm lg:text-base text-black flex items-center gap-4">
         <FaRegCalendarCheck className="inline-block scale-150" />
         Pemesanan & Ulasan{' '}
@@ -199,7 +198,7 @@ const UserBooking = ({ listBusiness }) => {
 
 const UserReview = () => {
   return (
-    <Link className="w-full h-fit  transition-all white flex flex-col gap-8 justify-start px-20 py-12">
+    <Link className="w-full h-fit  transition-all white flex flex-col gap-8 justify-start px-10 py-12">
       <p className="text-sm lg:text-base text-black flex items-center gap-4">
         <FaRegComments className="inline-block scale-150" />
         Review <FaAngleDown className="inline-block text-zinc-900" />
@@ -224,7 +223,7 @@ const AdminAccount = () => {
   return (
     <Link
       to="/admin/account"
-      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-20 py-12"
+      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-10 py-12"
     >
       <p className="text-sm lg:text-base  flex items-center gap-4">
         <FaClipboardUser className="inline-block scale-150" />
@@ -238,7 +237,7 @@ const AdminDashboard = () => {
   return (
     <Link
       to="/admin/dashboard"
-      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-20 py-12"
+      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-10 py-12"
     >
       <p className="text-sm lg:text-base  flex items-center gap-4">
         <FaTachometerAlt className="inline-block scale-150" />
@@ -252,7 +251,7 @@ const AdminUser = () => {
   return (
     <Link
       to="/admin/user"
-      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-20 py-12"
+      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-10 py-12"
     >
       <p className="text-sm lg:text-base  flex items-center gap-4">
         <FaUserCircle className="inline-block scale-150" />
@@ -266,7 +265,7 @@ const AdminUsaha = () => {
   return (
     <Link
       to="/admin/business"
-      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-20 py-12"
+      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-10 py-12"
     >
       <p className="text-sm lg:text-base  flex items-center gap-4">
         <FaBuilding className="inline-block scale-150" />
@@ -280,7 +279,7 @@ const AdminReview = () => {
   return (
     <Link
       to="/admin/review"
-      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-20 py-12"
+      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-10 py-12"
     >
       <p className="text-sm lg:text-base  flex items-center gap-4">
         <FaComments className="inline-block scale-150" />
@@ -294,7 +293,7 @@ const AdminLayanan = () => {
   return (
     <Link
       to="/admin/services"
-      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-20 py-12"
+      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-10 py-12"
     >
       <p className="text-sm lg:text-base  flex items-center gap-4">
         <FaClipboardList className="inline-block scale-150" />
@@ -306,7 +305,7 @@ const AdminLayanan = () => {
 
 const AdminReport = () => {
   return (
-    <Link className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-20 py-12">
+    <Link className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-10 py-12">
       <p className="text-sm lg:text-base  flex items-center gap-4">
         <FaFlag className="inline-block scale-150" />
         Report
