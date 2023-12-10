@@ -40,6 +40,11 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
   console.log('data semua mengenai detail bisnis ', businessByUUID);
   const [services, setServices] = useState([businessByUUID.services]);
 
+  // modal reservation
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   useEffect(() => {
     console.log('all data detail ', businessByUUID);
   }, [businessByUUID]);
@@ -82,221 +87,230 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
   }, [targetTimeClose, targetTimeOpen]);
 
   return (
-    <div class="flex flex-col gap-10">
-      <div class="w-full flex flex-col md:flex-row-reverse md:items-start my-5">
-        <div className="w-full xl:w-1/4 flex flex-col items-end gap-5">
-          <div className="w-full flex xl:flex-col xl:items-end gap-2">
-            <ChatNow />
+    <>
+      <FormReservasi
+        open={open}
+        handleClose={handleClose}
+      />
+      <div class="flex flex-col gap-10">
 
-            <Link
-              to="/user/reservasi"
-              class="justify-center w-1/2 xl:w-full xl:py-4 xl:px-4 py-3 px-4 gap-2 border border-rose-500 bg-rose-600 hover:bg-white hover:cursor-pointer text-white hover:text-rose-500 font-normal rounded inline-flex items-center transition-all"
-            >
-              <span class="xl:text-lg text-sm ">Pesan Sekarang</span>
-            </Link>
-          </div>
-          <div className="w-full flex justify-center items-center shadow-md px-3 py-2 rounded-full gap-10">
-            <FaInstagramSquare className="hover:cursor-pointer inline-block w-8 h-8 text-rose-400" />
 
-            <FaFacebookSquare className="hover:cursor-pointer inline-block w-8 h-8 text-blue-600" />
+        <div class="w-full flex flex-col md:flex-row-reverse md:items-start my-5">
+          <div className="w-full xl:w-1/4 flex flex-col items-end gap-5">
+            <div className="w-full flex xl:flex-col xl:items-end gap-2">
+              <ChatNow />
 
-            <FaTwitterSquare className="hover:cursor-pointer inline-block w-8 h-8 text-blue-400" />
-
-            <FaYoutube className="hover:cursor-pointer inline-block w-8 h-8 text-rose-600" />
-          </div>
-        </div>
-
-        <div className="w-full xl:w-3/4 flex flex-col gap-4 my-10 md:my-0">
-          <p class="xl:text-2xl text-xl font-bold">{businessByUUID.name}</p>
-
-          <div className="w-full flex gap-5">
-            {status == 'Tutup' ? (
-              <p class="text-red-500">{status}</p>
-            ) : (
-              <p class="text-blue-500">{status}</p>
-            )}
-            <div className="flex gap-1">
-              <FaLocationDot className="text-rose-400" />
-              <p class="">
-                {businessByUUID.address ? businessByUUID.address[1] : ''}
-              </p>
+              <div
+                onClick={handleOpen}
+                class="justify-center w-1/2 xl:w-full xl:py-4 xl:px-4 py-3 px-4 gap-2 border border-rose-500 bg-rose-600 hover:bg-white hover:cursor-pointer text-white hover:text-rose-500 font-normal rounded inline-flex items-center transition-all"
+              >
+                <span class="xl:text-lg text-sm " >Pesan Sekarang</span>
+              </div>
             </div>
-            {/* <div class=" my-auto flex gap-1">
+            <div className="w-full flex justify-center items-center shadow-md px-3 py-2 rounded-full gap-10">
+              <FaInstagramSquare className="hover:cursor-pointer inline-block w-8 h-8 text-rose-400" />
+
+              <FaFacebookSquare className="hover:cursor-pointer inline-block w-8 h-8 text-blue-600" />
+
+              <FaTwitterSquare className="hover:cursor-pointer inline-block w-8 h-8 text-blue-400" />
+
+              <FaYoutube className="hover:cursor-pointer inline-block w-8 h-8 text-rose-600" />
+            </div>
+          </div>
+
+          <div className="w-full xl:w-3/4 flex flex-col gap-4 my-10 md:my-0">
+            <p class="xl:text-2xl text-xl font-bold">{businessByUUID.name}</p>
+
+            <div className="w-full flex gap-5">
+              {status == 'Tutup' ? (
+                <p class="text-red-500">{status}</p>
+              ) : (
+                <p class="text-blue-500">{status}</p>
+              )}
+              <div className="flex gap-1">
+                <FaLocationDot className="text-rose-400" />
+                <p class="">
+                  {businessByUUID.address ? businessByUUID.address[1] : ''}
+                </p>
+              </div>
+              {/* <div class=" my-auto flex gap-1">
               <FaStar className="w-3 h-3 text-amber-500" />
               <h6 class="ml-1 text-xs">4.8</h6>
             </div> */}
-          </div>
-
-          <div class="flex flex-row justify-start items-center pr-24 gap-24 mt-10">
-            <div>
-              <h1 class="font-bold text-2xl">
-                Dikelola oleh {businessByUUID.userData?.username}
-              </h1>
             </div>
-            <div
-              className="w-20 h-20 rounded-full border-2 border-zinc-900"
-              style={{
-                backgroundImage: `url(${businessByUUID.userData?.profileURL})`,
-                backgroundSize: 'cover',
-              }}
-            >
-              {/* <img src={businessByUUID.userData?.profileURL} className='rounded-full' alt="" srcset="" /> */}
+
+            <div class="flex flex-row justify-start items-center pr-24 gap-24 mt-10">
+              <div>
+                <h1 class="font-bold text-2xl">
+                  Dikelola oleh {businessByUUID.userData?.username}
+                </h1>
+              </div>
+              <div
+                className="w-20 h-20 rounded-full border-2 border-zinc-900"
+                style={{
+                  backgroundImage: `url(${businessByUUID.userData?.profileURL})`,
+                  backgroundSize: 'cover',
+                }}
+              >
+                {/* <img src={businessByUUID.userData?.profileURL} className='rounded-full' alt="" srcset="" /> */}
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="w-3/4 border-b border-gray-200 py-5">
-        <p class="font-bold text-2xl mb-4">Deskripsi Barbershop</p>
-        <p className="text-base">
-          {businessByUUID.description
-            ? businessByUUID.description
-            : 'belum ada deskripsi'}
-        </p>
-      </div>
+        <div className="w-3/4 border-b border-gray-200 py-5">
+          <p class="font-bold text-2xl mb-4">Deskripsi Barbershop</p>
+          <p className="text-base">
+            {businessByUUID.description
+              ? businessByUUID.description
+              : 'belum ada deskripsi'}
+          </p>
+        </div>
 
-      <div className="w-3/4 border-gray-200 py-5">
-        <p class="font-bold text-2xl mb-4">Jenis Layanan</p>
-        {/* {businessByUUID.services.length > 0 ? businessByUUID.services?.map((service) => ( */}
-        {businessByUUID?.services?.map((service, index) => (
-          <>
-            <div class="w-full flex flex-col items-center justify-between">
-              <div className="w-full flex justify-start mb-4 mt-8">
-                <div className="w-1/2">
-                  <p className="text-base font-bold text-gray-400">
-                    Nama Layanan
-                  </p>
-                </div>
-                <div className="w-1/2">
-                  <p className="text-base font-bold text-gray-400">Harga</p>
-                </div>
-              </div>
-
-              <div className="w-full flex flex-col">
-                {service?.name?.map((serviceName, index) => (
-                  <div className="w-full flex justify-start" key={index}>
-                    <div className="w-1/2">
-                      <p className="text-base py-2 border-b border-gray-400">
-                        {serviceName}
-                      </p>
-                    </div>
-                    <div className="w-1/2">
-                      <p className="text-base py-2 border-b border-gray-400">
-                        {'Rp' +
-                          parseInt(service?.price?.[index]).toLocaleString(
-                            'id-ID'
-                          )}
-                      </p>
-                    </div>
+        <div className="w-3/4 border-gray-200 py-5">
+          <p class="font-bold text-2xl mb-4">Jenis Layanan</p>
+          {/* {businessByUUID.services.length > 0 ? businessByUUID.services?.map((service) => ( */}
+          {businessByUUID?.services?.map((service, index) => (
+            <>
+              <div class="w-full flex flex-col items-center justify-between">
+                <div className="w-full flex justify-start mb-4 mt-8">
+                  <div className="w-1/2">
+                    <p className="text-base font-bold text-gray-400">
+                      Nama Layanan
+                    </p>
                   </div>
-                ))}
+                  <div className="w-1/2">
+                    <p className="text-base font-bold text-gray-400">Harga</p>
+                  </div>
+                </div>
+
+                <div className="w-full flex flex-col">
+                  {service?.name?.map((serviceName, index) => (
+                    <div className="w-full flex justify-start" key={index}>
+                      <div className="w-1/2">
+                        <p className="text-base py-2 border-b border-gray-400">
+                          {serviceName}
+                        </p>
+                      </div>
+                      <div className="w-1/2">
+                        <p className="text-base py-2 border-b border-gray-400">
+                          {'Rp' +
+                            parseInt(service?.price?.[index]).toLocaleString(
+                              'id-ID'
+                            )}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          </>
-        ))}
-      </div>
-
-      <div className="w-3/4 border-b border-gray-200 py-5">
-        <h1 class="font-bold text-2xl mb-4">Jam Operasional</h1>
-        <div class="flex flex-row ml-1 mt-2">
-          <img
-            class="w-auto h-5 mr-4"
-            src="/src/assets/images/icons/Clock.png "
-          />
-          <div className="flex flex-row space-x-10">
-            <h1>{businessByUUID.schedule?.[0]}</h1>
-            <h1> {businessByUUID.schedule?.[1]}</h1>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-3/4 border-b border-gray-200 py-5">
-        <h1 class="font-bold text-2xl">Daftar Karyawan</h1>
-
-        <div className="w-full flex gap-32 mt-8 mb-4">
-          <div className="w-1/3">
-            <p className="text-lg font-bold text-gray-400">Profil</p>
-          </div>
-          <div className="w-1/3">
-            <p className="text-lg font-bold text-gray-400">Nama</p>
-          </div>
-          <div className="w-1/3">
-            <p className="text-lg font-bold text-gray-400">Skill</p>
-          </div>
-        </div>
-
-        {businessByUUID.workers?.map((worker) => (
-          <div class="w-full flex gap-32 items-center my-2">
-            <div className="w-1/3">
-              <img
-                class="my-1 w-20 rounded-full border-2 border-gray-600"
-                src={worker?.imageURL}
-              />
-            </div>
-            <div className="w-1/3">
-              <h1>{worker?.name}</h1>
-            </div>
-            <div className="w-1/3">
-              <h1>{worker?.skill}</h1>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="w-3/4 border-b border-gray-200 py-5">
-        <h1 class="font-bold text-2xl">Lokasi dan Lingkungan Sekitar</h1>
-        <div class="flex flex-row">
-          <img
-            class="h-4 mt-1 mx-1"
-            src="/src/assets/images/icons/Location.png"
-          />
-          {businessByUUID.address?.map((address) => (
-            <h1>{address + ','}</h1>
+            </>
           ))}
         </div>
-      </div>
 
-      {/* //ntar maping nang */}
-      <div>
-        <h1 class="font-semibold text-lg">4.8 (3 Ulasan)</h1>
+        <div className="w-3/4 border-b border-gray-200 py-5">
+          <h1 class="font-bold text-2xl mb-4">Jam Operasional</h1>
+          <div class="flex flex-row ml-1 mt-2">
+            <img
+              class="w-auto h-5 mr-4"
+              src="/src/assets/images/icons/Clock.png "
+            />
+            <div className="flex flex-row space-x-10">
+              <h1>{businessByUUID.schedule?.[0]}</h1>
+              <h1> {businessByUUID.schedule?.[1]}</h1>
+            </div>
+          </div>
+        </div>
 
-        {businessByUUID.feedbacks?.map((feedback) => (
-          <>
-            <div className="w-3/4 flex flex-col gap-3 border-b border-gray-200 pb-5">
-              <div class="mt-10 ml-5 flex flex-row items-center gap-5">
-                {feedback.userData?.profileURL ? (
-                  <img
-                    src={feedback.userData?.profileURL}
-                    className="w-20"
-                    alt=""
-                  />
-                ) : (
-                  <FaImage className="w-10 h-10" />
-                )}
-                <div class="ml-2 flex flex-row gap gap-5">
-                  <div class="ml-1">
-                    <h4 class="text-lg font-semibold">
-                      {' '}
-                      {feedback.userData?.username}
-                    </h4>
-                    <h6 class="text-xs text-gray-500">{feedback.createdAt}</h6>
-                  </div>
-                  <div class="items-center gap-4 flex flex-row py-1 px-1 h-6">
-                    <FaStar className="w-7 h-7 text-amber-400" />
-                    <p class="text-lg font-semibold">{feedback.rating}</p>
-                  </div>
-                </div>
+        <div className="w-3/4 border-b border-gray-200 py-5">
+          <h1 class="font-bold text-2xl">Daftar Karyawan</h1>
+
+          <div className="w-full flex gap-32 mt-8 mb-4">
+            <div className="w-1/3">
+              <p className="text-lg font-bold text-gray-400">Profil</p>
+            </div>
+            <div className="w-1/3">
+              <p className="text-lg font-bold text-gray-400">Nama</p>
+            </div>
+            <div className="w-1/3">
+              <p className="text-lg font-bold text-gray-400">Skill</p>
+            </div>
+          </div>
+
+          {businessByUUID.workers?.map((worker) => (
+            <div class="w-full flex gap-32 items-center my-2">
+              <div className="w-1/3">
+                <img
+                  class="my-1 w-20 rounded-full border-2 border-gray-600"
+                  src={worker?.imageURL}
+                />
               </div>
-              <div className="flex flex-col gap-3 px-5">
-                <p className="text-base ">{feedback.description}</p>
-                {feedback.userData?.profileURL ? (
-                  <img src={feedback.imageURL} className="w-24" alt="" />
-                ) : (
-                  <FaImage className="w-10 h-10" />
-                )}
+              <div className="w-1/3">
+                <h1>{worker?.name}</h1>
+              </div>
+              <div className="w-1/3">
+                <h1>{worker?.skill}</h1>
               </div>
             </div>
-            {/* <div class="mt-10 ml-5 flex flex-row">
+          ))}
+        </div>
+
+        <div className="w-3/4 border-b border-gray-200 py-5">
+          <h1 class="font-bold text-2xl">Lokasi dan Lingkungan Sekitar</h1>
+          <div class="flex flex-row">
+            <img
+              class="h-4 mt-1 mx-1"
+              src="/src/assets/images/icons/Location.png"
+            />
+            {businessByUUID.address?.map((address) => (
+              <h1>{address + ','}</h1>
+            ))}
+          </div>
+        </div>
+
+        {/* //ntar maping nang */}
+        <div>
+          {/* <h1 class="font-semibold text-lg">4.8 (3 Ulasan)</h1> */}
+          <h1 class="font-semibold text-2xl">Ulasan Pelanggan</h1>
+          <hr className='w-3/4 mt-5' />
+
+          {businessByUUID.feedbacks?.map((feedback) => (
+            <>
+              <div className="w-3/4 flex flex-col gap-3 border-b border-gray-200 pb-5">
+                <div class="mt-10 ml-5 flex flex-row items-center gap-5">
+                  {feedback.userData?.profileURL ? (
+                    <img
+                      src={feedback.userData?.profileURL}
+                      className="w-20"
+                      alt=""
+                    />
+                  ) : (
+                    <FaImage className="w-10 h-10" />
+                  )}
+                  <div class="ml-2 flex flex-col gap-1">
+                    <div class="ml-1">
+                      <h4 class="text-lg font-semibold">
+                        {' '}
+                        {feedback.userData?.username}
+                      </h4>
+                      <h6 class="text-xs text-gray-500">{feedback.createdAt}</h6>
+                    </div>
+                    <div class="items-center gap-4 flex flex-row px-1 h-6">
+                      <p class="text-xs font-thin text-gray-500">Rating : </p>
+                      <FaStar className="w-5 h-5 text-amber-400" />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-3 px-20">
+                  <p className="text-base ">{feedback.description}</p>
+                  {feedback.userData?.profileURL ? (
+                    <img src={feedback.imageURL} className="w-24" alt="" />
+                  ) : (
+                    <FaImage className="w-10 h-10" />
+                  )}
+                </div>
+              </div>
+              {/* <div class="mt-10 ml-5 flex flex-row">
               <img
                 className="w-10"
                 src={feedback.userData?.profileURL}
@@ -317,18 +331,19 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
               </div>
             </div>
             <p class="text-xs ml-20">{feedback?.description}</p> */}
-          </>
-        ))}
+            </>
+          ))}
+        </div>
+
+        <div className="w-3/4">
+          <ReviewModal userAuth={userAuth} businessByUUID={businessByUUID} />
+        </div>
+
+
+        {/* coomponent reservasi */}
+        {/* <FormReservasi businessId={businessByUUID?.id} /> */}
       </div>
-
-      <div className="w-3/4">
-        <ReviewModal userAuth={userAuth} businessByUUID={businessByUUID} />
-      </div>
-
-
-{/* coomponent reservasi */}
-      <FormReservasi businessId={businessByUUID?.id} />
-    </div>
+    </>
   );
 };
 
@@ -443,9 +458,8 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
                 {[1, 2, 3, 4, 5].map((star) => (
                   <FaStar
                     key={star}
-                    className={`${
-                      star <= rating ? 'text-amber-400' : 'text-gray-200'
-                    }  scale-[2.5] transition-all hover:cursor-pointer`}
+                    className={`${star <= rating ? 'text-amber-400' : 'text-gray-200'
+                      }  scale-[2.5] transition-all hover:cursor-pointer`}
                     onClick={(e) => handleRatingChange(star)}
                   />
                 ))}
