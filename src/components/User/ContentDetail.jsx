@@ -20,6 +20,8 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import axios from 'axios';
 
+import FormReservasi from './../../components/User/FormReservasi';
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -322,6 +324,10 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
       <div className="w-3/4">
         <ReviewModal userAuth={userAuth} businessByUUID={businessByUUID} />
       </div>
+
+
+{/* coomponent reservasi */}
+      <FormReservasi businessId={businessByUUID?.id} />
     </div>
   );
 };

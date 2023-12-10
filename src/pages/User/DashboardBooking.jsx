@@ -3,9 +3,12 @@ import Layout from '../Layout';
 import Sidebar from '../../components/Sidebar';
 import HeaderBooking from '../../components/User/Dashboard/HeaderBooking';
 import CardBooking from '../../components/User/Dashboard/CardBooking';
+import { useParams } from 'react-router-dom';
 
 const DashboardBooking = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+
+  const { id } = useParams();
 
   return (
     <Layout>
@@ -18,7 +21,7 @@ const DashboardBooking = () => {
             setShowSidebar={setShowSidebar}
           />
 
-          <CardBooking />
+          <CardBooking businessId={id} />
         </div>
       </div>
     </Layout>

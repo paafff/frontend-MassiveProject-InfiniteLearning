@@ -83,7 +83,7 @@ const App = () => {
               element={<DashboardEmployee />}
             />
             <Route
-              path="/superuser/dashboard-booking"
+              path="/superuser/dashboard-booking/:id"
               element={<DashboardBooking />}
             />
             <Route
