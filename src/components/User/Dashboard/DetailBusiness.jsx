@@ -723,18 +723,20 @@ const Form = ({
           />
         </div>
 
-        <div className="w-full md:w-3/4 xl:w-1/2 flex flex-col gap-2">
+        <div className="w-full md:w-3/4 xl:w-1/2 flex flex-col gap-2 my-3">
           <label htmlFor="" className="text-sm">
             Jadwal Usaha
           </label>
-          <div className="w-full flex gap-10">
+          <div className="w-full flex gap-10 px-3 py-3">
             <div>
               <select
                 name="open"
                 id=""
+                disabled={editForm}
                 onChange={(e) => handleChange(e.target)}
+                className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300'
               >
-                <option value="" className="text-sm">
+                <option value="" className="text-xs">
                   Jadwal Buka
                 </option>
                 {times.map((time) => (
@@ -746,9 +748,11 @@ const Form = ({
               <select
                 name="close"
                 id=""
+                disabled={editForm}
                 onChange={(e) => handleChange(e.target)}
+                className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300'
               >
-                <option value="" className="text-sm">
+                <option value="" >
                   Jadwal Tutup
                 </option>
                 {times.map((time) => (

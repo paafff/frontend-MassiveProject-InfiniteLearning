@@ -83,14 +83,14 @@ const Search = ({ setSearch }) => {
   const [keyword, setKeyword] = useState('');
 
   return (
-    <div className="flex">
+    <div className="flex gap-2">
       <input
         type="text"
         placeholder="Cari"
         className="placeholder:text-xs xl:placeholder:text-sm text-xs xl:text-sm border w-full border-gray-300 rounded h-10 px-3 focus:border-gray-200"
         onChange={(e) => setKeyword(e.target.value)}
       />
-      <button className="border bg-red-500" onClick={(e) => setSearch(keyword)}>
+      <button className="text-sm px-3 rounded border bg-rose-400 text-white" onClick={(e) => setSearch(keyword)}>
         search
       </button>
     </div>
