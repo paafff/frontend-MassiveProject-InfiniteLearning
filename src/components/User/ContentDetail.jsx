@@ -21,6 +21,7 @@ import Modal from '@mui/material/Modal';
 import axios from 'axios';
 
 import FormReservasi from './../../components/User/FormReservasi';
+import ReactPaginate from 'react-paginate';
 
 const style = {
   position: 'absolute',
@@ -80,6 +81,36 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
       setStatus(`Tutup`);
     }
   }, [targetTimeClose, targetTimeOpen]);
+
+  // const [feedbacks, setFeedbacks] = useState(businessByUUID?.feedbacks);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  ///jumlah per page
+  const [itemsPerPage] = useState(2);
+  // const [pageNumber, setPageNumber] = useState(0);
+  // const feedbacksPerPage = 6;
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentFeedbacks = businessByUUID?.feedbacks?.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
+  // const pageCount = Math.ceil(dataReservation.length / reservationsPerPage);
+
+  // const displayReservations = dataReservation
+  //   .slice(
+  //     pageNumber * reservationsPerPage,
+  //     (pageNumber + 1) * reservationsPerPage
+  //   )
+  //   .map((booking) => <Card key={booking.id} booking={booking} />);
+
+  // const handlePageChange = ({ selected }) => {
+  //   setPageNumber(selected);
+  // };
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div class="flex flex-col gap-10">
@@ -260,7 +291,8 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
       <div>
         <h1 class="font-semibold text-lg">4.8 (3 Ulasan)</h1>
 
-        {businessByUUID.feedbacks?.map((feedback) => (
+        {/* {businessByUUID.feedbacks?.map((feedback) => ( */}
+        {currentFeedbacks?.map((feedback) => (
           <>
             <div className="w-3/4 flex flex-col gap-3 border-b border-gray-200 pb-5">
               <div class="mt-10 ml-5 flex flex-row items-center gap-5">
@@ -296,37 +328,32 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
                 )}
               </div>
             </div>
-            {/* <div class="mt-10 ml-5 flex flex-row">
-              <img
-                className="w-10"
-                src={feedback.userData?.profileURL}
-              />
-              <div class="ml-2 flex flex-row gap gap-x-2">
-                <div class="ml-1">
-                  <h4 class="font-semibold"> {feedback.userData?.username}</h4>
-                  <h6 class="text-xs text-gray-500">2 minggu yang lalu</h6>
-                </div>
-                <div class="border border-rose-400 flex flex-row py-1 px-1 h-6">
-                  <img
-                    class="h-3 mr-1"
-                    src="/src/assets/images/icons/Star.png"
-                  // src={feedback.imageURL}
-                  />
-                  <h6 class="text-xs">{feedback?.rating}.0</h6>
-                </div>
-              </div>
-            </div>
-            <p class="text-xs ml-20">{feedback?.description}</p> */}
           </>
         ))}
+
+        <ReactPaginate
+          className="flex space-x-5 justify-center items-center mt-10"
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
+          pageCount={Math.ceil(
+            businessByUUID?.feedbacks?.length / itemsPerPage
+          )}
+          onPageChange={(data) => paginate(data.selected + 1)}
+          //UI
+          containerClassName={'pagination'}
+          activeClassName={
+            'px-2 py-1 rounded text-zinc-800 border border-gray-200 bg-gray-100'
+          }
+          nextClassName={'px-2 py-1 rounded text-white bg-blue-600'}
+          previousClassName={'px-2 py-1 rounded text-white bg-blue-600'}
+        />
       </div>
 
       <div className="w-3/4">
         <ReviewModal userAuth={userAuth} businessByUUID={businessByUUID} />
       </div>
 
-
-{/* coomponent reservasi */}
+      {/* coomponent reservasi */}
       <FormReservasi businessId={businessByUUID?.id} />
     </div>
   );

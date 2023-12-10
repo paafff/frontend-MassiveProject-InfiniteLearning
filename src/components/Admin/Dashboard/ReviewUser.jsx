@@ -3,10 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { MdOutlineOpenInNew } from 'react-icons/md';
 
+import ReactPaginate from 'react-paginate';
+
 const ReviewUser = ({ selectedBusinessId }) => {
   //   const [listFeedback, setListFeedback] = useState([]);
   const [listFeedback, setListFeedback] = useState(['', '']);
-
+  // const [listFeedback, setListFeedback] = useState([]);
+  const [pageNumber, setPageNumber] = useState(0);
+  const feedbacksPerPage = 2;
   useEffect(() => {
     const getFeedbacks = async () => {
       try {
@@ -28,6 +32,16 @@ const ReviewUser = ({ selectedBusinessId }) => {
     getFeedbacks();
   }, [selectedBusinessId]);
 
+  const pageCount = Math.ceil(listFeedback.length / feedbacksPerPage);
+
+  const displayFeedbacks = listFeedback
+    .slice(pageNumber * feedbacksPerPage, (pageNumber + 1) * feedbacksPerPage)
+    .map((feedback) => <Card key={feedback.uuid} feedback={feedback} />);
+
+  const handlePageChange = ({ selected }) => {
+    setPageNumber(selected);
+  };
+
   return (
     <div className="w-full lg:w-full xl:w-3/4 xl:px-24 py-10 px-5 md:px-12 lg:pt-16">
       <div className="bg-white w-full rounded-lg p-4 lg:p-8 drop-shadow-md">
@@ -35,11 +49,33 @@ const ReviewUser = ({ selectedBusinessId }) => {
         <hr className="my-5" />
 
         <div className="grid grid-cols-1 xl:grid-cols-2 justify-center place-content-center gap-5">
-          {listFeedback?.map((feedback) => (
+          {/* {listFeedback?.map((feedback) => (
             <Card feedback={feedback} />
-          ))}
+          ))} */}
 
+          {displayFeedbacks}
         </div>
+
+        <ReactPaginate
+          className="flex space-x-5 justify-center items-center mt-10"
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
+          pageCount={pageCount}
+          onPageChange={handlePageChange}
+          // containerClassName={'pagination'}
+          // previousLinkClassName={'previous_page'}
+          // nextLinkClassName={'next_page'}
+          // disabledClassName={'pagination_disabled'}
+          // activeClassName={'pagination_active'}
+
+          //UI
+          containerClassName={'pagination'}
+          activeClassName={
+            'px-2 py-1 rounded text-zinc-800 border border-gray-200 bg-gray-100'
+          }
+          nextClassName={'px-2 py-1 rounded text-white bg-blue-600'}
+          previousClassName={'px-2 py-1 rounded text-white bg-blue-600'}
+        />
       </div>
     </div>
   );
@@ -49,13 +85,17 @@ const Card = ({ uuid, desc, rating, date, feedback }) => {
   return (
     <div className="w-full md:w-3/4 mx-auto p-3 md:p-5 bg-white drop-shadow-lg flex flex-col gap-3 rounded-md">
       <div className="w-10 flex items-center gap-5">
-        <img src={feedback.userData?.profileURL} className='border border-gray-300 rounded-full' alt="" />
+        <img
+          src={feedback.userData?.profileURL}
+          className="border border-gray-300 rounded-full"
+          alt=""
+        />
         <p className="text-lg font-medium ">{feedback.userData?.username}</p>
       </div>
       <div className="w-full my-2 space-y-3">
         <p className="text-sm line-clamp-4">{feedback.description}</p>
-        <div className='w-full '>
-          <img src={feedback.imageURL} className='w-24' alt="" />
+        <div className="w-full ">
+          <img src={feedback.imageURL} className="w-24" alt="" />
         </div>
       </div>
       <div className="w-1/3 justify-between flex gap-2 items-center">
