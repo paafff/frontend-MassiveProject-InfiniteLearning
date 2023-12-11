@@ -31,7 +31,7 @@ const ListBusiness = ({
       <div className="relative bg-white w-full flex flex-col min-h-[650px] rounded-lg p-4 lg:p-8 drop-shadow-md">
         <p className="text-base md:text-lg font-semibold">Usaha</p>
         <hr className="my-5" />
-        
+
         {displayedBusiness.map((business, index) => (
           <Business
             setSelectedBusinessUUID={setSelectedBusinessUUID}
@@ -45,7 +45,8 @@ const ListBusiness = ({
           />
         ))}
 
-        <ReactPaginate className='flex space-x-5 justify-center items-center mt-10'
+        <ReactPaginate
+          className="flex space-x-5 justify-center items-center mt-10"
           previousLabel={'previous'}
           nextLabel={'next'}
           breakLabel={'...'}
@@ -55,7 +56,9 @@ const ListBusiness = ({
           onPageChange={handlePageClick}
           //UI
           containerClassName={'pagination'}
-          activeClassName={'px-2 py-1 rounded text-zinc-800 border border-gray-200 bg-gray-100'}
+          activeClassName={
+            'px-2 py-1 rounded text-zinc-800 border border-gray-200 bg-gray-100'
+          }
           nextClassName={'px-2 py-1 rounded text-white bg-blue-600'}
           previousClassName={'px-2 py-1 rounded text-white bg-blue-600'}
         />
@@ -109,7 +112,9 @@ const Business = ({
             </button>
           </div>
           <div className="py-1 px-3 border border-blue-600 hover:bg-blue-600 text-blue-600 hover:text-white hover:border-white hover:cursor-pointer transition-all rounded">
-            <MdOutlineOpenInNew className="inline-block  scale-125" />
+            <Link to={`/detail/${uuid}`}>
+              <MdOutlineOpenInNew className="inline-block  scale-125" />
+            </Link>
           </div>
         </div>
         <div>
