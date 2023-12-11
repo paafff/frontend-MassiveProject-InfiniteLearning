@@ -10,7 +10,7 @@ const FormSubscription = ({ price }) => {
   useEffect(() => {
     const getMyBusiness = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/my-business`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/my-business`);
 
         setListBusiness(response.data);
       } catch (error) {

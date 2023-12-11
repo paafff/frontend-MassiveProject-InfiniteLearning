@@ -175,9 +175,9 @@ const FormReservasi = ({ businessId, display, open, handleClose }) => {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <div class="my-20 flex justify-end">
-            <div class="mr-6 bg-black hover:bg-gray-700 text-white font-bold py-2 px-5 rounded shadow-lg">
+            {/* <div class="mr-6 bg-black hover:bg-gray-700 text-white font-bold py-2 px-5 rounded shadow-lg">
               Cancel
-            </div>
+            </div> */}
             <div class="bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-5 rounded shadow-lg">
               <button type="submit">Submit</button>
             </div>

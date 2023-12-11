@@ -631,7 +631,7 @@ const Form = ({
       );
 
       await axios.patch(
-        `http://localhost:5000/business/${businessByUUID.uuid}`,
+        `${import.meta.env.VITE_API_URL}/business/${businessByUUID.uuid}`,
         formUpdateBusiness,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );

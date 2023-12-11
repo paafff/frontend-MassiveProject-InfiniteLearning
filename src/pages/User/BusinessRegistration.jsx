@@ -209,7 +209,7 @@ const BusinessRegistration = () => {
       // formUpdate.append('address', JSON.stringify(arrayAddressUser));
 
       await axios.patch(
-        `http://localhost:5000/user/${userAuth.uuid}`,
+        `${import.meta.env.VITE_API_URL}/user/${userAuth.uuid}`,
         formUpdate,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
@@ -237,7 +237,7 @@ const BusinessRegistration = () => {
       // formCreate.append('typeBusiness', businessData.typeBusiness);
       // formCreate.append('address', JSON.stringify(arrayAddressBusiness));
 
-      await axios.post(`http://localhost:5000/business`, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/business`, {
         name: businessData.name,
         description: businessData.description,
         typeBusiness: businessData.typeBusiness,

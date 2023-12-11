@@ -19,7 +19,7 @@ const DashboardBussiness = () => {
     const getBusinessByUUID = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/business/${uuid}`
+          `${import.meta.env.VITE_API_URL}/business/${uuid}`
         );
 
         setBusinessByUUID(response.data);

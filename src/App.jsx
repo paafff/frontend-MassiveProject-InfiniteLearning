@@ -1,27 +1,26 @@
 import React from 'react';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Sample from './pages/Sample';
 import Home from './pages/Home';
 import DashboardUser from './pages/User/Dashboard';
 import DashboardBusiness from './pages/User/DashboardBusiness';
-import DashboardEmployee from './pages/User/DashboardEmployee';
+// import DashboardEmployee from './pages/User/DashboardEmployee';
 import DashboardBooking from './pages/User/DashboardBooking';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 
 import BusinessRegistration from './pages/User/BusinessRegistration';
-import Reservasi from './pages/User/Reservasi';
+// import Reservasi from './pages/User/Reservasi';
 import Account from './pages/Admin/Account';
 // import InputReview from './pages/Admin/InputReview';
-import DashboardReview from './pages/User/DashboardReview';
+// import DashboardReview from './pages/User/DashboardReview';
 import DashboardAdmin from './pages/Admin/Dashboard';
 import ManageUser from './pages/Admin/User';
 import ManageBusiness from './pages/Admin/Business';
 import ManageReview from './pages/Admin/Review';
 import Help from './pages/Help';
 // import AccountAdmin from './pages/Admin/AccountAdmin';
-import InputReview from './pages/User/InputReview';
+// import InputReview from './pages/User/InputReview';
 import ListBusiness from './pages/ListBusiness';
 import ListAllBusiness from './pages/ListAllBusiness';
 import Detail from './pages/User/Detail';
@@ -50,46 +49,50 @@ const App = () => {
       <div>
         <BrowserRouter>
           <Routes>
+            {/* inactive */}
+            {/* <Route path="/user/review" element={<InputReview />} />
+            <Route path="/dashboard-employee" element={<DashboardEmployee />} />
+            <Route path="/dashboard-booking" element={<DashboardBooking />} />
+            <Route path="/user/reservasi" element={<Reservasi />} /> */}
+            {/* inactive */}
+
             <Route path="/help" element={<Help />} />
             {/* User / Guest */}
             <Route path="/" element={<Home />} />
-            <Route path="/sample" element={<Sample />} />
             <Route path="/dashboard" element={<DashboardUser />} />
             <Route
               path="/superuser/dashboard-business/:uuid"
               element={<DashboardBusiness />}
             />
 
-            <Route path="/dashboard-employee" element={<DashboardEmployee />} />
-            <Route path="/dashboard-booking" element={<DashboardBooking />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/sample" element={<Sample />} />
             <Route path="/user/dashboard" element={<DashboardUser />} />
             <Route path="/hair-trend" element={<HairTrend />} />
             <Route
               path="/user/business-registration"
               element={<BusinessRegistration />}
             />
-            <Route path="/user/reservasi" element={<Reservasi />} />
-            <Route path="/user/review" element={<InputReview />} />
-            <Route path="/barbershop" element={<ListBusiness page={"barbershop"} />} />
-            <Route path="/salon" element={<ListBusiness page={"salon"} />} />
+            <Route
+              path="/barbershop"
+              element={<ListBusiness page={'barbershop'} />}
+            />
+            <Route path="/salon" element={<ListBusiness page={'salon'} />} />
             <Route path="/business" element={<ListAllBusiness />} />
             <Route path="/detail/:uuid" element={<Detail />} />
 
-            <Route
+            {/* <Route
               path="/superuser/dashboard-employee"
               element={<DashboardEmployee />}
-            />
+            /> */}
             <Route
               path="/superuser/dashboard-booking/:id"
               element={<DashboardBooking />}
             />
-            <Route
+            {/* <Route
               path="/superuser/dashboard-review"
               element={<DashboardReview />}
-            />
+            /> */}
             <Route path="/subscription" element={<Subscription />} />
 
             {/* Admin */}
