@@ -69,7 +69,6 @@ const Form = ({ businessByUUID }) => {
           { withCredentials: false }
         );
         setAllProvinsi(response.data.value);
-        console.log('Fetch prov: ', allProvinsi);
       } catch (error) {
         console.error('Error fetching prov:', error);
       } finally {
@@ -87,7 +86,6 @@ const Form = ({ businessByUUID }) => {
         { withCredentials: false }
       );
       setAllKota(response.data.value);
-      console.log('fetch kota: ', allKota);
     } catch (error) {
       console.error('Error fetching kota:', error);
     } finally {
@@ -102,7 +100,6 @@ const Form = ({ businessByUUID }) => {
         { withCredentials: false }
       );
       setAllKecamatan(response.data.value);
-      console.log('fetch camat: ', allKecamatan);
     } catch (error) {
       console.error('Error fetching kec:', error);
     } finally {
@@ -117,7 +114,6 @@ const Form = ({ businessByUUID }) => {
         { withCredentials: false }
       );
       setAllKelurahan(response.data.value);
-      console.log('fetch lurah: ', allKelurahan);
     } catch (error) {
       console.error('Error fetching kel:', error);
     } finally {
@@ -148,11 +144,6 @@ const Form = ({ businessByUUID }) => {
   const arrayAddressBusiness = ['lala', 'lala', 'lala', 'lala', 'lala'];
   const arrayAddressIdBusiness = ['lala', 'lala', 'lala', 'lala', 'lala'];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(businessData);
-  };
-
   const updateBusiness = async (e) => {
     e.preventDefault();
     try {
@@ -179,8 +170,6 @@ const Form = ({ businessByUUID }) => {
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
 
-      console.log('sukses update data bisnis');
-      console.log('ini isinya ya', businessData);
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);

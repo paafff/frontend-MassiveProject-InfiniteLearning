@@ -27,7 +27,6 @@ const ListAllBusiness = ({ listCity, dataList, page, setSearch }) => {
     setKeyword(e);
   };
 
-  //   console.log('ini keyword pencarianmu ', keyword);
 
   return (
     <div className=" min-w-full min-h-screen">
@@ -36,7 +35,7 @@ const ListAllBusiness = ({ listCity, dataList, page, setSearch }) => {
       <div className="w-full h-full p-4 flex flex-col gap-4 mt-4">
         <div className="w-full flex px-2 justify-between items-center md:px-5 xl:px-72">
           <p className="text-xs md:text-sm xl:text-base">
-            1-12 from 100 results
+            {/* 1-12 from 100 results */}
           </p>
 
           <Search setSearch={setSearch} />
@@ -66,9 +65,8 @@ const Banner = ({ page }) => {
     <div
       className="w-full h-32 md:h-56 lg:h-72 xl:h-96 flex items-end justify-start py-5 px-7 bg-gray-400 bg-cover "
       style={{
-        backgroundImage: `url(${
-          page == 'barbershop' ? BannerBarber : BannerSalon
-        })`,
+        backgroundImage: `url(${page == 'barbershop' ? BannerBarber : BannerSalon
+          })`,
         backgroundRepeat: 'no-repeat',
       }}
     >
@@ -137,18 +135,24 @@ const Card = ({ city, page, schedule, data }) => {
 
   return (
     <div
-      className="rounded-lg p-4 drop-shadow-2xl flex items-end justify-center  aspect-square bg-red-700"
+      className="rounded-lg p-4 drop-shadow-2xl flex items-end justify-center  aspect-square bg-gray-300"
       style={{
         backgroundImage: `url(${data?.imageURL[0]})`,
-        backgroundSize: 'cover',
+        backgroundSize: 'cover', backgroundPosition: 'center'
       }}
       key={data.id}
     >
       <div className="w-full p-4 min-h-[25%] bg-white rounded-md flex justify-between items-center hover:scale-95 transition-all hover:cursor-pointer">
         <div className="w-full h-full flex flex-col justify-between">
-          <p className="text-red-600 font-semibold text-xs xl:text-sm">
-            {status}
-          </p>
+          {status == "Tutup" ? (
+            <p className="text-red-600 font-semibold text-xs xl:text-sm">
+              {status}
+            </p>
+          ) : (
+            <p className="text-blue-600 font-semibold text-xs xl:text-sm">
+              {status}
+            </p>
+          )}
           <p className="text-zinc-800 font-bold text-xs md:text-sm xl:text-base">
             {data.name}
           </p>

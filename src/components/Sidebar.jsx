@@ -47,8 +47,6 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
     };
 
     getMeUser();
-    // console.log(userAuth);
-    // console.log(listBusiness);
   }, [dispatch, navigate]);
 
   const [listBusiness, setListBusiness] = useState([]);
@@ -69,8 +67,6 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
   useEffect(() => {
     getMyBusiness();
-
-    console.log('list bisnis ', listBusiness);
   }, [dispatch, navigate]);
 
   const role = userAuth.role;

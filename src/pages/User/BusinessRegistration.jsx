@@ -214,9 +214,6 @@ const BusinessRegistration = () => {
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
 
-      console.log('data user', formUpdate);
-      console.log(arrayAddressUser);
-      console.log('sukses update data user');
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -245,11 +242,6 @@ const BusinessRegistration = () => {
         addressId: arrayAddressIdBusiness,
       });
 
-      // console.log('data usaha', formCreate);
-      console.log('data usaha businessdata', businessData);
-      console.log('data usaha address', arrayAddressBusiness);
-      console.log('data usaha address', arrayAddressIdBusiness);
-      console.log('data usaha berhasil dibuat');
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -271,12 +263,9 @@ const BusinessRegistration = () => {
     getMeUser();
     getProvUser();
     getProvBusiness();
-    console.log(userAuth);
   }, [dispatch, navigate]);
 
   useEffect(() => {
-    console.log('user', addressSelectedUser);
-    console.log('business', addressSelectedBusiness);
   }, [addressSelectedUser, addressSelectedBusiness]);
   //useefeect
 

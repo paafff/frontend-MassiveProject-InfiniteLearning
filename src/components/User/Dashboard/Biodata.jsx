@@ -168,7 +168,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
 
   const handlePictureChange = (event) => {
     const file = event.target.files[0];
-    console.log(file);
     // setPicture(file);
     setUserDataUpdate({ ...userDataUpdate, photoProfile: file });
   };
@@ -217,9 +216,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
 
-      console.log('data user', formUpdate);
-      console.log(arrayAddressUser);
-      console.log('sukses update data user');
       useNavigate('/user/dashboard')
     } catch (error) {
       if (error.response) {
@@ -230,53 +226,48 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  };
-
   // Fetch data for select
-  const handleProvinsi = (e) => {
+  // const handleProvinsi = (e) => {
 
-    console.log("prov data id ", e.target.value[0]);
-    console.log("prov data name", e.target.value[1]);
+  //   console.log("prov data id ", e.target.value[0]);
+  //   console.log("prov data name", e.target.value[1]);
 
-    fetchKota(e.target.value[0])
+  //   fetchKota(e.target.value[0])
 
-    setUserDataUpdate((prevUserData) => ({
-      ...prevUserData,
-      prov: e.target.value[1],
-    }));
-  }
+  //   setUserDataUpdate((prevUserData) => ({
+  //     ...prevUserData,
+  //     prov: e.target.value[1],
+  //   }));
+  // }
 
-  const handleKota = (e) => {
-    console.log("kota data id ", e.target.value[0]);
-    console.log("kota data name ", e.target.value[1]);
-    fetchKecamatan(e.target.value[0])
-    setUserDataUpdate((prevUserData) => ({
-      ...prevUserData,
-      kab: e.target.value[1],
-    }));
-  }
+  // const handleKota = (e) => {
+  //   console.log("kota data id ", e.target.value[0]);
+  //   console.log("kota data name ", e.target.value[1]);
+  //   fetchKecamatan(e.target.value[0])
+  //   setUserDataUpdate((prevUserData) => ({
+  //     ...prevUserData,
+  //     kab: e.target.value[1],
+  //   }));
+  // }
 
-  const handleKec = (e) => {
-    console.log("kec data id ", e.target.value[0]);
-    console.log("kec data name ", e.target.value[1]);
-    fetchKelurahan(e.target.value[0])
-    setUserDataUpdate((prevUserData) => ({
-      ...prevUserData,
-      kec: e.target.value[1],
-    }));
-  }
+  // const handleKec = (e) => {
+  //   console.log("kec data id ", e.target.value[0]);
+  //   console.log("kec data name ", e.target.value[1]);
+  //   fetchKelurahan(e.target.value[0])
+  //   setUserDataUpdate((prevUserData) => ({
+  //     ...prevUserData,
+  //     kec: e.target.value[1],
+  //   }));
+  // }
 
-  const handleKel = (e) => {
-    console.log("kec data id ", e.target.value[0]);
-    console.log("kec data name ", e.target.value[1]);
-    setUserDataUpdate((prevUserData) => ({
-      ...prevUserData,
-      kel: e.target.value[1],
-    }));
-  }
+  // const handleKel = (e) => {
+  //   console.log("kec data id ", e.target.value[0]);
+  //   console.log("kec data name ", e.target.value[1]);
+  //   setUserDataUpdate((prevUserData) => ({
+  //     ...prevUserData,
+  //     kel: e.target.value[1],
+  //   }));
+  // }
 
   const [allProvinsi, setAllProvinsi] = useState([]);
   const [allKota, setAllKota] = useState([]);
@@ -293,7 +284,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
           { withCredentials: false }
         );
         setAllProvinsi(response.data.value);
-        console.log("Fetch prov: ", allProvinsi);
       } catch (error) {
         console.error('Error fetching prov:', error);
       } finally {
@@ -311,7 +301,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
         { withCredentials: false }
       );
       setAllKota(response.data.value);
-      console.log("fetch kota: ", allKota);
     } catch (error) {
       console.error('Error fetching kota:', error);
     } finally {
@@ -326,7 +315,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
         { withCredentials: false }
       );
       setAllKecamatan(response.data.value);
-      console.log("fetch camat: ", allKecamatan);
     } catch (error) {
       console.error('Error fetching kec:', error);
     } finally {
@@ -341,7 +329,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
         { withCredentials: false }
       );
       setAllKelurahan(response.data.value);
-      console.log("fetch lurah: ", allKelurahan);
     } catch (error) {
       console.error('Error fetching kel:', error);
     } finally {
@@ -471,7 +458,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
                   ...prevUserData,
                   prov: selectedName,
                 }));
-                console.log(selectedName);
               }}>
 
               <option value="" selected className='text-grey-400'>Provinsi</option>
@@ -639,6 +625,19 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
         )}
 
 
+      </div>
+
+      <div className="flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center">
+        <label className="text-sm lg:text-base">Telepon</label>
+        <input
+          type="number"
+          className="w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300"
+          placeholder="email"
+          disabled={!editBio}
+          defaultValue={userAuth.phone}
+          onChange={(e) => handleChange(e.target)}
+          name="phone"
+        />
       </div>
 
       <div className="flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center">

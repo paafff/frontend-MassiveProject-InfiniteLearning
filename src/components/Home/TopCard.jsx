@@ -19,7 +19,6 @@ const TopCard = ({ dataList }) => {
         );
 
         setDataBusiness(response.data);
-        console.log(dataBusiness);
       } catch (error) {
         console.log(error);
       }
@@ -97,8 +96,8 @@ const CardTopRecommend = ({ card }) => {
 
   return (
     <div
-      className="p-3 min-w-[288px] xl:min-w-[350px] h-96 xl:h-[450px] bg-red-500 flex flex-col justify-between rounded-lg xl:rounded-xl drop-shadow-md"
-      style={{ backgroundImage: `url(${card?.imageURL?.[0]})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
+      className="p-3 min-w-[288px] xl:min-w-[350px] h-96 xl:h-[450px] bg-gray-300 flex flex-col justify-between rounded-lg xl:rounded-xl drop-shadow-md"
+      style={{ backgroundImage: `url(${card?.imageURL?.[0]})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
     >
       <div className="w-full flex justify-end gap-3">
         <div className="px-2 h-8 bg-white rounded-full flex justify-center items-center">
@@ -113,9 +112,15 @@ const CardTopRecommend = ({ card }) => {
       </div>
       <div className="w-full flex justify-between items-center bg-white rounded-md p-3 lg:px-5 hover:cursor-pointer">
         <div className="flex flex-col gap-1">
-          <p className="text-xs lg:text-base text-red-600 font-semibold">
-            {status}
-          </p>
+          {status == "Tutup" ? (
+            <p className="text-red-600 font-semibold text-xs xl:text-sm">
+              {status}
+            </p>
+          ) : (
+            <p className="text-blue-600 font-semibold text-xs xl:text-sm">
+              {status}
+            </p>
+          )}
           <p className="text-xs lg:text-base font-semibold">{card.name}</p>
           {/* [prov,kab,kec,kel,rtrw] */}
           <p className="text-xs lg:text-base text-gray-500">

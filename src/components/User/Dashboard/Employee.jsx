@@ -19,7 +19,6 @@ const Employee = ({ businessByUUID }) => {
   const handlePictureChange = (event) => {
     const file = event.target.files[0];
     setPicture(file);
-    console.log(picture);
   };
 
   useEffect(() => {
@@ -62,9 +61,6 @@ const Form = ({
   handlePictureChange,
   picture,
 }) => {
-  const [fullname, setFullname] = useState('');
-  const [skill, setSkill] = useState('');
-  const [desc, setDesc] = useState('');
 
   const handleChange = (e) => {
     const name = e.name;
@@ -72,11 +68,6 @@ const Form = ({
     setWorkerData((prev) => {
       return { ...prev, [name]: value };
     });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('tersubmit', [fullname, skill, desc]);
   };
 
   const businessId = businessByUUID.id;
@@ -95,16 +86,14 @@ const Form = ({
       formCreateWorker.append('name', workerData.name);
       formCreateWorker.append('description', workerData.description);
       formCreateWorker.append('skill', workerData.skill);
-    //   formCreateWorker.append('businessId', workerData.businessId);
+      //   formCreateWorker.append('businessId', workerData.businessId);
       formCreateWorker.append('businessId', businessId);
 
       await axios.post(`${import.meta.env.VITE_API_URL}/worker`, formCreateWorker, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
-      console.log(workerData);
-      console.log(picture);
-      console.log('sukses menambah data pekerja');
+      window.location.reload()
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -150,12 +139,12 @@ const Form = ({
               Upload foto
             </p>
           )}
-
+          {/* 
           {picture && (
             <p className="text-xs text-white py-1 px-2 border bg-green-600 hover:bg-green-700 hover:text-white hover:cursor-pointer transition-all rounded">
               Simpan Foto
             </p>
-          )}
+          )} */}
         </div>
       </div>
       <form onSubmit={createWorker} action="" className="flex flex-col gap-5 ">
@@ -208,7 +197,7 @@ const Form = ({
 const Button = ({ editForm, setEditForm }) => {
   return (
     <div className="w-full flex justify-between md:justify-end gap-5">
-      <Link
+      {/* <Link
         to="/dashboard-employee"
         className="hover:bg-blue-700 hover:cursor-pointer transition-all py-2 px-5 bg-blue-600 rounded "
       >
@@ -216,7 +205,7 @@ const Button = ({ editForm, setEditForm }) => {
           <FaEye className="inline-block scale-150 md:scale-100" />
           Lihat Data Karyawan
         </p>
-      </Link>
+      </Link> */}
       <button
         type="submit"
         className="w-fit flex justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded"

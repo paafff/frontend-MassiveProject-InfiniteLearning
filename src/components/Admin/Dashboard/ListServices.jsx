@@ -36,7 +36,6 @@ const ListServices = ({ hamburgerMenu }) => {
 
     setSelectedIdService(id);
     setSelectedNameService(name);
-    console.log(selectedIdService, selectedNameService);
   };
   const handleCloseUpdate = () => setOpenUpdate(false);
 
@@ -50,11 +49,9 @@ const ListServices = ({ hamburgerMenu }) => {
 
     createListService();
     // logic insert layanan
-    console.log(newService);
   };
 
   const onChangeAddService = (e) => {
-    console.log(newService);
     setNewService(e);
   };
 
@@ -82,7 +79,6 @@ const ListServices = ({ hamburgerMenu }) => {
       );
 
       setListServices(response.data);
-      console.log('ini list', listServices);
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -154,7 +150,6 @@ const Service = ({
     try {
       await axios.delete(`${import.meta.env.VITE_API_URL}/list-service/${id}`);
 
-      console.log('berhasil menghapus data');
       getListServices();
       //   window.location.reload();
     } catch (error) {
@@ -288,7 +283,6 @@ const UpdateServices = ({
 
       handleCloseUpdate();
       getListServices();
-      console.log(name);
       //   window.location.reload();
     } catch (error) {
       if (error.response) {

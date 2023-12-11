@@ -39,8 +39,7 @@ const FormReservasi = ({ businessId, display, open, handleClose }) => {
         phone: phone,
         businessId: businessId,
       });
-
-      console.log('berhasil menambah reservasi');
+      window.location.reload()
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -131,11 +130,11 @@ const FormReservasi = ({ businessId, display, open, handleClose }) => {
                 <label class="ml-3 font-semibold">Nomor Telepon</label>
               </div>
               <input
-                class="my-4 mb-6 block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                type="text"
+                class="appearance-none my-4 mb-6 block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                type="number"
                 name="name"
                 id="name"
-                placeholder="Masukkan Nama Lengkap Anda"
+                placeholder="Masukkan Nomor Telepon Anda"
                 required
                 onChange={(e) => setPhone(e.target.value)}
               />

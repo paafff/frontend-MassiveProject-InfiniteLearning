@@ -105,7 +105,6 @@ const Business = ({
               onClick={(e) => {
                 setSelectedBusinessUUID(uuid);
                 setSelectedBusinessId(id);
-                console.log(id);
               }}
             >
               <FaEye className="inline-block text-white scale-125" />

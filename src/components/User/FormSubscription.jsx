@@ -33,7 +33,6 @@ const FormSubscription = ({ price }) => {
         }/business-subscription/create/${businessUUID}`
       );
 
-      console.log('berhasil melakukan langganan');
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);

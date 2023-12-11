@@ -39,7 +39,6 @@ const CardBooking = ({ businessId }) => {
         );
 
         setDataReservation(response.data);
-        console.log(dataReservation);
       } catch (error) {
         if (error.response) {
           alert(error.response.data.msg);
@@ -59,7 +58,7 @@ const CardBooking = ({ businessId }) => {
       pageNumber * reservationsPerPage,
       (pageNumber + 1) * reservationsPerPage
     )
-    .map((booking) => <Card key={booking.id} booking={booking} />);
+    .map((booking) => (<Card key={booking.id} booking={booking} />));
 
   const handlePageChange = ({ selected }) => {
     setPageNumber(selected);
@@ -78,36 +77,37 @@ const CardBooking = ({ businessId }) => {
           <Card booking={booking} />
         ))} */}
         {/* {console.log("display reservations ", displayReservations)} */}
-        
 
-          {displayReservations}
+
+        {displayReservations}
       </div>
 
-      <ReactPaginate
-        className="flex space-x-5 justify-center items-center mt-10"
-        previousLabel={'Previous'}
-        nextLabel={'Next'}
-        pageCount={pageCount}
-        onPageChange={handlePageChange}
-        // containerClassName={'pagination'}
-        // previousLinkClassName={'previous_page'}
-        // nextLinkClassName={'next_page'}
-        // disabledClassName={'pagination_disabled'}
-        // activeClassName={'pagination_active'}
+      {dataReservation?.length > 0 ? (
 
-        //UI
-        containerClassName={'pagination'}
-        activeClassName={
-          'px-2 py-1 rounded text-zinc-800 border border-gray-200 bg-gray-100'
-        }
-        nextClassName={'px-2 py-1 rounded text-white bg-blue-600'}
-        previousClassName={'px-2 py-1 rounded text-white bg-blue-600'}
-      />
+        <ReactPaginate
+          className="flex space-x-5 justify-center items-center mt-10"
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
+          pageCount={pageCount}
+          onPageChange={handlePageChange}
+
+          //UI
+          containerClassName={'pagination'}
+          activeClassName={
+            'px-2 py-1 rounded text-zinc-800 border border-gray-200 bg-gray-100'
+          }
+          nextClassName={'px-2 py-1 rounded text-white bg-blue-600'}
+          previousClassName={'px-2 py-1 rounded text-white bg-blue-600'}
+        />
+      ) : (
+        <p className='w-fit text-center bg-white mx-auto px-3 py-2 rounded-sm shadow drop-shadow '>Belum ada pesanan</p>
+      )}
     </div>
   );
 };
 
 const Card = ({ booking }) => {
+
   return (
     <div className="flex flex-col gap-4 p-4 bg-white rounded drop-shadow ">
       <div className="flex gap-2 justify-between items-center">
@@ -116,7 +116,7 @@ const Card = ({ booking }) => {
 
           <div className="flex flex-col justify-center">
             <p className="text-sm">{booking.name}</p>
-            <p className="text-xs text-gray-500">1 jam yang lalu</p>
+            <p className="text-xs text-gray-500">{booking.createdAt}</p>
           </div>
         </div>
 
@@ -138,7 +138,7 @@ const Card = ({ booking }) => {
           </div>
           <div className="w-3/4">
             <p className="text-sm">
-              : <span className="ml-2">ntar nope</span>
+              : <span className="ml-2">{booking.phone}</span>
             </p>
           </div>
         </div>

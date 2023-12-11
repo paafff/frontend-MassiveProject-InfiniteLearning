@@ -23,9 +23,6 @@ const DashboardBussiness = () => {
         );
 
         setBusinessByUUID(response.data);
-        // console.log('detailbusines', businessByUUID);
-        console.log('uuid nya params', uuid);
-        console.log('detailbusines', businessByUUID);
       } catch (error) {
         if (error.response) {
           alert(error.response.data.msg);
@@ -49,7 +46,7 @@ const DashboardBussiness = () => {
             showSidebar={showSidebar}
             setShowSidebar={setShowSidebar}
           />
-          {console.log("data uuid from page : ", businessByUUID.socialMedia)}
+          
           <DetailBusiness businessByUUID={businessByUUID} />
           <Services businessByUUID={businessByUUID} />
           <Employee businessByUUID={businessByUUID} />

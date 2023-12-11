@@ -11,8 +11,6 @@ import axios from 'axios';
 const DetailBussiness = ({ businessByUUID, sosmed }) => {
   const [editForm, setEditForm] = useState(true);
 
-  console.log('data uuid from komponen ig ', businessByUUID.socialMedia);
-
   const [instagramLink, setInstagramLink] = useState(null);
   const [facebookLink, setFacebookLink] = useState(null);
   const [twitterLink, setTwitterLink] = useState(null);
@@ -165,9 +163,7 @@ const Banner = ({
     changeBannerRef.current.click();
   };
   const handleBannerChange = (event) => {
-    // console.log("ambil gambar");
     const file = event.target.files[0];
-    console.log(file);
     setPictureBanner(file);
   };
 
@@ -176,9 +172,7 @@ const Banner = ({
     picture1Ref.current.click();
   };
   const handlePicture1Change = (event) => {
-    // console.log("ambil gambar");
     const file = event.target.files[0];
-    console.log(file);
     setPicture1(file);
   };
 
@@ -187,9 +181,7 @@ const Banner = ({
     picture2Ref.current.click();
   };
   const handlePicture2Change = (event) => {
-    // console.log("ambil gambar");
     const file = event.target.files[0];
-    console.log(file);
     setPicture2(file);
   };
 
@@ -198,9 +190,7 @@ const Banner = ({
     picture3Ref.current.click();
   };
   const handlePicture3Change = (event) => {
-    // console.log("ambil gambar");
     const file = event.target.files[0];
-    console.log(file);
     setPicture3(file);
   };
 
@@ -209,9 +199,7 @@ const Banner = ({
     picture4Ref.current.click();
   };
   const handlePicture4Change = (event) => {
-    // console.log("ambil gambar");
     const file = event.target.files[0];
-    console.log(file);
     setPicture4(file);
   };
 
@@ -224,7 +212,7 @@ const Banner = ({
 
   return (
     <div className="w-full xl:my-auto xl:w-1/2 border border-gray-300 rounded p-2 flex flex-col gap-3 mb-5">
-      {console.log('ini lo foto default ', photoDefault)}
+      
       {banner ? (
         <img
           src={URL.createObjectURL(banner)}
@@ -392,11 +380,11 @@ const Socmed = ({
           disabled={editForm}
           placeholder="Link instagram"
           defaultValue={businessByUUID?.socialMedia?.[0]}
-          // placeholder={
-          //   businessByUUID.socialMedia
-          //     ? businessByUUID.socialMedia[0]
-          //     : 'coba ig'
-          // }
+        // placeholder={
+        //   businessByUUID.socialMedia
+        //     ? businessByUUID.socialMedia[0]
+        //     : 'coba ig'
+        // }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -410,11 +398,11 @@ const Socmed = ({
           disabled={editForm}
           placeholder="Link Facebook"
           defaultValue={businessByUUID?.socialMedia?.[1]}
-          // placeholder={
-          //   businessByUUID.socialMedia
-          //     ? businessByUUID.socialMedia[1]
-          //     : 'coba ig'
-          // }
+        // placeholder={
+        //   businessByUUID.socialMedia
+        //     ? businessByUUID.socialMedia[1]
+        //     : 'coba ig'
+        // }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -428,11 +416,11 @@ const Socmed = ({
           disabled={editForm}
           placeholder="Link twitter"
           defaultValue={businessByUUID?.socialMedia?.[2]}
-          // placeholder={
-          //   businessByUUID.socialMedia
-          //     ? businessByUUID.socialMedia[2]
-          //     : 'coba ig'
-          // }
+        // placeholder={
+        //   businessByUUID.socialMedia
+        //     ? businessByUUID.socialMedia[2]
+        //     : 'coba ig'
+        // }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -446,11 +434,11 @@ const Socmed = ({
           disabled={editForm}
           placeholder="Link youtube"
           defaultValue={businessByUUID?.socialMedia?.[2]}
-          // placeholder={
-          //   businessByUUID.socialMedia
-          //     ? businessByUUID.socialMedia[3]
-          //     : 'coba ig'
-          // }
+        // placeholder={
+        //   businessByUUID.socialMedia
+        //     ? businessByUUID.socialMedia[3]
+        //     : 'coba ig'
+        // }
         />
       </form>
     </div>
@@ -480,14 +468,7 @@ const Form = ({
   setPicture3,
   setPicture4,
 }) => {
-  const [desc, setDesc] = useState('');
-  const [maps, setMaps] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('tersubmit', [desc, maps]);
-  };
-
+  
   const handleChange = (e) => {
     const name = e.name;
     const value = e.value;
@@ -500,35 +481,30 @@ const Form = ({
     switch (index) {
       case 'banner': {
         const file = e.files[0];
-        console.log(file);
         setPictureBanner(file);
         break;
       }
 
       case 'picture1': {
         const file = e.files[0];
-        console.log(file);
         setPicture1(file);
         break;
       }
 
       case 'picture2': {
         const file = e.files[0];
-        console.log(file);
         setPicture2(file);
         break;
       }
 
       case 'picture3': {
         const file = e.files[0];
-        console.log(file);
         setPicture3(file);
         break;
       }
 
       case 'picture4': {
         const file = e.files[0];
-        console.log(file);
         setPicture4(file);
         break;
       }
@@ -608,10 +584,15 @@ const Form = ({
     businessData.youtube
       ? businessData.youtube
       : businessByUUID?.socialMedia?.[3],
-    businessData.maps || 'ini meps',
+    businessData.maps
+      ? businessData.maps
+      : businessByUUID?.socialMedia?.[4],
   ];
 
-  const arraySchedule = [businessData?.open, businessData?.close];
+  const arraySchedule = [
+    businessData?.open ? businessData?.open : businessByUUID?.schedule?.[0],
+    businessData?.close ? businessData?.close : businessByUUID?.schedule?.[1],
+  ];
 
   const updateBusiness = async (e) => {
     e.preventDefault();
@@ -623,7 +604,8 @@ const Form = ({
       formUpdateBusiness.append('img3', businessData.img3);
       formUpdateBusiness.append('img4', businessData.img4);
       formUpdateBusiness.append('img5', businessData.img5);
-      formUpdateBusiness.append('description', businessData.description);
+      formUpdateBusiness.append('description',
+        businessData.description ? businessData.description : businessByUUID?.description);
       formUpdateBusiness.append('schedule', JSON.stringify(arraySchedule));
       formUpdateBusiness.append(
         'socialMedia',
@@ -636,8 +618,7 @@ const Form = ({
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
 
-      console.log('sukses update data bisnis');
-      console.log('ini isinya ya', businessData);
+      window.location.reload()
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -645,14 +626,6 @@ const Form = ({
         console.log(error);
       }
     }
-  };
-
-  const handleBannerChange = (event) => {
-    handleImageChange(event.target);
-
-    const file = event.target.files[0];
-    console.log(file);
-    setPictureBanner(file);
   };
 
   const times = [
@@ -681,8 +654,6 @@ const Form = ({
     '23:00',
     '24:00',
   ];
-
-  console.log('jadwal nya ', businessData);
 
   return (
     <div className="flex flex-col gap-3">
@@ -716,7 +687,7 @@ const Form = ({
             onChange={(e) => handleChange(e.target)}
             className="text-xs w-full h-10 text-gray-700 border border-gray-300 rounded p-2 placeholder:text-xs placeholder:text-gray-500 disabled:bg-gray-200"
             disabled={editForm}
-            defaultValue={maps}
+            defaultValue={businessByUUID?.socialMedia?.[4]}
             placeholder="Masukkan link"
             name="maps"
             id="maps"
@@ -729,36 +700,56 @@ const Form = ({
           </label>
           <div className="w-full flex gap-10 px-3 py-3">
             <div>
-              <select
-                name="open"
-                id=""
-                disabled={editForm}
-                onChange={(e) => handleChange(e.target)}
-                className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300'
-              >
-                <option value="" className="text-xs">
-                  Jadwal Buka
-                </option>
-                {times.map((time) => (
-                  <option value={time}>{time}</option>
-                ))}
-              </select>
+              {editForm ? (
+                <input
+                  disabled={editForm}
+                  type="text"
+                  value={"Jadwal Buka " + businessByUUID?.schedule?.[0]}
+                  className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300' />
+              ) : (
+
+                <select
+                  name="open"
+                  id=""
+                  disabled={editForm}
+                  onChange={(e) => handleChange(e.target)}
+                  defaultChecked={businessByUUID?.schedule?.[0]}
+                  className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300'
+                >
+                  <option value="" className="text-xs">
+                    Jadwal Buka
+                  </option>
+                  {times.map((time) => (
+                    <option value={time}>{time}</option>
+                  ))}
+                </select>
+              )}
             </div>
             <div>
-              <select
-                name="close"
-                id=""
-                disabled={editForm}
-                onChange={(e) => handleChange(e.target)}
-                className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300'
-              >
-                <option value="" >
-                  Jadwal Tutup
-                </option>
-                {times.map((time) => (
-                  <option value={time}>{time}</option>
-                ))}
-              </select>
+              {editForm ? (
+                <input
+                  disabled={editForm}
+                  type="text"
+                  value={"Jadwal Tutup " + businessByUUID?.schedule?.[1]}
+                  className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300' />
+              ) : (
+
+                <select
+                  name="close"
+                  id=""
+                  disabled={editForm}
+                  onChange={(e) => handleChange(e.target)}
+                  defaultChecked={businessByUUID?.schedule?.[1]}
+                  className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300'
+                >
+                  <option value="" >
+                    Jadwal Tutup
+                  </option>
+                  {times.map((time) => (
+                    <option value={time}>{time}</option>
+                  ))}
+                </select>
+              )}
             </div>
           </div>
         </div>

@@ -61,7 +61,6 @@ const ListAllBusiness = ({ page }) => {
         }`
       );
 
-      console.log('searchredux', searchValueRedux);
       setDataBusiness(response.data);
       console.log(dataBusiness);
     } catch (error) {

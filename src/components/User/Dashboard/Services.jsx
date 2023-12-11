@@ -37,7 +37,6 @@ const Services = ({ businessByUUID }) => {
   });
 
   const handleService = (service, value) => {
-    console.log('memilih service ke- ', service);
 
     switch (service) {
       case 'srv1':
@@ -124,9 +123,6 @@ const Services = ({ businessByUUID }) => {
     }
   };
 
-  console.log('melihat isi dalam state service ', serviceData);
-  console.log('melihat isi dalam state price ', priceData);
-
   const arrayServiceName = [
     serviceData.srv1,
     serviceData.srv2,
@@ -151,7 +147,7 @@ const Services = ({ businessByUUID }) => {
         businessId: businessId,
       });
 
-      console.log('sukses menambah layanan');
+      window.location.reload()
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);

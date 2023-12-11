@@ -94,7 +94,6 @@ const Business = ({ businessData }) => {
 };
 
 const Socmed = ({ businessData }) => {
-  console.log('bisnis data utk sosmed ', businessData);
   return (
     <div className="flex flex-col md:items-start md:px-3 xl:w-1/2 xl:justify-center xl:items-center xl:ml-3 gap-3">
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">

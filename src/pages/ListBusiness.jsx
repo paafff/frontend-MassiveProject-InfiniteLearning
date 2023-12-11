@@ -49,7 +49,6 @@ const ListBusiness = ({ page }) => {
       );
 
       setDataBarber(response.data);
-      console.log(dataBarber);
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -64,7 +63,6 @@ const ListBusiness = ({ page }) => {
       const response = await axios.get(`${import.meta.env.VITE_API_URL}/salon`);
 
       setDataSalon(response.data);
-      console.log(dataSalon);
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);

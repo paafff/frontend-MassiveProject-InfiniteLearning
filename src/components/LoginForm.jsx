@@ -26,8 +26,6 @@ const LoginForm = () => {
 
       // setUserData(response.data);
       navigate('/');
-      // console.log(response.data.msg);
-      console.log('login sukses');
       // window.location.reload();
     } catch (error) {
       //dibawah ini opsi tampilkan error

@@ -82,8 +82,6 @@ const User = () => {
         const response = await axios(`${import.meta.env.VITE_API_URL}/users`);
 
         setDataUser(response.data);
-
-        console.log(dataUser);
       } catch (error) {
         if (error.response) {
           alert(error.response.data.msg);
