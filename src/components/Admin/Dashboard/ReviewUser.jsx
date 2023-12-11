@@ -43,7 +43,7 @@ const ReviewUser = ({ selectedBusinessId }) => {
   };
 
   return (
-    <div className="w-full lg:w-full xl:w-3/4 xl:px-24 py-10 px-5 md:px-12 lg:pt-16">
+    <div className="w-full lg:w-full xl:w-3/4 xl:mx-auto xl:px-24 py-10 px-5 md:px-12 lg:pt-16">
       <div className="bg-white w-full rounded-lg p-4 lg:p-8 drop-shadow-md">
         <p className="text-base md:text-lg font-semibold">Review</p>
         <hr className="my-5" />

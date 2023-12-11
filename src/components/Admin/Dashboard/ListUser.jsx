@@ -42,7 +42,7 @@ const ListUser = ({
           />
         ))}
 
-<ReactPaginate className='flex space-x-5 justify-center'
+<ReactPaginate className='flex space-x-5 justify-center items-center mt-10'
           previousLabel={'previous'}
           nextLabel={'next'}
           breakLabel={'...'}
@@ -52,9 +52,11 @@ const ListUser = ({
           onPageChange={handlePageClick}
           //UI
           containerClassName={'pagination'}
-          activeClassName={'bg-blue-500'}
-          nextClassName={'bg-red-500'}
-          previousClassName={'bg-yellow-500'}
+          activeClassName={
+            'px-2 py-1 rounded text-zinc-800 border border-gray-200 bg-gray-100'
+          }
+          nextClassName={'px-2 py-1 rounded text-white bg-blue-600'}
+          previousClassName={'px-2 py-1 rounded text-white bg-blue-600'}
         />
       </div>
     </div>

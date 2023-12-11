@@ -122,6 +122,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
     <FormReservasi
         open={open}
         handleClose={handleClose}
+        businessId={businessByUUID?.id}
       />
     <div class="flex flex-col gap-10">
       <div class="w-full flex flex-col md:flex-row-reverse md:items-start my-5">
@@ -364,7 +365,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
       </div>
 
       {/* coomponent reservasi */}
-      <FormReservasi businessId={businessByUUID?.id} />
+      {/* <FormReservasi businessId={businessByUUID?.id} /> */}
     </div>
     </>
   );

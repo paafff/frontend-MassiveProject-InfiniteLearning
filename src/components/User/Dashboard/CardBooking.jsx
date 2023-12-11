@@ -73,11 +73,14 @@ const CardBooking = ({ businessId }) => {
         </p>
       </div>
 
-      <div className=" w-full grid grid-cols-1 gap-5 md:w-3/4 md:mx-auto xl:grid-cols-2 xl:justify-center">
+      <div className="py-3 w-full grid grid-cols-1 place-content-center gap-5 md:w-3/4  md:mx-auto xl:grid-cols-2 xl:justify-center">
         {/* {dataReservation.map((booking) => (
           <Card booking={booking} />
         ))} */}
-        {displayReservations}
+        {/* {console.log("display reservations ", displayReservations)} */}
+        
+
+          {displayReservations}
       </div>
 
       <ReactPaginate
@@ -106,7 +109,7 @@ const CardBooking = ({ businessId }) => {
 
 const Card = ({ booking }) => {
   return (
-    <div className="flex flex-col gap-4 p-4 bg-white rounded drop-shadow xl:max-w-lg">
+    <div className="flex flex-col gap-4 p-4 bg-white rounded drop-shadow ">
       <div className="flex gap-2 justify-between items-center">
         <div div className=" flex gap-2 justify-start items-center">
           <FaUserCircle className="inline-block w-16 h-16 text-gray-500" />

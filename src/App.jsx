@@ -42,6 +42,7 @@ import Hubungi from './pages/User/SK/Hubungi';
 import KategoriBantuan from './pages/User/SK/KategoriBantuan';
 import HairTrend from './pages/HairTrend';
 import AdminServices from './pages/Admin/Services';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
@@ -49,15 +50,8 @@ const App = () => {
       <div>
         <BrowserRouter>
           <Routes>
-            {/* inactive */}
-            {/* <Route path="/user/review" element={<InputReview />} />
-            <Route path="/dashboard-employee" element={<DashboardEmployee />} />
-            <Route path="/dashboard-booking" element={<DashboardBooking />} />
-            <Route path="/user/reservasi" element={<Reservasi />} /> */}
-            {/* inactive */}
 
             <Route path="/help" element={<Help />} />
-            {/* User / Guest */}
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<DashboardUser />} />
             <Route
@@ -81,18 +75,11 @@ const App = () => {
             <Route path="/business" element={<ListAllBusiness />} />
             <Route path="/detail/:uuid" element={<Detail />} />
 
-            {/* <Route
-              path="/superuser/dashboard-employee"
-              element={<DashboardEmployee />}
-            /> */}
             <Route
               path="/superuser/dashboard-booking/:id"
               element={<DashboardBooking />}
             />
-            {/* <Route
-              path="/superuser/dashboard-review"
-              element={<DashboardReview />}
-            /> */}
+          
             <Route path="/subscription" element={<Subscription />} />
 
             {/* Admin */}
@@ -116,6 +103,8 @@ const App = () => {
             <Route path="/term-owner" element={<SyaratKetentuanPemilik />} />
             <Route path="/term-searcher" element={<SyaratKetentuanPencari />} />
             <Route path="/call-centre" element={<Hubungi />} />
+
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </div>
