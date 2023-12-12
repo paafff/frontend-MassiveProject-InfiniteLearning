@@ -28,8 +28,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 1000,
-
+  // width: 1000,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -123,9 +122,9 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
         businessId={businessByUUID?.id}
       />
       <div class="flex flex-col gap-10">
-        <div class="w-full flex flex-col md:flex-row-reverse md:items-start my-5">
+        <div class="w-full flex flex-col md:flex-row-reverse md:items-start mt-5">
           <div className="w-full xl:w-1/4 flex flex-col items-end gap-5">
-            <div className="w-full flex xl:flex-col xl:items-end gap-2">
+            <div className="w-full mt-10 flex xl:flex-col xl:items-end gap-2">
               <ChatNow />
 
               <div
@@ -135,19 +134,19 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
                 <span class="xl:text-lg text-sm ">Pesan Sekarang</span>
               </div>
             </div>
-            <div className="w-full flex justify-center items-center shadow-md px-3 py-2 rounded-full gap-10">
-              <FaInstagramSquare className="hover:cursor-pointer inline-block w-8 h-8 text-rose-400" />
+            <div className="w-full flex justify-center items-center shadow-md px-3 py-2 rounded-md gap-5 xl:gap-10">
+              <FaInstagramSquare className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-rose-400" />
 
-              <FaFacebookSquare className="hover:cursor-pointer inline-block w-8 h-8 text-blue-600" />
+              <FaFacebookSquare className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-blue-600" />
 
-              <FaTwitterSquare className="hover:cursor-pointer inline-block w-8 h-8 text-blue-400" />
+              <FaTwitterSquare className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-blue-400" />
 
-              <FaYoutube className="hover:cursor-pointer inline-block w-8 h-8 text-rose-600" />
+              <FaYoutube className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-rose-600" />
             </div>
           </div>
 
-          <div className="w-full xl:w-3/4 flex flex-col gap-4 my-10 md:my-0">
-            <p class="xl:text-2xl text-xl font-bold">{businessByUUID.name}</p>
+          <div className="w-full lg:w-3/4 flex flex-col gap-4 mt-10 md:my-0">
+            <p class="xl:text-2xl text-lg font-bold">{businessByUUID.name}</p>
 
             <div className="w-full flex gap-5">
               {status == 'Tutup' ? (
@@ -167,17 +166,20 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
             </div> */}
             </div>
 
-            <div class="flex flex-row justify-start items-center pr-24 gap-24 mt-10">
-              <div>
-                <h1 class="font-bold text-2xl">
-                  Dikelola oleh {businessByUUID.userData?.username}
-                </h1>
+            <div class="flex flex-row gap-10 justify-start items-center mt-10">
+              <div className='flex flex-col'>
+                <p class="font-medium xl:text-2xl">
+                  Dikelola oleh
+                </p>
+                <p class="font-bold xl:text-2xl">
+                  {businessByUUID.userData?.username}
+                </p>
               </div>
               <div
-                className="w-16 h-16 rounded-full border-2 border-zinc-900"
+                className="w-10 xl:w-16 h-10 xl:h-16 rounded-full border border-gray-300"
                 style={{
                   backgroundImage: `url(${businessByUUID.userData?.profileURL})`,
-                  backgroundSize: 'cover',
+                  backgroundSize: 'cover', backgroundPosition: 'center'
                 }}
               >
                 {/* <img src={businessByUUID.userData?.profileURL} className='rounded-full' alt="" srcset="" /> */}
@@ -186,21 +188,21 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
           </div>
         </div>
 
-        <div className="w-3/4 border-b  py-5">
-          <p class="font-bold text-2xl mb-4">Deskripsi Barbershop</p>
+        <div className="w-full xl:w-3/4 mt-10 border-b border-gray-200 pb-5">
+          <p class="font-bold text-lg xl:text-2xl ">Deskripsi Barbershop</p>
           <p className="text-base">
             {businessByUUID.description
               ? (
-                <p className='mt-10'>{businessByUUID.description}</p>
+                <p className='mt-5 text-sm xl:mt-10'>{businessByUUID.description}</p>
               )
               : (
-                <p className='mt-10'>Belum ada deskripsi</p>
+                <p className='mt-5 text-sm xl:mt-10'>Belum ada deskripsi</p>
               )}
           </p>
         </div>
 
-        <div className="w-3/4 py-5 border-b border-gray-200">
-          <p class="font-bold text-2xl mb-4">Jenis Layanan</p>
+        <div className="xl:w-3/4 py-5 border-b border-gray-200">
+          <p class="font-bold text-lg xl:text-2xl">Jenis Layanan</p>
           {businessByUUID?.services?.length > 0 ? (
             ''
           ) : (
@@ -209,7 +211,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
           {businessByUUID?.services?.map((service, index) => (
             <>
               <div class="w-full flex flex-col items-center justify-between">
-                <div className="w-full flex justify-start mb-4 mt-8">
+                <div className="w-full flex justify-start mt-8">
                   <div className="w-1/2">
                     <p className="text-base font-bold text-gray-400">
                       Nama Layanan
@@ -224,12 +226,12 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
                   {service?.name?.map((serviceName, index) => (
                     <div className="w-full flex justify-start my-2" key={index}>
                       <div className="w-1/2">
-                        <p className="text-base py-2">
+                        <p className="text-sm xl:text-base py-2">
                           {serviceName ? serviceName : "-"}
                         </p>
                       </div>
                       <div className="w-1/2">
-                        <p className="text-base py-2">
+                        <p className="text-sm xl:text-base py-2">
                           {service.price?.[index] != '' ? (
 
                             'Rp' +
@@ -249,21 +251,21 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
           ))}
         </div>
 
-        <div className="w-3/4 border-b border-gray-200 py-5">
-          <h1 class="font-bold text-2xl mb-4">Jam Operasional</h1>
+        <div className="w-full xl:w-3/4 border-b border-gray-200 py-5">
+          <h1 class="font-bold text-lg xl:text-2xl mb-4">Jam Operasional</h1>
           <div class="flex flex-row ml-1 mt-10">
             <img
               class="w-auto h-5 mr-4"
               src="/src/assets/images/icons/Clock.png "
             />
             <div className="flex gap-10 px-5">
-              <p>
+              <p className='text-sm'>
                 {businessByUUID.schedule?.[0] == 'undefined' ? "-- Jam buka --" : (
                   <p>Jam buka: {businessByUUID.schedule?.[0] ? businessByUUID.schedule?.[0] : '-- Jam buka --'}</p>
                 )}
               </p>
 
-              <p>
+              <p className='text-sm'>
                 {businessByUUID.schedule?.[1] == 'undefined' ? "-- Jam tutup --" : (
                   <p>Jam tutup: {businessByUUID.schedule?.[1] ? businessByUUID.schedule?.[1] : '-- Jam tutup --'}</p>
                 )}
@@ -272,34 +274,19 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
           </div>
         </div>
 
-        <div className="w-3/4 border-b border-gray-200 py-5">
-          <h1 class="font-bold text-2xl">Daftar Karyawan</h1>
-          {/* 
-          <div className="w-full flex gap-32 mt-10 mb-4">
-            <div className="w-1/3">
-              <p className="text-lg font-bold text-gray-400">Profil</p>
-            </div>
-            <div className="w-1/3">
-              <p className="text-lg font-bold text-gray-400">Nama</p>
-            </div>
-            <div className="w-1/3">
-              <p className="text-lg font-bold text-gray-400">Skill</p>
-            </div>
-          </div> */}
+        <div className="w-full xl:w-3/4 border-b border-gray-200 py-5">
+          <h1 class="font-bold text-lg xl:text-2xl">Daftar Karyawan</h1>
 
           {businessByUUID.workers?.length > 0 ? businessByUUID.workers?.map((worker) => (
             <div class="w-full flex gap-20 items-center mt-10">
               <div className="w-14 h-14 rounded-full" style={{ backgroundImage: `url(${worker?.imageURL})`, backgroundSize: '80px', backgroundPosition: 'center' }} >
-                {/* <img
-                  class="my-1 w-full border-2 border-gray-600"
-                  src={worker?.imageURL}
-                /> */}
+
               </div>
               <div className="w-1/4">
-                <h1>{worker?.name}</h1>
+                <p className='text-sm'>{worker?.name}</p>
               </div>
               <div className="w-1/4">
-                <h1>{worker?.skill}</h1>
+                <p className='text-sm'>{worker?.skill}</p>
               </div>
             </div>
           )) : (
@@ -307,15 +294,15 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
           )}
         </div>
 
-        <div className="w-3/4 border-b border-gray-200 py-5">
-          <h1 class="font-bold text-2xl">Lokasi dan Lingkungan Sekitar</h1>
+        <div className="w-full xl:w-3/4 border-b border-gray-200 py-5">
+          <h1 class="font-bold text-lg xl:text-2xl">Lokasi dan Lingkungan Sekitar</h1>
           <div class="flex flex-row py-5 gap-3">
             <img
               class="h-4 mt-1 mx-1"
               src="/src/assets/images/icons/Location.png"
             />
             {businessByUUID.address?.map((address) => (
-              <p className=''>{address + ', '}</p>
+              <p className='text-sm'>{address + ', '}</p>
             ))}
           </div>
         </div>
@@ -332,7 +319,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
           {/* {businessByUUID.feedbacks?.map((feedback) => ( */}
           {currentFeedbacks?.length > 0 ? currentFeedbacks?.map((feedback) => (
             <>
-              <div className="w-3/4 flex flex-col gap-3 border-b border-gray-200 pb-5">
+              <div className="xl:w-3/4 flex flex-col gap-3 border-b border-gray-200 pb-5">
                 <div class="mt-10 ml-5 flex flex-row items-center gap-5">
                   {feedback.userData?.profileURL ? (
                     <div className='w-10 h-10 rounded-full' style={{ backgroundImage: `url(${feedback.userData?.profileURL})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
@@ -397,7 +384,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
 
         </div>
 
-        <div className="w-3/4">
+        <div className="w-full xl:w-3/4">
           <ReviewModal userAuth={userAuth} businessByUUID={businessByUUID} />
         </div>
 
@@ -498,7 +485,7 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={style} className="w-full h-[90%] h-fit lg:w-3/4 xl:w-1/2">
           <div id="modal-modal-title" className="w-full flex justify-end">
             <p
               className="px-3 py-2 hover:bg-zinc-800 hover:text-white hover:cursor-pointer transition-all"
@@ -511,14 +498,14 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
             id="modal-modal-description"
             className="w-full bg-gray-200 py-4 px-5 shadow-md drop-shadow mt-3"
           >
-            <p className="text-base">Silahkan Beri Ulasan Disini!!</p>
+            <p className="text-sm lg:text-base">Silahkan Beri Ulasan Disini!!</p>
           </div>
           <div className="w-full mt-10 flex flex-col items-center justify-center">
-            <div className="w-4/5 flex items-center gap-20 py-5 ">
-              <div className="w-1/4">
-                <p className="text-xl font-medium">Rating Review</p>
+            <div className="w-full lg:w-4/5 flex flex-col lg:flex-row items-start gap-10 lg:gap-20 py-5 ">
+              <div className="w-full lg:w-1/4">
+                <p className="text-base lg:text-xl font-medium">Rating Review</p>
               </div>
-              <div className="w-3/4 flex justify-evenly">
+              <div className="w-full lg:w-3/4 flex justify-evenly">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <FaStar
                     key={star}
@@ -529,9 +516,9 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
                 ))}
               </div>
             </div>
-            <div className="w-4/5 flex items-start gap-20 py-5 ">
-              <div className="w-1/4">
-                <p className="text-xl font-medium">Lampirkan Foto</p>
+            <div className="w-full lg:w-4/5 flex flex-col lg:flex-row items-start gap-5 lg:gap-20 py-5 ">
+              <div className="w-full lg:w-1/4">
+                <p className="text-base lg:text-xl font-medium">Lampirkan Foto</p>
               </div>
               <div className="w-3/4 flex flex-col gap-5">
                 <div
@@ -555,18 +542,16 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
                 </div>
               </div>
             </div>
-            <div className="w-4/5 flex items-start gap-20 py-5 ">
-              <div className="w-1/4">
-                <p className="text-xl font-medium">Deskripsi Ulasan</p>
+            <div className="w-full lg:w-4/5 flex flex-col lg:flex-row items-start gap-5 lg:gap-20 py-5 ">
+              <div className="w-full lg:w-1/4">
+                <p className="text-base lg:text-xl font-medium">Deskripsi Ulasan</p>
               </div>
-              <div className="w-3/4">
+              <div className="w-full lg:w-3/4">
                 <textarea
                   name="description"
                   className="w-full p-4 border border-gray-300 bg-gray-100 rounded-md placeholder:"
                   placeholder="Deskripsi"
                   id=""
-                  cols="30"
-                  rows="10"
                   onChange={(e) => handleChange(e.target)}
                 ></textarea>
               </div>

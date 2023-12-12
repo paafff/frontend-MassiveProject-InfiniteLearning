@@ -6,11 +6,11 @@ import Foto3 from '../../assets/images/barbershop/barbershop3.png'
 
 const Gallery = ({businessByUUID,businessImage}) => {
   return (
-    <div class='w-full h-[450px] flex flex-col xl:flex-row gap-2 xl:gap-5 '>
-      <div className='xl:w-3/5 w-full h-full bg-no-repeat' style={{ backgroundImage: `url(${businessImage?.[0]})`, backgroundSize: 'cover' }}>
+    <div class='w-full h-[450px] flex flex-col lg:flex-row gap-2 xl:gap-5 '>
+      <div className='lg:w-3/5 w-full h-full bg-no-repeat' style={{ backgroundImage: `url(${businessImage?.[0]})`, backgroundSize: 'cover' }}>
 
       </div>
-      <div className='xl:w-2/5 h-full none flex flex-col gap-2 xl:gap-5' >
+      <div className='lg:w-2/5 h-full none flex flex-col gap-2 xl:gap-5' >
         <div className='w-full h-1/2 bg-no-repeat' style={{ backgroundImage: `url(${businessImage?.[1]})`, backgroundSize: 'cover' }}>
 
         </div>

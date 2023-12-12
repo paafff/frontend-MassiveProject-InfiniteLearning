@@ -4,12 +4,12 @@ export default function DetailPhoto({ businessImage }) {
     const [showModal, setShowModal] = React.useState(false);
     return (
         <>
-            <button class='w-fit h-fit md:box-content py-4 px-7 bg-rose-500 hover:bg-rose-700 text-white font-normal' type='button' onClick={() => setShowModal(!showModal)}>
+            <button class='w-fit h-fit md:box-content text-sm md:text-base rounded py-2 lg:py-4 px-4 lg:px-7 bg-rose-500 hover:bg-rose-700 text-white font-normal' type='button' onClick={() => setShowModal(!showModal)}>
                 Lihat Selengkapnya
             </button>
             {showModal ? (
-                <div onBlur={() => setShowModal(!showModal)} >
-                    <div className="w-fit mx-auto justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                <div  onBlur={() => setShowModal(!showModal)} >
+                    <div className="scale-90 xl:scale-100 w-fit mx-auto justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="relative max-w-lg my-6 mx-auto">
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                                 <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
