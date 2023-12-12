@@ -17,10 +17,10 @@ const DashboardBooking = () => {
         <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
         <div className="w-screen mx-auto flex flex-col ">
-          <HeaderBooking
+          {/* <HeaderBooking
             showSidebar={showSidebar}
             setShowSidebar={setShowSidebar}
-          />
+          /> */}
 
           <CardBooking businessId={id} />
           <ReviewUser selectedBusinessId={id} />

@@ -57,6 +57,7 @@ const Navbar = () => {
           dropdownProfile={dropdownProfile}
           setDropdownProfile={setDropdownProfile}
           isLogin={isLogin}
+          user={userAuth}
         />
 
         <NavbarMobile
@@ -69,12 +70,12 @@ const Navbar = () => {
         />
 
         <DropdownCategory
-          role={userAuth}
+          user={userAuth}
           display={dropdownKategori ? 'flex' : 'hidden'}
         />
 
         <DropdownProfile
-          role={userAuth}
+          user={userAuth}
           display={dropdownProfile ? 'flex' : 'hidden'}
           logoutProps={logOut}
         />
@@ -145,7 +146,7 @@ const NavbarWebsite = ({
   dropdownKategori,
   dropdownProfile,
   setDropdownProfile,
-  isLogin,
+  isLogin,user
 }) => {
   return (
     <div className="text-white hidden lg:flex xl:flex items-center justify-end gap-6 w-3/4 xl:w-full ">
@@ -175,8 +176,9 @@ const NavbarWebsite = ({
           // onBlur={() => setDropdownProfile(!dropdownProfile)}
           className="text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3"
         >
-          <FaUserCircle className="inline-block scale-[2]" />
-          <FaAngleDown className="inline-block" />
+          <img src={user?.profileURL} className='w-8 rounded-full'/>
+          {/* <FaAngleDown className="inline-block" /> */}
+          {/* <FaUserCircle className="inline-block scale-[2]" /> */}
         </Link>
       ) : (
         <Link

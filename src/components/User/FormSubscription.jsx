@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../assets/images/icons/gataunamanya.png';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const FormSubscription = ({ price }) => {
   const [listBusiness, setListBusiness] = useState([]);
 
   const [businessUUID, setBusinessUUID] = useState('');
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const getMyBusiness = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/my-business`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/my-business`
+        );
 
         setListBusiness(response.data);
       } catch (error) {
@@ -33,6 +38,8 @@ const FormSubscription = ({ price }) => {
         }/business-subscription/create/${businessUUID}`
       );
 
+      alert('berhasil melakukan subscription');
+      navigate('/');
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);

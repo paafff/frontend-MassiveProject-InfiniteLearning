@@ -21,7 +21,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-const API_KEY = "7b397cea3811e3799ae20fd43ac78bcbc0dba2f5954d6fef4361e5fff3af76f1";
+const API_KEY =
+  '7b397cea3811e3799ae20fd43ac78bcbc0dba2f5954d6fef4361e5fff3af76f1';
 
 const dataUser = {
   profilePhoto: 'profile_dummy.jpg',
@@ -196,6 +197,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
     userDataUpdate.rtrw,
   ];
 
+  const navigate = useNavigate();
   //controler rest api
   const updateUser = async (e) => {
     e.preventDefault();
@@ -216,7 +218,8 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
 
-      useNavigate('/user/dashboard')
+      // navigate('/user/dashboard');
+      window.location.reload();
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -381,20 +384,23 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
           type="text"
           className="w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300"
           placeholder="nama lengkap"
-          onChange={(e) => setUserDataUpdate((prevUserData) => ({
-            ...prevUserData,
-            username: e.target.value,
-          }))}
+          onChange={(e) =>
+            setUserDataUpdate((prevUserData) => ({
+              ...prevUserData,
+              username: e.target.value,
+            }))
+          }
           defaultValue={userAuth.username}
           disabled={!editBio}
         />
       </div>
 
       <div
-        className={`flex flex-col gap-3 ${!editBio
-          ? 'items-start md:flex-row md:justify-between md:items-center'
-          : 'gap-24 md:gap-60 lg:gap-24 xl:gap-24 md:flex-row md: md:items-center'
-          }`}
+        className={`flex flex-col gap-3 ${
+          !editBio
+            ? 'items-start md:flex-row md:justify-between md:items-center'
+            : 'gap-24 md:gap-60 lg:gap-24 xl:gap-24 md:flex-row md: md:items-center'
+        }`}
       >
         <p className="text-sm lg:text-base">Jenis Kelamin</p>
 
@@ -403,9 +409,8 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
             type="text"
             className="w-1/4 md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300"
             placeholder="jenis kelamin"
-
             // aneh anjg
-            value={userAuth.gender == "woman" ? "wanita" : "pria"}
+            value={userAuth.gender == 'woman' ? 'wanita' : 'pria'}
             disabled={!editBio}
           />
         ) : (
@@ -416,7 +421,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
               id="gender-man"
               value="man"
               onChange={(e) => handleChange(e.target)}
-              defaultChecked={userAuth.gender == "man" ? true : false}
+              defaultChecked={userAuth.gender == 'man' ? true : false}
             />
             <label htmlFor="gender-man" className="text-sm me-10">
               Pria
@@ -428,7 +433,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
               id="gender-woman"
               value="woman"
               onChange={(e) => handleChange(e.target)}
-              defaultChecked={userAuth.gender == "woman" ? true : false}
+              defaultChecked={userAuth.gender == 'woman' ? true : false}
             />
             <label htmlFor="gender-woman" className="text-sm">
               Wanita
@@ -441,28 +446,30 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
         <label className="text-sm w-fit lg:text-base">Alamat</label>
 
         {editBio ? (
-          <div className='flex gap-10 w-3/4 md:w-1/2 lg:w-3/4 flex-wrap'>
-
+          <div className="flex gap-10 w-3/4 md:w-1/2 lg:w-3/4 flex-wrap">
             {/* Select provinsi */}
             <select
-              className='h-10 rounded w-3/4 xl:w-full px-3 text-xs'
+              className="h-10 rounded w-3/4 xl:w-full px-3 text-xs"
               name="provinsi"
               id="provinsi"
               onChange={(e) => {
-                fetchKota(e.target.value)
-                const selectedOption =
-                  e.target.options[e.target.selectedIndex];
+                fetchKota(e.target.value);
+                const selectedOption = e.target.options[e.target.selectedIndex];
                 const selectedName = selectedOption.getAttribute('name');
 
                 setUserDataUpdate((prevUserData) => ({
                   ...prevUserData,
                   prov: selectedName,
                 }));
-              }}>
-
-              <option value="" selected className='text-grey-400'>Provinsi</option>
-              {allProvinsi.map(provinsi => (
-                <option name={provinsi.name} value={provinsi.id}>{provinsi.name}</option>
+              }}
+            >
+              <option value="" selected className="text-grey-400">
+                Provinsi
+              </option>
+              {allProvinsi.map((provinsi) => (
+                <option name={provinsi.name} value={provinsi.id}>
+                  {provinsi.name}
+                </option>
               ))}
             </select>
             {/* <Box sx={{ minWidth: 120, backgroundColor: 'white' }}>
@@ -499,11 +506,11 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
 
             {/* Select kota */}
             <select
-              className='h-10 rounded w-3/4 xl:w-full px-3 text-xs'
+              className="h-10 rounded w-3/4 xl:w-full px-3 text-xs"
               name="kota"
               id="kota"
               onChange={(e) => {
-                fetchKecamatan(e.target.value)
+                fetchKecamatan(e.target.value);
                 const selectedOption = e.target.options[e.target.selectedIndex];
                 const selectedName = selectedOption.getAttribute('name');
 
@@ -511,11 +518,15 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
                   ...prevUserData,
                   kab: selectedName,
                 }));
-              }}>
-
-              <option value="" selected className='text-grey-400'>Kota</option>
-              {allKota.map(kota => (
-                <option name={kota.name} value={kota.id}>{kota.name}</option>
+              }}
+            >
+              <option value="" selected className="text-grey-400">
+                Kota
+              </option>
+              {allKota.map((kota) => (
+                <option name={kota.name} value={kota.id}>
+                  {kota.name}
+                </option>
               ))}
             </select>
 
@@ -538,11 +549,11 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
 
             {/* Select kecamatan */}
             <select
-              className='h-10 rounded w-3/4 xl:w-full px-3 text-xs'
+              className="h-10 rounded w-3/4 xl:w-full px-3 text-xs"
               name="kecamatan"
               id="kecamatan"
               onChange={(e) => {
-                fetchKelurahan(e.target.value)
+                fetchKelurahan(e.target.value);
                 const selectedOption = e.target.options[e.target.selectedIndex];
                 const selectedName = selectedOption.getAttribute('name');
 
@@ -550,11 +561,15 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
                   ...prevUserData,
                   kec: selectedName,
                 }));
-              }}>
-
-              <option value="" selected className='text-grey-400'>Kecamatan</option>
-              {allKecamatan.map(kecamatan => (
-                <option name={kecamatan.name} value={kecamatan.id}>{kecamatan.name}</option>
+              }}
+            >
+              <option value="" selected className="text-grey-400">
+                Kecamatan
+              </option>
+              {allKecamatan.map((kecamatan) => (
+                <option name={kecamatan.name} value={kecamatan.id}>
+                  {kecamatan.name}
+                </option>
               ))}
             </select>
 
@@ -576,11 +591,10 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
 
             {/* Select kelurahan */}
             <select
-              className='h-10 rounded w-3/4 xl:w-full px-3 text-xs'
+              className="h-10 rounded w-3/4 xl:w-full px-3 text-xs"
               name="kelurahan"
               id="kelurahan"
               onChange={(e) => {
-
                 const selectedOption = e.target.options[e.target.selectedIndex];
                 const selectedName = selectedOption.getAttribute('name');
 
@@ -588,11 +602,15 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
                   ...prevUserData,
                   kel: selectedName,
                 }));
-              }}>
-
-              <option value="" selected className='text-grey-400'>Kelurahan</option>
-              {allKelurahan.map(kelurahan => (
-                <option name={kelurahan.name} value={kelurahan.id}>{kelurahan.name}</option>
+              }}
+            >
+              <option value="" selected className="text-grey-400">
+                Kelurahan
+              </option>
+              {allKelurahan.map((kelurahan) => (
+                <option name={kelurahan.name} value={kelurahan.id}>
+                  {kelurahan.name}
+                </option>
               ))}
             </select>
             {/* <Box sx={{ minWidth: 120, backgroundColor: 'white' }}>
@@ -613,7 +631,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
             </Box> */}
           </div>
         ) : (
-
           <input
             type="text"
             className="w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300"
@@ -623,8 +640,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
             name="address"
           />
         )}
-
-
       </div>
 
       <div className="flex flex-col gap-3 items-start md:flex-row md:justify-between md:items-center">

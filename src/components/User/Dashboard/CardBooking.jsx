@@ -58,7 +58,7 @@ const CardBooking = ({ businessId }) => {
       pageNumber * reservationsPerPage,
       (pageNumber + 1) * reservationsPerPage
     )
-    .map((booking) => (<Card key={booking.id} booking={booking} />));
+    .map((booking) => <Card key={booking.id} booking={booking} />);
 
   const handlePageChange = ({ selected }) => {
     setPageNumber(selected);
@@ -67,7 +67,8 @@ const CardBooking = ({ businessId }) => {
   return (
     <div className="w-screen lg:w-full pb-10 px-5 ">
       <div className="w-full mb-5">
-        <p className="text-lg font-bold text-center w-full underline underline-offset-8">
+        <p className="text-lg font-bold text-center w-full underline underline-offset-8 mt-10">
+        {/* <p className="text-lg font-bold text-center w-full  underline-offset-8"> */}
           Pesanan Masuk
         </p>
       </div>
@@ -78,19 +79,16 @@ const CardBooking = ({ businessId }) => {
         ))} */}
         {/* {console.log("display reservations ", displayReservations)} */}
 
-
         {displayReservations}
       </div>
 
       {dataReservation?.length > 0 ? (
-
         <ReactPaginate
           className="flex space-x-5 justify-center items-center mt-10"
           previousLabel={'Previous'}
           nextLabel={'Next'}
           pageCount={pageCount}
           onPageChange={handlePageChange}
-
           //UI
           containerClassName={'pagination'}
           activeClassName={
@@ -100,14 +98,15 @@ const CardBooking = ({ businessId }) => {
           previousClassName={'px-2 py-1 rounded text-white bg-blue-600'}
         />
       ) : (
-        <p className='w-fit text-center bg-white mx-auto px-3 py-2 rounded-sm shadow drop-shadow '>Belum ada pesanan</p>
+        <p className="w-fit text-center bg-white mx-auto px-3 py-2 rounded-sm shadow drop-shadow ">
+          Belum ada pesanan
+        </p>
       )}
     </div>
   );
 };
 
 const Card = ({ booking }) => {
-
   return (
     <div className="flex flex-col gap-4 p-4 bg-white rounded drop-shadow ">
       <div className="flex gap-2 justify-between items-center">

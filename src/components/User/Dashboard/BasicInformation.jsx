@@ -152,17 +152,23 @@ const Form = ({ businessByUUID }) => {
       formUpdateBusiness.append('name', businessData.name);
       formUpdateBusiness.append('email', businessData.email);
       formUpdateBusiness.append('phone', businessData.phone);
-      //   formUpdateBusiness.append('img1', unsetImageBusiness);
-      //   formUpdateBusiness.append('img2', unsetImageBusiness);
-      //   formUpdateBusiness.append('img3', unsetImageBusiness);
+      formUpdateBusiness.append('img1', null);
+      formUpdateBusiness.append('img2', null);
+      formUpdateBusiness.append('img3', null);
+      formUpdateBusiness.append('img4', null);
+      formUpdateBusiness.append('img5', null);
       formUpdateBusiness.append(
         'address',
         JSON.stringify(arrayAddressBusiness)
       );
       formUpdateBusiness.append(
-        'address',
+        'addressId',
         JSON.stringify(arrayAddressIdBusiness)
       );
+
+      console.log(arrayAddressBusiness);
+      console.log(arrayAddressIdBusiness);
+      console.log(formUpdateBusiness);
 
       await axios.patch(
         `${import.meta.env.VITE_API_URL}/business/${businessByUUID.uuid}`,
@@ -170,6 +176,7 @@ const Form = ({ businessByUUID }) => {
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
 
+      window.location.reload();
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -181,9 +188,7 @@ const Form = ({ businessByUUID }) => {
 
   return (
     <div className="bg-white w-full rounded-lg p-4 lg:p-8 drop-shadow-md">
-      <p className="text-base md:text-lg font-semibold">
-        Informasi Dasar{' '}
-      </p>
+      <p className="text-base md:text-lg font-semibold">Informasi Dasar </p>
 
       <hr className="my-5" />
 

@@ -213,7 +213,6 @@ const BusinessRegistration = () => {
         formUpdate,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
-
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -222,6 +221,8 @@ const BusinessRegistration = () => {
       }
     }
   };
+
+  // const navigate = useNavigate();
 
   const createBusiness = async (e) => {
     // e.preventDefault();
@@ -242,8 +243,8 @@ const BusinessRegistration = () => {
         addressId: arrayAddressIdBusiness,
       });
 
-      window.location.reload()
-
+      // window.location.reload()
+      navigate('/dashboard');
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -267,8 +268,7 @@ const BusinessRegistration = () => {
     getProvBusiness();
   }, [dispatch, navigate]);
 
-  useEffect(() => {
-  }, [addressSelectedUser, addressSelectedBusiness]);
+  useEffect(() => {}, [addressSelectedUser, addressSelectedBusiness]);
   //useefeect
 
   const handleSubmit = async () => {
@@ -283,7 +283,7 @@ const BusinessRegistration = () => {
 
   return (
     <Layout>
-      <div className='w-3/4 mx-auto my-24'>
+      <div className="w-3/4 mx-auto my-24">
         <h1 align="center" class="text-3xl font-semibold pt-10">
           Form Pengajuan Usaha
         </h1>
@@ -340,7 +340,9 @@ const BusinessRegistration = () => {
                 }
                 required
               />
-              <label htmlFor='male' class="ml-2">Pria</label>
+              <label htmlFor="male" class="ml-2">
+                Pria
+              </label>
               <input
                 type="radio"
                 name="gender"
@@ -355,7 +357,9 @@ const BusinessRegistration = () => {
                 }
                 required
               />
-              <label htmlFor='female' class="ml-2">Wanita</label>
+              <label htmlFor="female" class="ml-2">
+                Wanita
+              </label>
             </div>
             <div class="flex flex-row my-6">
               <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
@@ -387,7 +391,9 @@ const BusinessRegistration = () => {
                 id="phoneNumber"
                 className="border"
                 class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
-                placeholder={userAuth.phone ? userAuth.phone : 'No. Telepon Anda'}
+                placeholder={
+                  userAuth.phone ? userAuth.phone : 'No. Telepon Anda'
+                }
                 onChange={(e) =>
                   setUserData({
                     ...userData,
@@ -589,9 +595,9 @@ const BusinessRegistration = () => {
                 Jenis Usaha
               </label>
               <input
-                id='barbershop'
+                id="barbershop"
                 type="radio"
-                name='jenis-usaha'
+                name="jenis-usaha"
                 value="barbershop"
                 className="border"
                 onChange={(e) =>
@@ -602,12 +608,14 @@ const BusinessRegistration = () => {
                 }
                 required
               />
-              <label htmlFor='barbershop' class="ml-2">Barbershop</label>
+              <label htmlFor="barbershop" class="ml-2">
+                Barbershop
+              </label>
               <input
-                id='salon'
+                id="salon"
                 type="radio"
                 value="salon"
-                name='jenis-usaha'
+                name="jenis-usaha"
                 className="border ml-12"
                 onChange={(e) =>
                   setBusinessData({
@@ -617,7 +625,9 @@ const BusinessRegistration = () => {
                 }
                 required
               />
-              <label htmlFor='salon' class="ml-2">Salon</label>
+              <label htmlFor="salon" class="ml-2">
+                Salon
+              </label>
             </div>
             <div class="flex flex-row my-6">
               <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
@@ -806,7 +816,7 @@ const BusinessRegistration = () => {
             <button
               class="mt-5 ml-80 bg-rose-400 hover:bg-rose-600 text-white font-bold py-2 px-5 rounded shadow-lg"
               onClick={handleSubmit}
-            // type="submit"
+              // type="submit"
             >
               Simpan
             </button>
