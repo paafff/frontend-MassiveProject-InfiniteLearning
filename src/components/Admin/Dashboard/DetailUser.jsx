@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FaUserCircle, FaTrashAlt } from 'react-icons/fa';
-import { MdEditSquare } from "react-icons/md";
+import { MdEditSquare } from 'react-icons/md';
 
 const DetailUser = ({ selectedUserUUID }) => {
   return (
@@ -133,12 +133,12 @@ const Form = ({ selectedUserUUID }) => {
       </div>
       <hr className="my-3" />
       <div className="w-full flex justify-end items-center">
-        <div className="w-fit px-3 py-2 bg-green-600 hover:bg-green-700 hover:cursor-pointer rounded flex gap-3">
-          <MdEditSquare className="inline-block text-white" />
-          <button onClick={updateRoleUser} className="text-xs text-white">
+          <div onClick={updateRoleUser} className="w-fit px-3 py-2 bg-green-600 hover:bg-green-700 hover:cursor-pointer rounded flex gap-3">
+            <MdEditSquare className="inline-block text-white" />
+        <button  className="text-xs text-white">
             Update Role
-          </button>
-        </div>
+        </button>
+          </div>
       </div>
     </div>
   );

@@ -67,6 +67,7 @@ const Navbar = () => {
           setDropdownProfile={setDropdownProfile}
           mobileNavbar={mobileNavbar}
           isLogin={isLogin}
+          user={userAuth}
         />
 
         <DropdownCategory
@@ -177,7 +178,7 @@ const NavbarWebsite = ({
           className="text-sm font-medium py-1 px-7 items-center rounded-sm transition-all flex gap-3"
         >
           {user?.profileURL ? (
-            <div className='w-10 h-10 bg-red-500 rounded-full bg-no-repeat' style={{ backgroundImage: `url(${user?.profileURL})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div className='w-10 h-10 bg-white rounded-full bg-no-repeat' style={{ backgroundImage: `url(${user?.profileURL})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
 
             </div>
           ) : (
@@ -203,7 +204,7 @@ const NavbarMobile = ({
   dropdownKategori,
   dropdownProfile,
   setDropdownProfile,
-  isLogin,
+  isLogin,user
 }) => {
   return (
     <div
@@ -241,8 +242,13 @@ const NavbarMobile = ({
           // onBlur={() => setDropdownProfile(!dropdownProfile)}
           className="text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3"
         >
-          <FaUserCircle className="inline-block scale-[2]" />
-          <FaAngleDown className="inline-block" />
+         {user?.profileURL ? (
+            <div className='w-10 h-10 bg-white rounded-full bg-no-repeat' style={{ backgroundImage: `url(${user?.profileURL})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+
+            </div>
+          ) : (
+            <FaUserCircle className="inline-block scale-[2]" />
+          )}
         </Link>
       ) : (
         <Link
