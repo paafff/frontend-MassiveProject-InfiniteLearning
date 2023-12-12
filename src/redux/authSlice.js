@@ -7,7 +7,7 @@ export const getMe = createAsyncThunk(
   'user/getme',
   async (unusedParameter, thunkAPI) => {
     try {
-      const response = await axios.get('http://localhost:5000/getme');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/getme`);
 
       return response.data;
     } catch (error) {
@@ -21,7 +21,7 @@ export const getMe = createAsyncThunk(
 
 // Aksi untuk melakukan logout user
 export const logOut = createAsyncThunk('user/LogOut', async () => {
-  await axios.delete('http://localhost:5000/logout');
+  await axios.delete(`${import.meta.env.VITE_API_URL}/logout`);
   alert('Sukses logout');
 });
 

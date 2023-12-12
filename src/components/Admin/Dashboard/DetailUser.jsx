@@ -17,12 +17,12 @@ const DetailUser = ({ selectedUserUUID }) => {
 
 const Form = ({ selectedUserUUID }) => {
   const [dataUser, setDataUser] = useState('');
-  const [date, setDate] = useState(null)
+  const [date, setDate] = useState(null);
 
   useEffect(() => {
     const getUserByUUID = async () => {
       try {
-        const response = await axios(
+        const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/user/${selectedUserUUID}`
         );
 
@@ -39,20 +39,37 @@ const Form = ({ selectedUserUUID }) => {
 
     getUserByUUID();
 
-
     if (dataUser) {
+      const dateString = dataUser?.createdAt;
+      const dateObj = new Date(dateString);
+      const utcString = dateObj.toISOString();
 
-      const dateString = dataUser?.createdAt
-      const dateObj = new Date(dateString)
-      const utcString = dateObj.toISOString()
-
-      setDate(dateObj)
+      setDate(dateObj);
     }
-
   }, [selectedUserUUID]);
 
-  return (
+  const [role, setRole] = useState('');
+  const updateRoleUser = async () => {
+    try {
+      await axios.patch(
+        `${import.meta.env.VITE_API_URL}/user-role/${selectedUserUUID}`,
+        {
+          role: role,
+        }
+      );
 
+      console.log(role);
+      alert('berhasil mengubah role user');
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.msg);
+      } else {
+        console.log(error);
+      }
+    }
+  };
+
+  return (
     <div className="flex flex-col gap-4 px-3">
       <div className="w-20 h-20">
         {dataUser ? (
@@ -95,11 +112,28 @@ const Form = ({ selectedUserUUID }) => {
           defaultValue={date}
         />
       </div>
+
+      <select
+        onChange={(e) => setRole(e.target.value)}
+        class="w-60 px-2 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      >
+        <option selected disabled>
+          Pilih Role
+        </option>
+        <option value={'Admin'}>Admin</option>
+        <option value={'Superuser'}>SuperUser</option>
+        <option value={'user'}>User</option>
+        {/* {days.map(day => (
+                <option value={day}>{day}</option>
+              ))} */}
+      </select>
       <hr className="my-3" />
       <div className="w-full flex justify-end items-center">
         <div className="w-fit px-3 py-2 bg-red-600 hover:bg-red-700 hover:cursor-pointer rounded flex gap-3">
           <FaTrashAlt className="inline-block text-white" />
-          <p className="text-xs text-white">Suspend User</p>
+          <button onClick={updateRoleUser} className="text-xs text-white">
+            Updateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+          </button>
         </div>
       </div>
     </div>

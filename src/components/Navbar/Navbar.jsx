@@ -146,7 +146,8 @@ const NavbarWebsite = ({
   dropdownKategori,
   dropdownProfile,
   setDropdownProfile,
-  isLogin,user
+  isLogin,
+  user,
 }) => {
   return (
     <div className="text-white hidden lg:flex xl:flex items-center justify-end gap-6 w-3/4 xl:w-full ">
@@ -176,7 +177,7 @@ const NavbarWebsite = ({
           // onBlur={() => setDropdownProfile(!dropdownProfile)}
           className="text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3"
         >
-          <img src={user?.profileURL} className='w-8 rounded-full'/>
+          <img src={user?.profileURL} className="w-8 rounded-full" />
           {/* <FaAngleDown className="inline-block" /> */}
           {/* <FaUserCircle className="inline-block scale-[2]" /> */}
         </Link>
