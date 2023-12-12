@@ -32,9 +32,8 @@ const HumbergerMenu = ({ showSidebar, setShowSidebar }) => {
   return (
     <svg
       onClick={() => setShowSidebar(!showSidebar)}
-      className={`w-5 h-5  transition-all text-zinc-900 lg:hidden mb-10 rotate-90 ${
-        showSidebar ? 'ml-80 rotate-180' : 'ml-0'
-      } `}
+      className={`w-5 h-5  transition-all text-zinc-900 lg:hidden mb-10 rotate-90 ${showSidebar ? 'ml-80 rotate-180' : 'ml-0'
+        } `}
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -141,8 +140,89 @@ const Form = ({ businessByUUID }) => {
     neighborhoods: '',
   });
 
-  const arrayAddressBusiness = ['lala', 'lala', 'lala', 'lala', 'lala'];
-  const arrayAddressIdBusiness = ['lala', 'lala', 'lala', 'lala', 'lala'];
+  const [arrayAddressBusiness, setArrayAddressBusiness] = useState(['lala', 'lala', 'lala', 'lala']);
+  const [arrayAddressIdBusiness, setArrayAddressIdBusiness] = useState(['lala', 'lala', 'lala', 'lala']);
+
+  const handleProv = (e) => {
+    const idProv = allProvinsi[e].id
+    const nameProv = allProvinsi[e].name
+
+    fetchKota(idProv)
+
+    setArrayAddressBusiness((prevArray) => {
+      const newArray = [...prevArray];
+      newArray[0] = nameProv;
+      return newArray;
+    });
+
+    setArrayAddressIdBusiness((prevArray) => {
+      const newArray = [...prevArray];
+      newArray[0] = idProv;
+      return newArray;
+    });
+
+  }
+
+  const handleCity = (e) => {
+    
+    const idCity = allKota[e].id
+    const nameCity = allKota[e].name
+    
+    fetchKecamatan(idCity)
+
+    setArrayAddressBusiness((prevArray) => {
+      const newArray = [...prevArray];
+      newArray[1] = nameCity;
+      return newArray;
+    });
+
+    setArrayAddressIdBusiness((prevArray) => {
+      const newArray = [...prevArray];
+      newArray[1] = idCity;
+      return newArray;
+    });
+
+  }
+
+  const handleDistrict = (e) => {
+    
+    const idDisctrict = allKecamatan[e].id
+    const nameDisctrict = allKecamatan[e].name
+    
+    fetchKelurahan(idDisctrict)
+
+    setArrayAddressBusiness((prevArray) => {
+      const newArray = [...prevArray];
+      newArray[2] = nameDisctrict;
+      return newArray;
+    });
+
+    setArrayAddressIdBusiness((prevArray) => {
+      const newArray = [...prevArray];
+      newArray[2] = idDisctrict;
+      return newArray;
+    });
+
+  }
+
+  const handleNeighborhood = (e) => {
+    
+    const idNeighborhood = allKelurahan[e].id
+    const nameNeighborhood = allKelurahan[e].name
+
+    setArrayAddressBusiness((prevArray) => {
+      const newArray = [...prevArray];
+      newArray[3] = nameNeighborhood;
+      return newArray;
+    });
+
+    setArrayAddressIdBusiness((prevArray) => {
+      const newArray = [...prevArray];
+      newArray[3] = idNeighborhood;
+      return newArray;
+    });
+
+  }
 
   const updateBusiness = async (e) => {
     e.preventDefault();
@@ -150,7 +230,7 @@ const Form = ({ businessByUUID }) => {
       const formUpdateBusiness = new FormData();
 
       formUpdateBusiness.append('name', businessData.name);
-      formUpdateBusiness.append('email', businessData.email);
+      formUpdateBusiness.append('email', businessData.email ? businessData?.email : businessByUUID?.email);
       formUpdateBusiness.append('phone', businessData.phone);
       formUpdateBusiness.append('img1', null);
       formUpdateBusiness.append('img2', null);
@@ -166,9 +246,9 @@ const Form = ({ businessByUUID }) => {
         JSON.stringify(arrayAddressIdBusiness)
       );
 
-      console.log(arrayAddressBusiness);
-      console.log(arrayAddressIdBusiness);
-      console.log(formUpdateBusiness);
+      // console.log(arrayAddressBusiness);
+      // console.log(arrayAddressIdBusiness);
+      // console.log(formUpdateBusiness);
 
       await axios.patch(
         `${import.meta.env.VITE_API_URL}/business/${businessByUUID.uuid}`,
@@ -247,7 +327,7 @@ const Form = ({ businessByUUID }) => {
               <select
                 disabled={editForm}
                 onSubmit={(e) => handleChange(e.target)}
-                onChange={(e) => fetchKota(e.target.value)}
+                onChange={(e) => handleProv(e.target.value)}
                 name="province"
                 id="province"
                 className="w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200"
@@ -255,8 +335,8 @@ const Form = ({ businessByUUID }) => {
                 <option value="" className="">
                   Pilih Provinsi
                 </option>
-                {allProvinsi.map((provinsi) => (
-                  <option value={provinsi.id} key={provinsi.id} className="">
+                {allProvinsi.map((provinsi, index) => (
+                  <option value={index} key={provinsi.name} className="">
                     {provinsi.name}
                   </option>
                 ))}
@@ -264,7 +344,7 @@ const Form = ({ businessByUUID }) => {
 
               <select
                 disabled={editForm}
-                onChange={(e) => fetchKecamatan(e.target.value)}
+                onChange={(e) => handleCity(e.target.value)}
                 name="city"
                 id="city"
                 className="w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200"
@@ -272,8 +352,8 @@ const Form = ({ businessByUUID }) => {
                 <option value="" className="">
                   Pilih Kota / Kabupaten
                 </option>
-                {allKota.map((kota) => (
-                  <option value={kota.id} className="" key={kota.id}>
+                {allKota.map((kota, index) => (
+                  <option value={index} className="" key={kota.id}>
                     {kota.name}{' '}
                   </option>
                 ))}
@@ -281,7 +361,7 @@ const Form = ({ businessByUUID }) => {
 
               <select
                 disabled={editForm}
-                onChange={(e) => fetchKelurahan(e.target.value)}
+                onChange={(e) => handleDistrict(e.target.value)}
                 name="district"
                 id="district"
                 className="w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200"
@@ -289,8 +369,8 @@ const Form = ({ businessByUUID }) => {
                 <option value="" className="">
                   Pilih Kecamatan
                 </option>
-                {allKecamatan.map((kecamatan) => (
-                  <option value={kecamatan.id} className="" key={kecamatan.id}>
+                {allKecamatan.map((kecamatan, index) => (
+                  <option value={index} className="" key={kecamatan.id}>
                     {kecamatan.name}
                   </option>
                 ))}
@@ -300,13 +380,14 @@ const Form = ({ businessByUUID }) => {
                 disabled={editForm}
                 name="neighborhoods"
                 id="neighborhoods"
+                onChange={(e)=>handleNeighborhood(e.target.value)}
                 className="w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200"
               >
                 <option value="" className="">
                   Pilih Kelurahan
                 </option>
-                {allKelurahan.map((kelurahan) => (
-                  <option value={kelurahan.id} className="" key={kelurahan.id}>
+                {allKelurahan.map((kelurahan, index) => (
+                  <option value={index} className="" key={kelurahan.id}>
                     {kelurahan.name}
                   </option>
                 ))}

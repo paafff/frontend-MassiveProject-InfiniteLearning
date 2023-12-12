@@ -34,6 +34,8 @@ const DetailBussiness = ({ businessByUUID, sosmed }) => {
         <p className="text-base md:text-lg font-semibold">Detail Usaha</p>
         <hr className="my-5" />
 
+        <p className='text-sm mb-2'>Foto</p>
+        <p className='text-xs text-gray-400 mb-2'>Unggah foto dengan format JPG 1:1 </p>
         <div className="xl:flex xl:flex-row flex flex-col gap-4 mb-6">
           <Banner
             editForm={editForm}

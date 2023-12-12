@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FaUserCircle, FaTrashAlt } from 'react-icons/fa';
+import { MdEditSquare } from "react-icons/md";
 
 const DetailUser = ({ selectedUserUUID }) => {
   return (
@@ -113,26 +114,29 @@ const Form = ({ selectedUserUUID }) => {
         />
       </div>
 
-      <select
-        onChange={(e) => setRole(e.target.value)}
-        class="w-60 px-2 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-      >
-        <option selected disabled>
-          Pilih Role
-        </option>
-        <option value={'Admin'}>Admin</option>
-        <option value={'Superuser'}>SuperUser</option>
-        <option value={'user'}>User</option>
-        {/* {days.map(day => (
+      <div className="flex flex-col gap-2">
+        <p className="text-xs">Role</p>
+        <select
+          onChange={(e) => setRole(e.target.value)}
+          className="w-full md:w-3/4 xl:w-1/2 text-xs focus:ring border border-gray-200 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-200"
+        >
+          <option selected disabled>
+            Pilih Role
+          </option>
+          <option value={'Admin'}>Admin</option>
+          <option value={'Superuser'}>SuperUser</option>
+          <option value={'user'}>User</option>
+          {/* {days.map(day => (
                 <option value={day}>{day}</option>
               ))} */}
-      </select>
+        </select>
+      </div>
       <hr className="my-3" />
       <div className="w-full flex justify-end items-center">
-        <div className="w-fit px-3 py-2 bg-red-600 hover:bg-red-700 hover:cursor-pointer rounded flex gap-3">
-          <FaTrashAlt className="inline-block text-white" />
+        <div className="w-fit px-3 py-2 bg-green-600 hover:bg-green-700 hover:cursor-pointer rounded flex gap-3">
+          <MdEditSquare className="inline-block text-white" />
           <button onClick={updateRoleUser} className="text-xs text-white">
-            Updateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+            Update Role
           </button>
         </div>
       </div>

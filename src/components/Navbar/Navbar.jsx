@@ -121,9 +121,8 @@ const HumbergerMenu = ({ setMobileNavbar, mobileNavbar }) => {
       <svg
         onClick={() => setMobileNavbar(!mobileNavbar)}
         onBlur={() => setMobileNavbar(!mobileNavbar)}
-        className={`w-5 h-5 transition-all ${
-          mobileNavbar ? 'rotate-90' : 'rotate-0'
-        }`}
+        className={`w-5 h-5 transition-all ${mobileNavbar ? 'rotate-90' : 'rotate-0'
+          }`}
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -175,11 +174,16 @@ const NavbarWebsite = ({
           to="#"
           onClick={() => setDropdownProfile(!dropdownProfile)}
           // onBlur={() => setDropdownProfile(!dropdownProfile)}
-          className="text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3"
+          className="text-sm font-medium py-1 px-7 items-center rounded-sm transition-all flex gap-3"
         >
-          <img src={user?.profileURL} className="w-8 rounded-full" />
+          {user?.profileURL ? (
+            <div className='w-10 h-10 bg-red-500 rounded-full bg-no-repeat' style={{ backgroundImage: `url(${user?.profileURL})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+
+            </div>
+          ) : (
+            <FaUserCircle className="inline-block scale-[2]" />
+          )}
           {/* <FaAngleDown className="inline-block" /> */}
-          {/* <FaUserCircle className="inline-block scale-[2]" /> */}
         </Link>
       ) : (
         <Link
@@ -203,9 +207,8 @@ const NavbarMobile = ({
 }) => {
   return (
     <div
-      className={`w-full h-fit z-20 px-3 py-7 md:px-8 flex flex-col gap-6 lg:hidden xl:hidden bg-[#1a1a1a] absolute transition-all text-white top-24 ${
-        mobileNavbar ? 'left-0' : 'left-[-450px] md:left-[-780px]'
-      }`}
+      className={`w-full h-fit z-20 px-3 py-7 md:px-8 flex flex-col gap-6 lg:hidden xl:hidden bg-[#1a1a1a] absolute transition-all text-white top-24 ${mobileNavbar ? 'left-0' : 'left-[-450px] md:left-[-780px]'
+        }`}
     >
       <div className="flex gap-2">
         <input
