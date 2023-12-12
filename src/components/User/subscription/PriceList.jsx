@@ -38,13 +38,14 @@ const PriceList = ({ textColor, title, borderColor, price, text, services, bgCol
                 </div>
             </div>
             {pathname != '/subscription' ? (
-                <div className={`w-full h-16 flex justify-center items-center rounded-3xl ${bgColor} hover:scale-95 transition-all shadow-lg hover:shadow-none hover:cursor-pointer`}>
-                    <p className='text-white font-semibold tracking-wider text-lg'>
-                        <Link to="/subscription">
+                <Link to="/subscription">
+                    <div className={`w-full h-16 flex justify-center items-center rounded-3xl ${bgColor} hover:scale-95 transition-all shadow-lg hover:shadow-none hover:cursor-pointer`}>
+                        <p className='text-white font-semibold tracking-wider text-lg'>
+
                             Dapatkan Sekarang
-                        </Link>
-                    </p>
-                </div>
+                        </p>
+                    </div>
+                </Link>
             ) : ""}
         </div>
     )
