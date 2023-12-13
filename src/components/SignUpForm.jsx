@@ -4,14 +4,17 @@ import { MdMail } from 'react-icons/md';
 import { FaUnlock } from 'react-icons/fa';
 import { FaKey } from 'react-icons/fa6';
 import Logosignup from '../assets/images/logo/signup.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const SignUpForm = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const navigate = useNavigate()
 
   const authRegister = async (e) => {
     e.preventDefault();
@@ -26,9 +29,18 @@ const SignUpForm = () => {
           confPassword: confirmPassword,
         }
       );
-      alert(response.data.msg);
-      // navigate('/');
-      window.location.reload();
+
+      Swal.fire({
+        icon:'success',
+        title: 'Registrasi berhasil',
+        confirmButtonText: 'Oke',
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          navigate('/login');
+        }
+      })
+
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg); // Menampilkan pesan error sebagai popup

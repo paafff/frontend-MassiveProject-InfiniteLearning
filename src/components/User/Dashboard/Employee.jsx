@@ -6,6 +6,7 @@ import { FaRegCopy, FaSave, FaUserCircle, FaEye } from 'react-icons/fa';
 import { FiEdit } from 'react-icons/fi';
 import { IoReturnDownBackOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Employee = ({ businessByUUID }) => {
   const pictureRef = useRef('');
@@ -93,7 +94,17 @@ const Form = ({
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
-      window.location.reload()
+      Swal.fire({
+        icon: 'success',
+        title: 'Berhasil menambahkan karyawan',
+        confirmButtonText: 'Oke',
+      }).then((result) => {
+
+        if (result.isConfirmed) {
+          window.location.reload()
+        }
+      })
+
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);

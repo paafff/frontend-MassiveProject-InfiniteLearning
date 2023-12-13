@@ -4,6 +4,7 @@ import { FiEdit } from 'react-icons/fi';
 import { FaSave } from 'react-icons/fa';
 import { IoReturnDownBackOutline } from 'react-icons/io5';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Services = ({ businessByUUID }) => {
   const [editForm, setEditForm] = useState(true);
@@ -80,7 +81,6 @@ const Services = ({ businessByUUID }) => {
   };
 
   const handlePrice = (price, value) => {
-    console.log('mengisi harga service ke- ', price);
 
     switch (price) {
       case 'price1':
@@ -147,7 +147,17 @@ const Services = ({ businessByUUID }) => {
         businessId: businessId,
       });
 
-      window.location.reload()
+      Swal.fire({
+        icon: 'success',
+        title: 'Berhasil menambahkan layanan',
+        confirmButtonText: 'Oke',
+      }).then((result) => {
+
+        if (result.isConfirmed) {
+          window.location.reload()
+        }
+      })
+
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -221,6 +231,7 @@ const Services = ({ businessByUUID }) => {
             editForm={editForm}
             handleService={handleService}
             handlePrice={handlePrice}
+            businessByUUID={businessByUUID}
           />
 
           <Button
@@ -240,41 +251,71 @@ const Services = ({ businessByUUID }) => {
   );
 };
 
-const Service = ({ data, editForm, handleService, handlePrice }) => {
+const Service = ({ data, editForm, handleService, handlePrice, businessByUUID }) => {
   return (
     <>
       <div className="w-full flex flex-col gap-3">
-        {/* tampilkan 5 dropdown dengan onChange yg berbeda beda */}
+
         {[1, 2, 3, 4, 5].map((selectService, index) => (
           <div className="w-full flex gap-3" key={index}>
-            <select
-              onChange={(e) =>
-                handleService('srv' + (index + 1), e.target.value)
-              }
-              disabled={editForm}
-              name="service1"
-              className="w-1/2 text-xs py-2 px-3 rounded disabled:bg-gray-200 bg-gray-100"
-              id=""
-            >
-              <option value="" className="text-xs">
-                Pilih layanan
-              </option>
-              {data.map((service) => (
-                <option value={service.name} className="text-xs">
-                  {service.name}
-                </option>
-              ))}
-            </select>
 
-            <input
-              onChange={(e) =>
-                handlePrice('price' + (index + 1), e.target.value)
-              }
-              disabled={editForm}
-              className="disabled:bg-gray-200 bg-gray-100 rounded border border-gray-200 text-xs w-1/2 placeholder:text-xs px-2"
-              placeholder="Rp"
-              type="number"
-            />
+            {!editForm && (
+              <>
+                <select
+                  onChange={(e) =>
+                    handleService('srv' + (index + 1), e.target.value)
+                  }
+                  disabled={editForm}
+                  name="service1"
+                  className="w-1/2 text-xs py-2 px-3 rounded disabled:bg-gray-200 bg-gray-100"
+                  id=""
+                >
+                  <option value="" className="text-xs">
+                    Pilih layanan
+                  </option>
+                  {data.map((service) => (
+                    <option value={service.name} className="text-xs">
+                      {service.name}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  onChange={(e) =>
+                    handlePrice('price' + (index + 1), e.target.value)
+                  }
+                  disabled={editForm}
+                  className="disabled:bg-gray-200 bg-gray-100 rounded border border-gray-200 text-xs w-1/2 placeholder:text-xs px-2"
+                  placeholder="Rp"
+                  type="number"
+                />
+              </>
+            )}
+
+            {editForm && (
+              <>
+                <input
+                  onChange={(e) =>
+                    handlePrice('price' + (index + 1), e.target.value)
+                  }
+                  placeholder={businessByUUID.services?.[0].name[index] }
+                  disabled={editForm}
+                  className="disabled:bg-gray-200 h-9 bg-gray-100 rounded border border-gray-200 text-xs w-1/2 placeholder:text-xs placeholder:text-zinc-900 px-2"
+                  
+                  type="number"
+                />
+
+                <input
+                  onChange={(e) =>
+                    handlePrice('price' + (index + 1), e.target.value)
+                  }
+                  disabled={editForm}
+                  className="disabled:bg-gray-200 h-9 bg-gray-100 rounded border border-gray-200 text-xs w-1/2 placeholder:text-xs placeholder:text-zinc-900 px-2"
+                  placeholder={"Rp "+businessByUUID.services?.[0].price[index]}
+                  type="number"
+                />
+              </>
+            )}
+
           </div>
         ))}
       </div>

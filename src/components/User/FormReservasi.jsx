@@ -6,6 +6,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { FaAddressBook } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaClock } from "react-icons/fa6";
+import Swal from 'sweetalert2';
 
 const style = {
   position: 'absolute',
@@ -39,7 +40,15 @@ const FormReservasi = ({ businessId, display, open, handleClose }) => {
         phone: phone,
         businessId: businessId,
       });
-      window.location.reload()
+
+      handleClose()
+
+      Swal.fire(
+        'Reservasi berhasil',
+        '',
+        'success'
+      )
+
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -155,7 +164,6 @@ const FormReservasi = ({ businessId, display, open, handleClose }) => {
                   <option selected disabled>
                     Pilih hari
                   </option>
-                  <option>Pilih hari</option>
                   {days.map(day => (
                     <option value={day}>{day}</option>
                   ))}
@@ -187,9 +195,9 @@ const FormReservasi = ({ businessId, display, open, handleClose }) => {
               {/* <div class="mr-6 bg-black hover:bg-gray-700 text-white font-bold py-2 px-5 rounded shadow-lg">
               Cancel
             </div> */}
-              <div class="bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-5 rounded shadow-lg">
-                <button type="submit">Submit</button>
-              </div>
+              <button type='submit' class="bg-green-600 hover:bg-green-800 transition-all text-white font-bold py-2 px-5 rounded shadow-lg">
+                <p >Submit</p>
+              </button>
             </div>
           </form>
         </div>

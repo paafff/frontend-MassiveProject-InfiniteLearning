@@ -13,13 +13,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from '../../../redux/authSlice';
-
-// Select
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import Swal from 'sweetalert2';
 
 const API_KEY =
   '7b397cea3811e3799ae20fd43ac78bcbc0dba2f5954d6fef4361e5fff3af76f1';
@@ -115,7 +109,7 @@ const ProfileCard = ({ userAuth }) => {
       <p className="text-sm">{userAuth.username}</p>
 
       <div className="flex gap-3">
-        <div className="w-10 h-10 hover:cursor-pointer bg-zinc-950 flex items-center justify-center rounded-full">
+        <div className="w-10 h-10 hover:cursor-not-allowed bg-zinc-950 flex items-center justify-center rounded-full">
           <IoMdShare className=" text-white text-base" />
         </div>
         <div className="w-10 h-10 hover:cursor-pointer bg-zinc-950 flex items-center justify-center rounded-full">
@@ -124,7 +118,7 @@ const ProfileCard = ({ userAuth }) => {
             className=" text-white text-base"
           />
         </div>
-        <div className="w-10 h-10 hover:cursor-pointer bg-red-700 flex items-center justify-center rounded-full">
+        <div className="w-10 h-10 hover:cursor-not-allowed bg-red-700 flex items-center justify-center rounded-full">
           <FaRegTrashCan className=" text-white text-base" />
         </div>
       </div>
@@ -134,6 +128,7 @@ const ProfileCard = ({ userAuth }) => {
 
 const Form = ({ editBio, setEditBio, userAuth }) => {
   const inputRef = useRef(null);
+  // const navigate = useNavigate()
 
   // Set picture change
   const handlePictureClick = () => {
@@ -183,6 +178,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
     username: '',
     email: '',
     gender: '',
+    phone: '',
     photoProfile: null,
 
     password: '',
@@ -190,11 +186,16 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
   });
 
   const arrayAddressUser = [
-    userDataUpdate.prov,
-    userDataUpdate.kab,
-    userDataUpdate.kec,
-    userDataUpdate.kel,
-    userDataUpdate.rtrw,
+    userDataUpdate.prov 
+    ? userDataUpdate.prov : userAuth?.address?.[0],
+    userDataUpdate.kab
+    ? userDataUpdate.kab : userAuth?.address?.[1],
+    userDataUpdate.kec
+    ? userDataUpdate.kec : userAuth?.address?.[2],
+    userDataUpdate.kel
+    ? userDataUpdate.kel : userAuth?.address?.[3],
+    userDataUpdate.rtrw
+    ? userDataUpdate.rtrw : userAuth?.address?.[4],
   ];
 
   const navigate = useNavigate();
@@ -208,6 +209,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
       formUpdate.append('email', userDataUpdate.email);
       formUpdate.append('gender', userDataUpdate.gender);
       formUpdate.append('photoProfile', userDataUpdate.photoProfile);
+      formUpdate.append('phone', userDataUpdate.phone);
       //   formUpdate.append('cardId', userDataUpdate.cardId);
       formUpdate.append('address', JSON.stringify(arrayAddressUser));
       // formUpdate.append('address', JSON.stringify(arrayAddressUser));
@@ -218,8 +220,18 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
 
-      // navigate('/user/dashboard');
-      window.location.reload();
+      Swal.fire({
+        icon:'success',
+        title: 'Ubah biodata berhasil',
+        confirmButtonText: 'Oke',
+      }).then((result) => {
+        
+        if (result.isConfirmed) {
+          window.location.reload()
+        }
+      })
+
+
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -228,49 +240,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
       }
     }
   };
-
-  // Fetch data for select
-  // const handleProvinsi = (e) => {
-
-  //   console.log("prov data id ", e.target.value[0]);
-  //   console.log("prov data name", e.target.value[1]);
-
-  //   fetchKota(e.target.value[0])
-
-  //   setUserDataUpdate((prevUserData) => ({
-  //     ...prevUserData,
-  //     prov: e.target.value[1],
-  //   }));
-  // }
-
-  // const handleKota = (e) => {
-  //   console.log("kota data id ", e.target.value[0]);
-  //   console.log("kota data name ", e.target.value[1]);
-  //   fetchKecamatan(e.target.value[0])
-  //   setUserDataUpdate((prevUserData) => ({
-  //     ...prevUserData,
-  //     kab: e.target.value[1],
-  //   }));
-  // }
-
-  // const handleKec = (e) => {
-  //   console.log("kec data id ", e.target.value[0]);
-  //   console.log("kec data name ", e.target.value[1]);
-  //   fetchKelurahan(e.target.value[0])
-  //   setUserDataUpdate((prevUserData) => ({
-  //     ...prevUserData,
-  //     kec: e.target.value[1],
-  //   }));
-  // }
-
-  // const handleKel = (e) => {
-  //   console.log("kec data id ", e.target.value[0]);
-  //   console.log("kec data name ", e.target.value[1]);
-  //   setUserDataUpdate((prevUserData) => ({
-  //     ...prevUserData,
-  //     kel: e.target.value[1],
-  //   }));
-  // }
 
   const [allProvinsi, setAllProvinsi] = useState([]);
   const [allKota, setAllKota] = useState([]);
@@ -449,7 +418,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
           <div className="flex gap-10 w-3/4 md:w-1/2 lg:w-3/4 flex-wrap">
             {/* Select provinsi */}
             <select
-              className="h-10 rounded w-3/4 xl:w-full px-3 text-xs"
+              className="h-10 rounded w-3/4 xl:w-full px-3 text-xs xl:text-sm"
               name="provinsi"
               id="provinsi"
               onChange={(e) => {
@@ -472,41 +441,11 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
                 </option>
               ))}
             </select>
-            {/* <Box sx={{ minWidth: 120, backgroundColor: 'white' }}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Provinsi</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="Age"
-                  onChange={(e) => {
-                    fetchKota(e.target.value)
-
-                    const selectedOption = e.target.opt
-                      e.target.options[e.target.selectedIndex];
-                    const selectedName = selectedOption.getAttribute('name');
-
-                    setUserDataUpdate((prevUserData) => ({
-                      ...prevUserData,
-                      kab: selectedName,
-                    }));
-
-                  }}
-
-                >
-                  {allProvinsi.map(provinsi => (
-
-                    <option value={provinsi.id}>{provinsi.name}</option>
-
-                  ))}
-
-                </Select>
-              </FormControl>
-            </Box> */}
+            
 
             {/* Select kota */}
             <select
-              className="h-10 rounded w-3/4 xl:w-full px-3 text-xs"
+              className="h-10 rounded w-3/4 xl:w-full px-3 text-xs xl:text-sm"
               name="kota"
               id="kota"
               onChange={(e) => {
@@ -530,26 +469,11 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
               ))}
             </select>
 
-            {/* <Box sx={{ minWidth: 120, backgroundColor: 'white' }}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Kota</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="Age"
-                  onChange={(e) => handleKota(e)}
-                >
-                  {allKota.map(kota => (
-                    <MenuItem value={[kota.id, kota.name]}>{kota.name}</MenuItem>
-                  ))}
-
-                </Select>
-              </FormControl>
-            </Box> */}
+            
 
             {/* Select kecamatan */}
             <select
-              className="h-10 rounded w-3/4 xl:w-full px-3 text-xs"
+              className="h-10 rounded w-3/4 xl:w-full px-3 text-xs xl:text-sm"
               name="kecamatan"
               id="kecamatan"
               onChange={(e) => {
@@ -573,25 +497,11 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
               ))}
             </select>
 
-            {/* <Box sx={{ minWidth: 120, backgroundColor: 'white' }}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Kecamatan</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="Age"
-                  onChange={(e) => handleKec(e)}
-                >
-                  {allKecamatan.map(kecamatan => (
-                    <MenuItem value={[kecamatan.id, kecamatan.name]}>{kecamatan.name}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Box> */}
+           
 
             {/* Select kelurahan */}
             <select
-              className="h-10 rounded w-3/4 xl:w-full px-3 text-xs"
+              className="h-10 rounded w-3/4 xl:w-full px-3 text-xs xl:text-sm"
               name="kelurahan"
               id="kelurahan"
               onChange={(e) => {
@@ -613,22 +523,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
                 </option>
               ))}
             </select>
-            {/* <Box sx={{ minWidth: 120, backgroundColor: 'white' }}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Kelurahan</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="Age"
-                  onChange={(e) => handleKel(e)}
-                >
-                  {allKelurahan.map(kelurahan => (
-                    <MenuItem value={[kelurahan.id, kelurahan.name]}>{kelurahan.name}</MenuItem>
-                  ))}
 
-                </Select>
-              </FormControl>
-            </Box> */}
           </div>
         ) : (
           <input
@@ -647,7 +542,7 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
         <input
           type="number"
           className="w-full md:w-1/2 lg:w-3/4 text-sm focus:ring focus:border-gray-400 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-300"
-          placeholder="email"
+          placeholder="phone"
           disabled={!editBio}
           defaultValue={userAuth.phone}
           onChange={(e) => handleChange(e.target)}

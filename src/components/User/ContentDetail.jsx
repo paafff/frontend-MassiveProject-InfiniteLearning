@@ -4,6 +4,7 @@ import { FaLocationDot } from 'react-icons/fa6';
 import { FaStar } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaImage } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 // Sosmed
 import { FaInstagramSquare } from 'react-icons/fa';
@@ -460,8 +461,18 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
       );
 
       handleClose()
-      window.location.reload()
-      // useNavigate()
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Terimakasih telah memberikan ulasan',
+        confirmButtonText: 'Oke',
+      }).then((result) => {
+
+        if (result.isConfirmed) {
+          window.location.reload()
+        }
+      })
+
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -485,7 +496,7 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style} className="w-full h-[90%] h-fit lg:w-3/4 xl:w-1/2">
+        <Box sx={style} className="w-full h-fit lg:w-3/4 xl:w-1/2">
           <div id="modal-modal-title" className="w-full flex justify-end">
             <p
               className="px-3 py-2 hover:bg-zinc-800 hover:text-white hover:cursor-pointer transition-all"

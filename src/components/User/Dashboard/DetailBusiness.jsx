@@ -5,6 +5,7 @@ import InstagramLogo from '../../../assets/images/logo/instagram.png';
 import { FaXTwitter } from 'react-icons/fa6';
 import { FiEdit } from 'react-icons/fi';
 import { IoReturnDownBackOutline } from 'react-icons/io5';
+import Swal from 'sweetalert2';
 
 import axios from 'axios';
 
@@ -435,7 +436,7 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link youtube"
-          defaultValue={businessByUUID?.socialMedia?.[2]}
+          defaultValue={businessByUUID?.socialMedia?.[3]}
         // placeholder={
         //   businessByUUID.socialMedia
         //     ? businessByUUID.socialMedia[3]
@@ -620,7 +621,17 @@ const Form = ({
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
 
-      window.location.reload()
+      Swal.fire({
+        icon: 'success',
+        title: 'Ubah data usaha berhasil',
+        confirmButtonText: 'Oke',
+      }).then((result) => {
+
+        if (result.isConfirmed) {
+          window.location.reload()
+        }
+      })
+
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);

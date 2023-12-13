@@ -4,6 +4,7 @@ import { FaRegCopy, FaSave, FaUserCircle } from 'react-icons/fa';
 import { IoReturnDownBackOutline } from 'react-icons/io5';
 import { FiEdit } from 'react-icons/fi';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 // import { unsetImageBusiness } from './../../../assets/images/unsetImage/1920.png';
 
 const BasicInformation = ({ businessByUUID, showSidebar, setShowSidebar }) => {
@@ -164,10 +165,10 @@ const Form = ({ businessByUUID }) => {
   }
 
   const handleCity = (e) => {
-    
+
     const idCity = allKota[e].id
     const nameCity = allKota[e].name
-    
+
     fetchKecamatan(idCity)
 
     setArrayAddressBusiness((prevArray) => {
@@ -185,10 +186,10 @@ const Form = ({ businessByUUID }) => {
   }
 
   const handleDistrict = (e) => {
-    
+
     const idDisctrict = allKecamatan[e].id
     const nameDisctrict = allKecamatan[e].name
-    
+
     fetchKelurahan(idDisctrict)
 
     setArrayAddressBusiness((prevArray) => {
@@ -206,7 +207,7 @@ const Form = ({ businessByUUID }) => {
   }
 
   const handleNeighborhood = (e) => {
-    
+
     const idNeighborhood = allKelurahan[e].id
     const nameNeighborhood = allKelurahan[e].name
 
@@ -256,7 +257,17 @@ const Form = ({ businessByUUID }) => {
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
 
-      window.location.reload();
+      Swal.fire({
+        icon: 'success',
+        title: 'Ubah data usaha berhasil',
+        confirmButtonText: 'Oke',
+      }).then((result) => {
+
+        if (result.isConfirmed) {
+          window.location.reload()
+        }
+      })
+
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -324,74 +335,113 @@ const Form = ({ businessByUUID }) => {
             </label>
 
             <div className="flex flex-col gap-4 md:p-0 md:w-3/4">
-              <select
-                disabled={editForm}
-                onSubmit={(e) => handleChange(e.target)}
-                onChange={(e) => handleProv(e.target.value)}
-                name="province"
-                id="province"
-                className="w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200"
-              >
-                <option value="" className="">
-                  Pilih Provinsi
-                </option>
-                {allProvinsi.map((provinsi, index) => (
-                  <option value={index} key={provinsi.name} className="">
-                    {provinsi.name}
-                  </option>
-                ))}
-              </select>
+              {!editForm && (
+                <>
+                  <select
+                    disabled={editForm}
+                    onSubmit={(e) => handleChange(e.target)}
+                    onChange={(e) => handleProv(e.target.value)}
+                    name="province"
+                    id="province"
+                    className="w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200"
+                  >
+                    <option value="" className="">
+                      Pilih Provinsi
+                    </option>
+                    {allProvinsi.map((provinsi, index) => (
+                      <option value={index} key={provinsi.name} className="">
+                        {provinsi.name}
+                      </option>
+                    ))}
+                  </select>
 
-              <select
-                disabled={editForm}
-                onChange={(e) => handleCity(e.target.value)}
-                name="city"
-                id="city"
-                className="w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200"
-              >
-                <option value="" className="">
-                  Pilih Kota / Kabupaten
-                </option>
-                {allKota.map((kota, index) => (
-                  <option value={index} className="" key={kota.id}>
-                    {kota.name}{' '}
-                  </option>
-                ))}
-              </select>
+                  <select
+                    disabled={editForm}
+                    onChange={(e) => handleCity(e.target.value)}
+                    name="city"
+                    id="city"
+                    className="w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200"
+                  >
+                    <option value="" className="">
+                      Pilih Kota / Kabupaten
+                    </option>
+                    {allKota.map((kota, index) => (
+                      <option value={index} className="" key={kota.id}>
+                        {kota.name}{' '}
+                      </option>
+                    ))}
+                  </select>
 
-              <select
-                disabled={editForm}
-                onChange={(e) => handleDistrict(e.target.value)}
-                name="district"
-                id="district"
-                className="w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200"
-              >
-                <option value="" className="">
-                  Pilih Kecamatan
-                </option>
-                {allKecamatan.map((kecamatan, index) => (
-                  <option value={index} className="" key={kecamatan.id}>
-                    {kecamatan.name}
-                  </option>
-                ))}
-              </select>
+                  <select
+                    disabled={editForm}
+                    onChange={(e) => handleDistrict(e.target.value)}
+                    name="district"
+                    id="district"
+                    className="w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200"
+                  >
+                    <option value="" className="">
+                      Pilih Kecamatan
+                    </option>
+                    {allKecamatan.map((kecamatan, index) => (
+                      <option value={index} className="" key={kecamatan.id}>
+                        {kecamatan.name}
+                      </option>
+                    ))}
+                  </select>
 
-              <select
-                disabled={editForm}
-                name="neighborhoods"
-                id="neighborhoods"
-                onChange={(e)=>handleNeighborhood(e.target.value)}
-                className="w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200"
-              >
-                <option value="" className="">
-                  Pilih Kelurahan
-                </option>
-                {allKelurahan.map((kelurahan, index) => (
-                  <option value={index} className="" key={kelurahan.id}>
-                    {kelurahan.name}
-                  </option>
-                ))}
-              </select>
+                  <select
+                    disabled={editForm}
+                    name="neighborhoods"
+                    id="neighborhoods"
+                    onChange={(e) => handleNeighborhood(e.target.value)}
+                    className="w-full border border-gray-400 rounded-md h-10 text-sm px-2 disabled:bg-gray-200"
+                  >
+                    <option value="" className="">
+                      Pilih Kelurahan
+                    </option>
+                    {allKelurahan.map((kelurahan, index) => (
+                      <option value={index} className="" key={kelurahan.id}>
+                        {kelurahan.name}
+                      </option>
+                    ))}
+                  </select>
+                </>
+              )}
+
+              {
+                editForm && (
+                  <>
+                    <input
+                      value={"Provinsi " + businessByUUID?.address?.[0]}
+                      type="text"
+                      name=""
+                      disabled
+                      className="w-full border border-gray-400 rounded-md h-10 text-sm px-3 disabled:bg-gray-200"
+                      id="" />
+                    <input
+                      value={"Kota " + businessByUUID?.address?.[1]}
+                      type="text"
+                      name=""
+                      disabled
+                      className="w-full border border-gray-400 rounded-md h-10 text-sm px-3 disabled:bg-gray-200"
+                      id="" />
+                    <input
+                      value={"Kecamatan " + businessByUUID?.address?.[2]}
+                      type="text"
+                      name=""
+                      disabled
+                      className="w-full border border-gray-400 rounded-md h-10 text-sm px-3 disabled:bg-gray-200"
+                      id="" />
+                    <input
+                      value={"Kelurahan " + businessByUUID?.address?.[3]}
+                      type="text"
+                      name=""
+                      disabled
+                      className="w-full border border-gray-400 rounded-md h-10 text-sm px-3 disabled:bg-gray-200"
+                      id="" />
+                  </>
+                )
+              }
             </div>
           </div>
         </div>

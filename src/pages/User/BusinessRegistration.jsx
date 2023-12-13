@@ -5,8 +5,13 @@ import axios from 'axios';
 import { getMe } from '../../redux/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
 const BusinessRegistration = () => {
+  // mengambil nilai userAuthReducer pada store
+  const userAuthSelector = (state) => state.userAuthReducer.userAuth;
+  const userAuth = useSelector(userAuthSelector) || 'Loading Data User';
+
   // AllAboutRegion
   const [provUser, setProvUser] = useState([]);
   const [kabUser, setKabUser] = useState([]);
@@ -156,11 +161,16 @@ const BusinessRegistration = () => {
   });
 
   const arrayAddressUser = [
-    addressSelectedUser.prov,
-    addressSelectedUser.kab,
-    addressSelectedUser.kec,
-    addressSelectedUser.kel,
-    addressSelectedUser.rtrw,
+    addressSelectedUser.prov
+    ? addressSelectedUser.prov : userAuth?.address?.[0],
+    addressSelectedUser.kab
+    ? addressSelectedUser.kab : userAuth?.address?.[1],
+    addressSelectedUser.kec
+    ? addressSelectedUser.kec : userAuth?.address?.[2],
+    addressSelectedUser.kel
+    ? addressSelectedUser.kel : userAuth?.address?.[3],
+    addressSelectedUser.rtrw
+    ? addressSelectedUser.rtrw : userAuth?.address?.[4],
   ];
 
   //businessInformation
@@ -179,6 +189,7 @@ const BusinessRegistration = () => {
     addressSelectedBusiness.kel,
     addressSelectedBusiness.rtrw,
   ];
+
   const arrayAddressIdBusiness = [
     addressSelectedBusiness.provId,
     addressSelectedBusiness.kabId,
@@ -189,9 +200,6 @@ const BusinessRegistration = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // mengambil nilai userAuthReducer pada store
-  const userAuthSelector = (state) => state.userAuthReducer.userAuth;
-  const userAuth = useSelector(userAuthSelector) || 'Loading Data User';
 
   //controler rest api
   const updateUser = async (e) => {
@@ -243,8 +251,17 @@ const BusinessRegistration = () => {
         addressId: arrayAddressIdBusiness,
       });
 
-      // window.location.reload()
-      navigate('/dashboard');
+      Swal.fire({
+        icon: 'success',
+        title: 'Pendaftaran usaha berhasil',
+        confirmButtonText: 'Oke',
+      }).then((result) => {
+
+        if (result.isConfirmed) {
+          navigate('/dashboard');
+        }
+      })
+
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -268,7 +285,7 @@ const BusinessRegistration = () => {
     getProvBusiness();
   }, [dispatch, navigate]);
 
-  useEffect(() => {}, [addressSelectedUser, addressSelectedBusiness]);
+  useEffect(() => { }, [addressSelectedUser, addressSelectedBusiness]);
   //useefeect
 
   const handleSubmit = async () => {
@@ -816,7 +833,7 @@ const BusinessRegistration = () => {
             <button
               class="mt-5 ml-80 bg-rose-400 hover:bg-rose-600 text-white font-bold py-2 px-5 rounded shadow-lg"
               onClick={handleSubmit}
-              // type="submit"
+            // type="submit"
             >
               Simpan
             </button>
