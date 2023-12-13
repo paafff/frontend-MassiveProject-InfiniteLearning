@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../assets/images/icons/gataunamanya.png';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const FormSubscription = ({ price }) => {
   const [listBusiness, setListBusiness] = useState([]);
@@ -38,8 +39,18 @@ const FormSubscription = ({ price }) => {
         }/business-subscription/create/${businessUUID}`
       );
 
-      alert('berhasil melakukan subscription');
-      navigate('/');
+      Swal.fire({
+        icon: 'success',
+        title: 'Berhasil Melakukan Subscription',
+        confirmButtonText: 'Oke',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+          navigate('/');
+        }
+      });
+
+      // alert('berhasil melakukan subscription');
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
