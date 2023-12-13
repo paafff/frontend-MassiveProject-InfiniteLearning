@@ -9,6 +9,7 @@ import { FaUserCircle } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { getMe } from '../../redux/authSlice';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
   //   const isLogin = true;
@@ -33,12 +34,25 @@ const Navbar = () => {
   }, [dispatch, navigate]);
 
   const isLogin = userAuth;
+  // const navigate = useNavigate();
 
   const logOut = async () => {
-    await axios.delete(`${import.meta.env.VITE_API_URL}/logout`);
-    alert('sukses logout');
-    navigate('/');
-    window.location.reload();
+    try {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/logout`);
+      Swal.fire({
+        icon: 'success',
+        title: 'Berhasil Logout',
+        confirmButtonText: 'Oke',
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          navigate('/');
+          window.location.reload();
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -122,8 +136,9 @@ const HumbergerMenu = ({ setMobileNavbar, mobileNavbar }) => {
       <svg
         onClick={() => setMobileNavbar(!mobileNavbar)}
         onBlur={() => setMobileNavbar(!mobileNavbar)}
-        className={`w-5 h-5 transition-all ${mobileNavbar ? 'rotate-90' : 'rotate-0'
-          }`}
+        className={`w-5 h-5 transition-all ${
+          mobileNavbar ? 'rotate-90' : 'rotate-0'
+        }`}
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -178,9 +193,14 @@ const NavbarWebsite = ({
           className="text-sm font-medium py-1 px-7 items-center rounded-sm transition-all flex gap-3"
         >
           {user?.profileURL ? (
-            <div className='w-10 h-10 bg-white rounded-full bg-no-repeat' style={{ backgroundImage: `url(${user?.profileURL})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-
-            </div>
+            <div
+              className="w-10 h-10 bg-white rounded-full bg-no-repeat"
+              style={{
+                backgroundImage: `url(${user?.profileURL})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            ></div>
           ) : (
             <FaUserCircle className="inline-block scale-[2]" />
           )}
@@ -204,12 +224,14 @@ const NavbarMobile = ({
   dropdownKategori,
   dropdownProfile,
   setDropdownProfile,
-  isLogin,user
+  isLogin,
+  user,
 }) => {
   return (
     <div
-      className={`w-full h-fit z-20 px-3 py-7 md:px-8 flex flex-col gap-6 lg:hidden xl:hidden bg-[#1a1a1a] absolute transition-all text-white top-24 ${mobileNavbar ? 'left-0' : 'left-[-450px] md:left-[-780px]'
-        }`}
+      className={`w-full h-fit z-20 px-3 py-7 md:px-8 flex flex-col gap-6 lg:hidden xl:hidden bg-[#1a1a1a] absolute transition-all text-white top-24 ${
+        mobileNavbar ? 'left-0' : 'left-[-450px] md:left-[-780px]'
+      }`}
     >
       <div className="flex gap-2">
         <input
@@ -242,10 +264,15 @@ const NavbarMobile = ({
           // onBlur={() => setDropdownProfile(!dropdownProfile)}
           className="text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3"
         >
-         {user?.profileURL ? (
-            <div className='w-10 h-10 bg-white rounded-full bg-no-repeat' style={{ backgroundImage: `url(${user?.profileURL})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-
-            </div>
+          {user?.profileURL ? (
+            <div
+              className="w-10 h-10 bg-white rounded-full bg-no-repeat"
+              style={{
+                backgroundImage: `url(${user?.profileURL})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            ></div>
           ) : (
             <FaUserCircle className="inline-block scale-[2]" />
           )}
