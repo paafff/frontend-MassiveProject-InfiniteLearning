@@ -18,11 +18,6 @@ export default function Chat() {
         setSelectedAdmin(phoneAdmin[selectedIndex])
     }
 
-    console.log("selected index ", selectedIndex);
-    console.log("selected chat ", selectedChat?.desc);
-    console.log("selected admin ", selectedAdmin?.name);
-    console.log("no hp ", selectedAdmin?.number); 
-
     const handleClick = () => {
         const url = `https://wa.me/${selectedAdmin?.number}?text=Halo ${selectedAdmin?.name}, ${selectedChat?.desc}`
         window.open(url)
