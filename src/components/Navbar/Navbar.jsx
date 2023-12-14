@@ -172,7 +172,7 @@ const NavbarWebsite = ({
         className='bg-white border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 flex py-2 px-4  w-1/2' /> */}
 
       <Link to={`/business`} className="text-sm font-medium py-1 px-4">
-        Cari apa?
+        Telusuri
       </Link>
 
       <Link

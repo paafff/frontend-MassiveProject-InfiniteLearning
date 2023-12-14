@@ -97,7 +97,7 @@ const ContactUs = () => {
         </Link>
         <Link to="#" className="text-white text-sm">
           <FaEnvelope className="inline-block mr-3" />
-          hairhub@gmail.com
+          il.undefined2023@gmail.com
         </Link>
       </div>
     </div>

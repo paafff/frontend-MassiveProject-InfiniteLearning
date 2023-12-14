@@ -60,12 +60,13 @@ const FormSubscription = ({ price, oriPrice }) => {
   };
 
   const handleNominal = (e) => {
-    if (e <= oriPrice) {
+    if (e < oriPrice) {
       setCheckout(false)
     } else {
       setCheckout(true)
     }
   }
+  
   return (
     <div class="p-10 -mt-10 w-full flex flex-col gap-5 md:w-3/4 lg:w-1/2 md:mx-auto">
       <div align="center">

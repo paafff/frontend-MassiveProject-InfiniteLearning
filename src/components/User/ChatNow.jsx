@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-
+import chatNow from "../../data/chatNow";
+import phoneAdmin from "../../data/phoneAdmin";
+import { Link } from "react-router-dom";
 
 export default function Chat() {
-    const [showModal, setShowModal] = React.useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedChat, setSelectedChat] = useState(null)
+    const [selectedAdmin, setSelectedAdmin] = useState(null)
+
+    const array = [0, 1, 2, 3, 4, 5, 6]
+    const randomIndex = Math.floor(Math.random() * array.length)
+    const selectedIndex = array[randomIndex]
+
+    const handleChat = (e) => {
+        setSelectedChat(chatNow[e]);
+        setSelectedAdmin(phoneAdmin[selectedIndex])
+    }
+
+    console.log("selected index ", selectedIndex);
+    console.log("selected chat ", selectedChat?.desc);
+    console.log("selected admin ", selectedAdmin?.name);
+    console.log("no hp ", selectedAdmin?.number); 
+
+    const handleClick = () => {
+        const url = `https://wa.me/${selectedAdmin?.number}?text=Halo ${selectedAdmin?.name}, ${selectedChat?.desc}`
+        window.open(url)
+           
+    }
+
+
+
     return (
         <>
             <button class='w-1/2 xl:w-full justify-center xl:py-4 xl:px-4 py-3 px-4 gap-2 bg-transparent hover:bg-rose-600 text-rose-500 font-normal hover:text-white border border-rose-500 hover:border-transparent rounded inline-flex items-center hover:cursor-pointer' onClick={() => setShowModal(true)}>
@@ -28,56 +55,31 @@ export default function Chat() {
                                 <div className="relative px-6 py-2 flex-auto" align='left'>
                                     <h1 align='left' class='text-xl font-semibold'>Pilih Pertanyaan</h1>
                                     <form class='my-2 mt-3'>
-                                        <label>
-                                            <input type='radio' name='chat' class='mr-3' />
-                                            Saya butuh cepat nih, apakah bisa booking sekarang?
-                                        </label>
-                                        <br />
-                                        <label>
-                                            <input type='radio' name='chat' class='mr-3' />
-                                            Apakah ada diskon untuk potong rambut?
-                                        </label>
-                                        <br />
-                                        <label>
-                                            <input type='radio' name='chat' class='mr-3' />
-                                            Saya ingin survey layanan dulu
-                                        </label>
-                                        <br />
-                                        <label>
-                                            <input type='radio' name='chat' class='mr-3' />
-                                            Alamat barbershop dimana?
-                                        </label>
-                                        <br />
-                                        <label>
-                                            <input type='radio' name='chat' class='mr-3' />
-                                            Cara menghubungi pemilik barbershop?
-                                        </label>
-                                        <br />
-                                        <label>
-                                            <input type='radio' name='chat' class='mr-3' />
-                                            Boleh tanya-tanya dulu?
-                                        </label>
-                                        <br />
-                                        <label>
-                                            <input type='radio' name='chat' class='mr-3' />
-                                            Apakah ada jenis layanan lain?
-                                        </label>
-                                        <br />
-                                        <label>
-                                            <input type='radio' name='chat' class='mr-3' />
-                                            Apakah barber yang saya inginkan senggang?
-                                        </label>
-                                        <br />
+                                        {chatNow.map((chat, index) => (
+                                            <>
+                                                <label>
+                                                    <input
+                                                        type='radio'
+                                                        name='chat'
+                                                        class='mr-3'
+                                                        value={index}
+                                                        onChange={(e) => handleChat(e.target.value)}
+                                                    />
+                                                    {chat.desc}
+                                                </label>
+                                                <br />
+                                            </>
+                                        ))}
                                     </form>
                                 </div>
                                 <hr class='mx-5' />
                                 <p class='text-xs my-3 mx-5'>
                                     Dengan mengirim pesan, anda menyetujui untuk berkomunikasi dengan pemilik hanya
                                     melalui chatroom HairHub untuk melindungi pengguna kami.
-                                    <a href='#' class='text-rose-400'> Lihat Syarat dan Ketentuan.</a>
+                                    <Link to='/term' class='text-rose-400'> Lihat Syarat dan Ketentuan.</Link>
                                 </p>
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-                                    <button class='w-full p-2 bg-rose-500 hover:bg-rose-700 text-white font-normal'>Chat Sekarang</button>
+                                    <button onClick={handleClick} class='w-full p-2 bg-rose-500 hover:bg-rose-700 text-white font-normal'>Chat Sekarang</button>
                                 </div>
                             </div>
                         </div>

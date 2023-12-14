@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';status
 import ChatNow from './ChatNow';
 import { FaLocationDot } from 'react-icons/fa6';
 import { FaStar } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaImage } from 'react-icons/fa';
+import { FaImage, FaClock } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 // Sosmed
@@ -255,10 +255,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
         <div className="w-full xl:w-3/4 border-b border-gray-200 py-5">
           <h1 class="font-bold text-lg xl:text-2xl mb-4">Jam Operasional</h1>
           <div class="flex flex-row ml-1 mt-10">
-            <img
-              class="w-auto h-5 mr-4"
-              src="/src/assets/images/icons/Clock.png "
-            />
+            <FaClock className='w-5 h-5 mr-4 text-zinc-800'/>
             <div className="flex gap-10 px-5">
               <p className='text-sm'>
                 {businessByUUID.schedule?.[0] == 'undefined' ? "-- Jam buka --" : (
@@ -298,10 +295,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
         <div className="w-full xl:w-3/4 border-b border-gray-200 py-5">
           <h1 class="font-bold text-lg xl:text-2xl">Lokasi dan Lingkungan Sekitar</h1>
           <div class="flex flex-row py-5 gap-3">
-            <img
-              class="h-4 mt-1 mx-1"
-              src="/src/assets/images/icons/Location.png"
-            />
+             <FaLocationDot className="text-rose-400 h-4 mt-1 mx-1" />
             {businessByUUID.address?.map((address) => (
               <p className='text-sm'>{address + ', '}</p>
             ))}
