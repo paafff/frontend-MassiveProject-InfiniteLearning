@@ -8,7 +8,7 @@ import { FaArrowRight } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const TopCard = ({ dataList }) => {
+const TopCard = () => {
   const [dataBusiness, setDataBusiness] = useState([]);
 
   useEffect(() => {

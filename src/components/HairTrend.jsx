@@ -41,29 +41,7 @@ const HairTrend = ({ dataHairTrend, index }) => {
 }
 
 
-const Overflow = (props) => {
-    var items = [
-        {
-            name: "Comma Hair",
-            model: CommaHair
-        },
-        {
-            name: "Bob Hair",
-            model: BobHairCarousel
-        },
-        {
-            name: "Mullet",
-            model: Mullet
-        },
-        {
-            name: "Soft Bangs",
-            model: SoftBangs
-        },
-        {
-            name: "French Crop",
-            model: FrenchCrop
-        },
-    ]
+const Overflow = () => {
     return (
         <div className='w-full lg:h-[800px] flex lg:flex-col lg:justify-center gap-5 overflow-x-auto lg:overflow-x-hidden lg:overflow-y-auto px-16 lg:px-0 lg:pt-96'>
             {dataHairTrends.map((data, index) => (

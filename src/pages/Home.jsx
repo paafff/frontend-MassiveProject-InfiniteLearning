@@ -7,79 +7,9 @@ import HairTrend from '../components/Home/HairTrend';
 import ComponentPriceList from '../components/User/subscription/PriceList';
 import Header from '../assets/images/icons/gataunamanya.png'
 import Image from '../assets/images/image.png'
+import priceLists from '../data/priceList';
 
 const Home = () => {
-  const dataTopRecommend = [
-    {
-      id: 0
-    },
-    {
-      id: 1
-    },
-    {
-      id: 2
-    },
-    {
-      id: 3
-    },
-    {
-      id: 4
-    },
-    {
-      id: 5
-    },
-    {
-      id: 6
-    },
-  ]
-
-  const dataPriceList = [
-    {
-      textColor: "text-zinc-900",
-      bgColor: "bg-zinc-900",
-      borderColor: "border-zinc-900",
-      title: "Paket Basic",
-      price: 120000,
-      text: "Hal-hal penting untuk memberikan karya terbaik Anda kepada klien.",
-      services: [
-        "Penampilan profile bisnis dasar",
-        "Bagikan 10 foto hasil potongan",
-        "Informasi jam operasional bisnis",
-        "Kontak langsung melalui tombol kontak",
-        "Waktu respon dukungan 24 jam",
-      ]
-    },
-    {
-      textColor: "text-rose-400",
-      bgColor: "bg-rose-400",
-      borderColor: "border-rose-400",
-      title: "Paket Premium",
-      price: 240000,
-      text: "Hal-hal penting untuk memberikan karya terbaik Anda kepada klien.",
-      services: [
-        "Semua fitur paket basic",
-        "Informasi layanan lengkap",
-        "Bagikan 20 foto hasil potongan rambut",
-        "Pelanggan dapat memberikan ulasan",
-        "Waktu respon dukungan 24 jam",
-      ]
-    },
-    {
-      textColor: "text-amber-500",
-      bgColor: "bg-amber-500",
-      borderColor: "border-amber-500",
-      title: "Paket Bisnis",
-      price: 360000,
-      text: "Hal-hal penting untuk memberikan karya terbaik Anda kepada klien.",
-      services: [
-        "Semua fitur paket premium",
-        "Analisis kinerja",
-        "Fitur reservasi atau booking",
-        "Peringkat visibilitas pencarian",
-        "Dukungan prioritas pelanggan",
-      ]
-    },
-  ]
 
   return (
     <Layout>
@@ -87,7 +17,7 @@ const Home = () => {
       <div className='min-h-screen min-w-full bg-white '>
         <Hero />
         <Welcome />
-        <TopCard dataList={dataTopRecommend} />
+        <TopCard />
         <HairTrend />
 
         <div className='w-full flex flex-col px-5'>
@@ -102,7 +32,7 @@ const Home = () => {
 
         <div className='w-full md:mx-auto overflow-x-auto xl:justify-center flex gap-10 px-5 mb-16 md:px-12'>
 
-          {dataPriceList.map(priceList => (
+          {priceLists.map((priceList, index) => (
             <ComponentPriceList
               title={priceList.title}
               textColor={priceList.textColor}
@@ -111,6 +41,7 @@ const Home = () => {
               text={priceList.text}
               services={priceList.services}
               bgColor={priceList.bgColor}
+              index={index}
             />
           ))}
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { FaCheck } from "react-icons/fa6";
 import { Link, useLocation } from 'react-router-dom';
 
-const PriceList = ({ textColor, title, borderColor, price, text, services, bgColor }) => {
+const PriceList = ({ textColor, title, borderColor, price, text, services, bgColor, index }) => {
 
     const pathname = useLocation().pathname
 
@@ -27,18 +27,22 @@ const PriceList = ({ textColor, title, borderColor, price, text, services, bgCol
                     <p className='text-base lg:text-lg font-normal text-gray-500 text-justify'> {text}</p>
                 </div>
                 <div className='w-full flex flex-col justify-start p-5'>
-                    {services.map(service => (
+                   
+                    {services?.length > 0 ? services.map(service => (
                         <div className='flex items-center justify-start my-2'>
                             <FaCheck className={`inline-block me-5 ${textColor} `} />
                             <p className='text-gray-500 text-base lg:text-lg'>
                                 {service}
                             </p>
                         </div>
-                    ))}
+                    )) : (
+                        ''
+                    )}
+
                 </div>
             </div>
             {pathname != '/subscription' ? (
-                <Link to="/subscription">
+                <Link to={`/subscription?index=${index}`}>
                     <div className={`w-full h-16 flex justify-center items-center rounded-3xl ${bgColor} hover:scale-95 transition-all shadow-lg hover:shadow-none hover:cursor-pointer`}>
                         <p className='text-white font-semibold tracking-wider text-lg'>
 

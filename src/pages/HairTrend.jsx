@@ -13,7 +13,9 @@ const HairTrend = () => {
     useEffect(() => {
         setIndex(searchParams.get('index'))
         setDataHairTrend(dataHairTrends[index])
-    })
+    },[index])
+
+    console.log(dataHairTrend);
 
     return (
         <Layout>
