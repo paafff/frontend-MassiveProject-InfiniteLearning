@@ -38,7 +38,6 @@ const Services = ({ businessByUUID }) => {
   });
 
   const handleService = (service, value) => {
-
     switch (service) {
       case 'srv1':
         setServiceData((prev) => ({
@@ -81,7 +80,6 @@ const Services = ({ businessByUUID }) => {
   };
 
   const handlePrice = (price, value) => {
-
     switch (price) {
       case 'price1':
         setPriceData((prev) => ({
@@ -152,12 +150,10 @@ const Services = ({ businessByUUID }) => {
         title: 'Berhasil menambahkan layanan',
         confirmButtonText: 'Oke',
       }).then((result) => {
-
         if (result.isConfirmed) {
-          window.location.reload()
+          window.location.reload();
         }
-      })
-
+      });
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -251,14 +247,18 @@ const Services = ({ businessByUUID }) => {
   );
 };
 
-const Service = ({ data, editForm, handleService, handlePrice, businessByUUID }) => {
+const Service = ({
+  data,
+  editForm,
+  handleService,
+  handlePrice,
+  businessByUUID,
+}) => {
   return (
     <>
       <div className="w-full flex flex-col gap-3">
-
         {[1, 2, 3, 4, 5].map((selectService, index) => (
           <div className="w-full flex gap-3" key={index}>
-
             {!editForm && (
               <>
                 <select
@@ -297,10 +297,9 @@ const Service = ({ data, editForm, handleService, handlePrice, businessByUUID })
                   onChange={(e) =>
                     handlePrice('price' + (index + 1), e.target.value)
                   }
-                  placeholder={businessByUUID.services?.[0].name[index] }
+                  placeholder={businessByUUID.services?.[0]?.name[index]}
                   disabled={editForm}
                   className="disabled:bg-gray-200 h-9 bg-gray-100 rounded border border-gray-200 text-xs w-1/2 placeholder:text-xs placeholder:text-zinc-900 px-2"
-                  
                   type="number"
                 />
 
@@ -310,12 +309,13 @@ const Service = ({ data, editForm, handleService, handlePrice, businessByUUID })
                   }
                   disabled={editForm}
                   className="disabled:bg-gray-200 h-9 bg-gray-100 rounded border border-gray-200 text-xs w-1/2 placeholder:text-xs placeholder:text-zinc-900 px-2"
-                  placeholder={"Rp "+businessByUUID.services?.[0].price[index]}
+                  placeholder={
+                    'Rp ' + businessByUUID.services?.[0]?.price[index]
+                  }
                   type="number"
                 />
               </>
             )}
-
           </div>
         ))}
       </div>
