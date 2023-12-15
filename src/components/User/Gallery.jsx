@@ -15,7 +15,7 @@ const Gallery = ({businessByUUID,businessImage}) => {
 
         </div>
         <div className='w-full h-1/2 bg-no-repeat flex justify-center items-center' style={{ backgroundImage: `url(${businessImage?.[2]})`, backgroundSize: 'cover' }}>
-          <DetailPhoto businessImage={businessImage} />
+          <DetailPhoto businessImage={businessImage} businessByUUID={businessByUUID} />
         </div>
       </div>
     </div>
