@@ -162,15 +162,15 @@ const BusinessRegistration = () => {
 
   const arrayAddressUser = [
     addressSelectedUser.prov
-    ? addressSelectedUser.prov : userAuth?.address?.[0],
+      ? addressSelectedUser.prov : userAuth?.address?.[0],
     addressSelectedUser.kab
-    ? addressSelectedUser.kab : userAuth?.address?.[1],
+      ? addressSelectedUser.kab : userAuth?.address?.[1],
     addressSelectedUser.kec
-    ? addressSelectedUser.kec : userAuth?.address?.[2],
+      ? addressSelectedUser.kec : userAuth?.address?.[2],
     addressSelectedUser.kel
-    ? addressSelectedUser.kel : userAuth?.address?.[3],
+      ? addressSelectedUser.kel : userAuth?.address?.[3],
     addressSelectedUser.rtrw
-    ? addressSelectedUser.rtrw : userAuth?.address?.[4],
+      ? addressSelectedUser.rtrw : userAuth?.address?.[4],
   ];
 
   //businessInformation
@@ -223,6 +223,7 @@ const BusinessRegistration = () => {
       );
     } catch (error) {
       if (error.response) {
+
         alert(error.response.data.msg);
       } else {
         console.log(error);
@@ -264,7 +265,17 @@ const BusinessRegistration = () => {
 
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.msg);
+        Swal.fire({
+          icon: 'error',
+          title: error.response.data.msg,
+          text: 'Hubungi admin, tekan tombol di bawah ini',
+          confirmButtonText: 'Hubungi admin',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate('/call-centre')
+          }
+        })
+        // alert(error.response.data.msg);
       } else {
         console.log(error);
       }
@@ -285,7 +296,19 @@ const BusinessRegistration = () => {
     getProvBusiness();
   }, [dispatch, navigate]);
 
-  useEffect(() => { }, [addressSelectedUser, addressSelectedBusiness]);
+  const [editedJudulBrand, setEditedJudulBrand] = useState(false)
+  const [editedJenisUsaha, setEditedJenisUsaha] = useState(false)
+  const [editedDesc, setEditedDesc] = useState(false)
+
+  const [disabledSimpan, setDisabledSimpan] = useState(true)
+
+  useEffect(() => {
+
+    if (editedJudulBrand && editedJenisUsaha && editedDesc) {
+      setDisabledSimpan(false)
+    }
+
+  }, [editedJenisUsaha, editedJudulBrand, editedDesc]);
   //useefeect
 
   const handleSubmit = async () => {
@@ -297,6 +320,7 @@ const BusinessRegistration = () => {
       console.log(error);
     }
   };
+
 
   return (
     <Layout>
@@ -335,7 +359,7 @@ const BusinessRegistration = () => {
                       username: e.target.value,
                     })
                   }
-                  required
+
                 />
               </div>
             </div>
@@ -355,7 +379,7 @@ const BusinessRegistration = () => {
                     gender: e.target.value,
                   })
                 }
-                required
+
               />
               <label htmlFor="male" class="ml-2">
                 Pria
@@ -372,7 +396,7 @@ const BusinessRegistration = () => {
                     gender: e.target.value,
                   })
                 }
-                required
+
               />
               <label htmlFor="female" class="ml-2">
                 Wanita
@@ -593,18 +617,23 @@ const BusinessRegistration = () => {
                 Judul Brand
               </label>
               <input
+
                 type="text"
                 name="brandName"
                 id="brandName"
                 className="border"
                 class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
                 placeholder="Nama Brand Anda"
-                onChange={(e) =>
-                  setBusinessData({
-                    ...businessData,
-                    name: e.target.value,
-                  })
+                onChange={
+                  (e) => {
+                    setBusinessData({
+                      ...businessData,
+                      name: e.target.value,
+                    })
+                    setEditedJudulBrand(true)
+                  }
                 }
+
               />
             </div>
             <div class="flex flex-row my-6">
@@ -617,11 +646,13 @@ const BusinessRegistration = () => {
                 name="jenis-usaha"
                 value="barbershop"
                 className="border"
-                onChange={(e) =>
+                onChange={(e) => {
                   setBusinessData({
                     ...businessData,
                     typeBusiness: e.target.value,
                   })
+                  setEditedJenisUsaha(true)
+                }
                 }
                 required
               />
@@ -634,11 +665,13 @@ const BusinessRegistration = () => {
                 value="salon"
                 name="jenis-usaha"
                 className="border ml-12"
-                onChange={(e) =>
+                onChange={(e) => {
                   setBusinessData({
                     ...businessData,
                     typeBusiness: e.target.value,
                   })
+                  setEditedJenisUsaha(true)
+                }
                 }
                 required
               />
@@ -655,6 +688,7 @@ const BusinessRegistration = () => {
 
                 {/* nang */}
                 <select
+                  required
                   class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   onChange={(e) => {
                     getKabBusiness(e.target.value);
@@ -688,6 +722,7 @@ const BusinessRegistration = () => {
 
                 {/* kab */}
                 <select
+                  required
                   class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   onChange={(e) => {
                     getKecBusiness(e.target.value);
@@ -720,6 +755,7 @@ const BusinessRegistration = () => {
                 </select>
                 {/* kec */}
                 <select
+                  required
                   class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   onChange={(e) => {
                     getKelBusiness(e.target.value);
@@ -752,6 +788,7 @@ const BusinessRegistration = () => {
                 </select>
                 {/* kel */}
                 <select
+                  required
                   class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   onChange={(e) => {
                     // getKelBusiness(e.target.value);
@@ -800,13 +837,16 @@ const BusinessRegistration = () => {
             <div class="flex flex-row my-6">
               <label class="basis-1/3">Deskripsi Usaha</label>
               <textarea
+                required
                 rows="6"
                 class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
-                onChange={(e) =>
+                onChange={(e) => {
                   setBusinessData({
                     ...businessData,
                     description: e.target.value,
                   })
+                  setEditedDesc(true)
+                }
                 }
               ></textarea>
             </div>
@@ -825,20 +865,18 @@ const BusinessRegistration = () => {
         <div class="columns-2 mt-20 flex justify-end">
           {/* <img src="src/assets/images/image.png" class="mb-5" /> */}
           <div class="justify-end">
-            <input class="ml-4" type="checkbox" required />
-            <label class="ml-2">
-              Saya bersedia bekerjasama dengan website ini
-            </label>
-            <br />
+
             <button
-              class="mt-5 ml-80 bg-rose-400 hover:bg-rose-600 text-white font-bold py-2 px-5 rounded shadow-lg"
+              class="mt-5 ml-80 disabled:bg-gray-300 disabled:hover:cursor-not-allowed bg-rose-400 hover:bg-rose-600 text-white font-bold py-2 px-5 rounded shadow-lg"
               onClick={handleSubmit}
-            // type="submit"
+              // type="submit"
+              disabled={disabledSimpan}
             >
               Simpan
             </button>
           </div>
         </div>
+
       </div>
     </Layout>
   );

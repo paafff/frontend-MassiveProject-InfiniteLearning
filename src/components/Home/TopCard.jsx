@@ -106,9 +106,7 @@ const CardTopRecommend = ({ card }) => {
             Top Recommendation
           </p>
         </div>
-        <div className="w-8 h-8 bg-zinc-900 rounded-full flex justify-center items-center">
-          <TbMoustache className="text-white scale-110" />
-        </div>
+        
       </div>
       <div className="w-full flex justify-between items-center bg-white rounded-md p-3 lg:px-5 hover:cursor-pointer">
         <div className="flex flex-col gap-1">

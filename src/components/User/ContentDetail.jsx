@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';status
+import React, { useEffect, useState, useRef } from 'react'; status
 import ChatNow from './ChatNow';
 import { FaLocationDot } from 'react-icons/fa6';
 import { FaStar } from 'react-icons/fa';
@@ -100,20 +100,11 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
     indexOfLastItem
   );
 
-  // const pageCount = Math.ceil(dataReservation.length / reservationsPerPage);
-
-  // const displayReservations = dataReservation
-  //   .slice(
-  //     pageNumber * reservationsPerPage,
-  //     (pageNumber + 1) * reservationsPerPage
-  //   )
-  //   .map((booking) => <Card key={booking.id} booking={booking} />);
-
-  // const handlePageChange = ({ selected }) => {
-  //   setPageNumber(selected);
-  // };
-
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleSosmed = (e) => {
+    window.open(e)
+  }
 
   return (
     <>
@@ -136,13 +127,14 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
               </div>
             </div>
             <div className="w-full flex justify-center items-center shadow-md px-3 py-2 rounded-md gap-5 xl:gap-10">
-              <FaInstagramSquare className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-rose-400" />
 
-              <FaFacebookSquare className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-blue-600" />
+              <FaInstagramSquare onClick={()=>handleSosmed(businessByUUID.socialMedia?.[0])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-rose-400" />
 
-              <FaTwitterSquare className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-blue-400" />
+              <FaFacebookSquare onClick={()=>handleSosmed(businessByUUID.socialMedia?.[1])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-blue-600" />
 
-              <FaYoutube className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-rose-600" />
+              <FaTwitterSquare onClick={()=>handleSosmed(businessByUUID.socialMedia?.[2])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-blue-400" />
+
+              <FaYoutube onClick={()=>handleSosmed(businessByUUID.socialMedia?.[3])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-rose-600" />
             </div>
           </div>
 
@@ -207,7 +199,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
           {businessByUUID?.services?.length > 0 ? (
             ''
           ) : (
-            <p className='mt-10'>Belum ada layanan</p>
+            <p className='mt-10 text-sm'>Belum ada layanan</p>
           )}
           {businessByUUID?.services?.map((service, index) => (
             <>
@@ -255,7 +247,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
         <div className="w-full xl:w-3/4 border-b border-gray-200 py-5">
           <h1 class="font-bold text-lg xl:text-2xl mb-4">Jam Operasional</h1>
           <div class="flex flex-row ml-1 mt-10">
-            <FaClock className='w-5 h-5 mr-4 text-zinc-800'/>
+            <FaClock className='w-5 h-5 mr-4 text-zinc-800' />
             <div className="flex gap-10 px-5">
               <p className='text-sm'>
                 {businessByUUID.schedule?.[0] == 'undefined' ? "-- Jam buka --" : (
@@ -288,14 +280,14 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
               </div>
             </div>
           )) : (
-            <p className=''>Belum ada karyawan</p>
+            <p className='text-sm mt-10'>Belum ada karyawan</p>
           )}
         </div>
 
         <div className="w-full xl:w-3/4 border-b border-gray-200 py-5">
           <h1 class="font-bold text-lg xl:text-2xl">Lokasi dan Lingkungan Sekitar</h1>
           <div class="flex flex-row py-5 gap-3">
-             <FaLocationDot className="text-rose-400 h-4 mt-1 mx-1" />
+            <FaLocationDot className="text-rose-400 h-4 mt-1 mx-1" />
             {businessByUUID.address?.map((address) => (
               <p className='text-sm'>{address + ', '}</p>
             ))}

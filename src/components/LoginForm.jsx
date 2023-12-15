@@ -5,6 +5,7 @@ import Logosignin from '../assets/images/logo/loginn.png';
 import { MdMail } from 'react-icons/md';
 import { FaUnlock } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -30,7 +31,12 @@ const LoginForm = () => {
     } catch (error) {
       //dibawah ini opsi tampilkan error
       if (error.response) {
-        alert(error.response.data.msg); // Menampilkan pesan error sebagai popup
+        Swal.fire(
+          error.response.data.msg,
+          '',
+          'error'
+        )
+        // alert(error.response.data.msg); // Menampilkan pesan error sebagai popup
       } else {
         console.log(error); // Menampilkan error pada konsol
       }
