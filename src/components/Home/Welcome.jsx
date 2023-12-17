@@ -10,7 +10,7 @@ const Welcome = () => {
         <div className='w-full xl:w-3/4 xl:mx-auto flex flex-col  lg:my-10 xl:my-20'>
 
             <div className='w-full flex flex-col'>
-                <p className='text-lg md:text-xl xl:text-3xl text-center font-bold text-zinc-900'>Selamat Datang  Di <span className='text-rose-400'>Hair Hub</span></p>
+                <p className='text-lg md:text-xl xl:text-3xl text-center font-bold text-zinc-900'>Selamat Datang  Di <span className='text-rose-400'>HairHub</span></p>
                 <div className='w-full flex justify-center my-1 xl:my-3'>
                     <img src={Header} alt="" className='' />
                 </div>

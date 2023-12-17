@@ -163,37 +163,6 @@ const Services = ({ businessByUUID }) => {
     }
   };
 
-  const tempServices = [
-    {
-      id: 0,
-      name: 'creambath',
-    },
-    {
-      id: 1,
-      name: 'haircut',
-    },
-    {
-      id: 2,
-      name: 'manicure',
-    },
-    {
-      id: 3,
-      name: 'pedicure',
-    },
-    {
-      id: 4,
-      name: 'nail art',
-    },
-    {
-      id: 5,
-      name: 'hair color',
-    },
-    {
-      id: 6,
-      name: 'smoothing',
-    },
-  ];
-
   const [listServices, setListServices] = useState([]);
 
   useEffect(() => {
@@ -290,14 +259,13 @@ const Service = ({
                 />
               </>
             )}
-
             {editForm && (
               <>
                 <input
                   onChange={(e) =>
                     handlePrice('price' + (index + 1), e.target.value)
                   }
-                  placeholder={businessByUUID.services?.[0]?.name[index]}
+                  placeholder={businessByUUID.services?.length > 0 ? businessByUUID.services?.[0]?.name[index] : 'Belum ada layanan' }
                   disabled={editForm}
                   className="disabled:bg-gray-200 h-9 bg-gray-100 rounded border border-gray-200 text-xs w-1/2 placeholder:text-xs placeholder:text-zinc-900 px-2"
                   type="number"
@@ -310,7 +278,7 @@ const Service = ({
                   disabled={editForm}
                   className="disabled:bg-gray-200 h-9 bg-gray-100 rounded border border-gray-200 text-xs w-1/2 placeholder:text-xs placeholder:text-zinc-900 px-2"
                   placeholder={
-                    'Rp ' + businessByUUID.services?.[0]?.price[index]
+                    businessByUUID.services?.length > 0 ? businessByUUID.services?.[0]?.price[index] : 'Belum ada layanan'
                   }
                   type="number"
                 />

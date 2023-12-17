@@ -382,7 +382,7 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link instagram"
-          defaultValue={businessByUUID?.socialMedia?.[0]}
+          defaultValue={businessByUUID?.socialMedia?.[0] == 'undefined' ? 'Link instagram' : businessByUUID?.socialMedia?.[0]}
         // placeholder={
         //   businessByUUID.socialMedia
         //     ? businessByUUID.socialMedia[0]
@@ -400,7 +400,7 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link Facebook"
-          defaultValue={businessByUUID?.socialMedia?.[1]}
+          defaultValue={businessByUUID?.socialMedia?.[1] == 'undefined' ? 'Link facebook' : businessByUUID?.socialMedia?.[1]}
         // placeholder={
         //   businessByUUID.socialMedia
         //     ? businessByUUID.socialMedia[1]
@@ -418,7 +418,7 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link twitter"
-          defaultValue={businessByUUID?.socialMedia?.[2]}
+          defaultValue={businessByUUID?.socialMedia?.[2] == 'undefined' ? 'Link twitter' : businessByUUID?.socialMedia?.[2]}
         // placeholder={
         //   businessByUUID.socialMedia
         //     ? businessByUUID.socialMedia[2]
@@ -436,7 +436,7 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link youtube"
-          defaultValue={businessByUUID?.socialMedia?.[3]}
+          defaultValue={businessByUUID?.socialMedia?.[3] == 'undefined' ? 'Link youtube' : businessByUUID?.socialMedia?.[3]}
         // placeholder={
         //   businessByUUID.socialMedia
         //     ? businessByUUID.socialMedia[3]
@@ -700,7 +700,7 @@ const Form = ({
             onChange={(e) => handleChange(e.target)}
             className="text-xs w-full h-10 text-gray-700 border border-gray-300 rounded p-2 placeholder:text-xs placeholder:text-gray-500 disabled:bg-gray-200"
             disabled={editForm}
-            defaultValue={businessByUUID?.socialMedia?.[4]}
+            defaultValue={businessByUUID?.socialMedia?.[4] == 'undefined' ? 'Link Maps' : businessByUUID?.socialMedia?.[4]}
             placeholder="Masukkan link"
             name="maps"
             id="maps"
@@ -714,11 +714,14 @@ const Form = ({
           <div className="w-full flex gap-10 px-3 py-3">
             <div>
               {editForm ? (
+                <>
+                <p className='text-xs text-gray-400 mb-2'>Jadwal Buka</p>
                 <input
                   disabled={editForm}
                   type="text"
-                  value={"Jadwal Buka " + businessByUUID?.schedule?.[0]}
+                  placeholder={businessByUUID?.schedule?.[0] == 'undefined' ? '-' : businessByUUID?.schedule?.[0]}
                   className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300' />
+                  </>
               ) : (
 
                 <select
@@ -740,11 +743,14 @@ const Form = ({
             </div>
             <div>
               {editForm ? (
+                <>
+                <p className='text-xs text-gray-400 mb-2'>Jadwal Tutup</p>
                 <input
                   disabled={editForm}
                   type="text"
-                  value={"Jadwal Tutup " + businessByUUID?.schedule?.[1]}
+                  placeholder={ businessByUUID?.schedule?.[1] == 'undefined' ? '-' : businessByUUID?.schedule?.[1]}
                   className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300' />
+                  </>
               ) : (
 
                 <select

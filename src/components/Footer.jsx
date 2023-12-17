@@ -62,10 +62,9 @@ const Sosmed = () => {
 const LinksFooter = () => {
   return (
     <div className="flex flex-col gap-2 text-white text-sm">
-      <Link to="#">Beranda</Link>
-      <Link to="#">Tentang Kami</Link>
-      <Link to="#">Barbershop</Link>
-      <Link to="#">Salon</Link>
+      <Link to="/">Beranda</Link>
+      <Link to="/barbershop">Barbershop</Link>
+      <Link to="/salon">Salon</Link>
     </div>
   );
 };
@@ -93,7 +92,7 @@ const ContactUs = () => {
       <div className="flex flex-col gap-3">
         <Link to="#" className="text-white text-sm">
           <FaPhoneAlt className="inline-block mr-3" />
-          Pusat Bantuan
+          +62 341-71730328
         </Link>
         <Link to="#" className="text-white text-sm">
           <FaEnvelope className="inline-block mr-3" />

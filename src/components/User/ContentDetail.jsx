@@ -117,7 +117,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
         <div class="w-full flex flex-col md:flex-row-reverse md:items-start mt-5">
           <div className="w-full xl:w-1/4 flex flex-col items-end gap-5">
             <div className="w-full mt-10 flex xl:flex-col xl:items-end gap-2">
-              <ChatNow />
+              <ChatNow phone={businessByUUID?.phone} />
 
               <div
                 onClick={handleOpen}
@@ -128,13 +128,13 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
             </div>
             <div className="w-full flex justify-center items-center shadow-md px-3 py-2 rounded-md gap-5 xl:gap-10">
 
-              <FaInstagramSquare onClick={()=>handleSosmed(businessByUUID.socialMedia?.[0])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-rose-400" />
+              <FaInstagramSquare onClick={() => handleSosmed(businessByUUID.socialMedia?.[0])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-rose-400" />
 
-              <FaFacebookSquare onClick={()=>handleSosmed(businessByUUID.socialMedia?.[1])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-blue-600" />
+              <FaFacebookSquare onClick={() => handleSosmed(businessByUUID.socialMedia?.[1])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-blue-600" />
 
-              <FaTwitterSquare onClick={()=>handleSosmed(businessByUUID.socialMedia?.[2])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-blue-400" />
+              <FaTwitterSquare onClick={() => handleSosmed(businessByUUID.socialMedia?.[2])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-blue-400" />
 
-              <FaYoutube onClick={()=>handleSosmed(businessByUUID.socialMedia?.[3])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-rose-600" />
+              <FaYoutube onClick={() => handleSosmed(businessByUUID.socialMedia?.[3])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-rose-600" />
             </div>
           </div>
 

@@ -61,6 +61,36 @@ const Form = ({ businessByUUID }) => {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  const [arrayAddressIdBusiness, setArrayAddressIdBusiness] = useState(['idProv', 'idKota', 'idKec', 'idKel']);
+  const [arrayAddressBusiness, setArrayAddressBusiness] = useState([
+    businessByUUID?.address?.[0],
+    businessByUUID?.address?.[1],
+    businessByUUID?.address?.[2],
+    businessByUUID?.address?.[3],
+  ]);
+
+  useEffect(()=>{
+
+    setArrayAddressBusiness((prevArray) => {
+      const newArray = [...prevArray];
+      newArray[0] = businessByUUID?.address?.[0];
+      newArray[1] = businessByUUID?.address?.[1];
+      newArray[2] = businessByUUID?.address?.[2];
+      newArray[3] = businessByUUID?.address?.[3];
+      return newArray;
+    });
+
+    setArrayAddressIdBusiness((prevArray) => {
+      const newArray = [...prevArray];
+      newArray[0] = businessByUUID?.addressId?.[0];
+      newArray[1] = businessByUUID?.addressId?.[1];
+      newArray[2] = businessByUUID?.addressId?.[2];
+      newArray[3] = businessByUUID?.addressId?.[3];
+      return newArray;
+    });
+
+  },[editForm])
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -77,6 +107,7 @@ const Form = ({ businessByUUID }) => {
     };
 
     fetchData();
+
   }, []); // The empty dependency array means this effect runs once after the initial render
 
   const fetchKota = async (id) => {
@@ -141,8 +172,7 @@ const Form = ({ businessByUUID }) => {
     neighborhoods: '',
   });
 
-  const [arrayAddressBusiness, setArrayAddressBusiness] = useState(['lala', 'lala', 'lala', 'lala']);
-  const [arrayAddressIdBusiness, setArrayAddressIdBusiness] = useState(['lala', 'lala', 'lala', 'lala']);
+  
 
   const handleProv = (e) => {
     const idProv = allProvinsi[e].id
@@ -226,12 +256,13 @@ const Form = ({ businessByUUID }) => {
   }
 
   const updateBusiness = async (e) => {
+
     e.preventDefault();
     try {
       const formUpdateBusiness = new FormData();
 
       formUpdateBusiness.append('name', businessData.name);
-      formUpdateBusiness.append('email', businessData.email ? businessData?.email : businessByUUID?.email);
+      formUpdateBusiness.append('email', businessData.email ? businessData?.email : 'sample@mail.com');
       formUpdateBusiness.append('phone', businessData.phone);
       formUpdateBusiness.append('img1', null);
       formUpdateBusiness.append('img2', null);
@@ -318,6 +349,7 @@ const Form = ({ businessByUUID }) => {
               <label htmlFor="" className="text-sm">
                 Telepon
               </label>
+
               <input
                 onChange={(e) => handleChange(e.target)}
                 disabled={editForm}
@@ -327,6 +359,7 @@ const Form = ({ businessByUUID }) => {
                 placeholder={businessByUUID.phone || 'Telepon'}
                 className="w-full md:w-3/4 xl:w-3/4 border border-gray-400 rounded-md h-10 text-sm px-2 placeholder:text-xs disabled:bg-gray-200"
               />
+              <p className='text-xs text-gray-400'>Harap masukkan kode negara contoh (62 898123456)</p>
             </div>
           </div>
           <div className="flex flex-col gap-4 md:items-start md:justify-between xl:w-1/2">

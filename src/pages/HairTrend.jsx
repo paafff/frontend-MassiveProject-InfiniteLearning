@@ -9,13 +9,11 @@ const HairTrend = () => {
     const [index, setIndex] = useState(null)
     const location = useLocation()
     const searchParams = new URLSearchParams(location.search)
-
+    
     useEffect(() => {
         setIndex(searchParams.get('index'))
         setDataHairTrend(dataHairTrends[index])
-    },[index])
-
-    console.log(dataHairTrend);
+    })
 
     return (
         <Layout>
