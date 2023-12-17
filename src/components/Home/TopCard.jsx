@@ -119,7 +119,7 @@ const CardTopRecommend = ({ card }) => {
               {status}
             </p>
           )}
-          <p className="text-xs lg:text-base font-semibold">{card.name}</p>
+          <p className="text-xs lg:text-base font-semibold line-clamp-1">{card.name}</p>
           {/* [prov,kab,kec,kel,rtrw] */}
           <p className="text-xs lg:text-base text-gray-500">
             {card.address[1]}
