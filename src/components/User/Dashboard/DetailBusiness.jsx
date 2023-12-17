@@ -414,7 +414,7 @@ const Socmed = ({
         </div>
         <input
           onChange={(e) => setTwitterLink(e.target.value)}
-          type="text"
+          type="text" 
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link twitter"
@@ -711,7 +711,7 @@ const Form = ({
           <label htmlFor="" className="text-sm">
             Jadwal Usaha
           </label>
-          <div className="w-full flex gap-10 px-3 py-3">
+          <div className="w-full flex flex-col md:flex-row gap-10 px-3 py-3">
             <div>
               {editForm ? (
                 <>

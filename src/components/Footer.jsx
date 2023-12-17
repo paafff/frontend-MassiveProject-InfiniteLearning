@@ -41,19 +41,22 @@ const Brand = () => {
 };
 
 const Sosmed = () => {
+  const linkSosmed = (e) => {
+    window.open(e)
+  }
   return (
     <div className="flex gap-3">
       <div className="bg-white hover:cursor-pointer w-fit p-4 rounded-md hover:scale-[1.2] transition-all">
-        <FaXTwitter className="scale-150 " />
+        <FaXTwitter onClick={()=>linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150 " />
       </div>
       <div className="bg-white hover:cursor-pointer w-fit p-4 rounded-md hover:scale-[1.2] transition-all">
-        <FaLinkedin className="scale-150" />
+        <FaLinkedin onClick={()=>linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150" />
       </div>
       <div className="bg-white hover:cursor-pointer w-fit p-4 rounded-md hover:scale-[1.2] transition-all">
-        <FaInstagram className="scale-150" />
+        <FaInstagram onClick={()=>linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150" />
       </div>
       <div className="bg-white hover:cursor-pointer w-fit p-4 rounded-md hover:scale-[1.2] transition-all">
-        <FaFacebook className="scale-150" />
+        <FaFacebook onClick={()=>linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150" />
       </div>
     </div>
   );

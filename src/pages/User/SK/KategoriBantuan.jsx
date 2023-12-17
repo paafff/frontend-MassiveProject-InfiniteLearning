@@ -7,7 +7,7 @@ const KategoriBantuan = () => {
         <Layout>
             <div className='flex bg-gray-200 min-h-screen'>
 
-                <div className='w-full min-h-screen p-24'>
+                <div className='w-full min-h-screen p-5 lg:p-16 xl:p-24'>
 
                     <ComponentKategoriBantuan />
 

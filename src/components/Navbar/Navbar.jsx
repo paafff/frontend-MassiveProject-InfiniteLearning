@@ -233,7 +233,7 @@ const NavbarMobile = ({
         mobileNavbar ? 'left-0' : 'left-[-450px] md:left-[-780px]'
       }`}
     >
-      <div className="flex gap-2">
+      {/* <div className="flex gap-2">
         <input
           placeholder="Cari apa?"
           type="text"
@@ -242,10 +242,10 @@ const NavbarMobile = ({
         <button className="p-2 bg-bg-rose-400 bg-rose-400 hover:bg-rose-500 text-white rounded-md w-1/4">
           Cari
         </button>
-      </div>
+      </div> */}
 
-      <Link to="#" className="text-sm inline-block font-medium py-1  w-fit">
-        Syarat dan Ketentuan
+      <Link to="/business" className="text-sm inline-block font-medium py-1  w-fit">
+        Telusuri
       </Link>
 
       <Link
