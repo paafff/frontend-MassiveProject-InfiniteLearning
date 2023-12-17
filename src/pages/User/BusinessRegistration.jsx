@@ -443,7 +443,7 @@ const BusinessRegistration = () => {
                 }
               />
             </div>
-            <div class="flex flex-row my-6">
+            {/* <div class="flex flex-row my-6">
               <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
                 No Identitas
               </label>
@@ -457,7 +457,7 @@ const BusinessRegistration = () => {
                   userAuth.cardId ? userAuth.cardId : 'Nomor Identitas Anda'
                 }
               />
-            </div>
+            </div> */}
             <div class="flex flex-row my-6">
               <label class="block text-sm font-medium leading-6 text-gray-900 basis-1/3">
                 Alamat
