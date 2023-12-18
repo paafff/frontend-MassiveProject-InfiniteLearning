@@ -248,15 +248,18 @@ const Service = ({
                     </option>
                   ))}
                 </select>
-                <input
-                  onChange={(e) =>
-                    handlePrice('price' + (index + 1), e.target.value)
-                  }
-                  disabled={editForm}
-                  className="disabled:bg-gray-200 bg-gray-100 rounded border border-gray-200 text-xs w-1/2 placeholder:text-xs px-2"
-                  placeholder="Rp"
-                  type="number"
-                />
+                <div className='flex flex-col w-1/2'>
+                  <p className='text-xs text-gray-400 mb-2'>Masukkan harga tanpa titik. Contoh 25000</p>
+                  <input
+                    onChange={(e) =>
+                      handlePrice('price' + (index + 1), e.target.value)
+                    }
+                    disabled={editForm}
+                    className="disabled:bg-gray-200 w-full h-10 bg-gray-100 rounded border border-gray-200 text-xs placeholder:text-xs px-2"
+                    placeholder="Rp"
+                    type="number"
+                  />
+                </div>
               </>
             )}
             {editForm && (
@@ -265,7 +268,7 @@ const Service = ({
                   onChange={(e) =>
                     handlePrice('price' + (index + 1), e.target.value)
                   }
-                  placeholder={businessByUUID.services?.length > 0 ? businessByUUID.services?.[0]?.name[index] : 'Belum ada layanan' }
+                  placeholder={businessByUUID.services?.length > 0 ? businessByUUID.services?.[0]?.name[index] : 'Belum ada layanan'}
                   disabled={editForm}
                   className="disabled:bg-gray-200 h-9 bg-gray-100 rounded border border-gray-200 text-xs w-1/2 placeholder:text-xs placeholder:text-zinc-900 px-2"
                   type="number"
