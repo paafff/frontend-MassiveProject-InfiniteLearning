@@ -215,7 +215,7 @@ const Banner = ({
 
   return (
     <div className="w-full xl:my-auto xl:w-1/2 border border-gray-300 rounded p-2 flex flex-col gap-3 mb-5">
-      
+
       {banner ? (
         <img
           src={URL.createObjectURL(banner)}
@@ -414,7 +414,7 @@ const Socmed = ({
         </div>
         <input
           onChange={(e) => setTwitterLink(e.target.value)}
-          type="text" 
+          type="text"
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link twitter"
@@ -471,7 +471,9 @@ const Form = ({
   setPicture3,
   setPicture4,
 }) => {
-  
+
+  const [disabledBtn, setDisabledBtn] = useState(false)
+
   const handleChange = (e) => {
     const name = e.name;
     const value = e.value;
@@ -598,45 +600,48 @@ const Form = ({
   ];
 
   const updateBusiness = async (e) => {
-    e.preventDefault();
-    try {
-      const formUpdateBusiness = new FormData();
+    if (disabledBtn) {
 
-      formUpdateBusiness.append('img1', businessData.img1);
-      formUpdateBusiness.append('img2', businessData.img2);
-      formUpdateBusiness.append('img3', businessData.img3);
-      formUpdateBusiness.append('img4', businessData.img4);
-      formUpdateBusiness.append('img5', businessData.img5);
-      formUpdateBusiness.append('description',
-        businessData.description ? businessData.description : businessByUUID?.description);
-      formUpdateBusiness.append('schedule', JSON.stringify(arraySchedule));
-      formUpdateBusiness.append(
-        'socialMedia',
-        JSON.stringify(arraySocialMedia)
-      );
+      e.preventDefault();
+      try {
+        const formUpdateBusiness = new FormData();
 
-      await axios.patch(
-        `${import.meta.env.VITE_API_URL}/business/${businessByUUID.uuid}`,
-        formUpdateBusiness,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
-      );
+        formUpdateBusiness.append('img1', businessData.img1);
+        formUpdateBusiness.append('img2', businessData.img2);
+        formUpdateBusiness.append('img3', businessData.img3);
+        formUpdateBusiness.append('img4', businessData.img4);
+        formUpdateBusiness.append('img5', businessData.img5);
+        formUpdateBusiness.append('description',
+          businessData.description ? businessData.description : businessByUUID?.description);
+        formUpdateBusiness.append('schedule', JSON.stringify(arraySchedule));
+        formUpdateBusiness.append(
+          'socialMedia',
+          JSON.stringify(arraySocialMedia)
+        );
 
-      Swal.fire({
-        icon: 'success',
-        title: 'Ubah data usaha berhasil',
-        confirmButtonText: 'Oke',
-      }).then((result) => {
+        await axios.patch(
+          `${import.meta.env.VITE_API_URL}/business/${businessByUUID.uuid}`,
+          formUpdateBusiness,
+          { headers: { 'Content-Type': 'multipart/form-data' } }
+        );
 
-        if (result.isConfirmed) {
-          window.location.reload()
-        }
-      })
+        Swal.fire({
+          icon: 'success',
+          title: 'Ubah data usaha berhasil',
+          confirmButtonText: 'Oke',
+        }).then((result) => {
 
-    } catch (error) {
-      if (error.response) {
-        alert(error.response.data.msg);
-      } else {
-        console.log(error);
+          if (result.isConfirmed) {
+            window.location.reload()
+          }
+        })
+
+      } catch (error) {
+        if (error.response) {
+          alert(error.response.data.msg);
+        } else {
+          console.log(error);
+        }
       }
     }
   };
@@ -715,13 +720,13 @@ const Form = ({
             <div>
               {editForm ? (
                 <>
-                <p className='text-xs text-gray-400 mb-2'>Jadwal Buka</p>
-                <input
-                  disabled={editForm}
-                  type="text"
-                  placeholder={businessByUUID?.schedule?.[0] == 'undefined' ? '-' : businessByUUID?.schedule?.[0]}
-                  className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300' />
-                  </>
+                  <p className='text-xs text-gray-400 mb-2'>Jadwal Buka</p>
+                  <input
+                    disabled={editForm}
+                    type="text"
+                    placeholder={businessByUUID?.schedule?.[0] == 'undefined' ? '-' : businessByUUID?.schedule?.[0]}
+                    className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300' />
+                </>
               ) : (
 
                 <select
@@ -744,13 +749,13 @@ const Form = ({
             <div>
               {editForm ? (
                 <>
-                <p className='text-xs text-gray-400 mb-2'>Jadwal Tutup</p>
-                <input
-                  disabled={editForm}
-                  type="text"
-                  placeholder={ businessByUUID?.schedule?.[1] == 'undefined' ? '-' : businessByUUID?.schedule?.[1]}
-                  className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300' />
-                  </>
+                  <p className='text-xs text-gray-400 mb-2'>Jadwal Tutup</p>
+                  <input
+                    disabled={editForm}
+                    type="text"
+                    placeholder={businessByUUID?.schedule?.[1] == 'undefined' ? '-' : businessByUUID?.schedule?.[1]}
+                    className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300' />
+                </>
               ) : (
 
                 <select
@@ -843,8 +848,9 @@ const Form = ({
                 </p>
               </div>
               <button
+                onClick={() => setDisabledBtn(true)}
                 type="submit"
-                className="w-fit flex justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded"
+                className={`w-fit ${disabledBtn ? "hidden" : "flex"} justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded`}
               >
                 <p className="text-xs md:text-sm text-white flex gap-2 items-center">
                   <FaSave className="inline-block" />

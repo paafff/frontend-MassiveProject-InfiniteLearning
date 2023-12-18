@@ -32,8 +32,10 @@ const Footer = () => {
 const Brand = () => {
   return (
     <div className="flex gap-3 items-center">
-      <img src={Logo} className="w-24" alt="" />
-      <Link to="#" className="text-white text-lg font-semibold">
+      <Link to="/">
+        <img src={Logo} className="w-24" alt="" />
+      </Link>
+      <Link to="/" className="text-white text-lg font-semibold">
         HairHub
       </Link>
     </div>
@@ -47,16 +49,16 @@ const Sosmed = () => {
   return (
     <div className="flex gap-3">
       <div className="bg-white hover:cursor-pointer w-fit p-4 rounded-md hover:scale-[1.2] transition-all">
-        <FaXTwitter onClick={()=>linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150 " />
+        <FaXTwitter onClick={() => linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150 " />
       </div>
       <div className="bg-white hover:cursor-pointer w-fit p-4 rounded-md hover:scale-[1.2] transition-all">
-        <FaLinkedin onClick={()=>linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150" />
+        <FaLinkedin onClick={() => linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150" />
       </div>
       <div className="bg-white hover:cursor-pointer w-fit p-4 rounded-md hover:scale-[1.2] transition-all">
-        <FaInstagram onClick={()=>linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150" />
+        <FaInstagram onClick={() => linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150" />
       </div>
       <div className="bg-white hover:cursor-pointer w-fit p-4 rounded-md hover:scale-[1.2] transition-all">
-        <FaFacebook onClick={()=>linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150" />
+        <FaFacebook onClick={() => linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150" />
       </div>
     </div>
   );

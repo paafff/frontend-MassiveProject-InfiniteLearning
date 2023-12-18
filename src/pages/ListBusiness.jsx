@@ -6,36 +6,25 @@ import axios from 'axios';
 const listCity = [
   {
     id: 0,
-    name: 'Garut',
+    name: 'Jakarta',
   },
   {
     id: 1,
-    name: 'Bandung',
-  },
-  {
-    id: 2,
-    name: 'Bekasi',
-  },
-  {
-    id: 3,
-    name: 'Mentawai',
-  },
-  {
-    id: 4,
     name: 'Bogor',
   },
   {
-    id: 5,
-    name: 'Kediri',
+    id: 2,
+    name: 'Depok',
   },
   {
-    id: 6,
-    name: 'Gresik',
+    id: 3,
+    name: 'Tangerang',
   },
   {
-    id: 7,
-    name: 'Solo',
+    id: 4,
+    name: 'Bekasi',
   },
+
 ];
 
 const ListBusiness = ({ page }) => {

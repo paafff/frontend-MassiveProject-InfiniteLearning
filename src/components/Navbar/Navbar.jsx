@@ -244,7 +244,7 @@ const NavbarMobile = ({
         </button>
       </div> */}
 
-      <Link to="/business" className="text-sm inline-block font-medium py-1  w-fit">
+      <Link to="/business" className="text-sm pl-7 inline-block font-medium py-1  w-fit">
         Telusuri
       </Link>
 
@@ -252,7 +252,7 @@ const NavbarMobile = ({
         to="#"
         onClick={() => setDropdownKategori(!dropdownKategori)}
         // onBlur={() => setDropdownKategori(!dropdownKategori)}
-        className="text-sm inline-block font-medium gap-1 items-center py-1  w-fit"
+        className="text-sm pl-7 inline-block font-medium gap-1 items-center py-1  w-fit"
       >
         Kategori
         <FaAngleDown className="inline-block ml-2" />

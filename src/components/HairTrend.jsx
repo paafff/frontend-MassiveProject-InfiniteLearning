@@ -14,7 +14,7 @@ const HairTrend = ({ dataHairTrend, index }) => {
     return (
         <div className='w-full flex flex-col lg:flex-row xl:w-3/4 lg:mx-auto'>
             <div className='w-full h-max lg:min-h-screen flex flex-col gap-3 py-7 px-5 md:px-10 xl:px-20 xl:py-14 xl:w-2/3 drop-shadow-md bg-white'>
-                <Link className='text-sm font-semibold hover:underline transition-all w-fit'>Back</Link>
+                <Link to="/" className='text-sm font-semibold hover:underline transition-all w-fit'>Back</Link>
                 <div className='w-full gap-2 flex flex-col md:flex-row items-center place-content-center my-5'>
                     <img src={dataHairTrend?.image} className='rounded-md w-64 h-fit aspect-auto drop-shadow-md' alt="" />
                 </div>

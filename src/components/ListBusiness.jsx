@@ -133,7 +133,7 @@ const SelectCity = ({ city, handleCity, listCity }) => {
         label="Age"
       >
         <MenuItem>
-          <b className="">Pilih Kota</b>
+          <b className="" disabled>Pilih Kota</b>
         </MenuItem>
 
         {listCity.map((city) => (

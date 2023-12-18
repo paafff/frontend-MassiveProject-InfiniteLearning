@@ -298,7 +298,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
         <div>
           {currentFeedbacks?.length > 0 ? (
 
-            <h1 class="font-semibold text-lg">Ulasan Pengguna ({currentFeedbacks?.length} Ulasan)</h1>
+            <h1 class="font-semibold text-lg">Ulasan Pengguna ({businessByUUID?.feedbacks?.length} Ulasan)</h1>
           ) : (
             <h1 class="font-semibold text-lg">Ulasan Pengguna (0 ulasan)</h1>
           )}
