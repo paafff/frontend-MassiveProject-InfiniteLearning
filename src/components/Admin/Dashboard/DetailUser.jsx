@@ -10,7 +10,7 @@ const DetailUser = ({ selectedUserUUID }) => {
       <div className="bg-white w-full rounded-lg p-4 lg:p-8 drop-shadow-md">
         <p className="text-base md:text-lg font-semibold">Detail User</p>
         <hr className="my-5" />
-
+        {console.log("selected user ", selectedUserUUID)}
         <Form selectedUserUUID={selectedUserUUID} />
       </div>
     </div>
@@ -118,9 +118,18 @@ const Form = ({ selectedUserUUID }) => {
           defaultValue={date}
         />
       </div>
-
+      <div className='flex flex-col gap-2'>
+        <p className="text-xs">Role User</p>
+        <input
+          type="text"
+          placeholder='role user'
+          disabled
+          value={dataUser.role}
+          className="w-full md:w-3/4 xl:w-1/2 text-xs focus:ring border border-gray-200 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-200"
+        />
+      </div>
       <div className="flex flex-col gap-2">
-        <p className="text-xs">Role</p>
+        <p className="text-xs">Ubah Role</p>
         <select
           onChange={(e) => setRole(e.target.value)}
           className="w-full md:w-3/4 xl:w-1/2 text-xs focus:ring border border-gray-200 focus:ring-gray-400 py-3 px-4 bg-white rounded-md placeholder:text-gray-400 placeholder:text-xs disabled:bg-gray-200"
