@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react'; status
+import React, { useEffect, useState, useRef } from 'react';
+status;
 import ChatNow from './ChatNow';
 import { FaLocationDot } from 'react-icons/fa6';
 import { FaStar } from 'react-icons/fa';
@@ -89,7 +90,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   ///jumlah per page
-  const [itemsPerPage] = useState(2);
+  const [itemsPerPage] = useState(3);
   // const [pageNumber, setPageNumber] = useState(0);
   // const feedbacksPerPage = 6;
 
@@ -103,8 +104,8 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleSosmed = (e) => {
-    window.open(e)
-  }
+    window.open(e);
+  };
 
   return (
     <>
@@ -127,14 +128,25 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
               </div>
             </div>
             <div className="w-full flex justify-center items-center shadow-md px-3 py-2 rounded-md gap-5 xl:gap-10">
+              <FaInstagramSquare
+                onClick={() => handleSosmed(businessByUUID.socialMedia?.[0])}
+                className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-rose-400"
+              />
 
-              <FaInstagramSquare onClick={() => handleSosmed(businessByUUID.socialMedia?.[0])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-rose-400" />
+              <FaFacebookSquare
+                onClick={() => handleSosmed(businessByUUID.socialMedia?.[1])}
+                className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-blue-600"
+              />
 
-              <FaFacebookSquare onClick={() => handleSosmed(businessByUUID.socialMedia?.[1])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-blue-600" />
+              <FaTwitterSquare
+                onClick={() => handleSosmed(businessByUUID.socialMedia?.[2])}
+                className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-blue-400"
+              />
 
-              <FaTwitterSquare onClick={() => handleSosmed(businessByUUID.socialMedia?.[2])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-blue-400" />
-
-              <FaYoutube onClick={() => handleSosmed(businessByUUID.socialMedia?.[3])} className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-rose-600" />
+              <FaYoutube
+                onClick={() => handleSosmed(businessByUUID.socialMedia?.[3])}
+                className="hover:cursor-pointer inline-block w-5 h-5 xl:w-8 xl:h-8 text-rose-600"
+              />
             </div>
           </div>
 
@@ -160,10 +172,8 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
             </div>
 
             <div class="flex flex-row gap-10 justify-start items-center mt-10">
-              <div className='flex flex-col'>
-                <p class="font-medium xl:text-2xl">
-                  Dikelola oleh
-                </p>
+              <div className="flex flex-col">
+                <p class="font-medium xl:text-2xl">Dikelola oleh</p>
                 <p class="font-bold xl:text-2xl">
                   {businessByUUID.userData?.username}
                 </p>
@@ -172,7 +182,8 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
                 className="w-10 xl:w-16 h-10 xl:h-16 rounded-full border border-gray-300"
                 style={{
                   backgroundImage: `url(${businessByUUID.userData?.profileURL})`,
-                  backgroundSize: 'cover', backgroundPosition: 'center'
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
                 }}
               >
                 {/* <img src={businessByUUID.userData?.profileURL} className='rounded-full' alt="" srcset="" /> */}
@@ -184,13 +195,13 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
         <div className="w-full xl:w-3/4 mt-10 border-b border-gray-200 pb-5">
           <p class="font-bold text-lg xl:text-2xl ">Deskripsi Barbershop</p>
           <p className="text-base">
-            {businessByUUID.description
-              ? (
-                <p className='mt-5 text-sm xl:mt-10'>{businessByUUID.description}</p>
-              )
-              : (
-                <p className='mt-5 text-sm xl:mt-10'>Belum ada deskripsi</p>
-              )}
+            {businessByUUID.description ? (
+              <p className="mt-5 text-sm xl:mt-10">
+                {businessByUUID.description}
+              </p>
+            ) : (
+              <p className="mt-5 text-sm xl:mt-10">Belum ada deskripsi</p>
+            )}
           </p>
         </div>
 
@@ -199,7 +210,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
           {businessByUUID?.services?.length > 0 ? (
             ''
           ) : (
-            <p className='mt-10 text-sm'>Belum ada layanan</p>
+            <p className="mt-10 text-sm">Belum ada layanan</p>
           )}
           {businessByUUID?.services?.map((service, index) => (
             <>
@@ -220,20 +231,17 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
                     <div className="w-full flex justify-start my-2" key={index}>
                       <div className="w-1/2">
                         <p className="text-sm xl:text-base py-2">
-                          {serviceName ? serviceName : "-"}
+                          {serviceName ? serviceName : '-'}
                         </p>
                       </div>
                       <div className="w-1/2">
                         <p className="text-sm xl:text-base py-2">
-                          {service.price?.[index] != '' ? (
-
-                            'Rp' +
-                            parseInt(service.price?.[index]).toLocaleString(
-                              'id-ID'
-                            )
-                          ) : (
-                            "-"
-                          )}
+                          {service.price?.[index] != ''
+                            ? 'Rp' +
+                              parseInt(service.price?.[index]).toLocaleString(
+                                'id-ID'
+                              )
+                            : '-'}
                         </p>
                       </div>
                     </div>
@@ -247,17 +255,31 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
         <div className="w-full xl:w-3/4 border-b border-gray-200 py-5">
           <h1 class="font-bold text-lg xl:text-2xl mb-4">Jam Operasional</h1>
           <div class="flex flex-row ml-1 mt-10">
-            <FaClock className='w-5 h-5 mr-4 text-zinc-800' />
+            <FaClock className="w-5 h-5 mr-4 text-zinc-800" />
             <div className="flex gap-10 px-5">
-              <p className='text-sm'>
-                {businessByUUID.schedule?.[0] == 'undefined' ? "-- Jam buka --" : (
-                  <p>Jam buka: {businessByUUID.schedule?.[0] ? businessByUUID.schedule?.[0] : '-- Jam buka --'}</p>
+              <p className="text-sm">
+                {businessByUUID.schedule?.[0] == 'undefined' ? (
+                  '-- Jam buka --'
+                ) : (
+                  <p>
+                    Jam buka:{' '}
+                    {businessByUUID.schedule?.[0]
+                      ? businessByUUID.schedule?.[0]
+                      : '-- Jam buka --'}
+                  </p>
                 )}
               </p>
 
-              <p className='text-sm'>
-                {businessByUUID.schedule?.[1] == 'undefined' ? "-- Jam tutup --" : (
-                  <p>Jam tutup: {businessByUUID.schedule?.[1] ? businessByUUID.schedule?.[1] : '-- Jam tutup --'}</p>
+              <p className="text-sm">
+                {businessByUUID.schedule?.[1] == 'undefined' ? (
+                  '-- Jam tutup --'
+                ) : (
+                  <p>
+                    Jam tutup:{' '}
+                    {businessByUUID.schedule?.[1]
+                      ? businessByUUID.schedule?.[1]
+                      : '-- Jam tutup --'}
+                  </p>
                 )}
               </p>
             </div>
@@ -267,29 +289,38 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
         <div className="w-full xl:w-3/4 border-b border-gray-200 py-5">
           <h1 class="font-bold text-lg xl:text-2xl">Daftar Karyawan</h1>
 
-          {businessByUUID.workers?.length > 0 ? businessByUUID.workers?.map((worker) => (
-            <div class="w-full flex gap-20 items-center mt-10">
-              <div className="w-14 h-14 rounded-full" style={{ backgroundImage: `url(${worker?.imageURL})`, backgroundSize: '80px', backgroundPosition: 'center' }} >
-
+          {businessByUUID.workers?.length > 0 ? (
+            businessByUUID.workers?.map((worker) => (
+              <div class="w-full flex gap-20 items-center mt-10">
+                <div
+                  className="w-14 h-14 rounded-full"
+                  style={{
+                    backgroundImage: `url(${worker?.imageURL})`,
+                    backgroundSize: '80px',
+                    backgroundPosition: 'center',
+                  }}
+                ></div>
+                <div className="w-1/4">
+                  <p className="text-sm">{worker?.name}</p>
+                </div>
+                <div className="w-1/4">
+                  <p className="text-sm">{worker?.skill}</p>
+                </div>
               </div>
-              <div className="w-1/4">
-                <p className='text-sm'>{worker?.name}</p>
-              </div>
-              <div className="w-1/4">
-                <p className='text-sm'>{worker?.skill}</p>
-              </div>
-            </div>
-          )) : (
-            <p className='text-sm mt-10'>Belum ada karyawan</p>
+            ))
+          ) : (
+            <p className="text-sm mt-10">Belum ada karyawan</p>
           )}
         </div>
 
         <div className="w-full xl:w-3/4 border-b border-gray-200 py-5">
-          <h1 class="font-bold text-lg xl:text-2xl">Lokasi dan Lingkungan Sekitar</h1>
+          <h1 class="font-bold text-lg xl:text-2xl">
+            Lokasi dan Lingkungan Sekitar
+          </h1>
           <div class="flex flex-row py-5 gap-3">
             <FaLocationDot className="text-rose-400 h-4 mt-1 mx-1" />
             {businessByUUID.address?.map((address) => (
-              <p className='text-sm'>{address + ', '}</p>
+              <p className="text-sm">{address + ', '}</p>
             ))}
           </div>
         </div>
@@ -297,58 +328,69 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
         {/* //ntar maping nang */}
         <div>
           {currentFeedbacks?.length > 0 ? (
-
-            <h1 class="font-semibold text-lg">Ulasan Pengguna ({businessByUUID?.feedbacks?.length} Ulasan)</h1>
+            <h1 class="font-semibold text-lg">
+              Ulasan Pengguna ({businessByUUID?.feedbacks?.length} Ulasan)
+            </h1>
           ) : (
             <h1 class="font-semibold text-lg">Ulasan Pengguna (0 ulasan)</h1>
           )}
 
           {/* {businessByUUID.feedbacks?.map((feedback) => ( */}
-          {currentFeedbacks?.length > 0 ? currentFeedbacks?.map((feedback) => (
-            <>
-              <div className="xl:w-3/4 flex flex-col gap-3 border-b border-gray-200 pb-5">
-                <div class="mt-10 ml-5 flex flex-row items-center gap-5">
-                  {feedback.userData?.profileURL ? (
-                    <div className='w-10 h-10 rounded-full' style={{ backgroundImage: `url(${feedback.userData?.profileURL})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                      {/* <img
+          {currentFeedbacks?.length > 0 ? (
+            currentFeedbacks?.map((feedback) => (
+              <>
+                <div className="xl:w-3/4 flex flex-col gap-3 border-b border-gray-200 pb-5">
+                  <div class="mt-10 ml-5 flex flex-row items-center gap-5">
+                    {feedback.userData?.profileURL ? (
+                      <div
+                        className="w-10 h-10 rounded-full"
+                        style={{
+                          backgroundImage: `url(${feedback.userData?.profileURL})`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                        }}
+                      >
+                        {/* <img
                       src={feedback.userData?.profileURL}
                       className="w-20"
                       alt=""
                     /> */}
-                    </div>
-                  ) : (
-                    <FaImage className="w-10 h-10" />
-                  )}
-                  <div class="ml-2 flex flex-row gap gap-5">
-                    <div class="ml-1">
-                      <h4 class="text-lg font-semibold">
-                        {' '}
-                        {feedback.userData?.username}
-                      </h4>
-                      <h6 class="text-xs text-gray-500">{feedback.createdAt}</h6>
-                    </div>
-                    <div class="items-center gap-4 flex flex-row py-1 px-1 h-6">
-                      <FaStar className="w-7 h-7 text-amber-400" />
-                      <p class="text-lg font-semibold">{feedback.rating}</p>
+                      </div>
+                    ) : (
+                      <FaImage className="w-10 h-10" />
+                    )}
+                    <div class="ml-2 flex flex-row gap gap-5">
+                      <div class="ml-1">
+                        <h4 class="text-lg font-semibold">
+                          {' '}
+                          {feedback.userData?.username}
+                        </h4>
+                        <h6 class="text-xs text-gray-500">
+                          {feedback.createdAt}
+                        </h6>
+                      </div>
+                      <div class="items-center gap-4 flex flex-row py-1 px-1 h-6">
+                        <FaStar className="w-7 h-7 text-amber-400" />
+                        <p class="text-lg font-semibold">{feedback.rating}</p>
+                      </div>
                     </div>
                   </div>
+                  <div className="flex flex-col gap-3 px-20">
+                    <p className="text-base ">{feedback.description}</p>
+                    {feedback.userData?.profileURL ? (
+                      <img src={feedback.imageURL} className="w-24" alt="" />
+                    ) : (
+                      <FaImage className="w-10 h-10" />
+                    )}
+                  </div>
                 </div>
-                <div className="flex flex-col gap-3 px-20">
-                  <p className="text-base ">{feedback.description}</p>
-                  {feedback.userData?.profileURL ? (
-                    <img src={feedback.imageURL} className="w-24" alt="" />
-                  ) : (
-                    <FaImage className="w-10 h-10" />
-                  )}
-                </div>
-              </div>
-            </>
-          )) : (
-            <p className='mt-10 '>belum ada ulasan</p>
+              </>
+            ))
+          ) : (
+            <p className="mt-10 ">belum ada ulasan</p>
           )}
 
           {businessByUUID?.feedbacks?.length > 0 ? (
-
             <ReactPaginate
               className="flex space-x-5 justify-center items-center mt-10"
               previousLabel={'Previous'}
@@ -368,7 +410,6 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
           ) : (
             ''
           )}
-
         </div>
 
         <div className="w-full xl:w-3/4">
@@ -387,8 +428,8 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const navigate = useNavigate()
-  const currentURL = useLocation().pathname
+  const navigate = useNavigate();
+  const currentURL = useLocation().pathname;
 
   // useState for rating
   const [rating, setRating] = useState(0);
@@ -446,19 +487,17 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
         }
       );
 
-      handleClose()
+      handleClose();
 
       Swal.fire({
         icon: 'success',
         title: 'Terimakasih telah memberikan ulasan',
         confirmButtonText: 'Oke',
       }).then((result) => {
-
         if (result.isConfirmed) {
-          window.location.reload()
+          window.location.reload();
         }
-      })
-
+      });
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -495,19 +534,24 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
             id="modal-modal-description"
             className="w-full bg-gray-200 py-4 px-5 shadow-md drop-shadow mt-3"
           >
-            <p className="text-sm lg:text-base">Silahkan Beri Ulasan Disini!!</p>
+            <p className="text-sm lg:text-base">
+              Silahkan Beri Ulasan Disini!!
+            </p>
           </div>
           <div className="w-full mt-10 flex flex-col items-center justify-center">
             <div className="w-full lg:w-4/5 flex flex-col lg:flex-row items-start gap-10 lg:gap-20 py-5 ">
               <div className="w-full lg:w-1/4">
-                <p className="text-base lg:text-xl font-medium">Rating Review</p>
+                <p className="text-base lg:text-xl font-medium">
+                  Rating Review
+                </p>
               </div>
               <div className="w-full lg:w-3/4 flex justify-evenly">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <FaStar
                     key={star}
-                    className={`${star <= rating ? 'text-amber-400' : 'text-gray-200'
-                      }  scale-[2.5] transition-all hover:cursor-pointer`}
+                    className={`${
+                      star <= rating ? 'text-amber-400' : 'text-gray-200'
+                    }  scale-[2.5] transition-all hover:cursor-pointer`}
                     onClick={(e) => handleRatingChange(star)}
                   />
                 ))}
@@ -515,7 +559,9 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
             </div>
             <div className="w-full lg:w-4/5 flex flex-col lg:flex-row items-start gap-5 lg:gap-20 py-5 ">
               <div className="w-full lg:w-1/4">
-                <p className="text-base lg:text-xl font-medium">Lampirkan Foto</p>
+                <p className="text-base lg:text-xl font-medium">
+                  Lampirkan Foto
+                </p>
               </div>
               <div className="w-3/4 flex flex-col gap-5">
                 <div
@@ -541,7 +587,9 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
             </div>
             <div className="w-full lg:w-4/5 flex flex-col lg:flex-row items-start gap-5 lg:gap-20 py-5 ">
               <div className="w-full lg:w-1/4">
-                <p className="text-base lg:text-xl font-medium">Deskripsi Ulasan</p>
+                <p className="text-base lg:text-xl font-medium">
+                  Deskripsi Ulasan
+                </p>
               </div>
               <div className="w-full lg:w-3/4">
                 <textarea
