@@ -499,10 +499,13 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
         }
       });
     } catch (error) {
+      //dibawah ini opsi tampilkan error
       if (error.response) {
-        alert(error.response.data.msg);
+        handleClose();
+        Swal.fire(error.response.data.msg, '', 'error');
+        // alert(error.response.data.msg); // Menampilkan pesan error sebagai popup
       } else {
-        console.log(error);
+        console.log(error); // Menampilkan error pada konsol
       }
     }
   };
