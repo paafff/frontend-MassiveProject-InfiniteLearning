@@ -1,8 +1,1 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+HairHub adalah platfrom website inovatif yang menjadi pusat informasi bagi pemilik dan pengguna barbershop dan salon di Jabodetabek. Platfrom ini dikembangkan pada tahun 2023. Dan kami berkomitmen menyediakan informasi detail dan akurat, memfasilitasi pemilik usaha dalam mempromosikan layanan secara efektif, sementara pengguna dapat dengan mudah menemukan dan menilai berbagai barbershop dan salon. Bersama HairHub, kami berkomitmen mendukung pertumbuhan industri babershop dan salon!!
