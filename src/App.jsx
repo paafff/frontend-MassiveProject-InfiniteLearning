@@ -50,7 +50,6 @@ const App = () => {
       <div>
         <BrowserRouter>
           <Routes>
-
             <Route path="/help" element={<Help />} />
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<DashboardUser />} />
@@ -79,7 +78,7 @@ const App = () => {
               path="/superuser/dashboard-booking/:id"
               element={<DashboardBooking />}
             />
-          
+
             <Route path="/subscription" element={<Subscription />} />
 
             {/* Admin */}
