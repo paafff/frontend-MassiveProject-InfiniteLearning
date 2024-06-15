@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import HeroImage from '../../assets/images/barbershop-medan1.jpg';
+import HeroImage from '../../assets/images/barbershop-medan1.png';
 import Nekuk from '../../assets/images/nekuk.png';
 import { IoSearchOutline } from 'react-icons/io5';
 import { Link, useNavigate } from 'react-router-dom';
