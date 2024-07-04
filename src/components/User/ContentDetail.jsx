@@ -40,6 +40,14 @@ const style = {
 
 const ContentDetail = ({ businessByUUID, userAuth }) => {
   const [services, setServices] = useState([businessByUUID.services]);
+  const [rates, setRates] = useState([]);
+  const totalStar = 5;
+  const validRates = typeof rates === 'number' ? rates : 0;
+
+  const goldStars = Array.from({ length: validRates })
+  const grayStars = Array.from({ length: totalStar - validRates })
+  
+  console.log(businessByUUID);
 
   // modal reservation
   const [open, setOpen] = useState(false);
@@ -84,7 +92,17 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
     } else {
       setStatus(`Tutup`);
     }
-  }, [targetTimeClose, targetTimeOpen]);
+
+    // menghitung rata rata rating dari setiap reviewer
+    if (businessByUUID.feedbacks?.length > 0) {
+
+      const totalRating = businessByUUID.feedbacks?.reduce((sum, feedback) => sum + feedback.rating, 0);
+      const avgRating = Math.floor(totalRating / businessByUUID.feedbacks.length);
+
+      setRates(avgRating);
+    }
+
+  }, [targetTimeClose, targetTimeOpen, rates]);
 
   // const [feedbacks, setFeedbacks] = useState(businessByUUID?.feedbacks);
   const [currentPage, setCurrentPage] = useState(1);
@@ -153,17 +171,29 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
           <div className="w-full lg:w-3/4 flex flex-col gap-4 mt-10 md:my-0">
             <p class="xl:text-2xl text-lg font-bold">{businessByUUID.name}</p>
 
-            <div className="w-full flex gap-5">
-              {status == 'Tutup' ? (
-                <p class="text-red-500">{status}</p>
-              ) : (
-                <p class="text-blue-500">{status}</p>
-              )}
-              <div className="flex gap-1">
-                <FaLocationDot className="text-rose-400" />
-                <p class="">
-                  {businessByUUID.address ? businessByUUID.address[1] : ''}
-                </p>
+            <div className="w-full flex flex-col xl:flex-row gap-5 xl:items-center">
+              <div className='flex  gap-5'>
+                {status == 'Tutup' ? (
+                  <p class="text-red-500">{status}</p>
+                ) : (
+                  <p class="text-blue-500">{status}</p>
+                )}
+                <div className="flex gap-1">
+                  <FaLocationDot className="text-rose-400" />
+                  <p class="">
+                    {businessByUUID.address ? businessByUUID.address[1] : ''}
+                  </p>
+                </div>
+              </div>
+              <div className='flex items-center'>
+                {goldStars.map((star, index) => (
+                  <FaStar key={index} className='w-7 h-7 text-amber-400' />
+                ))}
+
+                {grayStars.map((star, index) => (
+                  <FaStar key={index} className='w-7 h-7 text-gray-200' />
+                ))}
+
               </div>
               {/* <div class=" my-auto flex gap-1">
               <FaStar className="w-3 h-3 text-amber-500" />
@@ -238,9 +268,9 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
                         <p className="text-sm xl:text-base py-2">
                           {service.price?.[index] != ''
                             ? 'Rp' +
-                              parseInt(service.price?.[index]).toLocaleString(
-                                'id-ID'
-                              )
+                            parseInt(service.price?.[index]).toLocaleString(
+                              'id-ID'
+                            )
                             : '-'}
                         </p>
                       </div>
@@ -552,9 +582,8 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
                 {[1, 2, 3, 4, 5].map((star) => (
                   <FaStar
                     key={star}
-                    className={`${
-                      star <= rating ? 'text-amber-400' : 'text-gray-200'
-                    }  scale-[2.5] transition-all hover:cursor-pointer`}
+                    className={`${star <= rating ? 'text-amber-400' : 'text-gray-200'
+                      }  scale-[2.5] transition-all hover:cursor-pointer`}
                     onClick={(e) => handleRatingChange(star)}
                   />
                 ))}
