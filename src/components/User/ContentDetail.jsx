@@ -46,8 +46,6 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
 
   const goldStars = Array.from({ length: validRates })
   const grayStars = Array.from({ length: totalStar - validRates })
-  
-  console.log(businessByUUID);
 
   // modal reservation
   const [open, setOpen] = useState(false);
@@ -124,6 +122,10 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
   const handleSosmed = (e) => {
     window.open(e);
   };
+
+  const handleMaps = (e) => {
+    window.open(e);
+  }
 
   return (
     <>
@@ -347,11 +349,26 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
           <h1 class="font-bold text-lg xl:text-2xl">
             Lokasi dan Lingkungan Sekitar
           </h1>
-          <div class="flex flex-row py-5 gap-3">
-            <FaLocationDot className="text-rose-400 h-4 mt-1 mx-1" />
-            {businessByUUID.address?.map((address) => (
-              <p className="text-sm">{address + ', '}</p>
-            ))}
+          <div class="flex flex-col py-3 px-4 my-3 gap-3 justify-center border border-red-500 rounded-md">
+            <div className='flex flex-row gap-3'>
+              <FaLocationDot className="text-rose-400 h-4 mt-1 mx-1" />
+              {businessByUUID.address?.map((address) => (
+                <p className="text-sm">{address + ', '}</p>
+              ))}
+            </div>
+            {console.log(businessByUUID.socialMedia?.[4])}
+
+            {businessByUUID.socialMedia?.[4].length > 22 ? (
+              <div onClick={() => handleMaps(businessByUUID.socialMedia?.[4])} className='w-full flex justify-center bg-rose-400 hover:bg-rose-500 transition-all hover:cursor-pointer py-2 rounded'>
+                <p className='text-sm text-white'>Google Maps</p>
+              </div>
+            ) : (
+              <div className='w-full flex justify-center bg-slate-400 transition-all hover:cursor-not-allowed py-2 rounded'>
+                <p className='text-sm text-white'>Maps Belum Tersedia</p>
+              </div>
+            )}
+
+
           </div>
         </div>
 
