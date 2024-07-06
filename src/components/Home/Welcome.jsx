@@ -19,7 +19,7 @@ const Welcome = () => {
 
       <div className="w-full flex flex-col lg:flex-row lg:px-20 py-8 gap-10">
         <div className="w-72 lg:w-fit rounded-md mx-auto drop-shadow-lg flex gap-1">
-          <div className="">
+          <div className="h-fit">
             <img
               src={Image2}
               className="rounded-md border-2 border-black h-full"
