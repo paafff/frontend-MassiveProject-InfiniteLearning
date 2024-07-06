@@ -272,7 +272,7 @@ const BusinessRegistration = () => {
           confirmButtonText: 'Hubungi admin',
         }).then((result) => {
           if (result.isConfirmed) {
-            navigate('/call-centre')
+            navigate('/call-center')
           }
         })
         // alert(error.response.data.msg);

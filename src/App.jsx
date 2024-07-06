@@ -101,7 +101,7 @@ const App = () => {
             <Route path="/penalty" element={<Penalti />} />
             <Route path="/term-owner" element={<SyaratKetentuanPemilik />} />
             <Route path="/term-searcher" element={<SyaratKetentuanPencari />} />
-            <Route path="/call-centre" element={<Hubungi />} />
+            <Route path="/call-center" element={<Hubungi />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

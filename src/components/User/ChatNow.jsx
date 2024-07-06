@@ -4,7 +4,7 @@ import chatNow from "../../data/chatNow";
 import phoneAdmin from "../../data/phoneAdmin";
 import { Link } from "react-router-dom";
 
-export default function Chat({phone}) {
+export default function Chat({phone,ownerName}) {
     const [showModal, setShowModal] = useState(false);
     const [selectedChat, setSelectedChat] = useState(null)
     const [selectedAdmin, setSelectedAdmin] = useState(null)
@@ -19,7 +19,8 @@ export default function Chat({phone}) {
     }
 
     const handleClick = () => {
-        const url = `https://wa.me/${phone}?text=Halo ${selectedAdmin?.name}, ${selectedChat?.desc}`
+        const validPhone = phone.startsWith('0') ? '62' + phone.slice(1) : phone
+        const url = `https://wa.me/${validPhone}?text=Halo Kak ${ownerName}, ${selectedChat?.desc}`
         window.open(url)
     }
 

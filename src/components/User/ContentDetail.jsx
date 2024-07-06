@@ -138,7 +138,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
         <div class="w-full flex flex-col md:flex-row-reverse md:items-start mt-5">
           <div className="w-full xl:w-1/4 flex flex-col items-end gap-5">
             <div className="w-full mt-10 flex xl:flex-col xl:items-end gap-2">
-              <ChatNow phone={businessByUUID?.phone} />
+              <ChatNow phone={businessByUUID?.userData?.phone} ownerName={businessByUUID?.userData?.username} />
 
               <div
                 onClick={handleOpen}
@@ -356,14 +356,13 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
                 <p className="text-sm">{address + ', '}</p>
               ))}
             </div>
-            {console.log(businessByUUID.socialMedia?.[4])}
 
             {businessByUUID.socialMedia?.[4].length > 22 ? (
-              <div onClick={() => handleMaps(businessByUUID.socialMedia?.[4])} className='w-full flex justify-center bg-rose-400 hover:bg-rose-500 transition-all hover:cursor-pointer py-2 rounded'>
+              <div onClick={() => handleMaps(businessByUUID.socialMedia?.[4])} className='w-full shadow-md flex justify-center bg-rose-400 hover:bg-rose-500 transition-all hover:cursor-pointer py-2 rounded'>
                 <p className='text-sm text-white'>Google Maps</p>
               </div>
             ) : (
-              <div className='w-full flex justify-center bg-slate-400 transition-all hover:cursor-not-allowed py-2 rounded'>
+              <div className='w-full shadow-md flex justify-center bg-slate-400 transition-all hover:cursor-not-allowed py-2 rounded'>
                 <p className='text-sm text-white'>Maps Belum Tersedia</p>
               </div>
             )}

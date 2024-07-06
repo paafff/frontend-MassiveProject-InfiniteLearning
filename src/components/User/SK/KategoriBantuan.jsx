@@ -122,7 +122,7 @@ const Hubungi = () => {
         <div className='w-72 my-5 flex flex-col gap-4 text-zinc-900 p-3 pb-5 rounded-md border-b border-slate-200'>
             <TfiHeadphoneAlt className='w-10 h-10' />
             <p className='text-xl  font-bold'>
-                <Link to="/call-centre">
+                <Link to="/call-center">
                     Hubungi HairHub
                 </Link>
             </p>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Hamburger from '../../../pages/User/SK/Hamburger'
 import { FaWhatsapp } from "react-icons/fa";
 import { BsChatLeftText } from "react-icons/bs";
@@ -34,10 +34,16 @@ const Heading = () => {
 
 const Card = () => {
     const [selectedAdmin, setSelectedAdmin] = useState(null)
+    const [selectedIndex, setSelectedIndex] = useState(0);
 
-    const array = [0, 1, 2, 3, 4, 5, 6]
-    const randomIndex = Math.floor(Math.random() * array.length)
-    const selectedIndex = array[randomIndex]
+    useEffect(() => {
+        const array = [0, 1, 2, 3, 4, 5, 6]
+        const randomIndex = Math.floor(Math.random() * array.length)
+        setSelectedIndex(array[randomIndex])
+        setSelectedAdmin(phoneAdmin[selectedIndex])
+
+        console.log("phone admin ", selectedAdmin);
+    }, [selectedAdmin])
 
     const handleWA = () => {
         setSelectedAdmin(phoneAdmin[selectedIndex])
@@ -45,17 +51,17 @@ const Card = () => {
         window.open(url)
     }
     return (
-        <div className='flex flex-col md:flex-row xl:max-w-4xl gap-5 md:gap-3'>
+        <div className='flex flex-col md:flex-row xl:max-w-lg gap-5 md:gap-3'>
             <div onClick={handleWA} className='w-full flex flex-col  drop-shadow-md bg-white p-5 md:p-8 rounded-md border border-slate-200 text-zinc-900'>
                 <FaWhatsapp className='scale-[2.5] mt-5 mb-10 ml-5' />
                 <p className='font-bold text-lg'>Whatsapp</p>
                 <p className='my-1 text-sm '>Hubungi customer service lewat WhatsApp Anda (chat only).</p>
             </div>
-            <div className='w-full flex flex-col  drop-shadow-md bg-white p-5 md:p-8 rounded-md border border-slate-200 text-zinc-900'>
+            {/* <div className='w-full flex flex-col  drop-shadow-md bg-white p-5 md:p-8 rounded-md border border-slate-200 text-zinc-900'>
                 <BsChatLeftText className='scale-[2.5] mt-5 mb-10 ml-5' />
                 <p className='font-bold text-lg'>Whatsapp</p>
                 <p className='my-1 text-sm '>Langsung chat disini dengan customer service kami.</p>
-            </div>
+            </div> */}
         </div>
     )
 }

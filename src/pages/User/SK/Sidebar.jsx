@@ -159,7 +159,7 @@ const HubungiHairHub = () => {
             >
                 <Typography className='px-5 '>
                     <TfiHeadphoneAlt className='inline-block scale-150 mr-5' />
-                    <Link to="/call-centre">
+                    <Link to="/call-center">
                         Hubungi HairHub
                     </Link>
                 </Typography>
