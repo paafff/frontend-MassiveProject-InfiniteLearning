@@ -1,6 +1,6 @@
 import React from 'react';
 import { IoMdInformationCircleOutline, IoMdPin } from 'react-icons/io';
-import { FaRegBuilding, FaAngleDown, FaRegComments } from 'react-icons/fa';
+import { FaRegBuilding, FaAngleDown, FaRegComments, FaCalendarAlt } from 'react-icons/fa';
 import {
   FaTachometerAlt,
   FaUserCircle,
@@ -8,6 +8,7 @@ import {
   FaComments,
   FaClipboardList,
   FaFlag,
+  FaRegCalendarAlt
 } from 'react-icons/fa';
 import { FaClipboardUser } from 'react-icons/fa6';
 import { FaRegCalendarCheck } from 'react-icons/fa6';
@@ -47,6 +48,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
     };
 
     getMeUser();
+    getMyBusiness();
   }, [dispatch, navigate]);
 
   const [listBusiness, setListBusiness] = useState([]);
@@ -65,17 +67,12 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
     }
   };
 
-  useEffect(() => {
-    getMyBusiness();
-  }, [dispatch, navigate]);
-
   const role = userAuth.role;
 
   return (
     <div
-      className={` min-h-full pb-32 z-10 w-72 transition-all rounded-br-full lg:rounded-none bg-white drop-shadow-md absolute ${
-        showSidebar ? 'left-0' : 'left-[-300px]'
-      } lg:left-0 lg:static`}
+      className={` min-h-full pb-32 z-10 w-72 transition-all rounded-br-full lg:rounded-none bg-white drop-shadow-md absolute ${showSidebar ? 'left-0' : 'left-[-300px]'
+        } lg:left-0 lg:static`}
     >
       {role == 'Admin' ? (
         <>
@@ -99,6 +96,8 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
           <UserAjukanUsaha />
 
+          <Reservasi id={userAuth.id} />
+
           <UserUsaha listBusiness={listBusiness} />
 
           <UserBooking listBusiness={listBusiness} />
@@ -108,6 +107,8 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
       ) : (
         <>
           <UserBiodata />
+
+          <Reservasi  id={userAuth.id} />
 
           <UserAjukanUsaha />
         </>
@@ -143,6 +144,20 @@ const UserAjukanUsaha = () => {
     </Link>
   );
 };
+
+const Reservasi = ({id}) => {
+  return (
+    <Link
+      to={`/reservation/${id}`}
+      className="w-full h-fit hover:bg-gray-200 transition-all white flex items-center justify-start px-10 py-12"
+    >
+      <p className="text-sm lg:text-base text-black flex items-center gap-4">
+        <FaRegCalendarAlt className="inline-block scale-150" />
+        Reservasi
+      </p>
+    </Link>
+  )
+}
 
 const UserUsaha = ({ listBusiness }) => {
   return (

@@ -43,6 +43,7 @@ import KategoriBantuan from './pages/User/SK/KategoriBantuan';
 import HairTrend from './pages/HairTrend';
 import AdminServices from './pages/Admin/Services';
 import NotFound from './pages/NotFound';
+import Reservation from './pages/User/Reservation';
 
 const App = () => {
   return (
@@ -78,6 +79,8 @@ const App = () => {
               path="/superuser/dashboard-booking/:id"
               element={<DashboardBooking />}
             />
+
+            <Route path='/reservation/:userId' element={<Reservation />} />
 
             <Route path="/subscription" element={<Subscription />} />
 
