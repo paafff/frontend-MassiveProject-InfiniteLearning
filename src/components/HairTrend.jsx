@@ -10,6 +10,7 @@ const HairTrend = ({ dataHairTrend, index }) => {
         <Link
           to="/"
           className="text-sm font-semibold hover:underline transition-all w-fit"
+          aria-label="beranda"
         >
           Back
         </Link>

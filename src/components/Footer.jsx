@@ -32,10 +32,14 @@ const Footer = () => {
 const Brand = () => {
   return (
     <div className="flex gap-3 items-center">
-      <Link to="/">
+      <Link to="/" aria-label="beranda">
         <img src={Logo} className="w-24" alt="" />
       </Link>
-      <Link to="/" className="text-white text-lg font-semibold">
+      <Link
+        to="/"
+        className="text-white text-lg font-semibold"
+        aria-label="beranda"
+      >
         HairHub
       </Link>
     </div>
@@ -87,9 +91,15 @@ const Sosmed = () => {
 const LinksFooter = () => {
   return (
     <div className="flex flex-col gap-2 text-white text-sm">
-      <Link to="/">Beranda</Link>
-      <Link to="/barbershop">Barbershop</Link>
-      <Link to="/salon">Salon</Link>
+      <Link to="/" aria-label="beranda">
+        Beranda
+      </Link>
+      <Link to="/barbershop" aria-label="barbershop">
+        Barbershop
+      </Link>
+      <Link to="/salon" aria-label="salon">
+        Salon
+      </Link>
     </div>
   );
 };
