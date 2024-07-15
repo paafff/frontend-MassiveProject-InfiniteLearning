@@ -100,7 +100,7 @@ const Navbar = () => {
 const Brand = ({ logoutProps }) => {
   return (
     <div className="flex items-center gap-1 ">
-      <Link to="/">
+      <Link to="/" aria-label="beranda">
         <img src={Logo} className="w-24" alt="beranda" />
       </Link>
       <div>

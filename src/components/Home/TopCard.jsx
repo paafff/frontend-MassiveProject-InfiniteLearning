@@ -134,7 +134,7 @@ const CardTopRecommend = ({ card }) => {
           <Link
             to={`/detail/${card.uuid}`}
             className="w-8 h-8 flex justify-center items-center bg-rose-500 rounded-lg drop-shadow-md hover:scale-90 hover:cursor-pointer transition-all"
-            alt="detail"
+             aria-label="detail"
           >
             <FaArrowRight className="text-white" />
           </Link>
