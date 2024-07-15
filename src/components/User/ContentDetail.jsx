@@ -44,18 +44,14 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
   const totalStar = 5;
   const validRates = typeof rates === 'number' ? rates : 0;
 
-  const goldStars = Array.from({ length: validRates })
-  const grayStars = Array.from({ length: totalStar - validRates })
+  const goldStars = Array.from({ length: validRates });
+  const grayStars = Array.from({ length: totalStar - validRates });
 
   // modal reservation
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // useEffect(() => {
-  // }, [businessByUUID]);
-
-  //scheduleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee yak
   const [status, setStatus] = useState('');
   const currentTime = new Date().toLocaleTimeString('id-ID', {
     hour12: false,
@@ -75,9 +71,6 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
   const targetMinutesClose = parseInt(targetTimeClose?.split(':')[1]);
   useEffect(() => {
     if (
-      // currentHours > targetHoursOpen ||
-      // (currentHours === targetHoursOpen && currentMinutes > targetMinutesOpen)
-
       (currentHours > targetHoursOpen ||
         (currentHours === targetHoursOpen &&
           currentMinutes > targetMinutesOpen)) &&
@@ -93,13 +86,16 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
 
     // menghitung rata rata rating dari setiap reviewer
     if (businessByUUID.feedbacks?.length > 0) {
-
-      const totalRating = businessByUUID.feedbacks?.reduce((sum, feedback) => sum + feedback.rating, 0);
-      const avgRating = Math.floor(totalRating / businessByUUID.feedbacks.length);
+      const totalRating = businessByUUID.feedbacks?.reduce(
+        (sum, feedback) => sum + feedback.rating,
+        0
+      );
+      const avgRating = Math.floor(
+        totalRating / businessByUUID.feedbacks.length
+      );
 
       setRates(avgRating);
     }
-
   }, [targetTimeClose, targetTimeOpen, rates]);
 
   // const [feedbacks, setFeedbacks] = useState(businessByUUID?.feedbacks);
@@ -107,8 +103,6 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
 
   ///jumlah per page
   const [itemsPerPage] = useState(3);
-  // const [pageNumber, setPageNumber] = useState(0);
-  // const feedbacksPerPage = 6;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -125,7 +119,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
 
   const handleMaps = (e) => {
     window.open(e);
-  }
+  };
 
   return (
     <>
@@ -138,7 +132,10 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
         <div class="w-full flex flex-col md:flex-row-reverse md:items-start mt-5">
           <div className="w-full xl:w-1/4 flex flex-col items-end gap-5">
             <div className="w-full mt-10 flex xl:flex-col xl:items-end gap-2">
-              <ChatNow phone={businessByUUID?.userData?.phone} ownerName={businessByUUID?.userData?.username} />
+              <ChatNow
+                phone={businessByUUID?.userData?.phone}
+                ownerName={businessByUUID?.userData?.username}
+              />
 
               <div
                 onClick={handleOpen}
@@ -174,7 +171,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
             <p class="xl:text-2xl text-lg font-bold">{businessByUUID.name}</p>
 
             <div className="w-full flex flex-col xl:flex-row gap-5 xl:items-center">
-              <div className='flex  gap-5'>
+              <div className="flex  gap-5">
                 {status == 'Tutup' ? (
                   <p class="text-red-500">{status}</p>
                 ) : (
@@ -187,15 +184,14 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
                   </p>
                 </div>
               </div>
-              <div className='flex items-center'>
+              <div className="flex items-center">
                 {goldStars.map((star, index) => (
-                  <FaStar key={index} className='w-7 h-7 text-amber-400' />
+                  <FaStar key={index} className="w-7 h-7 text-amber-400" />
                 ))}
 
                 {grayStars.map((star, index) => (
-                  <FaStar key={index} className='w-7 h-7 text-gray-200' />
+                  <FaStar key={index} className="w-7 h-7 text-gray-200" />
                 ))}
-
               </div>
               {/* <div class=" my-auto flex gap-1">
               <FaStar className="w-3 h-3 text-amber-500" />
@@ -270,9 +266,9 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
                         <p className="text-sm xl:text-base py-2">
                           {service.price?.[index] != ''
                             ? 'Rp' +
-                            parseInt(service.price?.[index]).toLocaleString(
-                              'id-ID'
-                            )
+                              parseInt(service.price?.[index]).toLocaleString(
+                                'id-ID'
+                              )
                             : '-'}
                         </p>
                       </div>
@@ -350,7 +346,7 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
             Lokasi dan Lingkungan Sekitar
           </h1>
           <div class="flex flex-col py-3 px-4 my-3 gap-3 justify-center border border-red-500 rounded-md">
-            <div className='flex flex-row gap-3'>
+            <div className="flex flex-row gap-3">
               <FaLocationDot className="text-rose-400 h-4 mt-1 mx-1" />
               {businessByUUID.address?.map((address) => (
                 <p className="text-sm">{address + ', '}</p>
@@ -358,16 +354,17 @@ const ContentDetail = ({ businessByUUID, userAuth }) => {
             </div>
 
             {businessByUUID.socialMedia?.[4].length > 22 ? (
-              <div onClick={() => handleMaps(businessByUUID.socialMedia?.[4])} className='w-full shadow-md flex justify-center bg-rose-400 hover:bg-rose-500 transition-all hover:cursor-pointer py-2 rounded'>
-                <p className='text-sm text-white'>Google Maps</p>
+              <div
+                onClick={() => handleMaps(businessByUUID.socialMedia?.[4])}
+                className="w-full shadow-md flex justify-center bg-rose-400 hover:bg-rose-500 transition-all hover:cursor-pointer py-2 rounded"
+              >
+                <p className="text-sm text-white">Google Maps</p>
               </div>
             ) : (
-              <div className='w-full shadow-md flex justify-center bg-slate-400 transition-all hover:cursor-not-allowed py-2 rounded'>
-                <p className='text-sm text-white'>Maps Belum Tersedia</p>
+              <div className="w-full shadow-md flex justify-center bg-slate-400 transition-all hover:cursor-not-allowed py-2 rounded">
+                <p className="text-sm text-white">Maps Belum Tersedia</p>
               </div>
             )}
-
-
           </div>
         </div>
 
@@ -493,7 +490,6 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
   // Input data to state
   const handleChange = (e) => {
     const name = e.name;
-    // const id = e.name;
     const value = e.value;
     setFeedbackData((prev) => {
       return { ...prev, [name]: value };
@@ -502,12 +498,10 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
 
   const handlePictureChange = (event) => {
     const file = event.target.files[0];
-    // setPicture(file);
     setFeedbackData({ ...feedbackData, feedbackPhoto: file });
   };
 
   const [feedbackData, setFeedbackData] = useState({
-    // businessId: businessByUUID?.id,
     description: '',
     feedbackPhoto: null,
   });
@@ -545,11 +539,9 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
         }
       });
     } catch (error) {
-      //dibawah ini opsi tampilkan error
       if (error.response) {
         handleClose();
         Swal.fire(error.response.data.msg, '', 'error');
-        // alert(error.response.data.msg); // Menampilkan pesan error sebagai popup
       } else {
         console.log(error); // Menampilkan error pada konsol
       }
@@ -598,8 +590,9 @@ const ReviewModal = ({ userAuth, businessByUUID }) => {
                 {[1, 2, 3, 4, 5].map((star) => (
                   <FaStar
                     key={star}
-                    className={`${star <= rating ? 'text-amber-400' : 'text-gray-200'
-                      }  scale-[2.5] transition-all hover:cursor-pointer`}
+                    className={`${
+                      star <= rating ? 'text-amber-400' : 'text-gray-200'
+                    }  scale-[2.5] transition-all hover:cursor-pointer`}
                     onClick={(e) => handleRatingChange(star)}
                   />
                 ))}

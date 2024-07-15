@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../../assets/images/icons/gataunamanya.png';
+import Header from '../../assets/images/icons/gataunamanya.webp';
 import { FaAngleDown } from 'react-icons/fa';
-import ImageCard from '../../assets/images/business/image8.jpg';
 import { TbMoustache } from 'react-icons/tb';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { FaArrowRight } from 'react-icons/fa6';
@@ -97,7 +96,12 @@ const CardTopRecommend = ({ card }) => {
   return (
     <div
       className="p-3 min-w-[288px] xl:min-w-[350px] h-96 xl:h-[450px] bg-gray-300 flex flex-col justify-between rounded-lg xl:rounded-xl drop-shadow-md"
-      style={{ backgroundImage: `url(${card?.imageURL?.[0]})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
+      style={{
+        backgroundImage: `url(${card?.imageURL?.[0]})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      }}
     >
       <div className="w-full flex justify-end gap-3">
         <div className="px-2 h-8 bg-white rounded-full flex justify-center items-center">
@@ -106,11 +110,10 @@ const CardTopRecommend = ({ card }) => {
             Top Recommendation
           </p>
         </div>
-        
       </div>
       <div className="w-full flex justify-between items-center bg-white rounded-md p-3 lg:px-5 hover:cursor-pointer">
         <div className="flex flex-col gap-1">
-          {status == "Tutup" ? (
+          {status == 'Tutup' ? (
             <p className="text-red-600 font-semibold text-xs xl:text-sm">
               {status}
             </p>
@@ -119,7 +122,9 @@ const CardTopRecommend = ({ card }) => {
               {status}
             </p>
           )}
-          <p className="text-xs lg:text-base font-semibold line-clamp-1">{card.name}</p>
+          <p className="text-xs lg:text-base font-semibold line-clamp-1">
+            {card.name}
+          </p>
           {/* [prov,kab,kec,kel,rtrw] */}
           <p className="text-xs lg:text-base text-gray-500">
             {card.address[1]}

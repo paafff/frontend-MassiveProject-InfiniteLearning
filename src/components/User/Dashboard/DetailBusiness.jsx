@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { IoIosSave } from 'react-icons/io';
 import { FaFacebookSquare, FaYoutube, FaSave } from 'react-icons/fa';
-import InstagramLogo from '../../../assets/images/logo/instagram.png';
+import InstagramLogo from '../../../assets/images/logo/instagram.webp';
 import { FaXTwitter } from 'react-icons/fa6';
 import { FiEdit } from 'react-icons/fi';
 import { IoReturnDownBackOutline } from 'react-icons/io5';
@@ -35,13 +34,14 @@ const DetailBussiness = ({ businessByUUID, sosmed }) => {
         <p className="text-base md:text-lg font-semibold">Detail Usaha</p>
         <hr className="my-5" />
 
-        <p className='text-sm mb-2'>Foto</p>
-        <p className='text-xs text-gray-400 mb-2'>Unggah foto dengan format JPG 1:1 </p>
+        <p className="text-sm mb-2">Foto</p>
+        <p className="text-xs text-gray-400 mb-2">
+          Unggah foto dengan format JPG 1:1{' '}
+        </p>
         <div className="xl:flex xl:flex-row flex flex-col gap-4 mb-6">
           <Banner
             editForm={editForm}
             setEditForm={setEditForm}
-            // banner={banner}
             businessByUUID={businessByUUID}
             // handleImage
             changeBannerRef={changeBannerRef}
@@ -215,7 +215,6 @@ const Banner = ({
 
   return (
     <div className="w-full xl:my-auto xl:w-1/2 border border-gray-300 rounded p-2 flex flex-col gap-3 mb-5">
-
       {banner ? (
         <img
           src={URL.createObjectURL(banner)}
@@ -382,12 +381,11 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link instagram"
-          defaultValue={businessByUUID?.socialMedia?.[0] == 'undefined' ? 'Link instagram' : businessByUUID?.socialMedia?.[0]}
-        // placeholder={
-        //   businessByUUID.socialMedia
-        //     ? businessByUUID.socialMedia[0]
-        //     : 'coba ig'
-        // }
+          defaultValue={
+            businessByUUID?.socialMedia?.[0] == 'undefined'
+              ? 'Link instagram'
+              : businessByUUID?.socialMedia?.[0]
+          }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -400,12 +398,11 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link Facebook"
-          defaultValue={businessByUUID?.socialMedia?.[1] == 'undefined' ? 'Link facebook' : businessByUUID?.socialMedia?.[1]}
-        // placeholder={
-        //   businessByUUID.socialMedia
-        //     ? businessByUUID.socialMedia[1]
-        //     : 'coba ig'
-        // }
+          defaultValue={
+            businessByUUID?.socialMedia?.[1] == 'undefined'
+              ? 'Link facebook'
+              : businessByUUID?.socialMedia?.[1]
+          }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -418,12 +415,11 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link twitter"
-          defaultValue={businessByUUID?.socialMedia?.[2] == 'undefined' ? 'Link twitter' : businessByUUID?.socialMedia?.[2]}
-        // placeholder={
-        //   businessByUUID.socialMedia
-        //     ? businessByUUID.socialMedia[2]
-        //     : 'coba ig'
-        // }
+          defaultValue={
+            businessByUUID?.socialMedia?.[2] == 'undefined'
+              ? 'Link twitter'
+              : businessByUUID?.socialMedia?.[2]
+          }
         />
       </form>
       <form className="flex items-center gap-3 md:w-3/4 xl:w-full">
@@ -436,12 +432,11 @@ const Socmed = ({
           className="w-full h-10 border border-gray-300 rounded p-2 text-sm placeholder:text-xs disabled:bg-gray-200"
           disabled={editForm}
           placeholder="Link youtube"
-          defaultValue={businessByUUID?.socialMedia?.[3] == 'undefined' ? 'Link youtube' : businessByUUID?.socialMedia?.[3]}
-        // placeholder={
-        //   businessByUUID.socialMedia
-        //     ? businessByUUID.socialMedia[3]
-        //     : 'coba ig'
-        // }
+          defaultValue={
+            businessByUUID?.socialMedia?.[3] == 'undefined'
+              ? 'Link youtube'
+              : businessByUUID?.socialMedia?.[3]
+          }
         />
       </form>
     </div>
@@ -471,8 +466,7 @@ const Form = ({
   setPicture3,
   setPicture4,
 }) => {
-
-  const [disabledBtn, setDisabledBtn] = useState(false)
+  const [disabledBtn, setDisabledBtn] = useState(false);
 
   const handleChange = (e) => {
     const name = e.name;
@@ -543,7 +537,6 @@ const Form = ({
     close: '',
   });
 
-  // set sosmed from input to final state (bingung? sama gw juga)
   useEffect(() => {
     setBusinessData((prev) => ({
       ...prev,
@@ -566,16 +559,6 @@ const Form = ({
     }));
   }, [inputIG, inputFB, inputTW, inputYT]);
 
-  // const arraySocialMedia = [
-  //   businessData.instagram || businessByUUID?.socialMedia[0],
-  //   businessData.facebook || businessByUUID?.socialMedia[1],
-  //   businessData.twitter || businessByUUID?.socialMedia[2],
-  //   businessData.youtube || businessByUUID?.socialMedia[3],
-  //   businessData.maps || 'ini meps',
-  // ];
-
-  // const sosmed1 = businessByUUID.socialMedia[0]|| 'lala';
-
   const arraySocialMedia = [
     businessData.instagram
       ? businessData.instagram
@@ -589,9 +572,7 @@ const Form = ({
     businessData.youtube
       ? businessData.youtube
       : businessByUUID?.socialMedia?.[3],
-    businessData.maps
-      ? businessData.maps
-      : businessByUUID?.socialMedia?.[4],
+    businessData.maps ? businessData.maps : businessByUUID?.socialMedia?.[4],
   ];
 
   const arraySchedule = [
@@ -601,7 +582,6 @@ const Form = ({
 
   const updateBusiness = async (e) => {
     if (disabledBtn) {
-
       e.preventDefault();
       try {
         const formUpdateBusiness = new FormData();
@@ -611,8 +591,12 @@ const Form = ({
         formUpdateBusiness.append('img3', businessData.img3);
         formUpdateBusiness.append('img4', businessData.img4);
         formUpdateBusiness.append('img5', businessData.img5);
-        formUpdateBusiness.append('description',
-          businessData.description ? businessData.description : businessByUUID?.description);
+        formUpdateBusiness.append(
+          'description',
+          businessData.description
+            ? businessData.description
+            : businessByUUID?.description
+        );
         formUpdateBusiness.append('schedule', JSON.stringify(arraySchedule));
         formUpdateBusiness.append(
           'socialMedia',
@@ -630,12 +614,10 @@ const Form = ({
           title: 'Ubah data usaha berhasil',
           confirmButtonText: 'Oke',
         }).then((result) => {
-
           if (result.isConfirmed) {
-            window.location.reload()
+            window.location.reload();
           }
-        })
-
+        });
       } catch (error) {
         if (error.response) {
           alert(error.response.data.msg);
@@ -705,7 +687,11 @@ const Form = ({
             onChange={(e) => handleChange(e.target)}
             className="text-xs w-full h-10 text-gray-700 border border-gray-300 rounded p-2 placeholder:text-xs placeholder:text-gray-500 disabled:bg-gray-200"
             disabled={editForm}
-            defaultValue={businessByUUID?.socialMedia?.[4] == 'undefined' ? 'Link Maps' : businessByUUID?.socialMedia?.[4]}
+            defaultValue={
+              businessByUUID?.socialMedia?.[4] == 'undefined'
+                ? 'Link Maps'
+                : businessByUUID?.socialMedia?.[4]
+            }
             placeholder="Masukkan link"
             name="maps"
             id="maps"
@@ -720,22 +706,26 @@ const Form = ({
             <div>
               {editForm ? (
                 <>
-                  <p className='text-xs text-gray-400 mb-2'>Jadwal Buka</p>
+                  <p className="text-xs text-gray-400 mb-2">Jadwal Buka</p>
                   <input
                     disabled={editForm}
                     type="text"
-                    placeholder={businessByUUID?.schedule?.[0] == 'undefined' ? '-' : businessByUUID?.schedule?.[0]}
-                    className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300' />
+                    placeholder={
+                      businessByUUID?.schedule?.[0] == 'undefined'
+                        ? '-'
+                        : businessByUUID?.schedule?.[0]
+                    }
+                    className="text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300"
+                  />
                 </>
               ) : (
-
                 <select
                   name="open"
                   id=""
                   disabled={editForm}
                   onChange={(e) => handleChange(e.target)}
                   defaultChecked={businessByUUID?.schedule?.[0]}
-                  className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300'
+                  className="text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300"
                 >
                   <option value="" className="text-xs">
                     Jadwal Buka
@@ -749,26 +739,28 @@ const Form = ({
             <div>
               {editForm ? (
                 <>
-                  <p className='text-xs text-gray-400 mb-2'>Jadwal Tutup</p>
+                  <p className="text-xs text-gray-400 mb-2">Jadwal Tutup</p>
                   <input
                     disabled={editForm}
                     type="text"
-                    placeholder={businessByUUID?.schedule?.[1] == 'undefined' ? '-' : businessByUUID?.schedule?.[1]}
-                    className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300' />
+                    placeholder={
+                      businessByUUID?.schedule?.[1] == 'undefined'
+                        ? '-'
+                        : businessByUUID?.schedule?.[1]
+                    }
+                    className="text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300"
+                  />
                 </>
               ) : (
-
                 <select
                   name="close"
                   id=""
                   disabled={editForm}
                   onChange={(e) => handleChange(e.target)}
                   defaultChecked={businessByUUID?.schedule?.[1]}
-                  className='text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300'
+                  className="text-sm disabled:bg-gray-200 disabled:border-gray-300 border px-3 py-2 rounded border-gray-300"
                 >
-                  <option value="" >
-                    Jadwal Tutup
-                  </option>
+                  <option value="">Jadwal Tutup</option>
                   {times.map((time) => (
                     <option value={time}>{time}</option>
                   ))}
@@ -850,7 +842,9 @@ const Form = ({
               <button
                 onClick={() => setDisabledBtn(true)}
                 type="submit"
-                className={`w-fit ${disabledBtn ? "hidden" : "flex"} justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded`}
+                className={`w-fit ${
+                  disabledBtn ? 'hidden' : 'flex'
+                } justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded`}
               >
                 <p className="text-xs md:text-sm text-white flex gap-2 items-center">
                   <FaSave className="inline-block" />

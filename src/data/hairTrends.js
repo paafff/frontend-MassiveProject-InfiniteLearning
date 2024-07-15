@@ -1,9 +1,8 @@
-// import CommaHair from '../../assets/images/trend/commahair.jpg'
-import CommaHair from '../assets/images/trend/commahair.png';
-import BobHair from '../assets/images/trend/bobhaircarousel.png';
-import Mullet from '../assets/images/trend/mullet.png';
-import SoftBangs from '../assets/images/trend/softbangs.png';
-import FrenchCrop from '../assets/images/trend/frenchcrop.png';
+import CommaHair from '../assets/images/trend/commahair.webp';
+import BobHair from '../assets/images/trend/bobhaircarousel.webp';
+import Mullet from '../assets/images/trend/mullet.webp';
+import SoftBangs from '../assets/images/trend/softbangs.webp';
+import FrenchCrop from '../assets/images/trend/frenchcrop.webp';
 
 const dataHairTrends = [
   {

@@ -53,7 +53,6 @@ const BusinessRegistration = () => {
         { withCredentials: false }
       );
       setProvUser(response.data.value);
-      // console.log('prov', prov);
     } catch (error) {
       console.log(error);
     }
@@ -65,7 +64,6 @@ const BusinessRegistration = () => {
         { withCredentials: false }
       );
       setKabUser(response.data.value);
-      // console.log('kab', kab);
     } catch (error) {
       console.log(error);
     }
@@ -78,7 +76,6 @@ const BusinessRegistration = () => {
         { withCredentials: false }
       );
       setKecUser(response.data.value);
-      // console.log('kec', kec);
     } catch (error) {
       console.log(error);
     }
@@ -90,7 +87,6 @@ const BusinessRegistration = () => {
         { withCredentials: false }
       );
       setKelUser(response.data.value);
-      // console.log('kel', kel);
     } catch (error) {
       console.log(error);
     }
@@ -104,7 +100,6 @@ const BusinessRegistration = () => {
         { withCredentials: false }
       );
       setProvBusiness(response.data.value);
-      // console.log('prov', prov);
     } catch (error) {
       console.log(error);
     }
@@ -116,7 +111,6 @@ const BusinessRegistration = () => {
         { withCredentials: false }
       );
       setKabBusiness(response.data.value);
-      // console.log('kab', kab);
     } catch (error) {
       console.log(error);
     }
@@ -129,7 +123,6 @@ const BusinessRegistration = () => {
         { withCredentials: false }
       );
       setKecBusiness(response.data.value);
-      // console.log('kec', kec);
     } catch (error) {
       console.log(error);
     }
@@ -141,13 +134,11 @@ const BusinessRegistration = () => {
         { withCredentials: false }
       );
       setKelBusiness(response.data.value);
-      // console.log('kel', kel);
     } catch (error) {
       console.log(error);
     }
   };
 
-  // AllAboutRegion
 
   //userInformation
 
@@ -162,15 +153,14 @@ const BusinessRegistration = () => {
 
   const arrayAddressUser = [
     addressSelectedUser.prov
-      ? addressSelectedUser.prov : userAuth?.address?.[0],
-    addressSelectedUser.kab
-      ? addressSelectedUser.kab : userAuth?.address?.[1],
-    addressSelectedUser.kec
-      ? addressSelectedUser.kec : userAuth?.address?.[2],
-    addressSelectedUser.kel
-      ? addressSelectedUser.kel : userAuth?.address?.[3],
+      ? addressSelectedUser.prov
+      : userAuth?.address?.[0],
+    addressSelectedUser.kab ? addressSelectedUser.kab : userAuth?.address?.[1],
+    addressSelectedUser.kec ? addressSelectedUser.kec : userAuth?.address?.[2],
+    addressSelectedUser.kel ? addressSelectedUser.kel : userAuth?.address?.[3],
     addressSelectedUser.rtrw
-      ? addressSelectedUser.rtrw : userAuth?.address?.[4],
+      ? addressSelectedUser.rtrw
+      : userAuth?.address?.[4],
   ];
 
   //businessInformation
@@ -203,7 +193,6 @@ const BusinessRegistration = () => {
 
   //controler rest api
   const updateUser = async (e) => {
-    // e.preventDefault();
     try {
       const formUpdate = new FormData();
 
@@ -213,8 +202,6 @@ const BusinessRegistration = () => {
       formUpdate.append('phone', userData.phone);
       formUpdate.append('cardId', userData.cardId);
       formUpdate.append('address', JSON.stringify(arrayAddressUser));
-      // formUpdate.append('photoProfile', userData.photoProfile);
-      // formUpdate.append('address', JSON.stringify(arrayAddressUser));
 
       await axios.patch(
         `${import.meta.env.VITE_API_URL}/user/${userAuth.uuid}`,
@@ -223,7 +210,6 @@ const BusinessRegistration = () => {
       );
     } catch (error) {
       if (error.response) {
-
         alert(error.response.data.msg);
       } else {
         console.log(error);
@@ -231,19 +217,8 @@ const BusinessRegistration = () => {
     }
   };
 
-  // const navigate = useNavigate();
-
   const createBusiness = async (e) => {
-    // e.preventDefault();
     try {
-      // multipart
-      // const formCreate = new FormData();
-
-      // formCreate.append('name', businessData.name);
-      // formCreate.append('description', businessData.description);
-      // formCreate.append('typeBusiness', businessData.typeBusiness);
-      // formCreate.append('address', JSON.stringify(arrayAddressBusiness));
-
       await axios.post(`${import.meta.env.VITE_API_URL}/business`, {
         name: businessData.name,
         description: businessData.description,
@@ -257,12 +232,10 @@ const BusinessRegistration = () => {
         title: 'Pendaftaran usaha berhasil',
         confirmButtonText: 'Oke',
       }).then((result) => {
-
         if (result.isConfirmed) {
           navigate('/dashboard');
         }
-      })
-
+      });
     } catch (error) {
       if (error.response) {
         Swal.fire({
@@ -272,10 +245,9 @@ const BusinessRegistration = () => {
           confirmButtonText: 'Hubungi admin',
         }).then((result) => {
           if (result.isConfirmed) {
-            navigate('/call-center')
+            navigate('/call-center');
           }
-        })
-        // alert(error.response.data.msg);
+        });
       } else {
         console.log(error);
       }
@@ -296,23 +268,19 @@ const BusinessRegistration = () => {
     getProvBusiness();
   }, [dispatch, navigate]);
 
-  const [editedJudulBrand, setEditedJudulBrand] = useState(false)
-  const [editedJenisUsaha, setEditedJenisUsaha] = useState(false)
-  const [editedDesc, setEditedDesc] = useState(false)
+  const [editedJudulBrand, setEditedJudulBrand] = useState(false);
+  const [editedJenisUsaha, setEditedJenisUsaha] = useState(false);
+  const [editedDesc, setEditedDesc] = useState(false);
 
-  const [disabledSimpan, setDisabledSimpan] = useState(true)
+  const [disabledSimpan, setDisabledSimpan] = useState(true);
 
   useEffect(() => {
-
     if (editedJudulBrand && editedJenisUsaha && editedDesc) {
-      setDisabledSimpan(false)
+      setDisabledSimpan(false);
     }
-
   }, [editedJenisUsaha, editedJudulBrand, editedDesc]);
-  //useefeect
 
   const handleSubmit = async () => {
-    // e.preventDefault();
     try {
       await createBusiness();
       await updateUser();
@@ -320,7 +288,6 @@ const BusinessRegistration = () => {
       console.log(error);
     }
   };
-
 
   return (
     <Layout>
@@ -347,9 +314,6 @@ const BusinessRegistration = () => {
                   id="fullname"
                   className="border"
                   class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  // placeholder={
-                  //   userAuth.username ? userAuth.username : 'Nama Pemilik Usaha'
-                  // }
                   placeholder={
                     userAuth.username ? userAuth.username : 'Nama Pemilik Usaha'
                   }
@@ -359,7 +323,6 @@ const BusinessRegistration = () => {
                       username: e.target.value,
                     })
                   }
-
                 />
               </div>
             </div>
@@ -379,7 +342,6 @@ const BusinessRegistration = () => {
                     gender: e.target.value,
                   })
                 }
-
               />
               <label htmlFor="male" class="ml-2">
                 Pria
@@ -396,7 +358,6 @@ const BusinessRegistration = () => {
                     gender: e.target.value,
                   })
                 }
-
               />
               <label htmlFor="female" class="ml-2">
                 Wanita
@@ -476,11 +437,8 @@ const BusinessRegistration = () => {
                     const selectedId = selectedOption.getAttribute('id');
                     const selectedName = selectedOption.getAttribute('name');
 
-                    // setUserData({ ...userData, address: selectedName });
-
                     setAddressSelectedUser({
                       ...addressSelectedUser,
-                      // prov: selectedId,
                       prov: selectedName,
                     });
                   }}
@@ -508,12 +466,10 @@ const BusinessRegistration = () => {
 
                     const selectedOption =
                       e.target.options[e.target.selectedIndex];
-                    // const selectedId = selectedOption.getAttribute('id');
                     const selectedName = selectedOption.getAttribute('name');
 
                     setAddressSelectedUser({
                       ...addressSelectedUser,
-                      // kab: selectedId,
                       kab: selectedName,
                     });
                   }}
@@ -540,12 +496,10 @@ const BusinessRegistration = () => {
 
                     const selectedOption =
                       e.target.options[e.target.selectedIndex];
-                    // const selectedId = selectedOption.getAttribute('id');
                     const selectedName = selectedOption.getAttribute('name');
 
                     setAddressSelectedUser({
                       ...addressSelectedUser,
-                      // kec: selectedId,
                       kec: selectedName,
                     });
                   }}
@@ -568,16 +522,12 @@ const BusinessRegistration = () => {
                 <select
                   class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   onChange={(e) => {
-                    // getKelUser(e.target.value);
-
                     const selectedOption =
                       e.target.options[e.target.selectedIndex];
-                    // const selectedId = selectedOption.getAttribute('id');
                     const selectedName = selectedOption.getAttribute('name');
 
                     setAddressSelectedUser({
                       ...addressSelectedUser,
-                      // kel: selectedId,
                       kel: selectedName,
                     });
                   }}
@@ -605,7 +555,6 @@ const BusinessRegistration = () => {
                       rtrw: e.target.value,
                     })
                   }
-                  // placeholder={userAuth.address ? userAuth.address[1] : 'RT/RW'}
                   placeholder="RT/RW"
                 />
               </div>
@@ -617,23 +566,19 @@ const BusinessRegistration = () => {
                 Judul Brand
               </label>
               <input
-
                 type="text"
                 name="brandName"
                 id="brandName"
                 className="border"
                 class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 basis-2/3"
                 placeholder="Nama Brand Anda"
-                onChange={
-                  (e) => {
-                    setBusinessData({
-                      ...businessData,
-                      name: e.target.value,
-                    })
-                    setEditedJudulBrand(true)
-                  }
-                }
-
+                onChange={(e) => {
+                  setBusinessData({
+                    ...businessData,
+                    name: e.target.value,
+                  });
+                  setEditedJudulBrand(true);
+                }}
               />
             </div>
             <div class="flex flex-row my-6">
@@ -650,10 +595,9 @@ const BusinessRegistration = () => {
                   setBusinessData({
                     ...businessData,
                     typeBusiness: e.target.value,
-                  })
-                  setEditedJenisUsaha(true)
-                }
-                }
+                  });
+                  setEditedJenisUsaha(true);
+                }}
                 required
               />
               <label htmlFor="barbershop" class="ml-2">
@@ -669,10 +613,9 @@ const BusinessRegistration = () => {
                   setBusinessData({
                     ...businessData,
                     typeBusiness: e.target.value,
-                  })
-                  setEditedJenisUsaha(true)
-                }
-                }
+                  });
+                  setEditedJenisUsaha(true);
+                }}
                 required
               />
               <label htmlFor="salon" class="ml-2">
@@ -791,8 +734,6 @@ const BusinessRegistration = () => {
                   required
                   class="mr-5 w-60 px-2 mb-6 block rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   onChange={(e) => {
-                    // getKelBusiness(e.target.value);
-
                     const selectedOption =
                       e.target.options[e.target.selectedIndex];
                     const selectedId = selectedOption.getAttribute('id');
@@ -828,7 +769,6 @@ const BusinessRegistration = () => {
                       rtrw: e.target.value,
                     })
                   }
-                  // placeholder={userAuth.address ? userAuth.address[1] : 'RT/RW'}
                   placeholder="RT/RW"
                 />
               </div>
@@ -844,39 +784,24 @@ const BusinessRegistration = () => {
                   setBusinessData({
                     ...businessData,
                     description: e.target.value,
-                  })
-                  setEditedDesc(true)
-                }
-                }
+                  });
+                  setEditedDesc(true);
+                }}
               ></textarea>
             </div>
           </div>
-
-          {/* sementara */}
-          {/* <button
-          class="mt-5 ml-80 bg-rose-400 hover:bg-rose-600 text-white font-bold py-2 px-5 rounded shadow-lg"
-          // onSubmit={() => handleClick()}
-          type="submit"
-        >
-          Simpan
-        </button> */}
-          {/* sementara */}
         </form>
         <div class="columns-2 mt-20 flex justify-end">
-          {/* <img src="src/assets/images/image.png" class="mb-5" /> */}
           <div class="justify-end">
-
             <button
               class="mt-5 ml-80 disabled:bg-gray-300 disabled:hover:cursor-not-allowed bg-rose-400 hover:bg-rose-600 text-white font-bold py-2 px-5 rounded shadow-lg"
               onClick={handleSubmit}
-              // type="submit"
               disabled={disabledSimpan}
             >
               Simpan
             </button>
           </div>
         </div>
-
       </div>
     </Layout>
   );

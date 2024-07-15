@@ -9,16 +9,6 @@ import Swal from 'sweetalert2';
 const Services = ({ businessByUUID }) => {
   const [editForm, setEditForm] = useState(true);
 
-  // const arrayService = [
-  //   'layanan1',
-  //   'layanan2',
-  //   'layanan3',
-  //   'layanan4',
-  //   'layanan5',
-  // ];
-  // const [arrayService, setArrayService] = useState([]);
-  // const arrayServicePrice = ['1223', '1212', '1213', '111', '9999'];
-  // const [arrayServicePrice, setArrayServicePrice] = useState([]);
   const businessId = businessByUUID.id;
 
   const [serviceData, setServiceData] = useState({
@@ -248,8 +238,10 @@ const Service = ({
                     </option>
                   ))}
                 </select>
-                <div className='flex flex-col w-1/2'>
-                  <p className='text-xs text-gray-400 mb-2'>Masukkan harga tanpa titik. Contoh 25000</p>
+                <div className="flex flex-col w-1/2">
+                  <p className="text-xs text-gray-400 mb-2">
+                    Masukkan harga tanpa titik. Contoh 25000
+                  </p>
                   <input
                     onChange={(e) =>
                       handlePrice('price' + (index + 1), e.target.value)
@@ -268,7 +260,11 @@ const Service = ({
                   onChange={(e) =>
                     handlePrice('price' + (index + 1), e.target.value)
                   }
-                  placeholder={businessByUUID.services?.length > 0 ? businessByUUID.services?.[0]?.name[index] : 'Belum ada layanan'}
+                  placeholder={
+                    businessByUUID.services?.length > 0
+                      ? businessByUUID.services?.[0]?.name[index]
+                      : 'Belum ada layanan'
+                  }
                   disabled={editForm}
                   className="disabled:bg-gray-200 h-9 bg-gray-100 rounded border border-gray-200 text-xs w-1/2 placeholder:text-xs placeholder:text-zinc-900 px-2"
                   type="number"
@@ -281,7 +277,9 @@ const Service = ({
                   disabled={editForm}
                   className="disabled:bg-gray-200 h-9 bg-gray-100 rounded border border-gray-200 text-xs w-1/2 placeholder:text-xs placeholder:text-zinc-900 px-2"
                   placeholder={
-                    businessByUUID.services?.length > 0 ? businessByUUID.services?.[0]?.price[index] : 'Belum ada layanan'
+                    businessByUUID.services?.length > 0
+                      ? businessByUUID.services?.[0]?.price[index]
+                      : 'Belum ada layanan'
                   }
                   type="number"
                 />

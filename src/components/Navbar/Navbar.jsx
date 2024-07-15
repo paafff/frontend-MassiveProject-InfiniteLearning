@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import Logo from '../../assets/images/logo/logo2.png';
+import Logo from '../../assets/images/logo/logo2.webp';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaAngleDown } from 'react-icons/fa';
 import DropdownCategory from './DropdownCategory';
@@ -12,8 +12,6 @@ import { getMe } from '../../redux/authSlice';
 import Swal from 'sweetalert2';
 
 const Navbar = () => {
-  //   const isLogin = true;
-
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [dropdownKategori, setDropdownKategori] = useState(false);
   const [dropdownProfile, setDropdownProfile] = useState(false);
@@ -30,11 +28,9 @@ const Navbar = () => {
     };
 
     getMeUser();
-    // console.log(userAuth);
   }, [dispatch, navigate]);
 
   const isLogin = userAuth;
-  // const navigate = useNavigate();
 
   const logOut = async () => {
     try {
@@ -178,7 +174,6 @@ const NavbarWebsite = ({
       <Link
         to="#"
         onClick={() => setDropdownKategori(!dropdownKategori)}
-        // onBlur={() => setDropdownKategori(!dropdownKategori)}
         className="text-sm font-medium gap-1 flex items-center py-1 px-4"
       >
         Kategori
@@ -189,7 +184,6 @@ const NavbarWebsite = ({
         <Link
           to="#"
           onClick={() => setDropdownProfile(!dropdownProfile)}
-          // onBlur={() => setDropdownProfile(!dropdownProfile)}
           className="text-sm font-medium py-1 px-7 items-center rounded-sm transition-all flex gap-3"
         >
           {user?.profileURL ? (
@@ -244,14 +238,16 @@ const NavbarMobile = ({
         </button>
       </div> */}
 
-      <Link to="/business" className="text-sm pl-7 inline-block font-medium py-1  w-fit">
+      <Link
+        to="/business"
+        className="text-sm pl-7 inline-block font-medium py-1  w-fit"
+      >
         Telusuri
       </Link>
 
       <Link
         to="#"
         onClick={() => setDropdownKategori(!dropdownKategori)}
-        // onBlur={() => setDropdownKategori(!dropdownKategori)}
         className="text-sm pl-7 inline-block font-medium gap-1 items-center py-1  w-fit"
       >
         Kategori
@@ -261,7 +257,6 @@ const NavbarMobile = ({
       {isLogin ? (
         <Link
           onClick={() => setDropdownProfile(!dropdownProfile)}
-          // onBlur={() => setDropdownProfile(!dropdownProfile)}
           className="text-sm font-medium py-1 px-7 rounded-sm transition-all flex gap-3"
         >
           {user?.profileURL ? (

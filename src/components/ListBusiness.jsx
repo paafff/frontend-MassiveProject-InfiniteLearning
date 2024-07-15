@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import BannerBarber from '../assets/images/banner/banner-barber.jpg';
-import BannerSalon from '../assets/images/banner/banner-salon.jpg';
-import ImageBarber from '../assets/images/business/image1.jpg';
-import ImageSalon from '../assets/images/business/image8.jpg';
+import BannerBarber from '../assets/images/banner/banner-barber.webp';
+import BannerSalon from '../assets/images/banner/banner-salon.webp';
 
 // MUI Select
 import InputLabel from '@mui/material/InputLabel';
@@ -17,7 +15,6 @@ import axios from 'axios';
 
 const ListBusiness = ({ listCity, dataList, page }) => {
   const [city, setCity] = useState('');
-  // const [kota, setKota] = useState('mentawai');
   const [kota, setKota] = useState(null);
 
   const handleCity = (event) => {
@@ -31,7 +28,8 @@ const ListBusiness = ({ listCity, dataList, page }) => {
     const getBusinessByParams = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL
+          `${
+            import.meta.env.VITE_API_URL
           }/business-search/${kota}?typeBusiness=${page}`
         );
 
@@ -106,8 +104,9 @@ const Banner = ({ page }) => {
     <div
       className="w-full h-32 md:h-56 lg:h-72 xl:h-96 flex items-end justify-start py-5 px-7 bg-gray-400 bg-cover "
       style={{
-        backgroundImage: `url(${page == 'barbershop' ? BannerBarber : BannerSalon
-          })`,
+        backgroundImage: `url(${
+          page == 'barbershop' ? BannerBarber : BannerSalon
+        })`,
         backgroundRepeat: 'no-repeat',
       }}
     >
@@ -133,12 +132,14 @@ const SelectCity = ({ city, handleCity, listCity }) => {
         label="Age"
       >
         <MenuItem>
-          <b className="" disabled>Pilih Kota</b>
+          <b className="" disabled>
+            Pilih Kota
+          </b>
         </MenuItem>
 
         {listCity.map((city) => (
           <MenuItem value={city.name}>
-            <p className='font-semibold'>{city.name}</p>
+            <p className="font-semibold">{city.name}</p>
           </MenuItem>
         ))}
       </Select>
@@ -147,7 +148,6 @@ const SelectCity = ({ city, handleCity, listCity }) => {
 };
 
 const Card = ({ id, name, city, page, uuid, schedule, data }) => {
-  //scheduleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee yak
   const [status, setStatus] = useState('');
   const currentTime = new Date().toLocaleTimeString('id-ID', {
     hour12: false,
@@ -168,7 +168,6 @@ const Card = ({ id, name, city, page, uuid, schedule, data }) => {
   useEffect(() => {
     if (
       // currentHours > targetHoursOpen ||
-      // (currentHours === targetHoursOpen && currentMinutes > targetMinutesOpen)
 
       (currentHours > targetHoursOpen ||
         (currentHours === targetHoursOpen &&
@@ -188,15 +187,17 @@ const Card = ({ id, name, city, page, uuid, schedule, data }) => {
     <div
       className="rounded-lg p-4 drop-shadow-2xl flex items-end justify-center  aspect-square bg-gray-300"
       style={{
-        backgroundImage: `url(${page == 'barbershop' ? data?.imageURL[0] : data?.imageURL[0]
-          })`,
-        backgroundSize: 'cover', backgroundPosition: 'center'
+        backgroundImage: `url(${
+          page == 'barbershop' ? data?.imageURL[0] : data?.imageURL[0]
+        })`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
       key={id}
     >
       <div className="w-full p-4 min-h-[25%] bg-white rounded-md flex justify-between items-center hover:scale-95 transition-all hover:cursor-pointer">
         <div className="w-full h-full flex flex-col justify-between">
-          {status == "Tutup" ? (
+          {status == 'Tutup' ? (
             <p className="text-red-600 font-semibold text-xs xl:text-sm">
               {status}
             </p>

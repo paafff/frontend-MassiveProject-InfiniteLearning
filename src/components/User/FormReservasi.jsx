@@ -28,7 +28,6 @@ const FormReservasi = ({ businessId, display, open, handleClose }) => {
   const [day, setDay] = useState(null);
   const [phone, setPhone] = useState(null);
 
-  //   hapeeeeeeeeeeeeeeeee
   const createReservation = async (e) => {
     e.preventDefault();
     try {
@@ -45,11 +44,9 @@ const FormReservasi = ({ businessId, display, open, handleClose }) => {
 
       Swal.fire('Reservasi berhasil', '', 'success');
     } catch (error) {
-      //dibawah ini opsi tampilkan error
       if (error.response) {
         handleClose();
         Swal.fire(error.response.data.msg, '', 'error');
-        // alert(error.response.data.msg); // Menampilkan pesan error sebagai popup
       } else {
         console.log(error); // Menampilkan error pada konsol
       }
@@ -86,7 +83,6 @@ const FormReservasi = ({ businessId, display, open, handleClose }) => {
   const days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 
   return (
-    // <div class={`w-1/2 absolute ${display ? "block" : "hidden"} p-20 bg-white border-2 border-gray-500 z-50 top-0 left-auto `}>
     <Modal
       open={open}
       onClose={handleClose}
@@ -191,9 +187,6 @@ const FormReservasi = ({ businessId, display, open, handleClose }) => {
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
             <div class="mt-5 flex justify-end">
-              {/* <div class="mr-6 bg-black hover:bg-gray-700 text-white font-bold py-2 px-5 rounded shadow-lg">
-              Cancel
-            </div> */}
               <button
                 type="submit"
                 class="bg-green-600 hover:bg-green-800 transition-all text-white font-bold py-2 px-5 rounded shadow-lg"
@@ -205,7 +198,6 @@ const FormReservasi = ({ businessId, display, open, handleClose }) => {
         </div>
       </Box>
     </Modal>
-    // </div>
   );
 };
 

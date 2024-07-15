@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import BobHair2 from '../assets/images/trend/bobhair2.jpg';
-import BobHairCarousel from '../assets/images/trend/bobhaircarousel.jpg';
-import CommaHair from '../assets/images/trend/commahair.jpg';
-import Mullet from '../assets/images/trend/mullet.jpg';
-import SoftBangs from '../assets/images/trend/softbangs.jpg';
-import FrenchCrop from '../assets/images/trend/frenchcrop.jpg';
-import IconHeader from '../assets/images/icons/gataunamanya.png';
+import IconHeader from '../assets/images/icons/gataunamanya.webp';
 import dataHairTrends from '../data/hairTrends';
 
 const HairTrend = ({ dataHairTrend, index }) => {
@@ -56,7 +50,11 @@ const Overflow = () => {
         <Link
           to={`/hair-trend?index=${index}`}
           className="mx-auto w-52 h-52 flex items-end justify-center p-3 rounded shadow-sm object-fill bg-no-repeat"
-          style={{ backgroundImage: `url(${data.image})` }}
+          style={{
+            backgroundImage: `url(${data.image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
         >
           <div className="w-52 lg:h-52 flex justify-center items-end">
             <p className="w-fit h-fit px-2 py-1 bg-white rounded text-sm font-semibold">

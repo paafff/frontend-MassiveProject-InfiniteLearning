@@ -62,8 +62,7 @@ const Form = ({
   handlePictureChange,
   picture,
 }) => {
-
-  const [disabledBtn, setDisabledBtn] = useState(false)
+  const [disabledBtn, setDisabledBtn] = useState(false);
 
   const handleChange = (e) => {
     const name = e.name;
@@ -90,24 +89,25 @@ const Form = ({
         formCreateWorker.append('name', workerData.name);
         formCreateWorker.append('description', workerData.description);
         formCreateWorker.append('skill', workerData.skill);
-        //   formCreateWorker.append('businessId', workerData.businessId);
         formCreateWorker.append('businessId', businessId);
 
-        await axios.post(`${import.meta.env.VITE_API_URL}/worker`, formCreateWorker, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
+        await axios.post(
+          `${import.meta.env.VITE_API_URL}/worker`,
+          formCreateWorker,
+          {
+            headers: { 'Content-Type': 'multipart/form-data' },
+          }
+        );
 
         Swal.fire({
           icon: 'success',
           title: 'Berhasil menambahkan karyawan',
           confirmButtonText: 'Oke',
         }).then((result) => {
-
           if (result.isConfirmed) {
-            window.location.reload()
+            window.location.reload();
           }
-        })
-
+        });
       } catch (error) {
         if (error.response) {
           alert(error.response.data.msg);
@@ -116,7 +116,6 @@ const Form = ({
         }
       }
     }
-
   };
 
   return (
@@ -131,7 +130,6 @@ const Form = ({
               alt=""
             />
           ) : (
-            // <FaUserCircle className='inline-block w-16 h-16 text-gray-400' />
             <FaUserCircle className="inline-block w-16 h-16 text-gray-400" />
           )}
           <input
@@ -205,14 +203,19 @@ const Form = ({
 
         <hr className="mt-5" />
 
-        <Button disabledBtn={disabledBtn} setDisabledBtn={setDisabledBtn} editForm={editForm} setEditForm={setEditForm} />
+        <Button
+          disabledBtn={disabledBtn}
+          setDisabledBtn={setDisabledBtn}
+          editForm={editForm}
+          setEditForm={setEditForm}
+        />
       </form>
     </div>
   );
 };
 
 const Button = ({ editForm, setEditForm, disabledBtn, setDisabledBtn }) => {
-  console.log("disabled ", disabledBtn)
+  console.log('disabled ', disabledBtn);
   return (
     <div className="w-full flex justify-between md:justify-end gap-5">
       {/* <Link
@@ -227,7 +230,9 @@ const Button = ({ editForm, setEditForm, disabledBtn, setDisabledBtn }) => {
       <button
         onClick={() => setDisabledBtn(true)}
         type="submit"
-        className={`w-fit ${disabledBtn ? "hidden" : "flex"} justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded`}
+        className={`w-fit ${
+          disabledBtn ? 'hidden' : 'flex'
+        } justify-end py-2 px-5 bg-green-600 hover:bg-green-700 hover:cursor-pointer transition-all rounded`}
       >
         <p className="text-xs md:text-sm text-white flex gap-4 md:gap-2 items-center">
           <FaSave className="inline-block scale-150 md:scale-100" />

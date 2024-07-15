@@ -15,7 +15,6 @@ import { IoLocationOutline } from 'react-icons/io5';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-// import { getMe } from '../../redux/authSlice';
 import { getMe } from '../redux/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -155,7 +154,6 @@ const UserUsaha = ({ listBusiness }) => {
         {listBusiness.map((business) => (
           <Link
             to={`/superuser/dashboard-business/${business.uuid}`}
-            // to={`/dashboard-business/${business.uuid}`}
             className="py-2 px-4 hover:bg-gray-200 transition-all rounded"
           >
             <p className="text-xs" key={business.id}>

@@ -5,7 +5,6 @@ import { IoReturnDownBackOutline } from 'react-icons/io5';
 import { FiEdit } from 'react-icons/fi';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-// import { unsetImageBusiness } from './../../../assets/images/unsetImage/1920.png';
 
 const BasicInformation = ({ businessByUUID, showSidebar, setShowSidebar }) => {
   return (
@@ -33,8 +32,9 @@ const HumbergerMenu = ({ showSidebar, setShowSidebar }) => {
   return (
     <svg
       onClick={() => setShowSidebar(!showSidebar)}
-      className={`w-5 h-5  transition-all text-zinc-900 lg:hidden mb-10 rotate-90 ${showSidebar ? 'ml-80 rotate-180' : 'ml-0'
-        } `}
+      className={`w-5 h-5  transition-all text-zinc-900 lg:hidden mb-10 rotate-90 ${
+        showSidebar ? 'ml-80 rotate-180' : 'ml-0'
+      } `}
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -61,7 +61,12 @@ const Form = ({ businessByUUID }) => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const [arrayAddressIdBusiness, setArrayAddressIdBusiness] = useState(['idProv', 'idKota', 'idKec', 'idKel']);
+  const [arrayAddressIdBusiness, setArrayAddressIdBusiness] = useState([
+    'idProv',
+    'idKota',
+    'idKec',
+    'idKel',
+  ]);
   const [arrayAddressBusiness, setArrayAddressBusiness] = useState([
     businessByUUID?.address?.[0],
     businessByUUID?.address?.[1],
@@ -69,8 +74,7 @@ const Form = ({ businessByUUID }) => {
     businessByUUID?.address?.[3],
   ]);
 
-  useEffect(()=>{
-
+  useEffect(() => {
     setArrayAddressBusiness((prevArray) => {
       const newArray = [...prevArray];
       newArray[0] = businessByUUID?.address?.[0];
@@ -88,8 +92,7 @@ const Form = ({ businessByUUID }) => {
       newArray[3] = businessByUUID?.addressId?.[3];
       return newArray;
     });
-
-  },[editForm])
+  }, [editForm]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -107,7 +110,6 @@ const Form = ({ businessByUUID }) => {
     };
 
     fetchData();
-
   }, []); // The empty dependency array means this effect runs once after the initial render
 
   const fetchKota = async (id) => {
@@ -172,13 +174,11 @@ const Form = ({ businessByUUID }) => {
     neighborhoods: '',
   });
 
-  
-
   const handleProv = (e) => {
-    const idProv = allProvinsi[e].id
-    const nameProv = allProvinsi[e].name
+    const idProv = allProvinsi[e].id;
+    const nameProv = allProvinsi[e].name;
 
-    fetchKota(idProv)
+    fetchKota(idProv);
 
     setArrayAddressBusiness((prevArray) => {
       const newArray = [...prevArray];
@@ -191,15 +191,13 @@ const Form = ({ businessByUUID }) => {
       newArray[0] = idProv;
       return newArray;
     });
-
-  }
+  };
 
   const handleCity = (e) => {
+    const idCity = allKota[e].id;
+    const nameCity = allKota[e].name;
 
-    const idCity = allKota[e].id
-    const nameCity = allKota[e].name
-
-    fetchKecamatan(idCity)
+    fetchKecamatan(idCity);
 
     setArrayAddressBusiness((prevArray) => {
       const newArray = [...prevArray];
@@ -212,15 +210,13 @@ const Form = ({ businessByUUID }) => {
       newArray[1] = idCity;
       return newArray;
     });
-
-  }
+  };
 
   const handleDistrict = (e) => {
+    const idDisctrict = allKecamatan[e].id;
+    const nameDisctrict = allKecamatan[e].name;
 
-    const idDisctrict = allKecamatan[e].id
-    const nameDisctrict = allKecamatan[e].name
-
-    fetchKelurahan(idDisctrict)
+    fetchKelurahan(idDisctrict);
 
     setArrayAddressBusiness((prevArray) => {
       const newArray = [...prevArray];
@@ -233,13 +229,11 @@ const Form = ({ businessByUUID }) => {
       newArray[2] = idDisctrict;
       return newArray;
     });
-
-  }
+  };
 
   const handleNeighborhood = (e) => {
-
-    const idNeighborhood = allKelurahan[e].id
-    const nameNeighborhood = allKelurahan[e].name
+    const idNeighborhood = allKelurahan[e].id;
+    const nameNeighborhood = allKelurahan[e].name;
 
     setArrayAddressBusiness((prevArray) => {
       const newArray = [...prevArray];
@@ -252,17 +246,18 @@ const Form = ({ businessByUUID }) => {
       newArray[3] = idNeighborhood;
       return newArray;
     });
-
-  }
+  };
 
   const updateBusiness = async (e) => {
-
     e.preventDefault();
     try {
       const formUpdateBusiness = new FormData();
 
       formUpdateBusiness.append('name', businessData.name);
-      formUpdateBusiness.append('email', businessData.email ? businessData?.email : 'sample@mail.com');
+      formUpdateBusiness.append(
+        'email',
+        businessData.email ? businessData?.email : 'sample@mail.com'
+      );
       formUpdateBusiness.append('phone', businessData.phone);
       formUpdateBusiness.append('img1', null);
       formUpdateBusiness.append('img2', null);
@@ -293,12 +288,10 @@ const Form = ({ businessByUUID }) => {
         title: 'Ubah data usaha berhasil',
         confirmButtonText: 'Oke',
       }).then((result) => {
-
         if (result.isConfirmed) {
-          window.location.reload()
+          window.location.reload();
         }
-      })
-
+      });
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -359,7 +352,9 @@ const Form = ({ businessByUUID }) => {
                 placeholder={businessByUUID.phone || 'Telepon'}
                 className="w-full md:w-3/4 xl:w-3/4 border border-gray-400 rounded-md h-10 text-sm px-2 placeholder:text-xs disabled:bg-gray-200"
               />
-              <p className='text-xs text-gray-400'>Harap masukkan kode negara contoh (62 898123456)</p>
+              <p className="text-xs text-gray-400">
+                Harap masukkan kode negara contoh (62 898123456)
+              </p>
             </div>
           </div>
           <div className="flex flex-col gap-4 md:items-start md:justify-between xl:w-1/2">
@@ -441,40 +436,42 @@ const Form = ({ businessByUUID }) => {
                 </>
               )}
 
-              {
-                editForm && (
-                  <>
-                    <input
-                      value={"Provinsi " + businessByUUID?.address?.[0]}
-                      type="text"
-                      name=""
-                      disabled
-                      className="w-full border border-gray-400 rounded-md h-10 text-sm px-3 disabled:bg-gray-200"
-                      id="" />
-                    <input
-                      value={"Kota " + businessByUUID?.address?.[1]}
-                      type="text"
-                      name=""
-                      disabled
-                      className="w-full border border-gray-400 rounded-md h-10 text-sm px-3 disabled:bg-gray-200"
-                      id="" />
-                    <input
-                      value={"Kecamatan " + businessByUUID?.address?.[2]}
-                      type="text"
-                      name=""
-                      disabled
-                      className="w-full border border-gray-400 rounded-md h-10 text-sm px-3 disabled:bg-gray-200"
-                      id="" />
-                    <input
-                      value={"Kelurahan " + businessByUUID?.address?.[3]}
-                      type="text"
-                      name=""
-                      disabled
-                      className="w-full border border-gray-400 rounded-md h-10 text-sm px-3 disabled:bg-gray-200"
-                      id="" />
-                  </>
-                )
-              }
+              {editForm && (
+                <>
+                  <input
+                    value={'Provinsi ' + businessByUUID?.address?.[0]}
+                    type="text"
+                    name=""
+                    disabled
+                    className="w-full border border-gray-400 rounded-md h-10 text-sm px-3 disabled:bg-gray-200"
+                    id=""
+                  />
+                  <input
+                    value={'Kota ' + businessByUUID?.address?.[1]}
+                    type="text"
+                    name=""
+                    disabled
+                    className="w-full border border-gray-400 rounded-md h-10 text-sm px-3 disabled:bg-gray-200"
+                    id=""
+                  />
+                  <input
+                    value={'Kecamatan ' + businessByUUID?.address?.[2]}
+                    type="text"
+                    name=""
+                    disabled
+                    className="w-full border border-gray-400 rounded-md h-10 text-sm px-3 disabled:bg-gray-200"
+                    id=""
+                  />
+                  <input
+                    value={'Kelurahan ' + businessByUUID?.address?.[3]}
+                    type="text"
+                    name=""
+                    disabled
+                    className="w-full border border-gray-400 rounded-md h-10 text-sm px-3 disabled:bg-gray-200"
+                    id=""
+                  />
+                </>
+              )}
             </div>
           </div>
         </div>

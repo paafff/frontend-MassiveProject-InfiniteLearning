@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import BannerBarber from '../assets/images/banner/banner-barber.jpg';
-import BannerSalon from '../assets/images/banner/banner-salon.jpg';
-import ImageBarber from '../assets/images/business/image1.jpg';
-import ImageSalon from '../assets/images/business/image8.jpg';
+import BannerBarber from '../assets/images/banner/banner-barber.webp';
+import BannerSalon from '../assets/images/banner/banner-salon.webp';
 
 // MUI Select
 import InputLabel from '@mui/material/InputLabel';
@@ -17,16 +15,12 @@ import axios from 'axios';
 
 const ListAllBusiness = ({ listCity, dataList, page, setSearch }) => {
   const [city, setCity] = useState('');
-  // const [kota, setKota] = useState('mentawai');
   const [kota, setKota] = useState(null);
-
-  //   const [keyword, setKeyword] = useState('');
 
   const handleSearch = (e) => {
     // logic search
     setKeyword(e);
   };
-
 
   return (
     <div className=" min-w-full min-h-screen">
@@ -65,8 +59,9 @@ const Banner = ({ page }) => {
     <div
       className="w-full h-32 md:h-56 lg:h-72 xl:h-96 flex items-end justify-start py-5 px-7 bg-gray-400 bg-cover "
       style={{
-        backgroundImage: `url(${page == 'barbershop' ? BannerBarber : BannerSalon
-          })`,
+        backgroundImage: `url(${
+          page == 'barbershop' ? BannerBarber : BannerSalon
+        })`,
         backgroundRepeat: 'no-repeat',
       }}
     >
@@ -88,7 +83,10 @@ const Search = ({ setSearch }) => {
         className="placeholder:text-xs xl:placeholder:text-sm text-xs xl:text-sm border w-full border-gray-300 rounded h-10 px-3 focus:border-gray-200"
         onChange={(e) => setKeyword(e.target.value)}
       />
-      <button className="text-sm px-3 rounded border bg-rose-400 text-white" onClick={(e) => setSearch(keyword)}>
+      <button
+        className="text-sm px-3 rounded border bg-rose-400 text-white"
+        onClick={(e) => setSearch(keyword)}
+      >
         search
       </button>
     </div>
@@ -138,13 +136,14 @@ const Card = ({ city, page, schedule, data }) => {
       className="rounded-lg p-4 drop-shadow-2xl flex items-end justify-center  aspect-square bg-gray-300"
       style={{
         backgroundImage: `url(${data?.imageURL[0]})`,
-        backgroundSize: 'cover', backgroundPosition: 'center'
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
       key={data.id}
     >
       <div className="w-full p-4 min-h-[25%] bg-white rounded-md flex justify-between items-center hover:scale-95 transition-all hover:cursor-pointer">
         <div className="w-full h-full flex flex-col justify-between">
-          {status == "Tutup" ? (
+          {status == 'Tutup' ? (
             <p className="text-red-600 font-semibold text-xs xl:text-sm">
               {status}
             </p>

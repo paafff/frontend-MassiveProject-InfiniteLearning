@@ -8,11 +8,9 @@ import ReactPaginate from 'react-paginate';
 import { useLocation } from 'react-router-dom';
 
 const ReviewUser = ({ selectedBusinessId }) => {
-  const currentLocation = useLocation().pathname
+  const currentLocation = useLocation().pathname;
 
-  //   const [listFeedback, setListFeedback] = useState([]);
   const [listFeedback, setListFeedback] = useState(['', '']);
-  // const [listFeedback, setListFeedback] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const feedbacksPerPage = 2;
   useEffect(() => {
@@ -23,13 +21,8 @@ const ReviewUser = ({ selectedBusinessId }) => {
         );
 
         setListFeedback(response.data);
-        // console.log('feedbackkkkkkkk', listFeedback);
       } catch (error) {
-        // if (error.response) {
-        //   alert(error.response.data.msg);
-        // } else {
         console.log(error);
-        // }
       }
     };
 
@@ -47,7 +40,11 @@ const ReviewUser = ({ selectedBusinessId }) => {
   };
 
   return (
-    <div className={`w-full lg:w-full xl:w-3/4 ${currentLocation == '/admin/business' ? "" : 'xl:mx-auto'} xl:px-24 py-10 px-5 md:px-12 lg:pt-16`}>
+    <div
+      className={`w-full lg:w-full xl:w-3/4 ${
+        currentLocation == '/admin/business' ? '' : 'xl:mx-auto'
+      } xl:px-24 py-10 px-5 md:px-12 lg:pt-16`}
+    >
       <div className="bg-white w-full rounded-lg p-4 lg:p-8 drop-shadow-md">
         <p className="text-base md:text-lg font-semibold">Review</p>
         <hr className="my-5" />
@@ -61,14 +58,12 @@ const ReviewUser = ({ selectedBusinessId }) => {
         </div>
 
         {listFeedback?.length > 0 ? (
-
           <ReactPaginate
             className="flex space-x-5 justify-center items-center mt-10"
             previousLabel={'Previous'}
             nextLabel={'Next'}
             pageCount={pageCount}
             onPageChange={handlePageChange}
-
             //UI
             containerClassName={'pagination'}
             activeClassName={
@@ -90,11 +85,16 @@ const Card = ({ uuid, desc, rating, date, feedback }) => {
     <div className="w-full md:w-3/4 mx-auto p-3 md:p-5 bg-white drop-shadow-lg flex flex-col gap-3 rounded-md">
       <div className="flex items-center  gap-5">
         {feedback.userData?.profileURL ? (
-          <div className='w-10 h-10 rounded-full' style={{ backgroundImage: `url(${feedback.userData?.profileURL})`, backgroundPosition: 'center', backgroundSize: 'contain' }}>
-
-          </div>
+          <div
+            className="w-10 h-10 rounded-full"
+            style={{
+              backgroundImage: `url(${feedback.userData?.profileURL})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'contain',
+            }}
+          ></div>
         ) : (
-          <FaImage className='w-10 h-10' />
+          <FaImage className="w-10 h-10" />
         )}
         {/* <img
           src={feedback.userData?.profileURL}

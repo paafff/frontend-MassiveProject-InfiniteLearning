@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import ProfilePhoto from '../../../assets/images/profiles/profile_dummy.jpg';
 import { IoMdShare } from 'react-icons/io';
 import { FaRegCopy, FaSave, FaUserCircle } from 'react-icons/fa';
 import { FaRegTrashCan } from 'react-icons/fa6';
@@ -8,7 +7,6 @@ import { FiEdit } from 'react-icons/fi';
 import { IoReturnDownBackOutline } from 'react-icons/io5';
 import { useRef } from 'react';
 import HumbergerMenu from './HumbergerMenu';
-
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +17,6 @@ const API_KEY =
   '7b397cea3811e3799ae20fd43ac78bcbc0dba2f5954d6fef4361e5fff3af76f1';
 
 const dataUser = {
-  profilePhoto: 'profile_dummy.jpg',
   fullname: 'Ilham Soejud Alkahfiardy',
   gender: 'Pria',
   address: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio exercitationem officia nesciunt quam et tempore, cum ab inventore laudantium, ipsam fugit animi dignissimos, molestias ea distinctio ad ex eaque iste.`,
@@ -34,7 +31,6 @@ const dataGender = {
 
 const Biodata = ({ showSidebar, setShowSidebar }) => {
   const [editBio, setEditBio] = useState(false);
-  // console.log(editBio);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -49,8 +45,6 @@ const Biodata = ({ showSidebar, setShowSidebar }) => {
 
     getMeUser();
   }, [dispatch, navigate]);
-
-  // console.log(userAuth);
 
   return (
     <div className="w-full flex flex-col py-10 lg:py-16 px-6 md:px-12 xl:px-24 lg:px-10 ">
@@ -75,7 +69,6 @@ const Biodata = ({ showSidebar, setShowSidebar }) => {
 };
 
 const ProfileCard = ({ userAuth }) => {
-  // console.log('dalem componen', userAuth);
   const copyURL = () => {
     // Get the current URL
     const currentURL = window.location.href;
@@ -186,16 +179,11 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
   });
 
   const arrayAddressUser = [
-    userDataUpdate.prov 
-    ? userDataUpdate.prov : userAuth?.address?.[0],
-    userDataUpdate.kab
-    ? userDataUpdate.kab : userAuth?.address?.[1],
-    userDataUpdate.kec
-    ? userDataUpdate.kec : userAuth?.address?.[2],
-    userDataUpdate.kel
-    ? userDataUpdate.kel : userAuth?.address?.[3],
-    userDataUpdate.rtrw
-    ? userDataUpdate.rtrw : userAuth?.address?.[4],
+    userDataUpdate.prov ? userDataUpdate.prov : userAuth?.address?.[0],
+    userDataUpdate.kab ? userDataUpdate.kab : userAuth?.address?.[1],
+    userDataUpdate.kec ? userDataUpdate.kec : userAuth?.address?.[2],
+    userDataUpdate.kel ? userDataUpdate.kel : userAuth?.address?.[3],
+    userDataUpdate.rtrw ? userDataUpdate.rtrw : userAuth?.address?.[4],
   ];
 
   const navigate = useNavigate();
@@ -221,17 +209,14 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
       );
 
       Swal.fire({
-        icon:'success',
+        icon: 'success',
         title: 'Ubah biodata berhasil',
         confirmButtonText: 'Oke',
       }).then((result) => {
-        
         if (result.isConfirmed) {
-          window.location.reload()
+          window.location.reload();
         }
-      })
-
-
+      });
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg);
@@ -441,7 +426,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
                 </option>
               ))}
             </select>
-            
 
             {/* Select kota */}
             <select
@@ -469,8 +453,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
               ))}
             </select>
 
-            
-
             {/* Select kecamatan */}
             <select
               className="h-10 rounded w-3/4 xl:w-full px-3 text-xs xl:text-sm"
@@ -497,8 +479,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
               ))}
             </select>
 
-           
-
             {/* Select kelurahan */}
             <select
               className="h-10 rounded w-3/4 xl:w-full px-3 text-xs xl:text-sm"
@@ -523,7 +503,6 @@ const Form = ({ editBio, setEditBio, userAuth }) => {
                 </option>
               ))}
             </select>
-
           </div>
         ) : (
           <input

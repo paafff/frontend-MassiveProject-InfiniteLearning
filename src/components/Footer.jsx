@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import Logo from '../assets/images/logo/logo2.png';
+import Logo from '../assets/images/logo/logo2.webp';
 import { Link } from 'react-router-dom';
 import { FaXTwitter } from 'react-icons/fa6';
 import {
@@ -44,21 +44,41 @@ const Brand = () => {
 
 const Sosmed = () => {
   const linkSosmed = (e) => {
-    window.open(e)
-  }
+    window.open(e);
+  };
   return (
     <div className="flex gap-3">
       <div className="bg-white hover:cursor-pointer w-fit p-4 rounded-md hover:scale-[1.2] transition-all">
-        <FaXTwitter onClick={() => linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150 " />
+        <FaXTwitter
+          onClick={() =>
+            linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')
+          }
+          className="scale-150 "
+        />
       </div>
       <div className="bg-white hover:cursor-pointer w-fit p-4 rounded-md hover:scale-[1.2] transition-all">
-        <FaLinkedin onClick={() => linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150" />
+        <FaLinkedin
+          onClick={() =>
+            linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')
+          }
+          className="scale-150"
+        />
       </div>
       <div className="bg-white hover:cursor-pointer w-fit p-4 rounded-md hover:scale-[1.2] transition-all">
-        <FaInstagram onClick={() => linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150" />
+        <FaInstagram
+          onClick={() =>
+            linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')
+          }
+          className="scale-150"
+        />
       </div>
       <div className="bg-white hover:cursor-pointer w-fit p-4 rounded-md hover:scale-[1.2] transition-all">
-        <FaFacebook onClick={() => linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')} className="scale-150" />
+        <FaFacebook
+          onClick={() =>
+            linkSosmed('https://www.youtube.com/watch?v=JcGyLgVDoOo')
+          }
+          className="scale-150"
+        />
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { FaAddressBook } from 'react-icons/fa';
 import { MdMail } from 'react-icons/md';
 import { FaUnlock } from 'react-icons/fa';
 import { FaKey } from 'react-icons/fa6';
-import Logosignup from '../assets/images/logo/signup.png';
+import Logosignup from '../assets/images/logo/signup.webp';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -14,7 +14,7 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const authRegister = async (e) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ const SignUpForm = () => {
       );
 
       Swal.fire({
-        icon:'success',
+        icon: 'success',
         title: 'Registrasi berhasil',
         confirmButtonText: 'Oke',
       }).then((result) => {
@@ -39,8 +39,7 @@ const SignUpForm = () => {
         if (result.isConfirmed) {
           navigate('/login');
         }
-      })
-
+      });
     } catch (error) {
       if (error.response) {
         alert(error.response.data.msg); // Menampilkan pesan error sebagai popup
