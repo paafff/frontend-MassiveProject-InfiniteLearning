@@ -107,6 +107,7 @@ const Brand = ({ logoutProps }) => {
         <Link
           to="/"
           className="hidden md:flex lg:flex xl:flex text-white text-lg font-semibold"
+          aria-label="beranda"
         >
           HairHub
         </Link>
@@ -114,6 +115,7 @@ const Brand = ({ logoutProps }) => {
         <Link
           to="/"
           className="md:hidden lg:hidden xl:hidden text-white text-lg font-semibold"
+          aria-label="beranda"
         >
           Hair <br /> Hub
         </Link>
