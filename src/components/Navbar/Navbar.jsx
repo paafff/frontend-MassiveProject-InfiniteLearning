@@ -101,7 +101,7 @@ const Brand = ({ logoutProps }) => {
   return (
     <div className="flex items-center gap-1 ">
       <Link to="/">
-        <img src={Logo} className="w-24" alt="" />
+        <img src={Logo} className="w-24" alt="beranda" />
       </Link>
       <div>
         <Link
